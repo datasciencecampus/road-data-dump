@@ -6,9 +6,19 @@ TO=31032019
 
 git clone https://github.com/datasciencecampus/webtri.sh.git
 cd webtri.sh
-./webtri.sh -f get_site_by_type -a 1 >  ../sites.csv
-./webtri.sh -f get_site_by_type -a 2 >> ../sites.csv
-./webtri.sh -f get_site_by_type -a 3 >> ../sites.csv
+
+# get diff site types
+./webtri.sh -f get_site_by_type -a 1 > ../site_midas.csv
+./webtri.sh -f get_site_by_type -a 2 > ../site_tame.csv
+./webtri.sh -f get_site_by_type -a 3 > ../site_tmu.csv
+
+# combine them (need to keep site_x files for later)
+cat ../site_midas.csv ../site_tame.csv ../site_tmu.csv > ../sites.csv
+head -1 ../site_midas.csv > ../sites.csv
+tail -n+2 ../site_midas.csv >> ../sites.csv
+tail -n+2 ../site_tame.csv  >> ../sites.csv
+tail -n+2 ../site_tmu.csv   >> ../sites.csv
+
 mkdir ../data/
 
 #test first 10
