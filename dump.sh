@@ -35,7 +35,8 @@ echo "site_id,"$(head -1 1.csv) > x
 for i in $(ls *.csv) ;do
   tail -n+2 $i |sed "s/^/$i,/; s/.csv//" >> x
 done
-mv -v x combo.csv
+mv -v x ../combo.csv
+cd ..
 
 # prep.ipynb
 # split.ipynb
