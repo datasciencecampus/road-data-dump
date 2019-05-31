@@ -6,7 +6,7 @@
 
 Current dump (Nov'18 - Feb'19): http://parasec.net/road-data/
 
-Idea if this repo is to use [datasciencecampus/webtri.sh](https://github.com/datasciencecampus/webtri.sh) to snatch data then push to some remote location.
+Idea if this repo is to use [phil8192/webtri.sh](https://github.com/phil192/webtri.sh) to snatch data then push to some remote location.
 
 
 ## Prerequisites

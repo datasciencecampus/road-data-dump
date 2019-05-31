@@ -1,10 +1,10 @@
 # todo dockerise this..
 
 # from,to range. DD-MM-YYYY 
-FROM=01032019
-TO=31032019
+FROM=01042019
+TO=30042019
 
-git clone https://github.com/datasciencecampus/webtri.sh.git
+git clone https://github.com/phil8192/webtri.sh.git
 cd webtri.sh
 
 # get diff site types
