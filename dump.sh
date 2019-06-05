@@ -1,7 +1,12 @@
-# todo dockerise this..
+#!/bin/bash
+
+# nummber of reports to download in parallel.
+# set to 1 for serial operation.
+PARALLEL=4
 
 # from,to range. DD-MM-YYYY 
-FROM=01042019
+#FROM=01042019
+FROM=01012015
 TO=30042019
 
 git clone https://github.com/phil8192/webtri.sh.git
@@ -19,14 +24,20 @@ tail -n+2 ../site_midas.csv >> ../sites.csv
 tail -n+2 ../site_tame.csv  >> ../sites.csv
 tail -n+2 ../site_tmu.csv   >> ../sites.csv
 
-mkdir ../data/
+mkdir -p ../data
 
 #test first 10
 #head -10 ../sites.csv >x ;mv -v x ../sites.csv
 
+
+j=0
 time for i in $(tail -n+2 ../sites.csv |awk -F ',' '{print $1}' |tr -d '"') ;do
+  j=$((j + 1))
   echo "get site id ${i}..."
-  ./webtri.sh -f get_report -a "$i daily $FROM $TO" > ../data/"$i".csv
+  ./webtri.sh -f get_report -a "$i daily $FROM $TO" > ../data/"$i".csv &
+  if [ 0 == $((j % $PARALLEL)) ] ;then
+    wait
+  fi
 done
 
 # combo..
