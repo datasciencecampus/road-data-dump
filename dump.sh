@@ -5,9 +5,8 @@
 PARALLEL=4
 
 # from,to range. DD-MM-YYYY 
-#FROM=01042019
-FROM=01012015
-TO=30042019
+FROM=01062019
+TO=30062019
 
 git clone https://github.com/phil8192/webtri.sh.git
 cd webtri.sh
