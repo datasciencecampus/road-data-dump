@@ -1,0 +1,25 @@
+{
+    "id": "92A5D742",
+    "path": "~/road-data-dump/notebooks/prep.R",
+    "project_path": "prep.R",
+    "type": "r_source",
+    "hash": "1601611171",
+    "contents": "",
+    "dirty": false,
+    "created": 1605259399607.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "24,0",
+        "scrollLine": "15"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1605597838,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1605597838217,
+    "read_only": false,
+    "read_only_alternatives": []
+}
