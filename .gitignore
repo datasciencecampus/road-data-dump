@@ -1,9 +1,16 @@
-###data folders###
-./data/
-./cache/
+###renv package management###
+renv/library/
+renv/lock/
+renv/python/
+renv/staging/
 
-###packrat local library###
-processing/packrat/lib*/
+
+
+###data folders###
+data/
+cache/
+output_data/
+
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/r,python,jupyternotebooks
@@ -182,6 +189,7 @@ dmypy.json
 
 # RStudio files
 .Rproj.user/
+.Rprofile
 
 # produced vignettes
 vignettes/*.html
