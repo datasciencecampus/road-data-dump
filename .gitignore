@@ -12,6 +12,12 @@ cache/
 output_data/
 
 
+###webtri###
+webtri.sh/
+
+###jq###
+jq.exe
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/r,python,jupyternotebooks
 # Edit at https://www.toptal.com/developers/gitignore?templates=r,python,jupyternotebooks
