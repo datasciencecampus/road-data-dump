@@ -1,8 +1,8 @@
 library('ProjectTemplate')
-load.project()
+load.project(cache_loading = FALSE,
+             load_libraries = "on",
+             libraries = c("data.table", "purrr", "stringr", "beepr", "renv"),
+             logging = TRUE
+             )
 
-for (dataset in project.info$data)
-{
-  message(paste('Showing top 5 rows of', dataset))
-  print(head(get(dataset)))
-}
+

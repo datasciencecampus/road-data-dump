@@ -1,0 +1,2 @@
+* Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh
+* Convert above to .rds format for improved performance & memory allocation
