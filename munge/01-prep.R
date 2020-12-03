@@ -1,0 +1,235 @@
+"
+13/11/2020
+Purpose of script:
+RLe asissting DfT in identifying irreproducible dropping of columns
+in diferent environments.
+Current status: Previous notebook shared with BW identified differences in installed
+packages but update of those packages was not achieveable on DfT machine, it appeared that
+installation was not possible from within the Jupyter session.
+This script: copy out code from Jupyter Notebook and use packrat to create localised 
+libraries. 
+
+"
+# bump up memory limit
+memory.limit(20000)
+
+
+# import dependencies -----------------------------------------------------
+library(data.table)
+library(purrr)
+library(stringr)
+library(beepr)
+library(renv)
+
+# read data ---------------------------------------------------------------
+
+###site midas###
+
+#`combo.csv` is the result of combining individual CSVs in `data/`
+#first read in site info
+site.midas <- read.csv("../site_midas.csv", stringsAsFactor=F)
+# how many rows & columns?
+#dim(site.midas)
+# 12499     6
+# This is correct against the source data
+
+#create a type column and assign 'midas' as the value
+site.midas$type <- "midas"
+#tail(site.midas)
+
+###site tame###
+
+#read in the site_tame.csv
+site.tame <- read.csv("../site_tame.csv", stringsAsFactor=F)
+#create 'tame' label column
+site.tame$type <- "tame"
+
+#tail(site.tame)
+#dim(site.tame)
+# 859   7
+#correct against source data
+
+###site tmu###
+
+#read in site_tmu.csv
+site.tmu <- read.csv("../site_tmu.csv", stringsAsFactor=F)
+#assign 'tmu' column label
+site.tmu$type <- "tmu"
+
+#tail(site.tmu)
+#dim(site.tmu)
+# 2807    7
+# correct against source data
+
+
+# data manipulation -------------------------------------------------------
+
+
+#combine site info
+#row bind (append) all site data tables. Consistent format.
+sites <- rbind(site.midas, site.tame, site.tmu)
+
+
+# nrows & missing data -----------------------------------------------------
+" Leave this section commented out, as in regards to number of rows"
+"# check for missingness\n"
+"visdat::vis_dat(sites)\n"
+"#appears to be no missing values, which doesn't correspond with viewing the csvs,\n"
+"# there are missing values in the id column of midas, for example\n"
+"dplyr::glimpse(site.midas)\n"
+"# print NA counts in all columns of site.midas\n"
+"map(site.midas, ~sum(is.na(.)))#I wonder if data.table::fread uses a fill down function by default? The missing values in \n"
+"# the id column of midas are not showing as blank"
+"set.seed(36)\n"
+"dplyr::sample_n(site.midas, 10)\n"
+"site.midas[site.midas$id == 11506, ] # this is interesting, name is blank but not pulling in as na or null.\n"
+"# This is definitely something to investigate but I don't believe is directly related to the number of columns, so will\n"
+"# move on"
+# nrows & missing data -----------------------------------------------------
+
+
+# read data from webtri.sh ------------------------------------------------
+
+#read in the actual data obtained from `webtri.sh
+readings <- fread("../combo.csv", stringsAsFactor=F)
+# #tail(readings)
+# dim(readings)
+# # 16501920       25
+# names(readings)
+
+
+# Is 25 the correct number of columns? check against number of columns in constituent csvs.
+
+# number of columns in constituent csvs
+# test <- read.csv('..\\\\data\\\\36.csv')
+# ncol(test) #24, one column less than readings
+# 
+# setdiff(colnames(readings), colnames(test)) # 'site_id - I assume the bash script creates this column? "
+# 
+# # tidy up
+# remove(test)
+gc()
+
+
+
+# cleansing site columns --------------------------------------------------
+
+# unwrap embedded site meta info
+#`name` column contains extra `;` delimited info.
+# example `ex`:
+#ex <- sites[sample(1:nrow(sites), 10), ]
+#rle - ex is only used in testing function and can be removed
+
+# sample 10 random rows from sites, no seed set
+# subset the sites dataframe by that sample (possibly unnecessary step) and assign to ex
+## sensor direction
+# extract north,east,west,south(bound) or anti-clockwise/clockwise.
+
+
+
+# extracting direction ----------------------------------------------------
+
+
+# old direction function ------------------------------------------------------------
+# direction <- function(x) {
+#   # RLe - find the location of the direction string match within the name vector
+#   m <- regexpr("(([A-Za-z]+)bound)|([A-Za-z\\\\-]+wise)", x, perl = TRUE)
+#   # RLe - lower case the direction strings to a character vector
+# matches <- tolower(regmatches(x, m))
+# # matches does not include NA. do cumsum trick to map NAs:
+# # m is a vector of match positions, where -nv = no match found.
+# # cumsum over sign of m where -1 replaced with 0, so that non-matches are repeated.
+# # then replace repeated with NA, as to get matches same length as input.
+# # RLe - this bit is to remove NAs
+# matches[ifelse(
+#   m > 0, cumsum(
+#     ifelse(
+#       m > 0, 1, 0) # ifelse output is 1 0 1 1 1 1 1 1 1 1. If any negative indexes caused by empty character strings, then overwite to 0
+#     ), # cumsum output is 1 1 2 3 4 5 6 7 8 9. cumulative sums the above vector
+#   NA)# ifelse output is 1 NA  2  3  4  5  6  7  8  9. This has replaced 0s with NAs.
+#   ]
+# 
+# }
+# old direction function ------------------------------------------------------------
+
+
+
+# new direction function ------------------------------------------------------------
+
+direction <- function(x){
+  #ensure output is lowered
+  tolower(
+  # extract all pattern matches, handles NAs gracefully
+  str_extract(x, "(([A-Za-z]+)bound)|([A-Za-z\\\\-]+wise)")
+  )
+  }
+
+# new direction function ------------------------------------------------------------
+
+#testing on extract
+#direction(ex$name)
+
+sites$direction <- direction(sites$name)
+#table(sites$direction)
+
+# fix sensor typo
+
+sites$direction <- str_replace_all(
+  sites$direction, pattern = "souhbound", replacement = "southbound")
+# may wish to consider further string cleansing possibilities here
+
+
+# extract eastings northings ----------------------------------------------
+
+# extract easting and northing matrix
+
+easting_northing <- function(x) {
+  #find the pattern locations
+    m <- regexpr("GPS Ref: [0-9]+;[0-9]+", x, perl = TRUE)
+    #find the matches, remove anything other than coord vals, split by ";", extract as a 2 col matrix
+    matches <- matrix(unlist(strsplit(sub("^.*: ", "", regmatches(x, m)), ";")), ncol=2, byrow=T)
+    # line to handle negative indices, replacing with NAs
+    matches <- matches[ifelse(m > 0, cumsum(ifelse(m > 0, 1, 0)), NA), ]
+    # column names for the matrix
+    colnames(matches) <- c("easting", "northing")
+    matches
+}
+
+
+sites <- cbind(sites, easting_northing(sites$name))
+
+
+# mapping for join to readings --------------------------------------------
+
+# combine site info with readings, split into midas, tame, tmu files
+# sensor reading -> sensor mapping
+mapping <- match(readings$site_id, sites$id)
+
+
+gc()
+#**todo** need to do this in chunks as to save memory
+# glue together
+
+readings <- cbind(readings, sites[mapping, -(1:3)])
+#readings[sample(1:nrow(readings), 10), ]
+#**warning** ^-- pushed R instance to ~70g memory. good job i have swap on an NVMe stick..
+
+
+
+# outputs -----------------------------------------------------------------
+# write this out and split by midas,tame,tmu later (need to free memory)
+# fwrite(readings, "../readings_combo.csv", quote=F, row.names=F)
+
+
+#clean up leaving redaings only
+remove(list = c("site.midas",
+                "site.tame",
+                "site.tmu",
+                "sites",
+                "mapping",
+                "direction",
+                "easting_northing"))
+
+gc(verbose = TRUE,
+   reset = TRUE,
+   full = TRUE)
