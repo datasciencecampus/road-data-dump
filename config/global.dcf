@@ -5,10 +5,10 @@ data_ignore:
 cache_loading: TRUE
 recursive_loading: FALSE
 munging: TRUE
-logging: FALSE
+logging: TRUE
 logging_level: INFO
-load_libraries: FALSE
-libraries: reshape2, plyr, tidyverse, stringr, lubridate
+load_libraries: TRUE
+libraries: data.table, purrr, stringr, beepr, renv, log4r
 as_factors: FALSE
 tables_type: tibble
 attach_internal_libraries: FALSE

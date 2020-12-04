@@ -1,7 +1,17 @@
+# To do
+
+## Backlog
+
 * ~~Helper function to increment filenames~~
 * ~~Ensure outputs are cached to correct location of revised repo structure~~
-* performance 04/12/2020, Time difference of 1.004 mins, reading from csvs
 * Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh
 * Convert above to .rds format for improved performance & memory allocation
 * Update to documentation
 * Investigate issue with 07-join_readings_sites.R, no readings for tame or tmu sites...
+* Use beepr::beep() for errors at common throttle points
+
+
+## Performance
+
+* performance 04/12/2020, Time difference of 1.126 mins, reading from csvs
+* Down to Time difference of 58.281 secs reading from .Rdata

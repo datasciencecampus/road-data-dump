@@ -8,7 +8,7 @@ combo <- cbind(combo, sites[mapping, -(1:3)])
 
 
 #clean up leaving readings only
-remove(list = c("site_midas",
+base::remove(list = c("site_midas",
                 "site_tame",
                 "site_tmu",
                 "sites",

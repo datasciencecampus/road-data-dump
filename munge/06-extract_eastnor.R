@@ -20,4 +20,3 @@ mapping <- match(combo$site_id, sites$id)
 gc()
 #**todo** need to do this in chunks as to save memory
 # glue together
-
