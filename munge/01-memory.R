@@ -2,8 +2,12 @@
 Purpose of script: Configure environment
 
 "
+# calculate start time for performance
+start_time <- Sys.time()
+
 # bump up memory limit
 memory.limit(20000)
+
 # check operation executed successfully
 if (memory.limit() >= 20000) {
   print(paste("Memory limit is", memory.limit(), ". Succesfully increased to required threshold."))
@@ -13,10 +17,5 @@ if (memory.limit() >= 20000) {
   
 # import custom functions
 source("func/functions.r")
-
-func_names <- c("direction", "easting_northing")
-
-
-func_names %in% objects()
 
 

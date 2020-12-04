@@ -1,3 +1,7 @@
+"Purpose of script:
+Extract eastings and northings
+"
+
 # extract eastings northings ----------------------------------------------
 
 
@@ -10,7 +14,7 @@ sites <- cbind(sites, easting_northing(sites$name))
 
 # combine site info with readings, split into midas, tame, tmu files
 # sensor reading -> sensor mapping
-mapping <- match(readings$site_id, sites$id)
+mapping <- match(combo$site_id, sites$id)
 
 
 gc()
