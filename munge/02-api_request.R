@@ -2,6 +2,27 @@
 function of script: ingest data from api
 "
 
+request_result <- GET("http://httpbin.org/get",
+         user_agent("richard.leyshon@ons.gov.uk requesting sensor data for use in
+                    https://github.com/datasciencecampus/road-data-dump"))
+
+
+# Check request_result, print if error, extract content if none encountered
+if (http_error(request_result)) {
+  warning("The GET() request failed")
+} else {
+  req_content <- content(request_result)
+}
+
+
+str(req_content)
+
+
+# Manually stop execution while working on api request
+stop(TRUE)
+
+# webtri.sh script --------------------------------------------------------
+
 # #!/bin/sh
 # # ==============================================================================
 # # Highways England webtris API shell client.

@@ -10,6 +10,12 @@
 * Use renv package management
 
 
+## API Documentation
+[Highways England WebTRIS Traffic Flow API documentation](https://webtris.highwaysengland.co.uk/api/swagger/ui/index)
+
+
+## Previous Readme
+
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 
 > Code to download all England road traffic data once per month.
