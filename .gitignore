@@ -10,11 +10,11 @@ renv/staging/
 data/
 cache/
 output_data/
-webtri.sh_data/
+dump.sh_data/
 
 
-###webtri###
-webtri.sh/
+###shell scripts###
+shell_scripts/webtri.sh/
 
 ###jq###
 jq.exe
