@@ -14,8 +14,9 @@ if (memory.limit() >= 20000) {
 } else {
   print(warning(paste("Memory limit is", memory.limit(), ". Succesfully increased to required threshold.")))
 }
-  
-# import custom functions
-source("func/functions.r")
+
+
+
+
 
 

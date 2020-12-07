@@ -18,6 +18,14 @@ if (http_error(request_result)) {
 str(req_content)
 
 
+# calculate elapsed time
+elapsed <- Sys.time() - start_time
+print(round(elapsed, digits = 3))
+
+
+# sound alert when script completes
+beepr::beep("coin")
+
 # Manually stop execution while working on api request
 stop(TRUE)
 

@@ -9,6 +9,7 @@
 * Update to documentation
 * Investigate issue with 07-join_readings_sites.R, no readings for tame or tmu sites...
 * Use beepr::beep() for errors at common throttle points
+* Select a logging option to capture console output
 
 
 ## Performance
