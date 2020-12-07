@@ -27,12 +27,15 @@ my_logger <- log4r::logger(threshold = "INFO",
                                             my_file_appender))
 
 
+# new log entry -----------------------------------------------------------
+
+info(my_logger, message = "###################New Run#########################")
 
 
 # log environment status --------------------------------------------------
 
 # capture session info
-info(my_logger, sessionInfo())
+info(my_logger, capture.output(sessionInfo()))
 
 
 # source func/functions.R -------------------------------------------------

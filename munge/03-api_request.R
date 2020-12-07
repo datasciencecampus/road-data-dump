@@ -27,7 +27,7 @@ str(req_content)
 elapsed <- Sys.time() - start_time
 # # add to logfile
 info(my_logger, "Script executed. Duration: ")
-info(my_logger, print(round(elapsed, digits = 3)))
+info(my_logger,  capture.output(round(elapsed, digits = 3)))
 
 # write all lines to logs/logfile
 readLines(my_logfile)
