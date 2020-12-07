@@ -1,3 +1,6 @@
+###logs###
+logs/logfile.txt
+
 ###renv package management###
 renv/library/
 renv/lock/

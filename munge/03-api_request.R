@@ -18,10 +18,19 @@ if (http_error(request_result)) {
 str(req_content)
 
 
+
+
+
+# wrap up script ----------------------------------------------------------
+
 # calculate elapsed time
 elapsed <- Sys.time() - start_time
-print(round(elapsed, digits = 3))
+# # add to logfile
+info(my_logger, "Script executed. Duration: ")
+info(my_logger, print(round(elapsed, digits = 3)))
 
+# write all lines to logs/logfile
+readLines(my_logfile)
 
 # sound alert when script completes
 beepr::beep("coin")

@@ -5,7 +5,7 @@ data_ignore:
 cache_loading: FALSE
 recursive_loading: FALSE
 munging: TRUE
-logging: FALSE
+logging: TRUE
 logging_level: INFO
 load_libraries: TRUE
 libraries: data.table, purrr, stringr, beepr, renv, log4r, httr
