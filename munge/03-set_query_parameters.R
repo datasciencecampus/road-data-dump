@@ -37,10 +37,20 @@ user_details <- paste(user_email, agent_message)
 
 # Start Date --------------------------------------------------------------
 
-
+start_date <- "01012020"
 
 
 
 # End Date ----------------------------------------------------------------
+
+end_date <- "02012020"
+
+
+
+# date_range --------------------------------------------------------------
+
+daterange <- paste0("&start_date=", start_date, "&end_date=", end_date)
+  
+
 
 

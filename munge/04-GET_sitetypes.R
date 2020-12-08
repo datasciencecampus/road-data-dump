@@ -53,12 +53,22 @@ handle_df(site.tmu)
 
 
 
-# wrap up script ----------------------------------------------------------
 
-wrap_up()
+# tidy up -----------------------------------------------------------------
 
-# Manually stop execution while working on api request
-stop(TRUE)
+rm(list = c(
+  "request_result",
+  "MIDAS_qstring",
+  "TAME_qstring",
+  "TMU_qstring",
+  "user_email"))
 
+info(my_logger, capture.output(gc(verbose = TRUE,
+                                  reset = TRUE,
+                                  full = TRUE)))
+
+
+info(my_logger, print(paste0("Memory size following 04_GET_sitetypes is ",
+                             memory.size())))
 
 

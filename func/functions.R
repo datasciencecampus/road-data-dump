@@ -22,7 +22,7 @@ action. By default set to 'up', will increase all scripts greater than or equal 
 
 "
 
-adj_file_nos <- function(directory = "munge", target, action = "up"){
+adj_file_nos <- function(target, directory = "munge", action = "up"){
 
 x <- list.files(directory)
 
