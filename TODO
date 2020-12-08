@@ -9,7 +9,7 @@
 * ~~Start logging with human friendly delimeter~~
 * Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh
 * Convert above to .rds format for improved performance & memory allocation
-* Update to documentation
+* Update to documentation - markdown web page with screengrabs
 * Investigate issue with 07-join_readings_sites.R, no readings for tame or tmu sites...
 * Use beepr::beep() for errors at common throttle points
 

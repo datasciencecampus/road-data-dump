@@ -2,9 +2,138 @@
 function of script: ingest data from api
 "
 
-request_result <- GET("http://httpbin.org/get",
-         user_agent("richard.leyshon@ons.gov.uk requesting sensor data for use in
-                    https://github.com/datasciencecampus/road-data-dump"))
+
+
+# sites/1 -----------------------------------------------------------------
+
+# request_result <- GET("http://webtris.highwaysengland.co.uk/api/v1.0/sites/1",
+#                       user_agent("richard.leyshon@ons.gov.uk requesting sensor data for use in
+#                     https://github.com/datasciencecampus/road-data-dump"))
+#looks like it returns the equivalent of data/midas.csv
+
+
+
+
+
+
+# daily reports day range -------------------------------------------------
+
+
+# request_result <- GET("http://webtris.highwaysengland.co.uk/api/v1.0/reports/daily?sites=8188&start_date=31032016&end_date=31032017&page=1&page_size=50",
+#          user_agent("richard.leyshon@ons.gov.uk requesting sensor data for use in
+#                     https://github.com/datasciencecampus/road-data-dump"))
+# This produces the required transactional level data, but for one site only... And requesting recent data returned
+# empty response with no error, whihc is something to look out for.
+
+#idea is to coerce ot dataframe and build a list of site IDs to iterate and query independently.
+# Also compare against orignal query data as seems to have fewer sites in this analysis, use setdiff or anti-join
+# to extract a list of missing site names from this new query. Could use to raise query with highways england
+#also alternative routing available for the sites query
+
+
+# shell equiv
+
+#MAX_ROWS=40000
+
+# get_report() {
+#   site_id=$1
+#   interval=$2 # daily, monthly, annual
+#   start=$3
+#   end=$4
+#   
+#   href="${ENDPOINT}/reports/${interval}?sites=${site_id}&start_date=${start}&end_date=${end}&page=1&page_size=$MAX_ROWS"
+
+
+
+# areas -------------------------------------------------------------------
+
+
+# request_result <- GET("http://webtris.highwaysengland.co.uk/api/v1.0/areas",
+#          user_agent("richard.leyshon@ons.gov.uk requesting sensor data for use in
+#                     https://github.com/datasciencecampus/road-data-dump"))
+
+# output: 
+#   ..$ :List of 7
+# .. ..$ Id         : chr "1"
+# .. ..$ Name       : chr "A1 Darrington to Dishforth DBFO"
+# .. ..$ Description: chr "A1 Darrington to Dishforth DBFO"
+# .. ..$ XLongitude : chr "-1.254871768539999"
+# .. ..$ XLatitude  : chr "53.682776925799999"
+# .. ..$ YLongitude : chr "-1.446163528140000"
+# .. ..$ YLatitude  : chr "54.154346387899999"
+
+
+
+
+# all site types --------------------------------------------------------------
+
+
+# request_result <- GET("http://webtris.highwaysengland.co.uk/api/v1.0/sitetypes",
+#          user_agent("richard.leyshon@ons.gov.uk requesting sensor data for use in
+#                     https://github.com/datasciencecampus/road-data-dump"))
+
+# List of 2
+# $ row_count: int 5
+# $ sitetypes:List of 5
+# ..$ :List of 2
+# .. ..$ Id         : chr "1"
+# .. ..$ Description: chr "MIDAS"
+# ..$ :List of 2
+# .. ..$ Id         : chr "2"
+# .. ..$ Description: chr "TAME"
+# ..$ :List of 2
+# .. ..$ Id         : chr "3"
+# .. ..$ Description: chr "TMU"
+# ..$ :List of 2
+# .. ..$ Id         : chr "4"
+# .. ..$ Description: chr "Legacy"
+# ..$ :List of 2
+# .. ..$ Id         : chr "5"
+# .. ..$ Description: chr "NONE"
+
+
+
+
+# specific site types -----------------------------------------------------
+
+# request_result <- GET("http://webtris.highwaysengland.co.uk/api/v1.0/sitetypes/3/sites",
+#          user_agent("richard.leyshon@ons.gov.uk requesting sensor data for use in
+#                     https://github.com/datasciencecampus/road-data-dump"))
+
+# This returns equiv of site.tame, site.midas, site.tmu etc.
+
+
+
+
+
+# data quality ------------------------------------------------------------
+
+# request_result <- GET("http://webtris.highwaysengland.co.uk/api/v1.0/quality/daily?siteid=8188&start_date=01012015&end_date=01042016",
+#                       user_agent("richard.leyshon@ons.gov.uk requesting sensor data for use in
+#                     https://github.com/datasciencecampus/road-data-dump"))
+
+
+
+
+
+# overall data quality ----------------------------------------------------
+
+# request_result <- GET("http://webtris.highwaysengland.co.uk/api/v1.0/quality/overall?sites=8188,1976&start_date=01012015&end_date=01042016",
+#                       user_agent("richard.leyshon@ons.gov.uk requesting sensor data for use in
+#                     https://github.com/datasciencecampus/road-data-dump"))
+
+
+
+
+
+# 1. get sites by types 1, 2 and 3
+
+
+
+
+
+# request handling --------------------------------------------------------
+
 
 
 # Check request_result, print if error, extract content if none encountered
@@ -16,7 +145,6 @@ if (http_error(request_result)) {
 
 
 str(req_content)
-
 
 
 
