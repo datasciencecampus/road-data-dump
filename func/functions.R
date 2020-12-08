@@ -169,6 +169,26 @@ if (http_error(GET_result)) {
 
 
 
+# handle_df ---------------------------------------------------------------
+
+
+handle_df <- function(df_name){
+  info(my_logger, paste0("###### DF insight for ", substitute(df_name), "######"))
+  info(my_logger, paste0("Number of rows: ", nrow(df_name)))
+  info(my_logger, paste0("Number of columns: ", ncol(df_name)))
+  info(my_logger, paste0("Names of columns: ", names(df_name)))
+  info(my_logger, paste0("Count of NAs in all columns: ",
+                         capture.output(
+                           sapply(df_name, function(x) sum(is.na(x)))))
+       )
+  info(my_logger, paste0("Data types in all columns: ",
+                         capture.output(sapply(df_name, class))))
+
+}
+# End of handle_df ---------------------------------------------------------------
+
+
+
 # 02.prep.R, direction function -------------------------------------------
 
 

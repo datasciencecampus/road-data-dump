@@ -9,6 +9,8 @@
 * ~~Start logging with human friendly delimeter~~
 * ~~added handle_query() function with logging output~~
 * ~~added wrap_up() function for ending sequential ex of munge scripts~~
+* ~~Query api and create equivalents of site.midas, site.tame and site.tmu data~~
+* Unit tests for site dataframes
 * Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh
 * Convert above to .rds format for improved performance & memory allocation
 * Update to documentation - markdown web page with screengrabs
