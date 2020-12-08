@@ -110,6 +110,60 @@ print(paste(length(old_filenames), "Filenames adjusted from: ",
 
 
 
+# wrap_up -----------------------------------------------------------------
+
+wrap_up<- function(){
+  
+  # calculate elapsed time
+  elapsed <- Sys.time() - start_time
+  # # add to logfile
+  info(my_logger, "Script executed. Duration: ")
+  info(my_logger,  capture.output(round(elapsed, digits = 3)))
+  
+  # write all lines to logs/logfile
+  readLines(my_logfile)
+  
+  # sound alert when script completes
+  beepr::beep("coin")
+}
+
+
+
+# End of wrap_up -----------------------------------------------------------------
+
+
+
+# handle_query ------------------------------------------------------------
+
+
+handle_query <- function(GET_result, resource, site, daterange = NULL) {
+if (http_error(GET_result)) {
+  log4r::info(my_logger, paste("###########GET", resource, "for Site", site, "###########"))
+  log4r::info(my_logger, paste("Site", site,  "queried url:", request_result$url))
+  log4r::info(my_logger, paste("Date of query:", request_result$date))
+  log4r::info(my_logger, paste("Query durations", capture.output(request_result$times)))
+  
+  log4r::warn(my_logger, "The GET() request failed")
+  log4r::warn(my_logger, paste("HTTP Status code:", request_result$status_code))
+  
+} else {
+  log4r::info(my_logger, paste("###########GET", resource, "for Site", site, "###########"))
+  log4r::info(my_logger, paste("###########", resource, "successfully queried for Site", site, "###########"))
+  log4r::info(my_logger, paste("Site", site,  "queried url:", request_result$url))
+  log4r::info(my_logger, paste("Date of query:", request_result$date))
+  log4r::info(my_logger, paste("Query durations", capture.output(request_result$times)))
+  log4r::info(my_logger, paste("HTTP status code:", request_result$status_code))
+  # parse JSON as text
+  req_content <- content(request_result)
+}
+return(req_content)
+}
+
+
+# End of handle_query ------------------------------------------------------------
+
+
+
 # 02.prep.R, direction function -------------------------------------------
 
 

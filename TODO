@@ -7,6 +7,8 @@
 * ~~Select a logging option to capture console output~~
 * ~~Need pretty sessioninfo output for logging~~
 * ~~Start logging with human friendly delimeter~~
+* ~~added handle_query() function with logging output~~
+* ~~added wrap_up() function for ending sequential ex of munge scripts~~
 * Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh
 * Convert above to .rds format for improved performance & memory allocation
 * Update to documentation - markdown web page with screengrabs

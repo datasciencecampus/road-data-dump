@@ -126,9 +126,6 @@ function of script: ingest data from api
 
 
 
-# 1. get sites by types 1, 2 and 3
-
-
 
 
 
@@ -137,34 +134,17 @@ function of script: ingest data from api
 
 
 # Check request_result, print if error, extract content if none encountered
-if (http_error(request_result)) {
-  warning("The GET() request failed")
-} else {
-  req_content <- content(request_result)
-}
+# if (http_error(request_result)) {
+#   warning("The GET() request failed")
+# } else {
+#   req_content <- content(request_result)
+# }
+# 
+# 
+# str(req_content)
 
 
-str(req_content)
 
-
-
-
-# wrap up script ----------------------------------------------------------
-
-# calculate elapsed time
-elapsed <- Sys.time() - start_time
-# # add to logfile
-info(my_logger, "Script executed. Duration: ")
-info(my_logger,  capture.output(round(elapsed, digits = 3)))
-
-# write all lines to logs/logfile
-readLines(my_logfile)
-
-# sound alert when script completes
-beepr::beep("coin")
-
-# Manually stop execution while working on api request
-stop(TRUE)
 
 # webtri.sh script --------------------------------------------------------
 
