@@ -5,22 +5,33 @@ Returns the following for Midas, Tame and TMU:
 
 "
 
+
+# site.midas --------------------------------------------------------------
+
+
+
+# site.tame ---------------------------------------------------------------
+TAME_qstring <- paste0(ENDPOINT, RESOURCES[1], "/2/sites")
+
+request_result <- GET(url = TAME_qstring,
+                      user_agent(user_details)
+)
+
+# log errors / status codes and coerce to df if request was successful
+site.tame <- handle_query(request_result, RESOURCES[1], site = "TAME")
+
+
+
+# site.tmu ----------------------------------------------------------------
+
 TMU_qstring <- paste0(ENDPOINT, RESOURCES[1], "/3/sites")
 
 request_result <- GET(url = TMU_qstring,
                       user_agent(user_details)
 )
 
-str(request_result)
-
-# log errors / status codes and parse as text if request was successful
-req_content <- handle_query(request_result, RESOURCES[1], site = "TMU")
-
-
-
-test <- fromJSON(rawToChar(request_result$content), flatten = TRUE) %>% data.frame()
-str(test)
-# that gets us to a dataframe, what about a datatable?
+# log errors / status codes and coerce to df if request was successful
+site.tmu <- handle_query(request_result, RESOURCES[1], site = "TMU")
 
 
 

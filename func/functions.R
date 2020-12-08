@@ -153,11 +153,16 @@ if (http_error(GET_result)) {
   log4r::info(my_logger, paste("Date of query:", request_result$date))
   log4r::info(my_logger, paste("Query durations", capture.output(request_result$times)))
   log4r::info(my_logger, paste("HTTP status code:", request_result$status_code))
-  # parse JSON as text
-  req_content <- content(request_result)
+  # 
+  df_output <- data.frame(
+    fromJSON(
+      rawToChar(
+        GET_result$content),# parse JSON as text
+      flatten = TRUE)# coerce to list
+  ) # coerce to dataframe
 }
-return(req_content)
-}
+  return(df_output)
+  }
 
 
 # End of handle_query ------------------------------------------------------------
