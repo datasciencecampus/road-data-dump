@@ -44,6 +44,13 @@
       "Repository": "CRAN",
       "Hash": "b203113193e70978a696b2809525649d"
     },
+    "XML": {
+      "Package": "XML",
+      "Version": "3.99-0.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "408d42d1359f2a84d377c1f7f0568624"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.1",
@@ -289,6 +296,13 @@
       "Repository": "CRAN",
       "Hash": "9d7aba7bed9a79e2403b4777428a2b12"
     },
+    "rlist": {
+      "Package": "rlist",
+      "Version": "0.4.6.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "75886cbfe663d94199639f442d43836a"
+    },
     "rpart": {
       "Package": "rpart",
       "Version": "4.1-15",
@@ -372,6 +386,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "d25c5bea636cf892edbfd64fc3d20c20"
+    },
+    "yaml": {
+      "Package": "yaml",
+      "Version": "2.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "2826c5d9efb0a88f657c7a679c7106db"
     }
   }
 }

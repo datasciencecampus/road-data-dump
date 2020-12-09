@@ -50,6 +50,12 @@ end_date <- "02012020"
 # date_range --------------------------------------------------------------
 
 daterange <- paste0("&start_date=", start_date, "&end_date=", end_date)
+
+
+
+# tidy up -----------------------------------------------------------------
+
+rm(list = c("start_date", "end_date"))
   
 
 

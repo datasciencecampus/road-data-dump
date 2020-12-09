@@ -162,7 +162,7 @@ info(my_logger,
 # handle_query ------------------------------------------------------------
 
 
-handle_query <- function(GET_result, resource, site, daterange = NULL) {
+handle_query <- function(GET_result, resource, site) {
 if (http_error(GET_result)) {
   log4r::info(my_logger, paste("###########GET", resource, "for Site", site, "###########"))
   log4r::info(my_logger, paste("Site", site,  "queried url:", request_result$url))
@@ -212,6 +212,63 @@ handle_df <- function(df_name){
 
 }
 # End of handle_df ---------------------------------------------------------------
+
+
+
+
+
+# 07-prepare_report_urls make_batches() -----------------------------------
+
+make_batches <- function(somelist){
+  # paste Ids as comma separated strings
+  paste0(
+    # flatten the object
+    unlist(somelist, use.names = FALSE), collapse = ",")
+}
+
+# End of 07-prepare_report_urls make_batches() -----------------------------------
+
+
+
+# 08-GET_daily_reports.R --------------------------------------------------
+
+handle_report <- function(GET_result, resource) {
+  if (http_error(GET_result)) {
+    log4r::info(my_logger, paste("###########GET", resource, "###########"))
+    log4r::info(my_logger, paste("Site", site,  "queried url:", request_result$url))
+    log4r::info(my_logger, paste("Date of query:", request_result$date))
+    log4r::info(my_logger, paste("Query durations", capture.output(request_result$times)))
+    
+    log4r::warn(my_logger, "The GET() request failed")
+    log4r::warn(my_logger, paste("HTTP Status code:", request_result$status_code))
+    
+  } else {
+    log4r::info(my_logger, paste("###########GET", resource, "###########"))
+    log4r::info(my_logger, paste("###########", resource, "successfully queried.", "###########"))
+    log4r::info(my_logger, paste("Queried url:", request_result$url))
+    log4r::info(my_logger, paste("Date of query:", request_result$date))
+    log4r::info(my_logger, paste("Query durations", capture.output(request_result$times)))
+    log4r::info(my_logger, paste("HTTP status code:", request_result$status_code))
+    # coerce response to list
+    listed_JSON <- fromJSON(
+      rawToChar(
+        request_result$content),# parse JSON as text
+      flatten = TRUE)
+    # control flow if row limit is hit.
+    if(listed_JSON$Header$row_count > MAX_ROWS){
+      warn("Maximum rows exceeded. Use HTTP pagination.")
+    }
+    #coerce to dataframe
+    df_output <- as.data.frame(listed_JSON$Rows)
+  }
+  return(df_output)
+}
+
+# End of 08-GET_daily_reports.R -------------------------------------------
+
+
+
+
 
 
 
