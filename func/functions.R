@@ -125,12 +125,38 @@ wrap_up<- function(){
   
   # sound alert when script completes
   beepr::beep("coin")
+  
+  # Manually stop execution while working on api request
+  stop(TRUE)
 }
 
 
 
 # End of wrap_up -----------------------------------------------------------------
 
+
+# memory_report -----------------------------------------------------------
+
+memory_report <- function(){
+
+# perform a manual garbace collection
+  gc()
+# get the path of this rscript
+path <- this.path()
+# split out the path directories by backslash
+x <- str_split(path, pattern = "\\\\")
+# show me the filename only
+thisfile <- tail(unlist(x, use.names = FALSE), n = 1)
+
+# log the used memory at this point
+info(my_logger,
+     print(paste("Memory size following",
+                 thisfile, "is", memory.size())))
+
+}
+
+
+# End of memory_report -----------------------------------------------------------
 
 
 # handle_query ------------------------------------------------------------

@@ -63,12 +63,7 @@ rm(list = c(
   "TMU_qstring",
   "user_email"))
 
-info(my_logger, capture.output(gc(verbose = TRUE,
-                                  reset = TRUE,
-                                  full = TRUE)))
 
+# memory report -----------------------------------------------------------
 
-info(my_logger, print(paste0("Memory size following 04_GET_sitetypes is ",
-                             memory.size())))
-
-
+memory_report()

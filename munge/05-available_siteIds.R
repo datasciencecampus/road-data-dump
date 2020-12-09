@@ -24,13 +24,3 @@ info(my_logger, paste0("Number of distinct Ids: ",  n_distinct(all_sites)))
 if (length(all_sites) != n_distinct(all_sites)) {
   warn(my_logger, "Warning, not all Site Ids from Midas, Tame & TMU are distinct")
 }
-
-
-# wrap up script ----------------------------------------------------------
-
-wrap_up()
-
-# Manually stop execution while working on api request
-stop(TRUE)
-
-

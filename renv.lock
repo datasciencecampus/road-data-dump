@@ -303,6 +303,13 @@
       "Repository": "CRAN",
       "Hash": "58a02ce0150652b96c044bc67a0df2e5"
     },
+    "stackoverflow": {
+      "Package": "stackoverflow",
+      "Version": "0.7.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "83e6b28d1fe2bbb170e40139cada24e7"
+    },
     "stringi": {
       "Package": "stringi",
       "Version": "1.5.3",
@@ -330,6 +337,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "b227d13e29222b4574486cfcbde077fa"
+    },
+    "this.path": {
+      "Package": "this.path",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4e8f79158a4ed808385a4dfc8056bad2"
     },
     "tibble": {
       "Package": "tibble",
