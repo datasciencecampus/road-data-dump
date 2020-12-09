@@ -10,9 +10,9 @@ renv/staging/
 
 
 ###data folders###
-data/
-cache/
-output_data/
+data/*.csv
+cache/*.csv
+output_data/*.csv
 dump.sh_data/
 
 
