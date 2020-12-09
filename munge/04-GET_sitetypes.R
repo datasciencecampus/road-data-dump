@@ -18,10 +18,10 @@ request_result <- GET(url = MIDAS_qstring,
 )
 
 # log errors / status codes and coerce to df if request was successful
-site.midas <- handle_query(request_result, RESOURCES[1], site = "MIDAS")
+site_midas <- handle_query(request_result, RESOURCES[1], site = "MIDAS")
 
 # log dataframe metrics
-handle_df(site.midas)
+handle_df(site_midas)
 
 # site.tame ---------------------------------------------------------------
 TAME_qstring <- paste0(ENDPOINT, RESOURCES[1], "/2/sites")
@@ -31,10 +31,10 @@ request_result <- GET(url = TAME_qstring,
 )
 
 # log errors / status codes and coerce to df if request was successful
-site.tame <- handle_query(request_result, RESOURCES[1], site = "TAME")
+site_tame <- handle_query(request_result, RESOURCES[1], site = "TAME")
 
 # log dataframe metrics
-handle_df(site.tame)
+handle_df(site_tame)
 
 
 # site.tmu ----------------------------------------------------------------
@@ -46,10 +46,10 @@ request_result <- GET(url = TMU_qstring,
 )
 
 # log errors / status codes and coerce to df if request was successful
-site.tmu <- handle_query(request_result, RESOURCES[1], site = "TMU")
+site_tmu <- handle_query(request_result, RESOURCES[1], site = "TMU")
 
 # log dataframe metrics
-handle_df(site.tmu)
+handle_df(site_tmu)
 
 
 

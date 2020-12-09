@@ -3,9 +3,9 @@ Purpose of script:
 Step 5.Get all the site IDs.
 This is achieved by concatenating siteIds from all 3 site dataframes
 '
-all_sites <- c(site.midas$sites.Id,
-               site.tame$sites.Id,
-               site.tmu$sites.Id)
+all_sites <- c(site_midas$sites.Id,
+               site_tame$sites.Id,
+               site_tmu$sites.Id)
 
 info(my_logger, paste0("###########All Site Ids###########"))
 

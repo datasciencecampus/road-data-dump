@@ -15,3 +15,6 @@ site_tmu$type <- "tmu"
 #combine site info
 #row bind (append) all site data tables. Consistent format.
 sites <- rbind(site_midas, site_tame, site_tmu)
+
+
+

@@ -4,7 +4,7 @@ Extract direction and string cleansing
 
 # extracting direction ----------------------------------------------------
 
-sites$direction <- direction(sites$name)
+sites$direction <- direction(sites$sites.Name)
 
 # fix sensor typo
 sites$direction <- str_replace_all(

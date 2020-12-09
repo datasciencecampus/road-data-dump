@@ -5,16 +5,14 @@ Extract eastings and northings
 # extract eastings northings ----------------------------------------------
 
 
-
-
-sites <- cbind(sites, easting_northing(sites$name))
+sites <- cbind(sites, easting_northing(sites$sites.Name))
 
 
 # mapping for join to readings --------------------------------------------
 
 # combine site info with readings, split into midas, tame, tmu files
 # sensor reading -> sensor mapping
-mapping <- match(combo$site_id, sites$id)
+mapping <- match(combo$site_id, sites$sites.Id)
 
 
 gc()
