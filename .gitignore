@@ -12,6 +12,8 @@ renv/staging/
 ###data folders###
 data/*.csv
 cache/*.csv
+cache/*.Rdata
+cache/*.hash
 output_data/*.csv
 dump.sh_data/
 
