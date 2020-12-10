@@ -6,14 +6,18 @@ and parameters set in 03-set_query_parameters.R
 Maximum of 30 siteIds to query at once
 "
 
-id_batches <- lapply(id_chunks, make_batches)
+siteId <- all_sites[14311]
 
+page_no <- 1
 
-paste0(ENDPOINT, RESOURCES[4], "?sites=", id_batches[1], daterange, "&page=1&page_size=", MAX_ROWS)
+current_query <- paste0(ENDPOINT, RESOURCES[4], "?sites=", siteId, daterange, "&page=", page_no, "&page_size=", MAX_ROWS)
+
+#current_query <- paste0(ENDPOINT, "/reports/daily?sites=8188&start_date=31032016&end_date=31032017&page=1&page_size=50")
 
 # tidy up -----------------------------------------------------------------
-rm(id_chunks)
+rm()
 
 
 # memory report -----------------------------------------------------------
 memory_report()
+

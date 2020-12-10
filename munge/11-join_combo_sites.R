@@ -16,6 +16,8 @@ base::remove(list = c("site_midas",
                 "direction",
                 "easting_northing"))
 
-gc(verbose = TRUE,
-   reset = TRUE,
-   full = TRUE)
+
+# wrap up -----------------------------------------------------------------
+
+wrap_up()
+
