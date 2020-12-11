@@ -13,14 +13,14 @@
 * ~~Unit tests for site dataframes~~
 * ~~Daily reports missing site IDs, inspect this in webtri.sh, may need to query one site at a time~~
 * ~~Investigate issue with 07-join_readings_sites.R, no readings for tame or tmu sites...~~
+* ~~querying siteIds - Use http_status to skip dataframe processing for anything returning $category == "Success" && $reason == "No content", certain siteIDs missing from provided api daterange~~
+* ~~querying dateranges - need to establish api requirements and exception handling~~
+* ~~Output a text file containing all sites that returned empty content for the specified date range~~
 
-* querying siteIds - Use http_status to skip dataframe processing for anything returning $category == "Success" && $reason == "No content", certain siteIDs missing from provided api daterange
-* querying dateranges - need to establish api requirements and exception handling
-* Output a text file containing all sites that returned empty content for the specified date range
 * Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh
-* Convert above to .rds format for improved performance & memory allocation
 * Update to documentation - markdown web page with screengrabs
 * handle_missing function requires unit testing
+* Convert above to .rds format for improved performance & memory allocation
 * Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off. 
 * Use beepr::beep() for errors at common throttle points
 
