@@ -215,6 +215,43 @@ handle_df <- function(df_name){
 
 
 
+# 07-Get_daily_reports.R  handle_missing ----------------------------------
+
+handle_missing <- function(GET_results) {
+  
+  # select all queries where status is 204 (no content but no error)
+  response_204s <- list.filter(GET_results, status_code == 204)
+  
+  # select just the url from these null content responses
+  url_204s <- list.select(response_204s, url)
+  
+  # extract just the siteIds, simplify to a vector
+  #character match tested on https://regex101.com/ for varying digit sequences
+  # pulls id from string, lookbehind (?<=) and look ahead (?=) so that
+  # "sites=" and "&" is not included in the match
+  #[0-9]+ matches any sequence of numbers with different lengths
+  site_Id_204s <- sapply(url_204s,
+                         function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)"))
+  
+  # find urls that are not responsible for 204 statuses
+  urls_not204 <- unlist(setdiff(list.select(GET_results, url), url_204s))
+  
+  # filter the request results based on the above. Only these will be parsed.
+  reqs_not_204 <- list.filter(GET_results, url %in% urls_not204)
+  
+  write.table(print(paste0("Site Ids that returned no content :",
+                           paste(site_Id_204s, collapse = ","),
+                           ". Date period queried: ",
+                           daterange)),
+              file = "output_data/missing_site_IDs.txt")
+  
+  return(reqs_not_204)
+  
+}
+
+# End of 07-Get_daily_reports.R  handle_missing ----------------------------------
+
+
 
 # 08-GET_daily_reports.R --------------------------------------------------
 

@@ -18,3 +18,26 @@ INFO  [2020-12-11 09:54:20] https://webtris.highwaysengland.co.uk/api/v1.0/repor
 INFO  [2020-12-11 09:54:20] Success
 INFO  [2020-12-11 09:54:20] OK
 INFO  [2020-12-11 09:54:20] Success: (200) OK
+INFO  [2020-12-11 12:29:52] #############New Daily report request#############
+INFO  [2020-12-11 12:40:54] #############New Daily report request#############
+INFO  [2020-12-11 13:24:31] 2.91067910194397
+INFO  [2020-12-11 13:24:47] Time difference of 18.61765 secs
+INFO  [2020-12-11 13:25:09] #############New Daily report request#############
+INFO  [2020-12-11 13:25:09] Duration of all site ID daily report request
+INFO  [2020-12-11 13:25:10] Time difference of 1.069287 secs
+INFO  [2020-12-11 13:26:04] Duration of report request:  Time difference of 55.20477 secs
+INFO  [2020-12-11 13:39:52] #############New Daily report request#############
+INFO  [2020-12-11 13:39:52] Duration of all site ID daily report request
+INFO  [2020-12-11 13:39:53] Duration of report request:  Time difference of 1.147931 secs
+INFO  [2020-12-11 14:17:09] #############New Daily report request#############
+INFO  [2020-12-11 14:17:09] Duration of all site ID daily report request
+INFO  [2020-12-11 14:17:10] Duration of report request:  Time difference of 1.099626 secs
+INFO  [2020-12-11 14:19:30] #############New Daily report request#############
+INFO  [2020-12-11 14:19:30] Duration of all site ID daily report request
+INFO  [2020-12-11 14:19:31] Duration of report request:  Time difference of 1.043394 secs
+INFO  [2020-12-11 14:20:00] #############New Daily report request#############
+INFO  [2020-12-11 14:20:00] Duration of all site ID daily report request
+INFO  [2020-12-11 14:20:02] Duration of report request:  Time difference of 1.798393 secs
+INFO  [2020-12-11 14:32:04] #############New Daily report request#############
+INFO  [2020-12-11 14:32:04] Duration of all site ID daily report request
+INFO  [2020-12-11 14:32:06] Duration of report request:  Time difference of 1.760523 secs
