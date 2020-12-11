@@ -21,6 +21,17 @@ info(api_logger, paste("Duration of report request: ", capture.output(Sys.time()
 present_requests <- handle_missing(request_results)
 
 
+
+# tidy up -----------------------------------------------------------------
+
+rm(list = c(
+  "request_results",
+  "all_urls"
+))
+
+
+
+
 # memory report -----------------------------------------------------------
 
 memory_report()
@@ -30,25 +41,3 @@ memory_report()
 # wrap_up -----------------------------------------------------------------
 
 wrap_up()
-# now need to tidy up environment and continue to process only the 200s
-# stored in present_requests
-
-# log errors / status codes and coerce to df if request was successful
-
-combo <- handle_report(request_result, resource = RESOURCES[4], site = siteId)
-
-
-
-# log dataframe metrics
-handle_df(combo)
-
-
-
-# tidy up -----------------------------------------------------------------
-
-# rm(request_result)
-
-
-# memory report -----------------------------------------------------------
-
-memory_report()
