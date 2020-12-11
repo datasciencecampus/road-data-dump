@@ -27,6 +27,13 @@ MAX_ROWS <- 40000
 info(my_logger, paste0("Maximum rows for each page in api request set to: ", MAX_ROWS))
 
 
+
+# pagination --------------------------------------------------------------
+
+page_no <- 1
+# Max rows set to 40k, I have set a comparison against rows returned to ensure
+# max rows is not exceeded. If so, the pagination will need to be pursued. 
+
 # User agent -------------------------------------------------------------------
 
 user_email <- "richard.leyshon@ons.gov.uk"
@@ -37,13 +44,11 @@ user_details <- paste(user_email, agent_message)
 
 # Start Date --------------------------------------------------------------
 
-#start_date <- "31032016"
 start_date <- "01072019"
 
 
 # End Date ----------------------------------------------------------------
 
-#end_date <- "31032017"
 end_date <- "01082019"
 
 
