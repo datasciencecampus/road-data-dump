@@ -2,10 +2,12 @@
 function of script:
 Get daily reports for all discovered site Ids
 '
+
+
+info(api_logger, "#############New Daily report request#############")
+
+
 # test sample query string
-
-
-
 request_result <- GET(url = current_query,
                       user_agent(user_details)
 )
@@ -23,8 +25,7 @@ handle_df(combo)
 
 # tidy up -----------------------------------------------------------------
 
-rm(request_result)
-
+# rm(request_result)
 
 
 # memory report -----------------------------------------------------------

@@ -6,7 +6,17 @@ and parameters set in 03-set_query_parameters.R
 Maximum of 30 siteIds to query at once
 "
 
-siteId <- all_sites[14311]
+siteId <- all_sites[14311] #works fine
+
+# siteId <- all_sites[5684] # this is the one used in our own instructions
+
+
+# siteId <- all_sites[666]
+
+# siteId <- tail(all_sites, 1) # this didn't work, 204 status code, good request, no content
+
+# siteId <- all_sites[1000] # as above
+
 
 page_no <- 1
 

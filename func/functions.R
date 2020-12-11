@@ -227,7 +227,12 @@ handle_report <- function(GET_result, resource, site) {
     
     log4r::warn(my_logger, "The GET() request failed")
     log4r::warn(my_logger, paste("HTTP Status code:", GET_result$status_code))
-    paste("Query status message:", http_status(GET_result))
+    warn(my_logger, paste("Query status message:", http_status(GET_result)))
+    
+    warn(api_logger, GET_result$url)
+    warn(api_logger, http_status(GET_result)[1])
+    warn(api_logger, http_status(GET_result)[2])
+    warn(api_logger, http_status(GET_result)[3])
     stop("Execution halted")
     
   } else {
@@ -237,6 +242,10 @@ handle_report <- function(GET_result, resource, site) {
     log4r::info(my_logger, paste("Date of query:", GET_result$date))
     log4r::info(my_logger, paste("Query durations", capture.output(GET_result$times)))
     log4r::info(my_logger, paste("HTTP status code:", GET_result$status_code))
+    info(api_logger, GET_result$url)
+    info(api_logger, http_status(GET_result)[1])
+    info(api_logger, http_status(GET_result)[2])
+    info(api_logger, http_status(GET_result)[3])
     # coerce response to list
     listed_JSON <- fromJSON(
       rawToChar(
