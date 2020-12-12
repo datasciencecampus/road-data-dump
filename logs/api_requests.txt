@@ -41,3 +41,6 @@ INFO  [2020-12-11 14:20:02] Duration of report request:  Time difference of 1.79
 INFO  [2020-12-11 14:32:04] #############New Daily report request#############
 INFO  [2020-12-11 14:32:04] Duration of all site ID daily report request
 INFO  [2020-12-11 14:32:06] Duration of report request:  Time difference of 1.760523 secs
+INFO  [2020-12-12 05:38:14] #############New Daily report request#############
+INFO  [2020-12-12 05:38:14] Duration of all site ID daily report request
+INFO  [2020-12-12 05:38:16] Duration of report request:  Time difference of 1.828598 secs
