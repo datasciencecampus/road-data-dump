@@ -28,6 +28,4 @@
 
 
 ## Performance
-
-* performance 04/12/2020, Time difference of 1.126 mins, reading from csvs
-* Down to Time difference of 58.281 secs reading from .Rdata
+* Queried one day for all sites in 19.533 mins

@@ -3,7 +3,6 @@ function of script:
 Get daily reports for all discovered site Ids
 '
 info(api_logger, "#############New Daily report request#############")
-current_queries <- all_urls[1:5]
 
 # The below works for the first 5 queries
 # testing at scale, 100, Time difference of 21.69305 secs
@@ -13,7 +12,7 @@ current_queries <- all_urls[1:5]
 # GET daily reports -------------------------------------------------------
 info(api_logger, "Duration of all site ID daily report request")
 report_start <- Sys.time()
-request_results <- lapply(X = current_queries, FUN = function(x) GET(url = x, user_agent(user_details)))
+request_results <- lapply(X = all_urls, FUN = function(x) GET(url = x, user_agent(user_details)))
 info(api_logger, paste("Duration of report request: ", capture.output(Sys.time() - report_start)))
 
 
