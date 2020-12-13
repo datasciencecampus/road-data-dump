@@ -11,7 +11,7 @@ report_data <- lapply(request_results, handle_report)
 
 # tidy up -----------------------------------------------------------------
 
-rm(request_result)
+rm(request_results)
 
 
 # memory report -----------------------------------------------------------

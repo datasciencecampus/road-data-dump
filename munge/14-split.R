@@ -8,5 +8,12 @@ midas <- combo[combo$type == "midas", ]
 tame <- combo[combo$type == "tame", ]
 tmu <- combo[combo$type == "tmu", ]
 
+
+# tidy up -----------------------------------------------------------------
+
 rm(combo)
-gc()
+
+
+# memory_report -----------------------------------------------------------
+
+memory_report()

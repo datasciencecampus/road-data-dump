@@ -8,16 +8,15 @@ combo <- cbind(combo, sites[mapping, -(1:3)])
 
 
 #clean up leaving readings only
-base::remove(list = c("site_midas",
-                "site_tame",
-                "site_tmu",
-                "sites",
-                "mapping",
-                "direction",
-                "easting_northing"))
+rm(list = c(
+            "sites",
+            "mapping",
+            "direction",
+            "easting_northing"))
 
 
-# wrap up -----------------------------------------------------------------
 
-wrap_up()
+# memory report -----------------------------------------------------------
+memory_report()
+
 
