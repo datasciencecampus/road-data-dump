@@ -217,13 +217,20 @@ handle_df <- function(df_name){
 
 # 07-Get_daily_reports.R  handle_missing ----------------------------------
 
+
 handle_missing <- function(GET_results) {
   
   # select all queries where status is 204 (no content but no error)
   response_204s <- list.filter(GET_results, status_code == 204)
   
   # select just the url from these null content responses
-  url_204s <- list.select(response_204s, url)
+  url_204s <- unlist(list.select(response_204s, url))
+  
+  # catch all errors too
+  url_errors <- list.filter(GET_results, status_code >= 400 && status_code <= 599)
+    
+  # select all urls
+  all_urls <- unlist(list.select(GET_results, url))
   
   # extract just the siteIds, simplify to a vector
   #character match tested on https://regex101.com/ for varying digit sequences
@@ -233,8 +240,12 @@ handle_missing <- function(GET_results) {
   site_Id_204s <- sapply(url_204s,
                          function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)"))
   
-  # find urls that are not responsible for 204 statuses
-  urls_not204 <- unlist(setdiff(list.select(GET_results, url), url_204s))
+  site_Id_errors <- sapply(url_errors,
+                           function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")) 
+  
+  
+  # find urls that are not responsible for 204 statuses or errors
+  urls_not204 <- setdiff(all_urls, c(url_204s, url_errors))
   
   # filter the request results based on the above. Only these will be parsed.
   reqs_not_204 <- list.filter(GET_results, url %in% urls_not204)
@@ -245,11 +256,82 @@ handle_missing <- function(GET_results) {
                            daterange)),
               file = "output_data/missing_site_IDs.txt")
   
+  # log the site errors if they exist
+  if (length(site_Id_errors >= 1)) {
+    warn(my_logger, "Removing errors from api request results:")
+    warn(my_logger, site_Id_errors)
+  }
   return(reqs_not_204)
-  
 }
 
 # End of 07-Get_daily_reports.R  handle_missing ----------------------------------
+
+
+
+
+# test code ---------------------------------------------------------------
+
+# listed_responses <- present_requests[5]
+# 
+# handle_report <- function(listed_responses) {
+#   
+#   retry_urls <- c()
+#   this_statcode <- unlist(list.select(listed_responses, status_code))
+#   this_url <- unlist(list.select(listed_responses, url))
+#   
+#   if(
+#     between(
+#       # is the status code anything starting with 4** - bad request
+#       this_statcode, left = 400, right = 499
+#     )
+#   ) {
+#     warn(my_logger, "Removing errors from api request results:")
+#     warn(my_logger, paste("Bad request for url: ", this_url))
+#     warn(my_logger, "Skipping url")
+#     next
+#   } else if(
+#     between(
+#       # is the status code anything starting with 5** - internal server error
+#       this_statcode, left = 500, right = 599
+#     )
+#   ) {
+#     warn(my_logger, "Internal Server Error Detected:")
+#     warn(my_logger, paste("Internal Server Error for url: ",
+#                           this_url))
+#     warn(my_logger, "Storing url for retry.")
+#     warn(my_logger, this_url)
+#     #store this with the rest of retry urls
+#     retry_urls <- c(retry_urls, this_url)
+#     warn(my_logger, paste("retry_urls is currently", length(retry_urls), "url(s) long."))
+#   } else if(
+#     # Check to ensure only parsing responses with a 200 code
+#     this_statcode == 200) {
+#     # coerce response to list
+#     listed_JSON <- fromJSON(
+#       # coerce to character
+#       rawToChar(unlist(list.select(listed_responses, content))),
+#       flatten = TRUE)
+#     # control flow if row limit is hit.
+#     if(listed_JSON$Header$row_count > MAX_ROWS){
+#       warn("Maximum rows exceeded. Use HTTP pagination.")
+#     }
+#     #coerce to dataframe
+#     df_output <- as.data.frame(listed_JSON$Rows)
+#     # assign site_id
+#     df_output$site_id <- site
+#   }
+#   
+# }
+# 
+# 
+# present_content <- lapply(present_requests, handle_report)
+
+
+# test code ---------------------------------------------------------------
+
+
+
+
 
 
 
