@@ -1,25 +1,17 @@
 '
 function of script:
-Coerce present data to dataframe and append
+Parse JSON response and extract content for all responses that did not return an error
+or did not return a 204: no content
+assign site_id column form pattern matching siteID query parameter in response url
 '
-
-#and continue to process only the 200s
-# stored in present_requests
-
-# log errors / status codes and coerce to df if request was successful
-
-combo <- handle_report(request_result, resource = RESOURCES[4], site = siteId)
-
-
-
-# log dataframe metrics
-handle_df(combo)
-
+# assign site Ids
+# list all data from response content
+report_data <- lapply(request_results, handle_report)
 
 
 # tidy up -----------------------------------------------------------------
 
-# rm(request_result)
+rm(request_result)
 
 
 # memory report -----------------------------------------------------------

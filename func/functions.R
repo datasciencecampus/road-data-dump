@@ -267,121 +267,29 @@ handle_missing <- function(GET_results) {
 # End of 07-Get_daily_reports.R  handle_missing ----------------------------------
 
 
-
-
-# test code ---------------------------------------------------------------
-
-# listed_responses <- present_requests[5]
-# 
-# handle_report <- function(listed_responses) {
-#   
-#   retry_urls <- c()
-#   this_statcode <- unlist(list.select(listed_responses, status_code))
-#   this_url <- unlist(list.select(listed_responses, url))
-#   
-#   if(
-#     between(
-#       # is the status code anything starting with 4** - bad request
-#       this_statcode, left = 400, right = 499
-#     )
-#   ) {
-#     warn(my_logger, "Removing errors from api request results:")
-#     warn(my_logger, paste("Bad request for url: ", this_url))
-#     warn(my_logger, "Skipping url")
-#     next
-#   } else if(
-#     between(
-#       # is the status code anything starting with 5** - internal server error
-#       this_statcode, left = 500, right = 599
-#     )
-#   ) {
-#     warn(my_logger, "Internal Server Error Detected:")
-#     warn(my_logger, paste("Internal Server Error for url: ",
-#                           this_url))
-#     warn(my_logger, "Storing url for retry.")
-#     warn(my_logger, this_url)
-#     #store this with the rest of retry urls
-#     retry_urls <- c(retry_urls, this_url)
-#     warn(my_logger, paste("retry_urls is currently", length(retry_urls), "url(s) long."))
-#   } else if(
-#     # Check to ensure only parsing responses with a 200 code
-#     this_statcode == 200) {
-#     # coerce response to list
-#     listed_JSON <- fromJSON(
-#       # coerce to character
-#       rawToChar(unlist(list.select(listed_responses, content))),
-#       flatten = TRUE)
-#     # control flow if row limit is hit.
-#     if(listed_JSON$Header$row_count > MAX_ROWS){
-#       warn("Maximum rows exceeded. Use HTTP pagination.")
-#     }
-#     #coerce to dataframe
-#     df_output <- as.data.frame(listed_JSON$Rows)
-#     # assign site_id
-#     df_output$site_id <- site
-#   }
-#   
-# }
-# 
-# 
-# present_content <- lapply(present_requests, handle_report)
-
-
-# test code ---------------------------------------------------------------
-
-
-
-
-
-
-
 # 08-GET_daily_reports.R --------------------------------------------------
 
-handle_report <- function(GET_result, resource, site) {
-  if (http_error(GET_result)) {
-    log4r::info(my_logger, paste("###########GET", resource, "###########"))
-    log4r::info(my_logger, paste("Site", site,  "queried url:", GET_result$url))
-    log4r::info(my_logger, paste("Date of query:", GET_result$date))
-    log4r::info(my_logger, paste("Query durations", capture.output(GET_result$times)))
-    
-    log4r::warn(my_logger, "The GET() request failed")
-    log4r::warn(my_logger, paste("HTTP Status code:", GET_result$status_code))
-    warn(my_logger, paste("Query status message:", http_status(GET_result)))
-    
-    warn(api_logger, GET_result$url)
-    warn(api_logger, http_status(GET_result)[1])
-    warn(api_logger, http_status(GET_result)[2])
-    warn(api_logger, http_status(GET_result)[3])
-    stop("Execution halted")
-    
-  } else {
-    log4r::info(my_logger, paste("###########GET", resource, "###########"))
-    log4r::info(my_logger, paste("###########", resource, "successfully queried.", "###########"))
-    log4r::info(my_logger, paste("Queried url:", GET_result$url))
-    log4r::info(my_logger, paste("Date of query:", GET_result$date))
-    log4r::info(my_logger, paste("Query durations", capture.output(GET_result$times)))
-    log4r::info(my_logger, paste("HTTP status code:", GET_result$status_code))
-    info(api_logger, GET_result$url)
-    info(api_logger, http_status(GET_result)[1])
-    info(api_logger, http_status(GET_result)[2])
-    info(api_logger, http_status(GET_result)[3])
-    # coerce response to list
-    listed_JSON <- fromJSON(
-      rawToChar(
-        GET_result$content),# parse JSON as text
-      flatten = TRUE)
-    # control flow if row limit is hit.
-    if(listed_JSON$Header$row_count > MAX_ROWS){
-      warn("Maximum rows exceeded. Use HTTP pagination.")
-    }
-    #coerce to dataframe
-    df_output <- as.data.frame(listed_JSON$Rows)
-    # assign site_id
-    df_output$site_id <- site
-    
+handle_report <- function(GET_result) {
+  
+  # coerce response to list
+  listed_JSON <- fromJSON(
+    rawToChar(
+      unlist(GET_result$content)),# parse JSON as text
+    flatten = TRUE)
+  # control flow if row limit is hit.
+  if(listed_JSON$Header$row_count > MAX_ROWS){
+    warn(my_logger, "Maximum rows exceeded. Use HTTP pagination.")
   }
-  return(df_output)
+  
+  # use pattern matching to extract the site ID from the queried url
+  site_id <- str_extract(GET_result$url, pattern = "(?<=sites=)([0-9]+)(?=&)")
+  # write to a new column in the list
+  listed_JSON$Rows$site_id <- site_id
+  
+  # need to convert with as.data.frame or data.table once all JSON returned
+  return(listed_JSON$Rows)
 }
+
 
 # End of 08-GET_daily_reports.R -------------------------------------------
 

@@ -16,10 +16,9 @@
 * ~~querying siteIds - Use http_status to skip dataframe processing for anything returning $category == "Success" && $reason == "No content", certain siteIDs missing from provided api daterange~~
 * ~~querying dateranges - need to establish api requirements and exception handling~~
 * ~~Output a text file containing all sites that returned empty content for the specified date range~~
+* ~~Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh~~
 
-* Will need to write individual report csvs to cache, remove from local memory per iteration, garbage collection and tidy environment, then compile csvs.
 * Alternative to fall back on is executing shell scripts as part of R workflow.
-* Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh
 * Update to documentation - markdown web page with screengrabs
 * handle_missing function requires unit testing.
 * Implement a retry for any internal server errors (HTTP status code 5**), script 07-GET_daily_reports.R stores these as retry_urls

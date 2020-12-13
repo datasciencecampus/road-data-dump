@@ -18,3 +18,14 @@ sites <- rbind(site_midas, site_tame, site_tmu)
 
 
 
+# tidy up -----------------------------------------------------------------
+
+rm(list = c(
+  "site_midas",
+  "site_tame",
+  "site_tmu"
+  ))
+
+# memory_report() ---------------------------------------------------------
+
+memory_report()
