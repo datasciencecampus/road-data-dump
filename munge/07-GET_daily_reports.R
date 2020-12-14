@@ -9,7 +9,7 @@ info(my_logger, paste0("#############", "Start of", this.path(), "#############"
 # testing all Ids, 16165 Ids... stopped at 33 minutes.
 # Looks like it's going to take an hour for all 16.5k
 
-
+all_urls <- all_urls[1:10]
 # GET daily reports -------------------------------------------------------
 info(api_logger, "Duration of all site ID daily report request")
 report_start <- Sys.time()
