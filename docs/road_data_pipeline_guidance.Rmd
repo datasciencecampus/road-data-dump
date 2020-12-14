@@ -21,18 +21,122 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 # Introduction
 
+The **Road Data Pipeline** is an unofficial [Highways England WebTRIS api](https://webtris.highwaysengland.co.uk/api/swagger/ui/index) client. The work contained within the pipeline was built upon the work done by [phil8192's webtri.sh client](https://github.com/phil8192/webtri.sh). This pipeline is less flexible than the webtri.sh client acknowledged above, but includes additional data processing, outputting csv files for the user-specified date range.
+
+<img src="images/Traffic_Jam_-_geograph.org.uk_-_391642.jpg" class="center" alt="UK motorway congestion cc license">
+
+The client allows querying of **all available sites** for **specified date ranges**, intended for monthly analysis. 
+
+## Output Summary
+
++-------------------+----------------+--------------------------------------------+
+|Column             |Values          |Description                                 |
++===================+================+============================================+
+|Site Name          |Alphanumeric    |Long-form site code                         |
++-------------------+----------------+--------------------------------------------+
+|Report Date        |Datetime        |The date of data capture                    |
++-------------------+----------------+--------------------------------------------+
+|Time Period Ending |Timestamp       |The time of data capture                    |
++-------------------+----------------+--------------------------------------------+
+|Time Interval      |Integer         |Pending                                     |
++-------------------+----------------+--------------------------------------------+
+|x - y cm           |Integer         |Multiple columns containing vehicle lengths |
++-------------------+----------------+--------------------------------------------+
+|x - y mph          |Integer         |Multiple columns, Speed of vehicle          |
++-------------------+----------------+--------------------------------------------+
+|Avg mph            |Integer         |Average speed of vehicle                    |
++-------------------+----------------+--------------------------------------------+
+|Total Volume       |Integer         |Pending                                     |
++-------------------+----------------+--------------------------------------------+
+|site_id            |Integer         |Numerical site code                         |
++-------------------+----------------+--------------------------------------------+
+|sites.Description  |Factor          |Repeat of Site Name                         |
++-------------------+----------------+--------------------------------------------+
+|sites.Longitude    |Floating Point  |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+|sites.Latitude     |Floating Point  |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+|sites.Status       |Character       |Active / inactive                           |
++-------------------+----------------+--------------------------------------------+
+|type               |Character       |Site type: MIDAS, TAME or TMU               |
++-------------------+----------------+--------------------------------------------+
+|direction          |Character       |Compass direction of traffic                |
++-------------------+----------------+--------------------------------------------+
+|easting            |Integer         |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+|northing           |Integer         |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+
+# Dependencies
+
+* R Studio
+* R (64-bit)
+* 20 GB of free disk space to allocate
+* Internet connection (preferably high speed fiber optic)
+* Access to CRAN packages listed below.
+* Git
+* GitHub account
+* Command line interface (Bash, Terminal, CMD prompt etc)
+
+## Packages and versions:
+
+* rlist 0.4.6.1
+* this.path 0.2.0
+* stackoverflow 0.7.0
+* dplyr 1.0.2          
+* jsonlite 1.7.1
+* httr 1.4.2
+* log4r 0.3.2
+* renv 0.12.3          
+* beepr 1.3
+* stringr 1.4.0
+* purrr 0.3.4
+* data.table 1.13.2    
+* ProjectTemplate 0.9.3
+
+## Notes
+
+1. Memory allocation - 20GB of memory is requested for use in the R session. The script will stop execution if this is not available. 1 month of data tends to require approximately 10 to 11 GB of memory allocation to process.
+2. Internet connection - 1 month of data takes approximately 1.25 hours on a connection averaging 60 mbps download, 20 mbps upload.
+3. Package management - this project uses `renv` to manage package versions. Using `renv` to ensure package versions are consistent can help to minimise breaking changes and inconsistencies across operating systems.
+
+
+# Downloading
+
+To get a copy of the pipeline, you will need to download the repository from [DSC road data](https://github.com/datasciencecampus/road-data-dump).
+
+Click on the `Code` button to see your download options.
+
+![GitHub repo snapshot](images/Screenshot 2020-12-14 at 10.46.11.png)
+
+To access the pipeline, you will currently need to `clone` this repository using **Git**. This will allow access to the branch that stores the required files.
+
+It is recommended to specify **HTTPS** for cloning options, click on the clipboard icon to copy the required url.
+
+<img src="images/Screenshot 2020-12-14 at 10.48.33.png" class="center" alt="GitHub cloning options">
+
+
+Using Bash, CMD prompt, terminal or whatever command line interface you prefer to use for Git interfacing, navigate to the directory you wish to run the pipeline from and run the line:
+
+`git clone https://github.com/datasciencecampus/road-data-dump.git`
+
+If the clone is executed correctly, navigate to the newly cloned repository by running:
+
+`cd road-data-dump`
+
+Once you have arrived at the roads-data-dump folder, you will need to check out to the **r-pipeline** branch. In order to do that, run the line:
+
+`git checkout r-pipeline`
+
+
+# First Time Run
+
+# Using the Pipeline
 
 
 
 
-git clone https://github.com/datasciencecampus/road-data-dump.git
 
-
-
-cd road-data-dump 
-
-
-git checkout r-pipeline
 
 
 
@@ -116,11 +220,10 @@ test_run <- FALSE
 
 In order to specify which dates to query, you will need to access 03-set_qury_parameters.R within the munge folder. The dates you will need to adjust appear as start_data and end_date, assign values as below:
 
-# Start Date --------------------------------------------------------------
+
 
 start_date <- "01072019"
 
-# End Date ----------------------------------------------------------------
 
 end_date <- "31072019"
 
