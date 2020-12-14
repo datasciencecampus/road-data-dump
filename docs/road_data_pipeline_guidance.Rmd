@@ -1,4 +1,27 @@
-Road data dump command record
+---
+title: "Road Data Pipeline"
+author: "R Leyshon"
+date: "14/12/2020"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    smooth_scroll: true
+    toc_depth: 2
+    css: "style/style.css"
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+```
+
+
+
+# Introduction
+
+
 
 
 
@@ -20,7 +43,8 @@ Navigate to the folder location and open the `road-data-dump.Rproj` file.
 
 
 Successful installation should look something like this:
-The downloaded binary packages are in	/var/folders/d3/cjvn_l1n13z5z3t6nz554p8r0000gq/T//RtmpnEKjds/downloaded_packages
+The downloaded binary packages are in
+	/var/folders/d3/cjvn_l1n13z5z3t6nz554p8r0000gq/T//RtmpnEKjds/downloaded_packages
 
 
 install.packages(“renv”)
@@ -31,7 +55,21 @@ renv::restore()
 Do you want to proceed? [y/N]: y
 
 
-```The following package(s) have been updated:	glue       [installed version 1.4.2  != loaded version 1.4.1 ]	data.table [installed version 1.13.2 != loaded version 1.12.8]	rlang      [installed version 0.4.9  != loaded version 0.4.8 ]	generics   [installed version 0.1.0  != loaded version 0.0.2 ]	magrittr   [installed version 2.0.1  != loaded version 1.5   ]	vctrs      [installed version 0.3.5  != loaded version 0.3.1 ]	pillar     [installed version 1.4.7  != loaded version 1.4.4 ]	tibble     [installed version 3.0.4  != loaded version 3.0.1 ]	dplyr      [installed version 1.0.2  != loaded version 1.0.0 ]	renv       [installed version 0.12.3 != loaded version 0.12.2]	stringi    [installed version 1.5.3  != loaded version 1.4.6 ]```Consider restarting the R session and loading the newly-installed packages.
+```The following package(s) have been updated:
+
+	glue       [installed version 1.4.2  != loaded version 1.4.1 ]
+	data.table [installed version 1.13.2 != loaded version 1.12.8]
+	rlang      [installed version 0.4.9  != loaded version 0.4.8 ]
+	generics   [installed version 0.1.0  != loaded version 0.0.2 ]
+	magrittr   [installed version 2.0.1  != loaded version 1.5   ]
+	vctrs      [installed version 0.3.5  != loaded version 0.3.1 ]
+	pillar     [installed version 1.4.7  != loaded version 1.4.4 ]
+	tibble     [installed version 3.0.4  != loaded version 3.0.1 ]
+	dplyr      [installed version 1.0.2  != loaded version 1.0.0 ]
+	renv       [installed version 0.12.3 != loaded version 0.12.2]
+	stringi    [installed version 1.5.3  != loaded version 1.4.6 ]```
+
+Consider restarting the R session and loading the newly-installed packages.
 
 
 
@@ -40,7 +78,8 @@ Restart R as in picture
 
 
 Run this command again to ensure correct package versions:
-`renv::restore()``* The library is already synchronized with the lockfile.`
+`renv::restore()`
+`* The library is already synchronized with the lockfile.`
 
 
 
@@ -56,11 +95,14 @@ On the first run, ensure test_run <- TRUE
 This will execute the pipeline, but for one siteID and on one day.
 If successful, you should hear a bleep. Also, the console will print
 
-Time difference of 2.153 secsINFO  [2020-12-14 12:52:49] #############End of pipeline#############
+Time difference of 2.153 secs
+INFO  [2020-12-14 12:52:49] #############End of pipeline#############
 
 
 Run the scripts. If you see an error like this:
-Error in .check.version(config) :   Your configuration is compatible with version 0.9.3 of the ProjectTemplate package.  Please upgrade ProjectTemplate to version 0.9.3 or later
+Error in .check.version(config) : 
+  Your configuration is compatible with version 0.9.3 of the ProjectTemplate package.
+  Please upgrade ProjectTemplate to version 0.9.3 or later
 
 Then run `install.packages("ProjectTemplate”)`
 
