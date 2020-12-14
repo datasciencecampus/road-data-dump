@@ -2,6 +2,7 @@
 Purpose of script: Configure environment
 
 "
+info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 # calculate start time for performance
 start_time <- Sys.time()
 

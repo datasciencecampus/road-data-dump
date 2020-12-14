@@ -1,7 +1,7 @@
 "Purpose of script:
 join readings and sites
 "
-
+info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 combo <- cbind(combo, sites[mapping, -(1:3)])
 #readings[sample(1:nrow(readings), 10), ]
 #**warning** ^-- pushed R instance to ~70g memory. good job i have swap on an NVMe stick..

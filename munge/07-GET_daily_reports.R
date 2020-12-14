@@ -2,7 +2,7 @@
 function of script:
 Get daily reports for all discovered site Ids
 '
-info(api_logger, "#############New Daily report request#############")
+info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 
 # The below works for the first 5 queries
 # testing at scale, 100, Time difference of 21.69305 secs

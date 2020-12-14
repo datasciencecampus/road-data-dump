@@ -2,9 +2,8 @@
 Purpose of script:
 1.Initiate logging dependencies.
 2. Source custom functions form func/ directory
-
 "
-
+info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 
 # initiate logging --------------------------------------------------------
 
