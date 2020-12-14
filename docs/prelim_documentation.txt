@@ -1,0 +1,110 @@
+Road data dump command record
+
+
+
+git clone https://github.com/datasciencecampus/road-data-dump.git
+
+
+
+cd road-data-dump 
+
+
+git checkout r-pipeline
+
+
+
+Navigate to the folder location and open the `road-data-dump.Rproj` file.
+
+
+
+
+
+Successful installation should look something like this:
+The downloaded binary packages are in	/var/folders/d3/cjvn_l1n13z5z3t6nz554p8r0000gq/T//RtmpnEKjds/downloaded_packages
+
+
+install.packages(“renv”)
+
+renv::restore()
+
+
+Do you want to proceed? [y/N]: y
+
+
+```The following package(s) have been updated:	glue       [installed version 1.4.2  != loaded version 1.4.1 ]	data.table [installed version 1.13.2 != loaded version 1.12.8]	rlang      [installed version 0.4.9  != loaded version 0.4.8 ]	generics   [installed version 0.1.0  != loaded version 0.0.2 ]	magrittr   [installed version 2.0.1  != loaded version 1.5   ]	vctrs      [installed version 0.3.5  != loaded version 0.3.1 ]	pillar     [installed version 1.4.7  != loaded version 1.4.4 ]	tibble     [installed version 3.0.4  != loaded version 3.0.1 ]	dplyr      [installed version 1.0.2  != loaded version 1.0.0 ]	renv       [installed version 0.12.3 != loaded version 0.12.2]	stringi    [installed version 1.5.3  != loaded version 1.4.6 ]```Consider restarting the R session and loading the newly-installed packages.
+
+
+
+Restart R as in picture
+
+
+
+Run this command again to ensure correct package versions:
+`renv::restore()``* The library is already synchronized with the lockfile.`
+
+
+
+
+
+Using R Studio’s file browser, open run-me.R, which is found within the src folder.
+
+
+Click on the run-me.R script once it has appeared in RStudio
+
+==========Include test_me <- TRUE==========
+On the first run, ensure test_run <- TRUE
+This will execute the pipeline, but for one siteID and on one day.
+If successful, you should hear a bleep. Also, the console will print
+
+Time difference of 2.153 secsINFO  [2020-12-14 12:52:49] #############End of pipeline#############
+
+
+Run the scripts. If you see an error like this:
+Error in .check.version(config) :   Your configuration is compatible with version 0.9.3 of the ProjectTemplate package.  Please upgrade ProjectTemplate to version 0.9.3 or later
+
+Then run `install.packages("ProjectTemplate”)`
+
+
+If the test worked, you would have heard a jingle. You would then be able to overwrite with
+
+test_run <- FALSE
+
+
+==========Include specifying dates to query==========
+
+In order to specify which dates to query, you will need to access 03-set_qury_parameters.R within the munge folder. The dates you will need to adjust appear as start_data and end_date, assign values as below:
+
+# Start Date --------------------------------------------------------------
+
+start_date <- "01072019"
+
+# End Date ----------------------------------------------------------------
+
+end_date <- "31072019"
+
+Once you have entered your desired dates, return to the run-me.R script and run all.
+
+==========Include output data==========
+
+The output of the pipeline will be as follows:
+
+./output_data/midas.csv
+./output_data/tame.csv
+./output_data/tmu.csv
+./output_data/missing_site_IDs.txt
+./logs/logfile.txt
+
+The output data csvs contain the api output.
+The missing_site_IDs.txt returns a sequence of missing site IDs form the queried date range, a count of api responses that were empty, and what proportion of the overall number of IDs queried this represented (rounded to 2dp).
+
+Currently, executing the pipeline will overwrite any output_data files.
+
+The log file.txt is important if you encounter an error. This document can be passed back to the developer in order to investigate issues encountered. New run s do not overwrite the logs, they append pre-existing logs.
+
+
+
+
+
+
+
+
