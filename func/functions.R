@@ -255,7 +255,7 @@ handle_missing <- function(GET_results) {
   # filter the request results based on the above. Only these will be parsed.
   reqs_not_204 <- list.filter(GET_results, url %in% urls_not204)
   
-  write.table(print(paste0(
+  write.table(print(paste(
     "Missing data report ",
     "Number of missing IDs (204s) for this run: ",
     number_204s,
@@ -266,7 +266,9 @@ handle_missing <- function(GET_results) {
     ". Site Ids that returned no content :",
     paste(site_Id_204s, collapse = ","),
     ". Date period queried: ",
-    daterange)),
+    daterange,
+    sep = "\n")
+    ),
               file = "output_data/missing_site_IDs.txt")
   
   # log the site errors if they exist
