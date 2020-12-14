@@ -231,6 +231,7 @@ handle_missing <- function(GET_results) {
     
   # select all urls
   all_urls <- unlist(list.select(GET_results, url))
+  number_urls <- length(all_urls)
   
   # extract just the siteIds, simplify to a vector
   #character match tested on https://regex101.com/ for varying digit sequences
@@ -239,9 +240,13 @@ handle_missing <- function(GET_results) {
   #[0-9]+ matches any sequence of numbers with different lengths
   site_Id_204s <- sapply(url_204s,
                          function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)"))
+  #count the number of 204s
+  number_204s <- length(site_Id_204s)
   
   site_Id_errors <- sapply(url_errors,
                            function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")) 
+  # count the number of errors
+  number_errors <- length(site_Id_errors)
   
   
   # find urls that are not responsible for 204 statuses or errors
@@ -250,10 +255,18 @@ handle_missing <- function(GET_results) {
   # filter the request results based on the above. Only these will be parsed.
   reqs_not_204 <- list.filter(GET_results, url %in% urls_not204)
   
-  write.table(print(paste0("Site Ids that returned no content :",
-                           paste(site_Id_204s, collapse = ","),
-                           ". Date period queried: ",
-                           daterange)),
+  write.table(print(paste0(
+    "Missing data report ",
+    "Number of missing IDs (204s) for this run: ",
+    number_204s,
+    " Total number of sites queried: ",
+    number_urls,
+    " Proportion of Site IDs that were missing (204s) for this run: ",
+    round(number_204s / number_urls, digits = 2),
+    ". Site Ids that returned no content :",
+    paste(site_Id_204s, collapse = ","),
+    ". Date period queried: ",
+    daterange)),
               file = "output_data/missing_site_IDs.txt")
   
   # log the site errors if they exist

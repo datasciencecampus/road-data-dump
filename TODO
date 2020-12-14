@@ -17,6 +17,7 @@
 * ~~querying dateranges - need to establish api requirements and exception handling~~
 * ~~Output a text file containing all sites that returned empty content for the specified date range~~
 * ~~Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh~~
+* ~~Use this.path to demark all script start checkpoints~~
 
 * Print count of missing IDs to log and to txt
 * Print count of errorred IDs to log and to txt
@@ -24,7 +25,6 @@
 * Update to documentation - markdown web page with screengrabs
 * handle_missing function requires unit testing.
 * Unit testing all scripts
-* Use this.path to demark all scraipt start & finish points in logs
 * remove api_logger
 * Implement a retry for any internal server errors (HTTP status code 5**), script 07-GET_daily_reports.R stores these as retry_urls
 * Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off. 
