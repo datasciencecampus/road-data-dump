@@ -18,7 +18,9 @@
 * ~~Output a text file containing all sites that returned empty content for the specified date range~~
 * ~~Combine the csvs in /data/ into `combo.csv`, as achieved in webtri.sh~~
 * ~~Use this.path to demark all script start checkpoints~~
+* ~~Add test logic for handing over: test_run == TRUE, only execute 1 day and first  site ID.~~
 
+* DF insight for combo: review print statements for logging.
 * Print count of missing IDs to log and to txt
 * Print count of errorred IDs to log and to txt
 * Print summaries of all status codes to log 

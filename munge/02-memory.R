@@ -7,7 +7,7 @@ info(my_logger, paste0("#############", "Start of", this.path(), "#############"
 start_time <- Sys.time()
 
 
-newlimit <- 2000000
+newlimit <- 20000
 
 # bump up memory limit
 memory.limit(newlimit)

@@ -43,6 +43,9 @@ agent_message <- "Requesting sensor data for use in ONS, datasciencecampus, road
 
 user_details <- paste(user_email, agent_message)
 
+# only set parameters for a full run if not testing
+if(test_run == FALSE){
+
 # Start Date --------------------------------------------------------------
 
 start_date <- "01072019"
@@ -50,7 +53,7 @@ start_date <- "01072019"
 
 # End Date ----------------------------------------------------------------
 
-end_date <- "02072019"
+end_date <- "31072019"
 
 
 # date_range --------------------------------------------------------------
@@ -63,6 +66,6 @@ daterange <- paste0("&start_date=", start_date, "&end_date=", end_date)
 
 rm(list = c("start_date", "end_date"))
   
-
+}
 
 
