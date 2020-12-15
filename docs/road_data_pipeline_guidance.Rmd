@@ -230,6 +230,9 @@ Notice that the installed versions and loaded versions are different. This is wh
 
 Also note that I have been asked to restart R. If prompted, do this prior to running the pipeline. Select `Session` > `Restart R` from the menu at the top of R Studio.
 
+![Restarting R from the menu](images/Screenshot 2020-12-14 at 11.13.58.png)
+
+
 4. Before moving on to the next section, check to ensure all the required packages have been installed correctly. Run this command again to ensure correct package versions: `renv::restore()`. If everything is good, the console should print:
 
 ```
@@ -250,10 +253,46 @@ Also note that I have been asked to restart R. If prompted, do this prior to run
 
 ##### ProjectTemplate
 
+The `ProjectTemplate` (note the camel case, `install.packages()` is case sensitive) is a robust framework for compartmentalising code in pipelines. It allows us to add logging, run sequential scripts and more. In order to run this pipeline, you will need to have `ProjectTemplate` installed.
 
+1. Run the line `install.packages("ProjectTemplate”)`.
+
+2. If at any point you see an error message that looks like this:
+
+```
+Error in .check.version(config) : 
+  Your configuration is compatible with version 0.9.3 of the ProjectTemplate package.
+  Please upgrade ProjectTemplate to version 0.9.3 or later
+```
+You will need to re-run the line `install.packages("ProjectTemplate”)`. Version 0.93 is what the pipeline expects, you can check the version you are running by looking at the `Packages` pane in the R Studio interface.
+
+<img src="images/091544.png" class="center" alt="The packages pane in R Studio">
+
+You will notice that the image shows a column called `Version` which shows the version of the package available in your global R library. This is not the version we are using in the pipeline.
+
+3. There should be another column called `lockfile`, shown in the image above. This is the record of all the local package versions we will be using for the pipeline. If the `lockfile` column is not appearing within the Packages pane, then please run the line: `renv::snapshot()`. This should cause it to appear. If the problem perists, then please contact me by clicking the mail button.
 
 <div>
-Using R Studio’s file browser, open run-me.R, which is found within the src folder.
+  <a href="mailto:richard.leyshon@ons.gov.uk">
+    <i class="fas fa-envelope fa-2x" id="emailme"></i>
+  </a>
+</div>
+
+<br>
+<br>
+
+##### Important
+
+The lockfile is a text file stored within the project directory.
+
+<div class="summary-box">Never manually adjust the contents of the lockfile. This may cause the pipeline to break.</div>
+
+
+#### Test Pipeline
+
+On the first run of the pipeline, we just want to do a quick test to see if we can get one site ID for one day.
+
+1. Using R Studio’s file browser, open `run-me.R`, which is found within the `src` folder.
 
 
 Click on the run-me.R script once it has appeared in RStudio
@@ -267,19 +306,12 @@ Time difference of 2.153 secs
 INFO  [2020-12-14 12:52:49] #############End of pipeline#############
 
 
-Run the scripts. If you see an error like this:
-Error in .check.version(config) : 
-  Your configuration is compatible with version 0.9.3 of the ProjectTemplate package.
-  Please upgrade ProjectTemplate to version 0.9.3 or later
 
-Then run `install.packages("ProjectTemplate”)`
 
 
 If the test worked, you would have heard a jingle. You would then be able to overwrite with
 
 </div>
-
-#### Test Pipeline
 
 
 ### Subsequent Runs
