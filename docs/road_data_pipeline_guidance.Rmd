@@ -67,7 +67,25 @@ The client allows querying of **all available sites** for **specified date range
 |northing           |Integer         |Coordinate data                             |
 +-------------------+----------------+--------------------------------------------+
 
-# Dependencies
+The output files will appear in the **output_data** folder as **site-type_query-date.csv**. There are 3 site types available, **MIDAS**, **TAME**, and **TMU**. Please see explanations of the different site types, as provided by phil8192:
+
+<div class="quote">
+  <ol>
+    <li>Motorway Incident Detection and Automatic Signalling (MIDAS)
+     Predominantly inductive loops (though there are a few sites where radar
+     technology is being trialled)</li>
+    <li> TAME (Traffic Appraisal, Modelling and Economics) which are inductive loops</li>
+    <li> Traffic Monitoring Units (TMU) (loops)</li>
+    <li> Highways Agency’s Traffic Flow Database System (TRADS)
+     Traffic Accident Database System (TRADS)? (legacy)</li>
+  </ol>
+</div>
+   
+Note that TRADS is available but not being queried by this pipeline.
+
+***
+
+## Dependencies
 
 * R Studio
 * R (64-bit)
@@ -78,7 +96,7 @@ The client allows querying of **all available sites** for **specified date range
 * GitHub account
 * Command line interface (Bash, Terminal, CMD prompt etc)
 
-## Packages and versions:
+### Packages and versions:
 
 * rlist 0.4.6.1
 * this.path 0.2.0
@@ -94,20 +112,25 @@ The client allows querying of **all available sites** for **specified date range
 * data.table 1.13.2    
 * ProjectTemplate 0.9.3
 
-## Notes
+### Notes
 
 1. Memory allocation - 20GB of memory is requested for use in the R session. The script will stop execution if this is not available. 1 month of data tends to require approximately 10 to 11 GB of memory allocation to process.
+
 2. Internet connection - 1 month of data takes approximately 1.25 hours on a connection averaging 60 mbps download, 20 mbps upload.
-3. Package management - this project uses `renv` to manage package versions. Using `renv` to ensure package versions are consistent can help to minimise breaking changes and inconsistencies across operating systems.
 
+3. Package management - this project uses `renv` to manage package versions. Using `renv` to ensure package versions are consistent can help to minimise the risk of breaking changes.
 
-# Downloading
+***
+***
+
+## Download the Pipeline
 
 To get a copy of the pipeline, you will need to download the repository from [DSC road data](https://github.com/datasciencecampus/road-data-dump).
 
 Click on the `Code` button to see your download options.
 
 ![GitHub repo snapshot](images/Screenshot 2020-12-14 at 10.46.11.png)
+***
 
 To access the pipeline, you will currently need to `clone` this repository using **Git**. This will allow access to the branch that stores the required files.
 
@@ -115,6 +138,7 @@ It is recommended to specify **HTTPS** for cloning options, click on the clipboa
 
 <img src="images/Screenshot 2020-12-14 at 10.48.33.png" class="center" alt="GitHub cloning options">
 
+***
 
 Using Bash, CMD prompt, terminal or whatever command line interface you prefer to use for Git interfacing, navigate to the directory you wish to run the pipeline from and run the line:
 
@@ -128,22 +152,54 @@ Once you have arrived at the roads-data-dump folder, you will need to check out 
 
 `git checkout r-pipeline`
 
+If you successfully checked the **r-pipeline** out, you should now have a directory that looks like this:
 
-# First Time Run
-
-# Using the Pipeline
-
+<img src="images/055100.png" class="center" alt="screenshot of directory structure">
 
 
+If your directory looks like this, you are ready to begin first time configuration. Please proceed to [First Time Run](#firsttimerun). <a href="#firsttimerun">First Time Run</a>.
+
+If you require additional support for running Git and the Git commands, then please refer to this [Towards Data Science Complete Beginner's Guide](https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6).
+
+***
+***
+
+## Using the Pipeline
+
+Some guidance before starting:
+
+If you have any of the output data files open, I advise closing them prior to running the pipeline. If R tries to overwrite a file with the same name, it will error and halt execution. If this happens, close the file, use R Studio to open `munge/15-write.R` and re-run this script (either click on the `source` button at the top of the script in R Studio, or press `Ctrl` + `shift` + `enter`).
+
+It is also best to start from a blank slate every time you run the pipeline. To do this, select `Session` > `Clear Workspace` from the toolbar at the top of R Studio.
+
+<div class="summary-box">
+Always ensure you are working from the R Project file. This help to ensure a consistent environment every time you run the pipeline.
+</div>
+<br>
+The project file is called `road-data-dump.Rproj`.
+
+<a id="#firsttimerun"></a>
+
+### First Time Run
 
 
 
 
-
-Navigate to the folder location and open the `road-data-dump.Rproj` file.
-
+### Subsequent Runs
 
 
+
+## Error Handling
+
+***
+```
+document error: Error in fwrite(tmu, "output_data/tmu.csv", row.names = F, quote = F) :
+Permission denied: 'output_data/tmu.csv'. Failed to open existing file for writing. Do you have write permission to it? Is this Windows and does another process such as Excel have it
+open?
+```
+This means R can't write to csv as the file is open. Please close any Excel files and re-run the pipeline.
+
+***
 
 
 Successful installation should look something like this:
