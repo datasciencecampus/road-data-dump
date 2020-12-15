@@ -12,24 +12,37 @@ output:
 ---
 
 ```{r, include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE)
+
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ```
 
 
-
 # Introduction
+
+ 
 
 The **Road Data Pipeline** is an unofficial [Highways England WebTRIS api](https://webtris.highwaysengland.co.uk/api/swagger/ui/index) client. The work contained within the pipeline was built upon the work done by [phil8192's webtri.sh client](https://github.com/phil8192/webtri.sh). This pipeline is less flexible than the webtri.sh client acknowledged above, but includes additional data processing, outputting csv files for the user-specified date range.
 
+ 
+
 <img src="images/Traffic_Jam_-_geograph.org.uk_-_391642.jpg" class="center" alt="UK motorway congestion cc license">
 
-The client allows querying of **all available sites** for **specified date ranges**, intended for monthly analysis. 
+ 
+
+The client allows querying of **all available sites** for **specified date ranges**, intended for monthly analysis.
+
+ 
 
 ## Output Summary
 
+ 
+
 ### Main Outputs
+
+ 
 
 +-------------------+----------------+--------------------------------------------+
 |Column             |Values          |Description                                 |
@@ -71,329 +84,601 @@ The client allows querying of **all available sites** for **specified date range
 
 The output files will appear in the **output_data** folder as **site-type_query-date.csv**. There are 3 site types available, **MIDAS**, **TAME**, and **TMU**. Please see explanations of the different site types, as provided by phil8192:
 
+ 
+
 <div class="quote">
   <ol>
-    <li>Motorway Incident Detection and Automatic Signalling (MIDAS)
-     Predominantly inductive loops (though there are a few sites where radar
-     technology is being trialled)</li>
+    <li>Motorway Incident Detection and Automatic Signalling (MIDAS) Predominantly inductive loops (though there are a few sites where radar technology is being trialled)</li>
     <li> TAME (Traffic Appraisal, Modelling and Economics) which are inductive loops</li>
     <li> Traffic Monitoring Units (TMU) (loops)</li>
-    <li> Highways Agency’s Traffic Flow Database System (TRADS)
-     Traffic Accident Database System (TRADS)? (legacy)</li>
+    <li> Highways Agency’s Traffic Flow Database System (TRADS) Traffic Accident Database System (TRADS)? (legacy)</li>
   </ol>
 </div>
+
    
+
 Note that TRADS is available but not being queried by this pipeline.
 
+ 
+
 ***
+
+ 
 
 ### All Outputs
 
+ 
 
+ 
 
+The full output of the pipeline is as follows:
 
+ 
 
+`./output_data/midas_daterange.csv`
 
-==========Include output data==========
+`./output_data/tame_daterange.csv`
 
-The output of the pipeline will be as follows:
+`./output_data/tmu_daterange.csv`
 
-./output_data/midas_daterange.csv
-./output_data/tame_daterange.csv
-./output_data/tmu_daterange.csv
-./output_data/missing_site_IDs_daterange.txt
-./logs/logfile.txt
+`./output_data/missing_site_IDs_daterange.txt`
+
+`./logs/logfile.txt`
+
+ 
 
 The **output data csvs** contain the api output.
-The **missing_site_IDs.txt** returns a sequence of missing site IDs form the queried date range, a count of api responses that were empty, and what proportion of the overall number of IDs queried this represented (rounded to 2dp).
+
+The **./output_data/missing_site_IDs_daterange.txt** returns a sequence of missing site IDs from the queried date range, a count of api responses that were empty, and what proportion of the overall number of IDs queried this represented (rounded to 2dp).
+
+ 
 
 Currently, executing the pipeline will overwrite any output_data files **with the same name**.
 
+ 
+
 The **log file.txt** is important if you encounter an error. This document can be passed back to the developer in order to investigate issues encountered. New run s do not overwrite the logs, they append pre-existing logs.
 
+ 
 
+ 
 
+ 
+
+ 
 
 ***
+
+ 
 
 ## Dependencies
 
+ 
+
 * R Studio
+
 * R (64-bit)
+
 * 20 GB of free disk space to allocate
-* Internet connection (preferably high speed fiber optic)
+
+* Internet connection (preferably high speed fibre optic)
+
 * Access to CRAN packages listed below.
+
 * Git
+
 * GitHub account
+
 * Command line interface (Bash, Terminal, CMD prompt etc)
+
+ 
 
 ### Packages and versions:
 
+ 
+
 * rlist 0.4.6.1
+
 * this.path 0.2.0
+
 * stackoverflow 0.7.0
+
 * dplyr 1.0.2          
+
 * jsonlite 1.7.1
+
 * httr 1.4.2
+
 * log4r 0.3.2
+
 * renv 0.12.3          
+
 * beepr 1.3
+
 * stringr 1.4.0
+
 * purrr 0.3.4
+
 * data.table 1.13.2    
+
 * ProjectTemplate 0.9.3
+
+ 
 
 ### Notes
 
+ 
+
 1. Memory allocation - 20GB of memory is requested for use in the R session. The script will stop execution if this is not available. 1 month of data tends to require approximately 10 to 11 GB of memory allocation to process.
+
+ 
 
 2. Internet connection - 1 month of data takes approximately 1.25 hours on a connection averaging 60 mbps download, 20 mbps upload.
 
+ 
+
 3. Package management - this project uses `renv` to manage package versions. Using `renv` to ensure package versions are consistent can help to minimise the risk of breaking changes.
 
+ 
+
 ***
+
 ***
+
+ 
 
 ## Download the Pipeline
 
+ 
+
 To get a copy of the pipeline, you will need to download the repository from [DSC road data](https://github.com/datasciencecampus/road-data-dump).
+
+ 
 
 Click on the `Code` button to see your download options.
 
+ 
+
 ![GitHub repo snapshot](images/Screenshot 2020-12-14 at 10.46.11.png)
+
 ***
+
+ 
 
 To access the pipeline, you will currently need to `clone` this repository using **Git**. This will allow access to the branch that stores the required files.
 
+ 
+
 It is recommended to specify **HTTPS** for cloning options, click on the clipboard icon to copy the required url.
+
+ 
 
 <img src="images/Screenshot 2020-12-14 at 10.48.33.png" class="center" alt="GitHub cloning options">
 
+ 
+
 ***
+
+ 
 
 Using Bash, CMD prompt, terminal or whatever command line interface you prefer to use for Git interfacing, navigate to the directory you wish to run the pipeline from and run the line:
 
+ 
+
 `git clone https://github.com/datasciencecampus/road-data-dump.git`
+
+ 
 
 If the clone is executed correctly, navigate to the newly cloned repository by running:
 
+ 
+
 `cd road-data-dump`
+
+ 
 
 Once you have arrived at the roads-data-dump folder, you will need to check out to the **r-pipeline** branch. In order to do that, run the line:
 
+ 
+
 `git checkout r-pipeline`
+
+ 
 
 If you successfully checked the **r-pipeline** out, you should now have a directory that looks like this:
 
+ 
+
 <img src="images/055100.png" class="center" alt="screenshot of directory structure">
 
+ 
+
+ 
 
 If your directory looks like this, you are ready to begin first time configuration. Please proceed to [First Time Run](#firsttimerun). <a href="#firsttimerun">First Time Run</a>.
 
+ 
+
 If you require additional support for running Git and the Git commands, then please refer to this [Towards Data Science Complete Beginner's Guide](https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6).
 
+ 
+
 ***
+
 ***
+
+ 
 
 ## Using the Pipeline
 
+ 
+
 Some guidance before starting:
+
+ 
 
 If you have any of the output data files open, I advise closing them prior to running the pipeline. If R tries to overwrite a file with the same name, it will error and halt execution. If this happens, close the file, use R Studio to open `munge/15-write.R` and re-run this script (either click on the `source` button at the top of the script in R Studio, or press `Ctrl` + `shift` + `enter`).
 
+ 
+
 It is also best to start from a blank slate every time you run the pipeline. To do this, select `Session` > `Clear Workspace` from the toolbar at the top of R Studio.
 
+ 
+
+This pipeline is intended to produce monthly data for analysis. Specifying longer time periods than a month may result in memory limits being exceeded and execution being halted.
+
+ 
+
 <div class="summary-box">
+
 Always ensure you are working from the R Project file. This help to ensure a consistent environment every time you run the pipeline.
+
 </div>
+
 <br>
+
 The project file is called `road-data-dump.Rproj`.
+
+ 
 
 <a id="#firsttimerun"></a>
 
+ 
+
 ***
+
+ 
 
 ### First Time Run
 
+ 
+
 On your first run, you need to configure your R Studio set up and then test the pipeline.
 
+ 
+
 ***
+
+ 
 
 #### Configuration
 
+ 
+
 ##### renv
+
+ 
 
 The `renv` package helps to ensure the pipeline is using the same version of all packages every time it runs. This takes a little set up.
 
+ 
+
 1. Ensure `renv` is installed by running: `install.packages("renv")`.
 
+ 
+
 Successful installation should look something like this:
+
 ```
+
 The downloaded binary packages are in
-	/var/folders/d3/cjvn_l1n13z5z3t6nz554p8r0000gq/T//RtmpnEKjds/downloaded_packages
+
+/var/folders/d3/cjvn_l1n13z5z3t6nz554p8r0000gq/T//RtmpnEKjds/downloaded_packages
+
 ```
-2. Once `renv` has been successfully installed, you will need to build a local package library for this pipeline. The packages will all have the required versions and this step will not affect your other R projects. to do this, execute the line: `renv::restore()`. 
+
+2. Once `renv` has been successfully installed, you will need to build a local package library for this pipeline. The packages will all have the required versions and this step will not affect your other R projects. to do this, execute the line: `renv::restore()`.
+
+ 
 
 You will be asked:
 
+ 
+
 `Do you want to proceed? [y/N]: y`
+
+ 
 
 Enter `y` and press enter.
 
+ 
+
 This will go to CRAN for all the required package version dependencies. This may take some time. Keep a close eye on R Studio's console for any error warnings and note the packages that fail. Retry installing any package that failed by running `install.packages("insert_package_name")`. You can also try: `install.packages("insert_package_name, type = "win.binary", dependencies = TRUE)`.
+
+ 
 
 3. Successful loading of required package versions will look something like this:
 
+ 
+
 ```
+
 The following package(s) have been updated:
 
-	glue       [installed version 1.4.2  != loaded version 1.4.1 ]
-	data.table [installed version 1.13.2 != loaded version 1.12.8]
-	rlang      [installed version 0.4.9  != loaded version 0.4.8 ]
-	generics   [installed version 0.1.0  != loaded version 0.0.2 ]
-	magrittr   [installed version 2.0.1  != loaded version 1.5   ]
-	vctrs      [installed version 0.3.5  != loaded version 0.3.1 ]
-	pillar     [installed version 1.4.7  != loaded version 1.4.4 ]
-	tibble     [installed version 3.0.4  != loaded version 3.0.1 ]
-	dplyr      [installed version 1.0.2  != loaded version 1.0.0 ]
-	renv       [installed version 0.12.3 != loaded version 0.12.2]
-	stringi    [installed version 1.5.3  != loaded version 1.4.6 ]
+ 
+
+glue       [installed version 1.4.2  != loaded version 1.4.1 ]
+
+data.table [installed version 1.13.2 != loaded version 1.12.8]
+
+rlang      [installed version 0.4.9  != loaded version 0.4.8 ]
+
+generics   [installed version 0.1.0  != loaded version 0.0.2 ]
+
+magrittr   [installed version 2.0.1  != loaded version 1.5   ]
+
+vctrs      [installed version 0.3.5  != loaded version 0.3.1 ]
+
+pillar     [installed version 1.4.7  != loaded version 1.4.4 ]
+
+tibble     [installed version 3.0.4  != loaded version 3.0.1 ]
+
+dplyr      [installed version 1.0.2  != loaded version 1.0.0 ]
+
+renv       [installed version 0.12.3 != loaded version 0.12.2]
+
+stringi    [installed version 1.5.3  != loaded version 1.4.6 ]
+
+ 
 
 Consider restarting the R session and loading the newly-installed packages.
+
 ```
-Notice that the installed versions and loaded versions are different. This is what we want for the pipeline, we will be using the specified package versions instead of the most up to date version installed on our machine. 
+
+Notice that the installed versions and loaded versions are different. This is what we want for the pipeline, we will be using the specified package versions instead of the most up to date version installed on our machine.
+
+ 
 
 Also note that I have been asked to restart R. If prompted, do this prior to running the pipeline. Select `Session` > `Restart R` from the menu at the top of R Studio.
 
+ 
+
 ![Restarting R from the menu](images/Screenshot 2020-12-14 at 11.13.58.png)
 
+ 
+
+ 
 
 4. Before moving on to the next section, check to ensure all the required packages have been installed correctly. Run this command again to ensure correct package versions: `renv::restore()`. If everything is good, the console should print:
 
-```
-* The library is already synchronized with the lockfile.
+ 
+
 ```
 
-5. If this is not the case, hopefully the `restore` function would have gone ahead and brought the packages up to the required versions. If not, you will require support with `renv`, please contact me by clicking the mail icon. 
+* The library is already synchronized with the lockfile.
+
+```
+
+ 
+
+5. If this is not the case, hopefully the `restore` function would have gone ahead and brought the packages up to the required versions. If not, you will require support with `renv`, please contact me by clicking the mail icon.
+
+ 
 
 <div>
   <a href="mailto:richard.leyshon@ons.gov.uk">
     <i class="fas fa-envelope fa-2x" id="emailme"></i>
   </a>
 </div>
-
 <br>
 
+ 
+
 ***
+
+ 
 
 ##### ProjectTemplate
 
+ 
+
 The `ProjectTemplate` (note the **camel case**, `install.packages()` is case sensitive) is a robust framework for compartmentalising code in pipelines. It allows us to add logging, run sequential scripts and more. In order to run this pipeline, you will need to have `ProjectTemplate` installed.
+
+ 
 
 1. Run the line `install.packages("ProjectTemplate”)`.
 
+ 
+
 2. If at any point you see an error message that looks like this:
 
+ 
+
 ```
-Error in .check.version(config) : 
+
+Error in .check.version(config) :
+
   Your configuration is compatible with version 0.9.3 of the ProjectTemplate package.
+
   Please upgrade ProjectTemplate to version 0.9.3 or later
+
 ```
+
 You will need to re-run the line `install.packages("ProjectTemplate”)`. Version 0.93 is what the pipeline expects, you can check the version you are running by looking at the `Packages` pane in the R Studio interface.
+
+ 
 
 <img src="images/091544.png" class="center" alt="The packages pane in R Studio">
 
+ 
+
 You will notice that the image shows a column called `Version` which shows the version of the package available in your global R library. This is not the version we are using in the pipeline.
 
-3. There should be another column called `lockfile`, shown in the image above. This is the record of all the local package versions we will be using for the pipeline. If the `lockfile` column is not appearing within the Packages pane, then please run the line: `renv::snapshot()`. This should cause it to appear. If the problem perists, then please contact me by clicking the mail button.
+ 
+
+3. There should be another column called `lockfile`, shown in the image above. This is the record of all the local package versions we will be using for the pipeline. If the `lockfile` column is not appearing within the Packages pane, then please run the line: `renv::snapshot()`. This should cause it to appear. If the problem persists, then please contact me by clicking the mail button.
+
+ 
 
 <div>
   <a href="mailto:richard.leyshon@ons.gov.uk">
     <i class="fas fa-envelope fa-2x" id="emailme"></i>
   </a>
 </div>
-
 <br>
 
+ 
+
 ***
+
+ 
 
 ##### Important
 
+ 
+
 The lockfile is a text file stored within the project directory.
+
+ 
 
 <div class="summary-box">Never manually adjust the contents of the lockfile. This may cause the pipeline to break.</div>
 
+ 
+
 ***
+
 ***
+
+ 
 
 #### Test Pipeline
 
+ 
+
 On the first run of the pipeline, we just want to do a quick test to see if we can get one site ID for one day.
+
+ 
 
 1. Using R Studio’s file browser, open `run-me.R`, which is found within the `src` folder. Click on the run-me.R script once it has appeared in RStudio
 
+ 
+
 2. On the first run, ensure `test_run <- TRUE`.
 
+ 
+
 3. This will execute the pipeline, but for one siteID and on one day.
+
 If successful, you should hear a chime. Also, the console will print
+
 ```
+
 Time difference of 2.153 secs
+
 INFO  [2020-12-14 12:52:49] #############End of pipeline#############
+
 ```
+
 The time difference will vary depending on your system and connection. If this step was successful, you are now ready to move on to [Subsequent Runs](###Subsequent Runs)
 
+ 
+
 ***
+
 ***
+
+ 
 
 ### Subsequent Runs
 
-1. In `run-me.R`, chenge the line `test_run <- TRUE` to `test_run <- FALSE`. `TRUE` and `FALSE` are case-sensitive. **Save the file**. You can do this by pressing `Ctrl` + `s`.
+ 
+
+1. In `run-me.R`, change the line `test_run <- TRUE` to `test_run <- FALSE`. `TRUE` and `FALSE` are case-sensitive. **Save the file**. You can do this by pressing `Ctrl` + `s`.
+
+ 
 
 2. In order to specify which dates to query, you will need to access the script `03-set_query_parameters.R` within the `munge` folder. The dates you will need to adjust appear as `start_date` and `end_date`, assign values as below:
 
+ 
+
 `start_date <- "01072019"`
+
+ 
 
 `end_date <- "31072019"`
 
-The format being **"DDMMYYYY"**. Incorrect dates will cause an error (trying to ask for the 31st of February for example). Also, be sure to wrap your dates in either qutation marks or apostrophes. So:
+ 
+
+The format being **"DDMMYYYY"**. Incorrect dates will cause an error (trying to ask for the 31st of February for example). Also, be sure to wrap your dates in either quotation marks or apostrophes. So:
+
 "01072019" is good.
+
 '01072019' is good.
+
 "01072019' is bad.
+
 01072019 is bad.
+
+ 
 
 3. Once you have entered your desired dates, press `Ctrl` + `s` to save the script. Return to the `run-me.R` script and run all or `source` the script using the button at the top of the RStudio interface.
 
+ 
+
 <div class="summary-box">Always remember to save any changes to the scripts prior to running the pipeline.</div>
 
+ 
+
+ 
 
 ***
+
 ***
+
+ 
 
 ## Error Handling
 
+ 
+
 This section will be used to document any errors encountered as the pipeline is used. In this way, I would hope to produce an extensive guide to troubleshooting the pipeline. To submit an issue for inclusion, either submit an issue on the GitHub repository or email me by clicking the mail icon.
+
+ 
 
 <div>
   <a href="mailto:richard.leyshon@ons.gov.uk">
     <i class="fas fa-envelope fa-2x" id="emailme"></i>
   </a>
 </div>
-
 <br>
+ 
 
 ***
+
 ```
+
 document error: Error in fwrite(tmu, "output_data/tmu.csv", row.names = F, quote = F) :
+
 Permission denied: 'output_data/tmu.csv'. Failed to open existing file for writing. Do you have write permission to it? Is this Windows and does another process such as Excel have it
+
 open?
+
 ```
+
 This means R can't write to csv as the file is open. Please close any Excel files and re-run the pipeline.
 
+ 
+
 ***
-
-
-
-
-
 
 
