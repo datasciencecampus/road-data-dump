@@ -20,6 +20,9 @@
 * ~~Use this.path to demark all script start checkpoints~~
 * ~~Add test logic for handing over: test_run == TRUE, only execute 1 day and first  site ID.~~
 
+
+* document error: Error in fwrite(tmu, "output_data/tmu.csv", row.names = F, quote = F) : 
+  Permission denied: 'output_data/tmu.csv'. Failed to open existing file for writing. Do you have write permission to it? Is this Windows and does another process such as Excel have it open?
 * DF insight for combo: review print statements for logging.
 * Print count of missing IDs to log and to txt
 * Print count of errorred IDs to log and to txt
