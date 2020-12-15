@@ -24,7 +24,8 @@
 * ~~Print count of missing IDs to log and to txt~~
 * ~~Print count of errorred IDs to log and to txt~~
 * ~~Print summaries of all status codes to log~~
-  
+* ~~Need to log all query parameters for use in replicating issues.~~
+
 * DF insight for combo: review print statements for logging.
 * Update to documentation - markdown web page with screengrabs
 * handle_missing function requires unit testing.

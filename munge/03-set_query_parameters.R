@@ -12,9 +12,19 @@ info(my_logger, paste0("#############", "Start of", this.path(), "#############"
 
 start_date <- "01072019"
 
+# log query parameters set
+if (test_run == FALSE) {
+info(my_logger, paste("Start date set: ", start_date))
+}
+
 # End Date ----------------------------------------------------------------
 
 end_date <- "31072019"
+# log query parameters set
+if (test_run == FALSE) {
+  info(my_logger, paste("End date set: ", end_date))
+}
+
 
 # api Endpoint ------------------------------------------------------------
 
@@ -58,6 +68,9 @@ if(test_run == FALSE){
 
 daterange <- paste0("&start_date=", start_date, "&end_date=", end_date)
 
+if(test_run== FALSE) {
+  info(my_logger, paste("daterange set as:", daterange))
+}
 
 
 # tidy up -----------------------------------------------------------------
