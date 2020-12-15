@@ -182,40 +182,35 @@ The project file is called `road-data-dump.Rproj`.
 
 ### First Time Run
 
+On your first run, you need to configure your R Studio set up and then test the pipeline.
 
+#### Configuration
 
+##### renv
 
-### Subsequent Runs
+The `renv` package helps to ensure the pipeline is using the same version of all packages every time it runs. This takes a little set up.
 
-
-
-## Error Handling
-
-***
-```
-document error: Error in fwrite(tmu, "output_data/tmu.csv", row.names = F, quote = F) :
-Permission denied: 'output_data/tmu.csv'. Failed to open existing file for writing. Do you have write permission to it? Is this Windows and does another process such as Excel have it
-open?
-```
-This means R can't write to csv as the file is open. Please close any Excel files and re-run the pipeline.
-
-***
-
+1. Ensure `renv` is installed by running: `install.packages("renv")`.
 
 Successful installation should look something like this:
+```
 The downloaded binary packages are in
 	/var/folders/d3/cjvn_l1n13z5z3t6nz554p8r0000gq/T//RtmpnEKjds/downloaded_packages
+```
+2. Once `renv` has been successfully installed, you will need to build a local package library for this pipeline. The packages will all have the required versions and this step will not affect your other R projects. to do this, execute the line: `renv::restore()`. 
 
+You will be asked:
 
-install.packages(“renv”)
+`Do you want to proceed? [y/N]: y`
 
-renv::restore()
+Enter `y` and press enter.
 
+This will go to CRAN for all the required package version dependencies. This may take some time. Keep a close eye on R Studio's console for any error warnings and note the packages that fail. Retry installing any package that failed by running `install.packages("insert_package_name")`. You can also try: `install.packages("insert_package_name, type = "win.binary", dependencies = TRUE)`.
 
-Do you want to proceed? [y/N]: y
+3. Successful loading of required package versions will look like this:
 
-
-```The following package(s) have been updated:
+```
+The following package(s) have been updated:
 
 	glue       [installed version 1.4.2  != loaded version 1.4.1 ]
 	data.table [installed version 1.13.2 != loaded version 1.12.8]
@@ -227,24 +222,37 @@ Do you want to proceed? [y/N]: y
 	tibble     [installed version 3.0.4  != loaded version 3.0.1 ]
 	dplyr      [installed version 1.0.2  != loaded version 1.0.0 ]
 	renv       [installed version 0.12.3 != loaded version 0.12.2]
-	stringi    [installed version 1.5.3  != loaded version 1.4.6 ]```
+	stringi    [installed version 1.5.3  != loaded version 1.4.6 ]
 
 Consider restarting the R session and loading the newly-installed packages.
+```
+Notice that the installed versions and loaded versions are different. This is what we want for the pipeline, we will be using the specified package versions instead of the most up to date version installed on our machine. 
+
+Also note that I have been asked to restart R. If prompted, do this prior to running the pipeline. Select `Session` > `Restart R` from the menu at the top of R Studio.
+
+4. Before moving on to the next section, check to ensure all the required packages have been installed correctly. Run this command again to ensure correct package versions: `renv::restore()`. If everything is good, the console should print:
+
+```
+* The library is already synchronized with the lockfile.
+```
+
+5. If this is not the case, hopefully the `restore` function would have gone ahead and brought the packages up to the required versions. If not, you will require support with `renv`, please contact me by clicking the mail icon. 
+
+<div>
+  <a href="mailto:richard.leyshon@ons.gov.uk">
+    <i class="fas fa-envelope fa-2x" id="emailme"></i>
+  </a>
+</div>
+
+<br>
+<br>
+
+
+##### ProjectTemplate
 
 
 
-Restart R as in picture
-
-
-
-Run this command again to ensure correct package versions:
-`renv::restore()`
-`* The library is already synchronized with the lockfile.`
-
-
-
-
-
+<div>
 Using R Studio’s file browser, open run-me.R, which is found within the src folder.
 
 
@@ -268,6 +276,30 @@ Then run `install.packages("ProjectTemplate”)`
 
 
 If the test worked, you would have heard a jingle. You would then be able to overwrite with
+
+</div>
+
+#### Test Pipeline
+
+
+### Subsequent Runs
+
+
+
+## Error Handling
+
+***
+```
+document error: Error in fwrite(tmu, "output_data/tmu.csv", row.names = F, quote = F) :
+Permission denied: 'output_data/tmu.csv'. Failed to open existing file for writing. Do you have write permission to it? Is this Windows and does another process such as Excel have it
+open?
+```
+This means R can't write to csv as the file is open. Please close any Excel files and re-run the pipeline.
+
+***
+
+
+
 
 test_run <- FALSE
 

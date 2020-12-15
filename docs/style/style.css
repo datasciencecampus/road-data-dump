@@ -164,13 +164,20 @@ h4.author {
   text-align:center;
 }
 
-/* icon color & pos. in body */
-#body {
+/* email button */
+#emailme {
   color: #D33781;
-  float: left;
-  padding-top: 0.2em;
+  float: right;
+  display: inline-block;
   padding-right: 0.1em;
 }
+
+/* email button on hover */
+#emailme:hover {
+  color: #02075D;
+
+}
+
 
 /* color all bold text */
 .navy {
