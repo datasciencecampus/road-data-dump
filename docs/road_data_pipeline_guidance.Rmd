@@ -29,6 +29,8 @@ The client allows querying of **all available sites** for **specified date range
 
 ## Output Summary
 
+### Main Outputs
+
 +-------------------+----------------+--------------------------------------------+
 |Column             |Values          |Description                                 |
 +===================+================+============================================+
@@ -82,6 +84,35 @@ The output files will appear in the **output_data** folder as **site-type_query-
 </div>
    
 Note that TRADS is available but not being queried by this pipeline.
+
+***
+
+### All Outputs
+
+
+
+
+
+
+==========Include output data==========
+
+The output of the pipeline will be as follows:
+
+./output_data/midas_daterange.csv
+./output_data/tame_daterange.csv
+./output_data/tmu_daterange.csv
+./output_data/missing_site_IDs_daterange.txt
+./logs/logfile.txt
+
+The **output data csvs** contain the api output.
+The **missing_site_IDs.txt** returns a sequence of missing site IDs form the queried date range, a count of api responses that were empty, and what proportion of the overall number of IDs queried this represented (rounded to 2dp).
+
+Currently, executing the pipeline will overwrite any output_data files **with the same name**.
+
+The **log file.txt** is important if you encounter an error. This document can be passed back to the developer in order to investigate issues encountered. New run s do not overwrite the logs, they append pre-existing logs.
+
+
+
 
 ***
 
@@ -180,9 +211,13 @@ The project file is called `road-data-dump.Rproj`.
 
 <a id="#firsttimerun"></a>
 
+***
+
 ### First Time Run
 
 On your first run, you need to configure your R Studio set up and then test the pipeline.
+
+***
 
 #### Configuration
 
@@ -207,7 +242,7 @@ Enter `y` and press enter.
 
 This will go to CRAN for all the required package version dependencies. This may take some time. Keep a close eye on R Studio's console for any error warnings and note the packages that fail. Retry installing any package that failed by running `install.packages("insert_package_name")`. You can also try: `install.packages("insert_package_name, type = "win.binary", dependencies = TRUE)`.
 
-3. Successful loading of required package versions will look like this:
+3. Successful loading of required package versions will look something like this:
 
 ```
 The following package(s) have been updated:
@@ -248,12 +283,12 @@ Also note that I have been asked to restart R. If prompted, do this prior to run
 </div>
 
 <br>
-<br>
 
+***
 
 ##### ProjectTemplate
 
-The `ProjectTemplate` (note the camel case, `install.packages()` is case sensitive) is a robust framework for compartmentalising code in pipelines. It allows us to add logging, run sequential scripts and more. In order to run this pipeline, you will need to have `ProjectTemplate` installed.
+The `ProjectTemplate` (note the **camel case**, `install.packages()` is case sensitive) is a robust framework for compartmentalising code in pipelines. It allows us to add logging, run sequential scripts and more. In order to run this pipeline, you will need to have `ProjectTemplate` installed.
 
 1. Run the line `install.packages("ProjectTemplate”)`.
 
@@ -279,7 +314,8 @@ You will notice that the image shows a column called `Version` which shows the v
 </div>
 
 <br>
-<br>
+
+***
 
 ##### Important
 
@@ -287,38 +323,63 @@ The lockfile is a text file stored within the project directory.
 
 <div class="summary-box">Never manually adjust the contents of the lockfile. This may cause the pipeline to break.</div>
 
+***
+***
 
 #### Test Pipeline
 
 On the first run of the pipeline, we just want to do a quick test to see if we can get one site ID for one day.
 
-1. Using R Studio’s file browser, open `run-me.R`, which is found within the `src` folder.
+1. Using R Studio’s file browser, open `run-me.R`, which is found within the `src` folder. Click on the run-me.R script once it has appeared in RStudio
 
+2. On the first run, ensure `test_run <- TRUE`.
 
-Click on the run-me.R script once it has appeared in RStudio
-
-==========Include test_me <- TRUE==========
-On the first run, ensure test_run <- TRUE
-This will execute the pipeline, but for one siteID and on one day.
-If successful, you should hear a bleep. Also, the console will print
-
+3. This will execute the pipeline, but for one siteID and on one day.
+If successful, you should hear a chime. Also, the console will print
+```
 Time difference of 2.153 secs
 INFO  [2020-12-14 12:52:49] #############End of pipeline#############
+```
+The time difference will vary depending on your system and connection. If this step was successful, you are now ready to move on to [Subsequent Runs](###Subsequent Runs)
 
-
-
-
-
-If the test worked, you would have heard a jingle. You would then be able to overwrite with
-
-</div>
-
+***
+***
 
 ### Subsequent Runs
 
+1. In `run-me.R`, chenge the line `test_run <- TRUE` to `test_run <- FALSE`. `TRUE` and `FALSE` are case-sensitive. **Save the file**. You can do this by pressing `Ctrl` + `s`.
 
+2. In order to specify which dates to query, you will need to access the script `03-set_query_parameters.R` within the `munge` folder. The dates you will need to adjust appear as `start_date` and `end_date`, assign values as below:
+
+`start_date <- "01072019"`
+
+`end_date <- "31072019"`
+
+The format being **"DDMMYYYY"**. Incorrect dates will cause an error (trying to ask for the 31st of February for example). Also, be sure to wrap your dates in either qutation marks or apostrophes. So:
+"01072019" is good.
+'01072019' is good.
+"01072019' is bad.
+01072019 is bad.
+
+3. Once you have entered your desired dates, press `Ctrl` + `s` to save the script. Return to the `run-me.R` script and run all or `source` the script using the button at the top of the RStudio interface.
+
+<div class="summary-box">Always remember to save any changes to the scripts prior to running the pipeline.</div>
+
+
+***
+***
 
 ## Error Handling
+
+This section will be used to document any errors encountered as the pipeline is used. In this way, I would hope to produce an extensive guide to troubleshooting the pipeline. To submit an issue for inclusion, either submit an issue on the GitHub repository or email me by clicking the mail icon.
+
+<div>
+  <a href="mailto:richard.leyshon@ons.gov.uk">
+    <i class="fas fa-envelope fa-2x" id="emailme"></i>
+  </a>
+</div>
+
+<br>
 
 ***
 ```
@@ -329,43 +390,6 @@ open?
 This means R can't write to csv as the file is open. Please close any Excel files and re-run the pipeline.
 
 ***
-
-
-
-
-test_run <- FALSE
-
-
-==========Include specifying dates to query==========
-
-In order to specify which dates to query, you will need to access 03-set_qury_parameters.R within the munge folder. The dates you will need to adjust appear as start_data and end_date, assign values as below:
-
-
-
-start_date <- "01072019"
-
-
-end_date <- "31072019"
-
-Once you have entered your desired dates, return to the run-me.R script and run all.
-
-==========Include output data==========
-
-The output of the pipeline will be as follows:
-
-./output_data/midas.csv
-./output_data/tame.csv
-./output_data/tmu.csv
-./output_data/missing_site_IDs.txt
-./logs/logfile.txt
-
-The output data csvs contain the api output.
-The missing_site_IDs.txt returns a sequence of missing site IDs form the queried date range, a count of api responses that were empty, and what proportion of the overall number of IDs queried this represented (rounded to 2dp).
-
-Currently, executing the pipeline will overwrite any output_data files.
-
-The log file.txt is important if you encounter an error. This document can be passed back to the developer in order to investigate issues encountered. New run s do not overwrite the logs, they append pre-existing logs.
-
 
 
 
