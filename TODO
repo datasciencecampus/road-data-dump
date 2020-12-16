@@ -31,8 +31,8 @@
 * ~~Update func/functions.R labelling~~
 * ~~apply styler style guide~~
 * ~~Update documentation for adjusting user.email for user.agent()~~
+* ~~date handling tests in 03-set_query_parameters.R, exceeding 31 days to query results in an execution halting.~~
 
-* date handling tests in 03-set_query_parameters.R
 * parallel options
 * Tidy up logs
 * Convert code to using joins with join interrogation

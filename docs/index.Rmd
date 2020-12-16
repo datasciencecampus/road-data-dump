@@ -280,7 +280,7 @@ Some guidance before starting:
 
 It is also best to start from a blank slate every time you run the pipeline. To do this, select `Session` > `Clear Workspace` from the toolbar at the top of R Studio.
 
-This pipeline is intended to produce monthly data for analysis. Specifying longer time periods than a month may result in memory limits being exceeded and execution being halted.
+This pipeline is intended to produce monthly data for analysis. Specifying longer time periods than a month may result in memory limits being exceeded. Therefore **execution of the scripts is halted if 31 days limit is exceeded.**
 
 
 <div class="summary-box">
