@@ -27,8 +27,8 @@
 * ~~Need to log all query parameters for use in replicating issues.~~
 * ~~remove api_logger~~
 * ~~Update to documentation - markdown web page with screengrabs~~
+* ~~write filename behaviour specified by user: save output data files appended with query dates.~~
 
-* write filename behaviour specified by user: save output data files appended with query dates.
 * Update func/functions.R labelling
 * apply styler style guide
 * date handling tests in 03-set_query_parameters.R

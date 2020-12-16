@@ -23,6 +23,7 @@ info(my_logger, capture.output(table(unlist(list.select(request_results, status_
 # remove 204s and errors --------------------------------------------------
 # filter out any requests that returned a 204 status with missing content
 # print out a text file with their IDs to output_data/missing_site_IDs.txt
+
 request_results <- handle_missing(request_results)
 
 

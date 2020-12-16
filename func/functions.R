@@ -255,6 +255,14 @@ handle_missing <- function(GET_results) {
   # filter the request results based on the above. Only these will be parsed.
   reqs_not_204 <- list.filter(GET_results, url %in% urls_not204)
   
+  # create filenames --------------------------------------------------------
+  
+  
+  # get the numbers from the daterange whether a test run or not
+  dates_used <- paste(unlist(str_extract_all(daterange, "[0-9]+")), collapse = "to")
+  suffix <- paste0(dates_used, ".txt")
+  
+  if(test_run == TRUE){
   write.table(print(paste(
     "Missing data report ",
     "Number of missing IDs (204s) for this run: ",
@@ -269,7 +277,25 @@ handle_missing <- function(GET_results) {
     daterange,
     sep = "\n")
     ),
-              file = "output_data/missing_site_IDs.txt")
+              file = paste0("output_data/test-missing_site_IDs", suffix))
+  } else {
+    write.table(print(paste(
+      "Missing data report ",
+      "Number of missing IDs (204s) for this run: ",
+      number_204s,
+      " Total number of sites queried: ",
+      number_urls,
+      " Proportion of Site IDs that were missing (204s) for this run: ",
+      round(number_204s / number_urls, digits = 2),
+      ". Site Ids that returned no content :",
+      paste(site_Id_204s, collapse = ","),
+      ". Date period queried: ",
+      daterange,
+      sep = "\n")
+    ),
+    file = paste0("output_data/missing_site_IDs", suffix))
+    
+  }
   
   # log the site errors if they exist
   if (length(site_Id_errors >= 1)) {

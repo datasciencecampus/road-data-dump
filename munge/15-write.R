@@ -5,11 +5,8 @@ info(my_logger, paste0("#############", "Start of", this.path(), "#############"
 
 # create filenames --------------------------------------------------------
 
-
 # get the numbers from the daterange whether a test run or not
 dates_used <- paste(unlist(str_extract_all(daterange, "[0-9]+")), collapse = "to")
-
-
 suffix <- paste0(dates_used, ".csv")
 
 # write to file -----------------------------------------------------------
