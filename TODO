@@ -25,12 +25,14 @@
 * ~~Print count of errorred IDs to log and to txt~~
 * ~~Print summaries of all status codes to log~~
 * ~~Need to log all query parameters for use in replicating issues.~~
+* ~~remove api_logger~~
+* ~~Update to documentation - markdown web page with screengrabs~~
 
+* write filename behaviour specified by user: save output data files appended with query dates.
+* parallel options
 * DF insight for combo: review print statements for logging.
-* Update to documentation - markdown web page with screengrabs
 * handle_missing function requires unit testing.
 * Unit testing all scripts
-* remove api_logger
 * Implement a retry for any internal server errors (HTTP status code 5**), script 07-GET_daily_reports.R stores these as retry_urls
 * Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off. 
 * Use beepr::beep() for errors at common throttle points
