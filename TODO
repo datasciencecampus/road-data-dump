@@ -34,6 +34,7 @@
 * Update documentation for adjusting user.email for user.agent()
 * date handling tests in 03-set_query_parameters.R
 * parallel options
+* Tidy up logs
 * Convert code to using joins with join interrogation
 * DF insight for combo: review print statements for logging.
 * handle_missing function requires unit testing.
