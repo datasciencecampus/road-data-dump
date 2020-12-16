@@ -25,6 +25,13 @@ if (test_run == FALSE) {
   info(my_logger, paste("End date set: ", end_date))
 }
 
+# User agent -------------------------------------------------------------------
+
+user_email <- "richard.leyshon@ons.gov.uk"
+
+agent_message <- "Requesting sensor data for use in ONS, datasciencecampus, road-data-dump"
+
+user_details <- paste(user_email, agent_message)
 
 # api Endpoint ------------------------------------------------------------
 
@@ -52,13 +59,8 @@ page_no <- 1
 # Max rows set to 40k, I have set a comparison against rows returned to ensure
 # max rows is not exceeded. If so, the pagination will need to be pursued.
 
-# User agent -------------------------------------------------------------------
 
-user_email <- "richard.leyshon@ons.gov.uk"
-
-agent_message <- "Requesting sensor data for use in ONS, datasciencecampus, road-data-dump"
-
-user_details <- paste(user_email, agent_message)
+# create daterange --------------------------------------------------------
 
 # only set parameters for a full run if not testing
 if (test_run == FALSE) {

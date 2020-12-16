@@ -24,7 +24,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
  
 
-The **Road Data Pipeline** is an unofficial [Highways England WebTRIS api](https://webtris.highwaysengland.co.uk/api/swagger/ui/index) client. The work contained within the pipeline was built upon the work done by [phil8192's webtri.sh client](https://github.com/phil8192/webtri.sh). This pipeline is less flexible than the webtri.sh client acknowledged above, but includes additional data processing, outputting csv files for the user-specified date range.
+The **Road Data Pipeline** is an unofficial [Highways England WebTRIS api](https://webtris.highwaysengland.co.uk/api/swagger/ui/index) client. The work contained within the pipeline was built upon work by [phil8192's webtri.sh client](https://github.com/phil8192/webtri.sh). This pipeline is less flexible than the webtri.sh client acknowledged above, but includes additional data processing, outputting csv files for the user-specified date range.
 
  
 
@@ -107,9 +107,6 @@ Note that TRADS is available but not being queried by this pipeline.
 
 ### All Outputs
 
- 
-
- 
 
 The full output of the pipeline is as follows:
 
@@ -135,17 +132,9 @@ The **./output_data/missing_site_IDs_daterange.txt** returns a sequence of missi
 
 Currently, executing the pipeline will overwrite any output_data files **with the same name**.
 
- 
 
 The **log file.txt** is important if you encounter an error. This document can be passed back to the developer in order to investigate issues encountered. New run s do not overwrite the logs, they append pre-existing logs.
 
- 
-
- 
-
- 
-
- 
 
 ***
 
@@ -211,51 +200,35 @@ The **log file.txt** is important if you encounter an error. This document can b
 
 1. Memory allocation - 20GB of memory is requested for use in the R session. The script will stop execution if this is not available. 1 month of data tends to require approximately 10 to 11 GB of memory allocation to process.
 
- 
-
 2. Internet connection - 1 month of data takes approximately 1.25 hours on a connection averaging 60 mbps download, 20 mbps upload.
-
- 
 
 3. Package management - this project uses `renv` to manage package versions. Using `renv` to ensure package versions are consistent can help to minimise the risk of breaking changes.
 
- 
-
 ***
-
 ***
 
  
 
 ## Download the Pipeline
 
- 
-
 To get a copy of the pipeline, you will need to download the repository from [DSC road data](https://github.com/datasciencecampus/road-data-dump).
 
- 
-
 Click on the `Code` button to see your download options.
-
- 
 
 ![GitHub repo snapshot](images/Screenshot 2020-12-14 at 10.46.11.png)
 
 ***
 
- 
 
 To access the pipeline, you will currently need to `clone` this repository using **Git**. This will allow access to the branch that stores the required files.
 
- 
 
-It is recommended to specify **HTTPS** for cloning options, click on the clipboard icon to copy the required url.
+It is recommended to specify **HTTPS** for cloning options, click on the clipboard icon to copy the required url. For assistance in configuring access to GitHub repositories from a command line interface, please consult the [GitHub PAT guidance.](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
 
  
 
 <img src="images/Screenshot 2020-12-14 at 10.48.33.png" class="center" alt="GitHub cloning options">
 
- 
 
 ***
 
@@ -291,43 +264,24 @@ If you successfully checked the **r-pipeline** out, you should now have a direct
 
 <img src="images/055100.png" class="center" alt="screenshot of directory structure">
 
- 
-
- 
 
 If your directory looks like this, you are ready to begin first time configuration. Please proceed to [First Time Run](#firsttimerun).
 
- 
-
 If you require additional support for running Git and the Git commands, then please refer to this [Towards Data Science Complete Beginner's Guide](https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6).
 
- 
-
 ***
-
 ***
-
- 
 
 ## Using the Pipeline
 
- 
-
 Some guidance before starting:
 
- 
-
-If you have any of the output data files open, I advise closing them prior to running the pipeline. If R tries to overwrite a file with the same name, it will error and halt execution. If this happens, close the file, use R Studio to open `munge/15-write.R` and re-run this script (either click on the `source` button at the top of the script in R Studio, or press `Ctrl` + `shift` + `enter`).
-
- 
+ If you have any of the output data files open, I advise closing them prior to running the pipeline. If R tries to overwrite a file with the same name, it will error and halt execution. If this happens, close the file, use R Studio to open `munge/15-write.R` and re-run this script (either click on the `source` button at the top of the script in R Studio, or press `Ctrl` + `shift` + `enter`).
 
 It is also best to start from a blank slate every time you run the pipeline. To do this, select `Session` > `Clear Workspace` from the toolbar at the top of R Studio.
 
- 
-
 This pipeline is intended to produce monthly data for analysis. Specifying longer time periods than a month may result in memory limits being exceeded and execution being halted.
 
- 
 
 <div class="summary-box">
 
@@ -339,32 +293,19 @@ Always ensure you are working from the R Project file. This help to ensure a con
 
 The project file is called `road-data-dump.Rproj`.
 
- 
-
-
 ***
 
  
 
 ### <a id="firsttimerun"></a>First Time Run
 
- 
-
 On your first run, you need to configure your R Studio set up and then test the pipeline.
-
- 
 
 ***
 
- 
-
 #### Configuration
 
- 
-
 ##### renv
-
- 
 
 The `renv` package helps to ensure the pipeline is using the same version of all packages every time it runs. This takes a little set up.
 
@@ -400,7 +341,7 @@ Enter `y` and press enter.
 
  
 
-This will go to CRAN for all the required package version dependencies. This may take some time. Keep a close eye on R Studio's console for any error warnings and note the packages that fail. Retry installing any package that failed by running `install.packages("insert_package_name")`. You can also try: `install.packages("insert_package_name, type = "win.binary", dependencies = TRUE)`.
+This will go to CRAN for all the required package version dependencies. This may take some time. Keep a close eye on R Studio's console for any error warnings and note the packages that fail. Retry installing any package that failed by running `install.packages("insert_package_name")`. You can also try: `install.packages("insert_package_name", type = "win.binary", dependencies = TRUE)`.
 
  
 
@@ -600,19 +541,11 @@ The time difference will vary depending on your system and connection. If this s
 
 1. In `run-me.R`, change the line `test_run <- TRUE` to `test_run <- FALSE`. `TRUE` and `FALSE` are case-sensitive. **Save the file**. You can do this by pressing `Ctrl` + `s`.
 
- 
-
 2. In order to specify which dates to query, you will need to access the script `03-set_query_parameters.R` within the `munge` folder. The dates you will need to adjust appear as `start_date` and `end_date`, assign values as below:
-
- 
 
 `start_date <- "01072019"`
 
- 
-
 `end_date <- "31072019"`
-
- 
 
 The format being **"DDMMYYYY"**. Incorrect dates will cause an error (trying to ask for the 31st of February for example). Also, be sure to wrap your dates in either quotation marks or apostrophes. So:
 
@@ -625,8 +558,9 @@ The format being **"DDMMYYYY"**. Incorrect dates will cause an error (trying to 
 01072019 is bad.
 
  
+3. It is good practice to let Highways England know who is querying their api. This is also important if we ever need to ask for help from them in troubleshooting the api. To do this, we can set the `user_email` and `agent_message` values in `03-set_query_parameters.R`. These appear below the date parameters you updated in **step 2** of this section.
 
-3. Once you have entered your desired dates, press `Ctrl` + `s` to save the script. Return to the `run-me.R` script and run all or `source` the script using the button at the top of the RStudio interface.
+4. Once you have entered your desired dates, press `Ctrl` + `s` to save the script. Return to the `run-me.R` script and run all or `source` the script using the button at the top of the RStudio interface.
 
  
 

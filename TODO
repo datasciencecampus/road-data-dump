@@ -22,7 +22,7 @@
 * ~~document error: Error in fwrite(tmu, "output_data/tmu.csv", row.names = F, quote = F) : 
   Permission denied: 'output_data/tmu.csv'. Failed to open existing file for writing. Do you have write permission to it? Is this Windows and does another process such as Excel have it open?~~
 * ~~Print count of missing IDs to log and to txt~~
-* ~~Print count of errorred IDs to log and to txt~~
+* ~~Print count of error IDs to log and to txt~~
 * ~~Print summaries of all status codes to log~~
 * ~~Need to log all query parameters for use in replicating issues.~~
 * ~~remove api_logger~~
