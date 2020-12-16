@@ -10,7 +10,7 @@ info(my_logger, paste0("#############", "Start of", this.path(), "#############"
 
 # Start Date --------------------------------------------------------------
 
-start_date <- "01072019"
+start_date <- "01092020"
 
 # log query parameters set
 if (test_run == FALSE) {
@@ -19,7 +19,7 @@ info(my_logger, paste("Start date set: ", start_date))
 
 # End Date ----------------------------------------------------------------
 
-end_date <- "31072019"
+end_date <- "30092020"
 # log query parameters set
 if (test_run == FALSE) {
   info(my_logger, paste("End date set: ", end_date))
