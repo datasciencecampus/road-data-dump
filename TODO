@@ -29,7 +29,11 @@
 * ~~Update to documentation - markdown web page with screengrabs~~
 
 * write filename behaviour specified by user: save output data files appended with query dates.
+* Update func/functions.R labelling
+* apply styler style guide
+* date handling tests in 03-set_query_parameters.R
 * parallel options
+* Convert code to using joins with join interrogation
 * DF insight for combo: review print statements for logging.
 * handle_missing function requires unit testing.
 * Unit testing all scripts
