@@ -139,7 +139,7 @@ wrap_up<- function(){
 
 memory_report <- function(){
 
-# perform a manual garbace collection
+# perform a manual garbage collection
   gc()
 # get the path of this rscript
 path <- this.path()
@@ -159,7 +159,7 @@ info(my_logger,
 # End of memory_report -----------------------------------------------------------
 
 
-# handle_query ------------------------------------------------------------
+# 04-GET_sitetypes.R handle_query ------------------------------------------------------------
 
 
 handle_query <- function(GET_result, resource, site) {
@@ -212,6 +212,9 @@ handle_df <- function(df_name){
 
 }
 # End of handle_df ---------------------------------------------------------------
+
+
+# end of 04-GET_sitetypes.R handle_query ------------------------------------------------------------
 
 
 
@@ -308,7 +311,7 @@ handle_missing <- function(GET_results) {
 # End of 07-Get_daily_reports.R  handle_missing ----------------------------------
 
 
-# 08-GET_daily_reports.R --------------------------------------------------
+# 08-parse_present_data.R --------------------------------------------------
 
 handle_report <- function(GET_result) {
   
@@ -331,44 +334,9 @@ handle_report <- function(GET_result) {
   return(listed_JSON$Rows)
 }
 
+# End of 08-parse_present_data.R --------------------------------------------------
 
-# End of 08-GET_daily_reports.R -------------------------------------------
-
-
-
-
-
-
-
-# 02.prep.R, direction function -------------------------------------------
-
-
-
-# old direction function ------------------------------------------------------------
-# direction <- function(x) {
-#   # RLe - find the location of the direction string match within the name vector
-#   m <- regexpr("(([A-Za-z]+)bound)|([A-Za-z\\\\-]+wise)", x, perl = TRUE)
-#   # RLe - lower case the direction strings to a character vector
-# matches <- tolower(regmatches(x, m))
-# # matches does not include NA. do cumsum trick to map NAs:
-# # m is a vector of match positions, where -nv = no match found.
-# # cumsum over sign of m where -1 replaced with 0, so that non-matches are repeated.
-# # then replace repeated with NA, as to get matches same length as input.
-# # RLe - this bit is to remove NAs
-# matches[ifelse(
-#   m > 0, cumsum(
-#     ifelse(
-#       m > 0, 1, 0) # ifelse output is 1 0 1 1 1 1 1 1 1 1. If any negative indexes caused by empty character strings, then overwite to 0
-#     ), # cumsum output is 1 1 2 3 4 5 6 7 8 9. cumulative sums the above vector
-#   NA)# ifelse output is 1 NA  2  3  4  5  6  7  8  9. This has replaced 0s with NAs.
-#   ]
-# 
-# }
-# End of old direction function ------------------------------------------------------------
-
-
-
-# new direction function ------------------------------------------------------------
+# 11-extract_direction.R --------------------------------------------------
 
 direction <- function(x){
   #ensure output is lowered
@@ -378,19 +346,11 @@ direction <- function(x){
   )
 }
 
-# End of new direction function ------------------------------------------------------------
+# End of 11-extract_direction.R --------------------------------------------------
 
-
-
-
-# End of 02.prep.R, direction function -------------------------------------------
-
-
-
-# 02.prep.R, easting northing function ------------------------------------
+# 12-extract_eastnor.R ----------------------------------------------------
 
 # extract easting and northing matrix
-
 easting_northing <- function(x) {
   #find the pattern locations
   m <- regexpr("GPS Ref: [0-9]+;[0-9]+", x, perl = TRUE)
@@ -402,6 +362,4 @@ easting_northing <- function(x) {
   colnames(matches) <- c("easting", "northing")
   matches
 }
-
-# end of 02.prep.R, easting northing function ------------------------------------
-
+# End of 12-extract_eastnor.R ----------------------------------------------------
