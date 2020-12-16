@@ -14,7 +14,7 @@ start_date <- "01092020"
 
 # log query parameters set
 if (test_run == FALSE) {
-info(my_logger, paste("Start date set: ", start_date))
+  info(my_logger, paste("Start date set: ", start_date))
 }
 
 # End Date ----------------------------------------------------------------
@@ -50,7 +50,7 @@ info(my_logger, paste0("Maximum rows for each page in api request set to: ", MAX
 
 page_no <- 1
 # Max rows set to 40k, I have set a comparison against rows returned to ensure
-# max rows is not exceeded. If so, the pagination will need to be pursued. 
+# max rows is not exceeded. If so, the pagination will need to be pursued.
 
 # User agent -------------------------------------------------------------------
 
@@ -61,21 +61,18 @@ agent_message <- "Requesting sensor data for use in ONS, datasciencecampus, road
 user_details <- paste(user_email, agent_message)
 
 # only set parameters for a full run if not testing
-if(test_run == FALSE){
+if (test_run == FALSE) {
 
 
-# date_range --------------------------------------------------------------
+  # date_range --------------------------------------------------------------
 
-daterange <- paste0("&start_date=", start_date, "&end_date=", end_date)
+  daterange <- paste0("&start_date=", start_date, "&end_date=", end_date)
 
-if(test_run== FALSE) {
-  info(my_logger, paste("daterange set as:", daterange))
+  if (test_run == FALSE) {
+    info(my_logger, paste("daterange set as:", daterange))
+  }
+
+
+  # tidy up -----------------------------------------------------------------
+  rm(list = c("start_date", "end_date"))
 }
-
-
-# tidy up -----------------------------------------------------------------
-rm(list = c("start_date", "end_date"))
-
-}
-
-

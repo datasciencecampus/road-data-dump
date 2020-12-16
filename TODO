@@ -28,9 +28,9 @@
 * ~~remove api_logger~~
 * ~~Update to documentation - markdown web page with screengrabs~~
 * ~~write filename behaviour specified by user: save output data files appended with query dates.~~
+* ~~Update func/functions.R labelling~~
+* ~~apply styler style guide~~
 
-* Update func/functions.R labelling
-* apply styler style guide
 * Update documentation for adjusting user.email for user.agent()
 * date handling tests in 03-set_query_parameters.R
 * parallel options

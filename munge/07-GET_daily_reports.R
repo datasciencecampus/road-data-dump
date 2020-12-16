@@ -1,7 +1,7 @@
-'
+"
 function of script:
 Get daily reports for all discovered site Ids
-'
+"
 info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 
 # The below works for the first 5 queries

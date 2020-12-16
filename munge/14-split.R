@@ -3,7 +3,7 @@ Split files processed in prep.R by site
 "
 info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 
-#split into midas,tame,tmu
+# split into midas,tame,tmu
 
 midas <- combo[combo$type == "midas", ]
 tame <- combo[combo$type == "tame", ]

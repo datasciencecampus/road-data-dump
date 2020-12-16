@@ -13,8 +13,9 @@ info(my_logger, paste0("#############", "Start of", this.path(), "#############"
 # site.midas --------------------------------------------------------------
 MIDAS_qstring <- paste0(ENDPOINT, RESOURCES[1], "/1/sites")
 
-request_result <- GET(url = MIDAS_qstring,
-                      user_agent(user_details)
+request_result <- GET(
+  url = MIDAS_qstring,
+  user_agent(user_details)
 )
 
 # log errors / status codes and coerce to df if request was successful
@@ -26,8 +27,9 @@ handle_df(site_midas)
 # site.tame ---------------------------------------------------------------
 TAME_qstring <- paste0(ENDPOINT, RESOURCES[1], "/2/sites")
 
-request_result <- GET(url = TAME_qstring,
-                      user_agent(user_details)
+request_result <- GET(
+  url = TAME_qstring,
+  user_agent(user_details)
 )
 
 # log errors / status codes and coerce to df if request was successful
@@ -41,8 +43,9 @@ handle_df(site_tame)
 
 TMU_qstring <- paste0(ENDPOINT, RESOURCES[1], "/3/sites")
 
-request_result <- GET(url = TMU_qstring,
-                      user_agent(user_details)
+request_result <- GET(
+  url = TMU_qstring,
+  user_agent(user_details)
 )
 
 # log errors / status codes and coerce to df if request was successful
@@ -61,7 +64,8 @@ rm(list = c(
   "MIDAS_qstring",
   "TAME_qstring",
   "TMU_qstring",
-  "user_email"))
+  "user_email"
+))
 
 
 # memory report -----------------------------------------------------------

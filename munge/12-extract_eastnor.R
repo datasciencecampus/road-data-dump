@@ -16,5 +16,5 @@ mapping <- match(combo$site_id, sites$sites.Id)
 
 
 gc()
-#**todo** need to do this in chunks as to save memory
+#** todo** need to do this in chunks as to save memory
 # glue together
