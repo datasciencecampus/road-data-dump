@@ -6,6 +6,7 @@ assign site_id column form pattern matching siteID query parameter in response u
 "
 info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 
+
 # assign site Ids
 # list all data from response content
 report_data <- lapply(request_results, handle_report)

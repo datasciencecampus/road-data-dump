@@ -29,7 +29,7 @@ if (test_run == FALSE) {
 
 user_email <- "richard.leyshon@ons.gov.uk"
 
-agent_message <- "Requesting sensor data for use in ONS, datasciencecampus, road-data-dump"
+agent_message <- "Parallel request of data for use in ONS, datasciencecampus, road-data-dump"
 
 user_details <- paste(user_email, agent_message)
 

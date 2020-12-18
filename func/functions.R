@@ -333,15 +333,13 @@ handle_report <- function(GET_result) {
     ), # parse JSON as text
     flatten = TRUE
   )
-  # control flow if row limit is hit.
-  if (listed_JSON$Header$row_count > MAX_ROWS) {
-    warn(my_logger, "Maximum rows exceeded. Use HTTP pagination.")
-  }
 
   # use pattern matching to extract the site ID from the queried url
   site_id <- str_extract(GET_result$url, pattern = "(?<=sites=)([0-9]+)(?=&)")
   # write to a new column in the list
   listed_JSON$Rows$site_id <- site_id
+  
+  
 
   # need to convert with as.data.frame or data.table once all JSON returned
   return(listed_JSON$Rows)

@@ -5,7 +5,6 @@ Purpose of script:
 "
 # initiate logging --------------------------------------------------------
 
-
 my_logfile <- "logs/logfile.txt"
 
 my_console_appender <- console_appender(layout = default_log_layout())

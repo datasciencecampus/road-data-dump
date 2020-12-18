@@ -15,6 +15,7 @@ sites <- cbind(sites, easting_northing(sites$sites.Name))
 mapping <- match(combo$site_id, sites$sites.Id)
 
 
-gc()
-#** todo** need to do this in chunks as to save memory
-# glue together
+
+# memory report -----------------------------------------------------------
+memory_report()
+

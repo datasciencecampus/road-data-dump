@@ -148,7 +148,7 @@ The **log file.txt** is important if you encounter an error. This document can b
 
 * R (64-bit)
 
-* 20 GB of free disk space to allocate
+* 30 GB of free disk space to allocate
 
 * Internet connection (preferably high speed fibre optic)
 
@@ -275,6 +275,10 @@ If you require additional support for running Git and the Git commands, then ple
 ## Using the Pipeline
 
 Some guidance before starting:
+
+
+**It's advisable to shut all non essential processes down prior to running the pipeline on a full month. Parallel processing is now being used and this puts extra demand on system reources.**
+
 
  If you have any of the output data files open, I advise closing them prior to running the pipeline. If R tries to overwrite a file with the same name, it will error and halt execution. If this happens, close the file, use R Studio to open `munge/15-write.R` and re-run this script (either click on the `source` button at the top of the script in R Studio, or press `Ctrl` + `shift` + `enter`).
 

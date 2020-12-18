@@ -33,7 +33,10 @@
 * ~~Update documentation for adjusting user.email for user.agent()~~
 * ~~date handling tests in 03-set_query_parameters.R, exceeding 31 days to query results in an execution halting.~~
 
-* parallel options
+* parallel options - work in progress.
+
+
+
 * Tidy up logs
 * Convert code to using joins with join interrogation
 * DF insight for combo: review print statements for logging.
@@ -46,5 +49,7 @@
 
 
 ## Performance
-* Queried one day for all sites in 19.533 mins
-Queried 31 days for all sites in Time difference of 1.216 hours
+* 1 day 1st to 2nd Sep 2020 takes: Time difference of 5.679 mins, 3.6 times faster using parallel compute.
+* Scale up to 1 month, previously took 2.25 hrs for Sep 2020.
+* Queried 31 days for all sites in Time difference of 52.702 mins
+* 2.6 times faster using parallel compute. Comes at a cost though - requires additional RAM, from 20GB up to 30GB.
