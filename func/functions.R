@@ -234,13 +234,22 @@ handle_missing <- function(GET_results) {
 
   # select just the url from these null content responses
   url_204s <- unlist(list.select(response_204s, url))
+  
 
   # catch all errors too
   url_errors <- list.filter(GET_results, status_code >= 400 && status_code <= 599)
-
+  
   # select all urls
   all_urls <- unlist(list.select(GET_results, url))
   number_urls <- length(all_urls)
+  
+  all_queried_siteIds <- sapply(
+    all_urls,
+    function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")
+  )
+  # write to cache for reporting
+  saveRDS(all_queried_siteIds, "cache/all_queried_siteIds.rds")
+
 
   # extract just the siteIds, simplify to a vector
   # character match tested on https://regex101.com/ for varying digit sequences
@@ -251,6 +260,9 @@ handle_missing <- function(GET_results) {
     url_204s,
     function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")
   )
+  # write to cache for reporting
+  saveRDS(site_Id_204s, "cache/site_Id_204s.rds")
+  
   # count the number of 204s
   number_204s <- length(site_Id_204s)
 
@@ -258,9 +270,13 @@ handle_missing <- function(GET_results) {
     url_errors,
     function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")
   )
+  # write to cache for reporting if errors are detected
+  if(length(site_Id_errors) >= 1) {
+  saveRDS(site_Id_errors, "cache/site_Id_errors.rds")
+  }
+  
   # count the number of errors
   number_errors <- length(site_Id_errors)
-
 
   # find urls that are not responsible for 204 statuses or errors
   urls_not204 <- setdiff(all_urls, c(url_204s, url_errors))
@@ -273,6 +289,9 @@ handle_missing <- function(GET_results) {
 
   # get the numbers from the daterange whether a test run or not
   dates_used <- paste(unlist(str_extract_all(daterange, "[0-9]+")), collapse = "to")
+  # write to cache for reporting
+  saveRDS(dates_used, "cache/dates_used.rds")
+  
   suffix <- paste0(dates_used, ".txt")
 
   if (test_run == TRUE) {

@@ -42,7 +42,7 @@ report_data <- lapply(request_results, handle_report)
 
 # tidy up -----------------------------------------------------------------
 
-rm(list = c("request_results", "cl", "ncores"))
+rm(request_results)
 
 
 # memory report -----------------------------------------------------------

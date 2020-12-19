@@ -62,7 +62,7 @@ request_results <- handle_missing(request_results)
 
 # tidy up -----------------------------------------------------------------
 
-rm(list = c("all_urls", "n_urls", "n_results", "cl"))
+rm(list = c("all_urls", "n_urls", "n_results", "cl", "ncores"))
 
 
 
