@@ -19,7 +19,7 @@ if (test_run == FALSE) {
 
 # End Date ----------------------------------------------------------------
 
-end_date <- "30092020"
+end_date <- "03092020"
 # log query parameters set
 if (test_run == FALSE) {
   info(my_logger, paste("End date set: ", end_date))

@@ -40,6 +40,9 @@ if(n_urls != n_results){
   warn(my_logger, paste("Number of responses:", n_results))
 }
 
+
+# api req duration --------------------------------------------------------
+
 info(my_logger,
      paste("Duration of report request: ", capture.output(Sys.time() - report_start)))
 
@@ -59,7 +62,7 @@ request_results <- handle_missing(request_results)
 
 # tidy up -----------------------------------------------------------------
 
-rm(list = c("all_urls", "ncores", "n_urls", "n_results", "cl"))
+rm(list = c("all_urls", "n_urls", "n_results", "cl"))
 
 
 
