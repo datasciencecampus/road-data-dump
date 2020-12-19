@@ -17,14 +17,17 @@ site_tmu$type <- "tmu"
 # row bind (append) all site data tables. Consistent format.
 sites <- rbind(site_midas, site_tame, site_tmu)
 
-
+sitetypes <- select(sites, row_count, sites.Id,sites.Description, sites.Status, type)
+# save to cache for reporting
+saveRDS(sitetypes, "cache/sitetypes.rds")
 
 # tidy up -----------------------------------------------------------------
 
 rm(list = c(
   "site_midas",
   "site_tame",
-  "site_tmu"
+  "site_tmu",
+  "sitetypes"
 ))
 
 # memory_report() ---------------------------------------------------------

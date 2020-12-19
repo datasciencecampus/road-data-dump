@@ -32,8 +32,7 @@
 * ~~apply styler style guide~~
 * ~~Update documentation for adjusting user.email for user.agent()~~
 * ~~date handling tests in 03-set_query_parameters.R, exceeding 31 days to query results in an execution halting.~~
-
-* parallel options - work in progress.
+* ~~parallel computation using socket cluster~~
 
 
 * Replace missing report .txt with a .rmd including visuals & text for all missing site Ids and by sitetype.
