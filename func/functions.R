@@ -277,12 +277,12 @@ handle_missing <- function(GET_results) {
 
   if (test_run == TRUE) {
     write.table(print(paste(
-      "Missing data report ",
-      "Number of missing IDs (204s) for this run: ",
+      "Test run: Missing data report ",
+      "Number of missing IDs (204s) for test run: ",
       number_204s,
       " Total number of sites queried: ",
       number_urls,
-      " Proportion of Site IDs that were missing (204s) for this run: ",
+      " Proportion of Site IDs that were missing (204s) for test run: ",
       round(number_204s / number_urls, digits = 2),
       ". Site Ids that returned no content :",
       paste(site_Id_204s, collapse = ","),

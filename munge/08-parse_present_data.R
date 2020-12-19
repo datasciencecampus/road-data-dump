@@ -11,6 +11,7 @@ info(my_logger, paste0("#############", "Start of", this.path(), "#############"
 # parallel ----------------------------------------------------------------
 # Error encountered: writing to object.
 # Commented out for future development.
+
 # # make a cluster with the number of cores found
 # cl <- makeCluster(ncores)
 # # export dependencies to the clusters
