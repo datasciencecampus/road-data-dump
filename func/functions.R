@@ -393,3 +393,28 @@ easting_northing <- function(x) {
   matches
 }
 # End of 12-extract_eastnor.R ----------------------------------------------------
+
+# site_report.Rmd ---------------------------------------------------------
+# detect all rds files in cache
+my_rds <- function(my_path) {list.files(my_path, pattern = ".rds")}
+
+# assign all objects by their file prefix to the global environment
+assign_objects <- function(filesincache) {
+  # print object name
+  obj_name <- sapply(str_split(filesincache, "\\."), `[[`, 1)
+  # print path to file
+  filepath <- paste0("../cache/", filesincache)
+  # assign object to global environment
+  assign(obj_name, readRDS(filepath), envir = .GlobalEnv)
+}
+
+
+# detect all files and assign them to named objects
+assign_rds <- function(my_path){
+  my_files <- my_rds(my_path)
+  for (i in my_files){
+    assign_objects(i)
+  }
+}
+
+# site_report.Rmd ---------------------------------------------------------

@@ -14,46 +14,16 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, echo=FALSE}
 # load required libraries
 library(stringr)
+source("../func/functions.R")
 ```
 
 ```{r, echo=FALSE}
-# detect all rds files in cache
-cached_files <- list.files("../cache/", pattern = ".rds")
 
-
-assign_rds <- function(filesincache) {
- # print object name
-  obj_name <- sapply(str_split(filesincache, "\\."), `[[`, 1)
-  # print path to file
-  filepath <- paste0("../cache/", filesincache)
-  # assign object to global environment
-  assign(obj_name, readRDS(filepath), envir = .GlobalEnv)
-}
-
-
-for (i in cached_files){
-  assign_rds(i)
-}
-
-
+assign_rds("../cache/")
+  
 ```
 
 
-
-
-
-```{r}
-# reprex
-vec <- c("a", "b", "c")
-names(vec) <- c("first", "second", "third")
-
-lapply(vec, function(x) print(names(x)))
-
-for(i in vec){
-  print(names(vec[i]))
-}
-
-```
 
 
 
@@ -62,6 +32,9 @@ for(i in vec){
 
 ## Some
 
+```{r}
+head(all_queried_siteIds)
+```
 
 
 ## Stuff
