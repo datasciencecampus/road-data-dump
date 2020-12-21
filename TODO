@@ -36,6 +36,7 @@
 
 
 * Replace missing report .txt with a .rmd including visuals & text for all missing site Ids and by sitetype.
+* Date handling if specified end date is before specified start date
 * Tidy up logs
 * Convert code to using joins with join interrogation
 * DF insight for combo: review print statements for logging.

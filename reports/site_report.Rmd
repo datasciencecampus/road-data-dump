@@ -1,0 +1,72 @@
+---
+title: "Site Report"
+author: "`r Sys.info()[['effective_user']]`"
+date: "`r format(Sys.Date(), '%A-%d-%b-%Y')`"
+output:
+  html_document:
+    css: "../docs/style/style.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE}
+# load required libraries
+library(stringr)
+```
+
+```{r, echo=FALSE}
+# detect all rds files in cache
+cached_files <- list.files("../cache/", pattern = ".rds")
+
+
+assign_rds <- function(filesincache) {
+ # print object name
+  obj_name <- sapply(str_split(filesincache, "\\."), `[[`, 1)
+  # print path to file
+  filepath <- paste0("../cache/", filesincache)
+  # assign object to global environment
+  assign(obj_name, readRDS(filepath), envir = .GlobalEnv)
+}
+
+
+for (i in cached_files){
+  assign_rds(i)
+}
+
+
+```
+
+
+
+
+
+```{r}
+# reprex
+vec <- c("a", "b", "c")
+names(vec) <- c("first", "second", "third")
+
+lapply(vec, function(x) print(names(x)))
+
+for(i in vec){
+  print(names(vec[i]))
+}
+
+```
+
+
+
+<h1>Site Report</h1>
+
+
+## Some
+
+
+
+## Stuff
+
+
+
+## Here 
+
