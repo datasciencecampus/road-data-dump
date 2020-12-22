@@ -24,7 +24,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
  
 
-The **Road Data Pipeline** is an unofficial [Highways England WebTRIS api](https://webtris.highwaysengland.co.uk/api/swagger/ui/index) client. The work contained within the pipeline was built upon work by [phil8192's webtri.sh client](https://github.com/phil8192/webtri.sh). This pipeline is less flexible than the webtri.sh client acknowledged above, but includes additional data processing, outputting csv files for the user-specified date range.
+The <strong class="navy">Road Data Pipeline</strong> is an unofficial [Highways England WebTRIS api](https://webtris.highwaysengland.co.uk/api/swagger/ui/index) client. The work contained within the pipeline was built upon work by [phil8192's webtri.sh client](https://github.com/phil8192/webtri.sh). This pipeline is less flexible than the webtri.sh client acknowledged above, but includes additional data processing, outputting csv files for the user-specified date range.
 
  
 
@@ -32,7 +32,7 @@ The **Road Data Pipeline** is an unofficial [Highways England WebTRIS api](https
 
  
 
-The client allows querying of **all available sites** for **specified date ranges**, intended for monthly analysis.
+The client allows querying of <strong class="navy">all available sites</strong> for <strong class="navy">specified date ranges</strong>, intended for monthly analysis.
 
  
 
@@ -82,7 +82,7 @@ The client allows querying of **all available sites** for **specified date range
 |northing           |Integer         |Coordinate data                             |
 +-------------------+----------------+--------------------------------------------+
 
-The output files will appear in the **output_data** folder as **site-type_query-date.csv**. There are 3 site types available, **MIDAS**, **TAME**, and **TMU**. Please see explanations of the different site types, as provided by phil8192:
+The output files will appear in the <strong class="navy">output_data</strong> folder as <strong class="navy">site-type_query-date.csv</strong>. There are 3 site types available, <strong class="navy">MIDAS</strong>, <strong class="navy">TAME</strong>, and <strong class="navy">TMU</strong>. Please see explanations of the different site types, as provided by phil8192:
 
  
 
@@ -118,22 +118,25 @@ The full output of the pipeline is as follows:
 
 `./output_data/tmu_daterange.csv`
 
-`./output_data/missing_site_IDs_daterange.txt`
+`./output_data/missing_site_IDs_daterange.txt`: This is to be replaced by the below, pending testing:
+
+`.reports/site_report_daterange.html`
 
 `./logs/logfile.txt`
 
+
  
 
-The **output data csvs** contain the api output.
+The <strong class="navy">output data csvs</strong> contain the api output.
 
 The **./output_data/missing_site_IDs_daterange.txt** returns a sequence of missing site IDs from the queried date range, a count of api responses that were empty, and what proportion of the overall number of IDs queried this represented (rounded to 2dp).
 
  
 
-Currently, executing the pipeline will overwrite any output_data files **with the same name**.
+Currently, executing the pipeline will overwrite any output_data files <strong class="navy">with the same name</strong>.
 
 
-The **log file.txt** is important if you encounter an error. This document can be passed back to the developer in order to investigate issues encountered. New run s do not overwrite the logs, they append pre-existing logs.
+The <strong class="navy">log file.txt</strong> is important if you encounter an error. This document can be passed back to the developer in order to investigate issues encountered. New run s do not overwrite the logs, they append pre-existing logs.
 
 
 ***
@@ -220,10 +223,10 @@ Click on the `Code` button to see your download options.
 ***
 
 
-To access the pipeline, you will currently need to `clone` this repository using **Git**. This will allow access to the branch that stores the required files.
+To access the pipeline, you will currently need to `clone` this repository using <strong class="navy">Git</strong>. This will allow access to the branch that stores the required files.
 
 
-It is recommended to specify **HTTPS** for cloning options, click on the clipboard icon to copy the required url. For assistance in configuring access to GitHub repositories from a command line interface, please consult the [GitHub PAT guidance.](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
+It is recommended to specify <strong class="navy">HTTPS</strong> for cloning options, click on the clipboard icon to copy the required url. For assistance in configuring access to GitHub repositories from a command line interface, please consult the [GitHub PAT guidance.](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
 
  
 
@@ -250,7 +253,7 @@ If the clone is executed correctly, navigate to the newly cloned repository by r
 
  
 
-Once you have arrived at the roads-data-dump folder, you will need to check out to the **r-pipeline** branch. In order to do that, run the line:
+Once you have arrived at the roads-data-dump folder, you will need to check out to the <strong class="navy">r-pipeline</strong> branch. In order to do that, run the line:
 
  
 
@@ -258,7 +261,7 @@ Once you have arrived at the roads-data-dump folder, you will need to check out 
 
  
 
-If you successfully checked the **r-pipeline** out, you should now have a directory that looks like this:
+If you successfully checked the <strong class="navy">r-pipeline</strong> out, you should now have a directory that looks like this:
 
  
 
@@ -277,14 +280,16 @@ If you require additional support for running Git and the Git commands, then ple
 Some guidance before starting:
 
 
-**It's advisable to shut all non essential processes down prior to running the pipeline on a full month. Parallel processing is now being used and this puts extra demand on system reources.**
+<strong class="navy">It's advisable to shut all non essential processes down prior to running the pipeline on a full month. Parallel processing is now being used and this puts extra demand on system reources.</strong>
 
 
- If you have any of the output data files open, I advise closing them prior to running the pipeline. If R tries to overwrite a file with the same name, it will error and halt execution. If this happens, close the file, use R Studio to open `munge/15-write.R` and re-run this script (either click on the `source` button at the top of the script in R Studio, or press `Ctrl` + `shift` + `enter`).
+If you have any of the output data files open, I advise closing them prior to running the pipeline. If R tries to overwrite a file with the same name, it will error and halt execution. If this happens, close the file, use R Studio to open `munge/15-write.R` and re-run this script (either click on the `source` button at the top of the script in R Studio, or press `Ctrl` + `shift` + `enter`).
+
+<strong class="navy">Your system may ask for permission to open additional R Studio sessions during pipeline execution. This will only happen at script number 7, so it is advisable to wait until this script has been initiated before leaving your workstation to proceed with the pipeline.</strong>
 
 It is also best to start from a blank slate every time you run the pipeline. To do this, select `Session` > `Clear Workspace` from the toolbar at the top of R Studio.
 
-This pipeline is intended to produce monthly data for analysis. Specifying longer time periods than a month may result in memory limits being exceeded. Therefore **execution of the scripts is halted if 31 days limit is exceeded.**
+This pipeline is intended to produce monthly data for analysis. Specifying longer time periods than a month may result in memory limits being exceeded. Therefore <strong class="navy">execution of the scripts is halted if 31 days limit is exceeded.</strong>
 
 
 <div class="summary-box">
@@ -434,7 +439,7 @@ Also note that I have been asked to restart R. If prompted, do this prior to run
 
  
 
-The `ProjectTemplate` (note the **camel case**, `install.packages()` is case sensitive) is a robust framework for compartmentalising code in pipelines. It allows us to add logging, run sequential scripts and more. In order to run this pipeline, you will need to have `ProjectTemplate` installed.
+The `ProjectTemplate` (note the<strong class="navy">camel case</strong>, `install.packages()` is case sensitive) is a robust framework for compartmentalising code in pipelines. It allows us to add logging, run sequential scripts and more. In order to run this pipeline, you will need to have `ProjectTemplate` installed.
 
  
 
@@ -543,7 +548,7 @@ The time difference will vary depending on your system and connection. If this s
 
 ### <a id="subsequent_runs"></a>Subsequent Runs
 
-1. In `run-me.R`, change the line `test_run <- TRUE` to `test_run <- FALSE`. `TRUE` and `FALSE` are case-sensitive. **Save the file**. You can do this by pressing `Ctrl` + `s`.
+1. In `run-me.R`, change the line `test_run <- TRUE` to `test_run <- FALSE`. `TRUE` and `FALSE` are case-sensitive. <strong class="navy">Save the file</strong>. You can do this by pressing `Ctrl` + `s`.
 
 2. In order to specify which dates to query, you will need to access the script `03-set_query_parameters.R` within the `munge` folder. The dates you will need to adjust appear as `start_date` and `end_date`, assign values as below:
 
@@ -551,7 +556,7 @@ The time difference will vary depending on your system and connection. If this s
 
 `end_date <- "31072019"`
 
-The format being **"DDMMYYYY"**. Incorrect dates will cause an error (trying to ask for the 31st of February for example). Also, be sure to wrap your dates in either quotation marks or apostrophes. So:
+The format being <strong class="navy">"DDMMYYYY"</strong>. Incorrect dates will cause an error (trying to ask for the 31st of February for example). Also, be sure to wrap your dates in either quotation marks or apostrophes. So:
 
 "01072019" is good.
 
@@ -562,7 +567,7 @@ The format being **"DDMMYYYY"**. Incorrect dates will cause an error (trying to 
 01072019 is bad.
 
  
-3. It is good practice to let Highways England know who is querying their api. This is also important if we ever need to ask for help from them in troubleshooting the api. To do this, we can set the `user_email` and `agent_message` values in `03-set_query_parameters.R`. These appear below the date parameters you updated in **step 2** of this section.
+3. It is good practice to let Highways England know who is querying their api. This is also important if we ever need to ask for help from them in troubleshooting the api. To do this, we can set the `user_email` and `agent_message` values in `03-set_query_parameters.R`. These appear below the date parameters you updated in <strong class="navy">step 2</strong> of this section.
 
 4. Once you have entered your desired dates, press `Ctrl` + `s` to save the script. Return to the `run-me.R` script and run all or `source` the script using the button at the top of the RStudio interface.
 

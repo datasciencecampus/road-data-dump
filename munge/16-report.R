@@ -6,9 +6,6 @@ Knit site report markdown and wrap up pipeline
 rmarkdown::render("reports/site_report.Rmd",
                   output_file = paste0("site_report_", dates_used, ".html"))
 
-# sleep for a minute while report compiles
-Sys.sleep(time = 60)
-
 # wrap up -----------------------------------------------------------------
 
 # calculate elapsed time

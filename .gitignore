@@ -1,6 +1,9 @@
 ###logs###
 logs/logfile.txt
 
+###reports###
+reports.*.html
+
 ###renv package management###
 renv/library/
 renv/lock/

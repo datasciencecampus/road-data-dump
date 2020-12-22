@@ -33,9 +33,9 @@
 * ~~Update documentation for adjusting user.email for user.agent()~~
 * ~~date handling tests in 03-set_query_parameters.R, exceeding 31 days to query results in an execution halting.~~
 * ~~parallel computation using socket cluster~~
+* ~~Replace missing report .txt with a .rmd including visuals & text for all missing site Ids and by sitetype.~~
 
-
-* Replace missing report .txt with a .rmd including visuals & text for all missing site Ids and by sitetype.
+* Remove all missing report.txt logic or move to logs.
 * Date handling if specified end date is before specified start date
 * Tidy up logs
 * Convert code to using joins with join interrogation
