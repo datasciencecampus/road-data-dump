@@ -19,25 +19,47 @@ source("../func/functions.R")
 
 ```{r, echo=FALSE}
 
+# Load in all RDS files found in the cache folder
 assign_rds("../cache/")
   
 ```
 
 
+```{r echo=FALSE}
+# use the datesused (cleansed) to create a nice title
+dates <- unlist(strsplit(dates_used, "to"))
+```
+
+# Site Report for Dates `r paste0(dates[1], " to ", dates[2], ".")`
 
 
 
-<h1>Site Report</h1>
+## All Site Types: Empty API Responses
 
+```{r echo=FALSE,fig.align='center'}
+library(ggplot2)
 
-## Some
+counts <- c(length(all_queried_siteIds), length(site_Id_204s))
+names(counts) <- c("All Site IDs", "Empty Site IDs")
 
-```{r}
-head(all_queried_siteIds)
+barplot(height = counts,
+        main = "Count of Site IDs",
+        col = "#02075D")
+
 ```
 
 
-## Stuff
+There were <strong class="navy">`r format(length(all_queried_siteIds), big.mark = ",")`</strong> site IDs queried in total.
+
+Of these IDs, <strong class="navy">`r format(length(site_Id_204s), big.mark = ",")`</strong> of the queries returned <strong class="navy">no content</strong> (HTTP response [code 204](https://httpstatuses.com/204)).
+
+This means that <strong class="navy">`r round(length(site_Id_204s) / length(all_queried_siteIds) * 100, digits = 0)` % (rounded)</strong> of the IDs contained no content for this date range.
+
+***
+
+
+
+## Empty Responses by Site
 
 
 
