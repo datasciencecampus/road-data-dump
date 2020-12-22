@@ -25,15 +25,3 @@ if (test_run == TRUE) {
   fwrite(tmu, paste0("output_data/tmu", suffix), row.names = F, quote = F)
 }
 
-# wrap up -----------------------------------------------------------------
-
-# calculate elapsed time
-elapsed <- Sys.time() - start_time
-print(round(elapsed, digits = 3))
-
-
-info(my_logger, paste0("#############End of pipeline#############"))
-
-
-# sound alert when script completes
-beepr::beep("coin")
