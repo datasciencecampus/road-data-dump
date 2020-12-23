@@ -35,7 +35,7 @@
 * ~~parallel computation using socket cluster~~
 * ~~Replace missing report .txt with a .rmd including visuals & text for all missing site Ids and by sitetype.~~
 
-* Remove all missing report.txt logic or move to logs.
+
 * Date handling if specified end date is before specified start date
 * Tidy up logs
 * Convert code to using joins with join interrogation
@@ -43,13 +43,13 @@
 * handle_missing function requires unit testing.
 * Unit testing all scripts
 * Implement a retry for any internal server errors (HTTP status code 5**), script 07-GET_daily_reports.R stores these as retry_urls
-* Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off. 
-* Use beepr::beep() for errors at common throttle points
+* Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off.
+* Remove all missing report.txt logic or move to logs.
 
 
 
 ## Performance
-* 1 day 1st to 2nd Sep 2020 takes: Time difference of 5.679 mins, 3.6 times faster using parallel compute.
+* 2 days (1st to 2nd Sep 2020) takes: Time difference of 5.679 mins, 3.6 times faster using parallel compute.
 * Scale up to 1 month, previously took 2.25 hrs for Sep 2020.
 * Queried 31 days for all sites in Time difference of 52.702 mins
 * 2.6 times faster using parallel compute. Comes at a cost though - requires additional RAM, from 20GB up to 30GB.

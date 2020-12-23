@@ -62,7 +62,7 @@ page_no <- 1
 
 # create daterange --------------------------------------------------------
 
-# only set parameters for a full run if not testing
+# only set parameters for a full run if not testing pipeline
 if (test_run == FALSE) {
   
   # date handling -----------------------------------------------------------

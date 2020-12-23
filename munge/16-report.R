@@ -2,9 +2,20 @@
 Purpose of script:
 Knit site report markdown and wrap up pipeline
 "
+info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
+
+# label test run site reports by filename
+if(test_run == TRUE){
+  report_name <- "test_site_report.html"
+} else{
+  # if not testing pipeline, use date parameters in filename
+  report_name <- paste0("site_report_", dates_used, ".html")
+}
+
+
 # render the site report using the cached variables
 rmarkdown::render("reports/site_report.Rmd",
-                  output_file = paste0("site_report_", dates_used, ".html"))
+                  output_file = report_name)
 
 # wrap up -----------------------------------------------------------------
 
