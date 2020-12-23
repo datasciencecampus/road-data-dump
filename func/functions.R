@@ -161,7 +161,7 @@ memory_report <- function() {
 # End of memory_report -----------------------------------------------------------
 
 
-# 04-GET_sitetypes.R handle_query ------------------------------------------------------------
+# 05-GET_sitetypes.R handle_query ------------------------------------------------------------
 
 
 handle_query <- function(GET_result, resource, site) {
@@ -220,11 +220,11 @@ handle_df <- function(df_name) {
 # End of handle_df ---------------------------------------------------------------
 
 
-# end of 04-GET_sitetypes.R handle_query ------------------------------------------------------------
+# end of 05-GET_sitetypes.R handle_query ------------------------------------------------------------
 
 
 
-# 07-Get_daily_reports.R  handle_missing ----------------------------------
+# 08-Get_daily_reports.R  handle_missing ----------------------------------
 
 
 handle_missing <- function(GET_results) {
@@ -338,10 +338,10 @@ handle_missing <- function(GET_results) {
   return(reqs_not_204)
 }
 
-# End of 07-Get_daily_reports.R  handle_missing ----------------------------------
+# End of 08-Get_daily_reports.R  handle_missing ----------------------------------
 
 
-# 08-parse_present_data.R --------------------------------------------------
+# 09-parse_present_data.R --------------------------------------------------
 
 handle_report <- function(GET_result) {
 
@@ -364,9 +364,9 @@ handle_report <- function(GET_result) {
   return(listed_JSON$Rows)
 }
 
-# End of 08-parse_present_data.R --------------------------------------------------
+# End of 09-parse_present_data.R --------------------------------------------------
 
-# 11-extract_direction.R --------------------------------------------------
+# 12-extract_direction.R --------------------------------------------------
 
 direction <- function(x) {
   # ensure output is lowered
@@ -376,9 +376,9 @@ direction <- function(x) {
   )
 }
 
-# End of 11-extract_direction.R --------------------------------------------------
+# End of 12-extract_direction.R --------------------------------------------------
 
-# 12-extract_eastnor.R ----------------------------------------------------
+# 13-extract_eastnor.R ----------------------------------------------------
 
 # extract easting and northing matrix
 easting_northing <- function(x) {
@@ -392,9 +392,12 @@ easting_northing <- function(x) {
   colnames(matches) <- c("easting", "northing")
   matches
 }
-# End of 12-extract_eastnor.R ----------------------------------------------------
+# End of 13-extract_eastnor.R ----------------------------------------------------
 
-# site_report.Rmd ---------------------------------------------------------
+
+# 17-report.R -------------------------------------------------------------
+
+
 # detect all rds files in cache
 my_rds <- function(my_path) {list.files(my_path, pattern = ".rds")}
 
@@ -417,4 +420,4 @@ assign_rds <- function(my_path){
   }
 }
 
-# site_report.Rmd ---------------------------------------------------------
+# End of 17-report.R -------------------------------------------------------------
