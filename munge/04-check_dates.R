@@ -2,12 +2,9 @@
 Check input dates and break early if:
 * more than 31 days
 * end date is earlier than start date
-* not a viable date?
+* not a viable date.
 "
-
-
-
-
+info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 
 # create daterange --------------------------------------------------------
 
@@ -18,6 +15,15 @@ if (test_run == FALSE) {
   
   s_date <- as.Date.character(start_date, "%d%m%Y")
   e_date <- as.Date.character(end_date, "%d%m%Y")
+  
+  # incorrect dates such as 32092020 result in NAs that propogate forwards
+  # catch these here and break
+  if(is.na(s_date) | is.na(e_date)){
+    error(my_logger, "Execution halted, NAs found in start or end date. Please
+        adjust start_date and end_date in munge/03-set_query_parameters.R")
+    stop("Invalid date set.")
+  }
+  
   # find out the date period
   date_diff <- e_date - s_date
   
@@ -26,6 +32,10 @@ if (test_run == FALSE) {
     error(my_logger, "Execution halted, date period requested exceeds 31 days. Please
         adjust start_date and end_date in munge/03-set_query_parameters.R")
     stop("Date limit exceeded 31 days")
+  } else if(date_diff < 0) {
+    error(my_logger, "Execution halted, end date is before start date. Please
+        adjust start_date and end_date in munge/03-set_query_parameters.R")
+    stop("End date is before start date.")
   }
   
   # date_range --------------------------------------------------------------

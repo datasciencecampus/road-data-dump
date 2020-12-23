@@ -34,12 +34,13 @@
 * ~~date handling tests in 03-set_query_parameters.R, exceeding 31 days to query results in an execution halting.~~
 * ~~parallel computation using socket cluster~~
 * ~~Replace missing report .txt with a .rmd including visuals & text for all missing site Ids and by sitetype.~~
+* ~~Date handling if specified end date is before specified start date~~
 
 
-* Date handling if specified end date is before specified start date
-* Tidy up logs
+
 * Convert code to using joins with join interrogation
 * DF insight for combo: review print statements for logging.
+* Tidy up logs
 * handle_missing function requires unit testing.
 * Unit testing all scripts
 * Implement a retry for any internal server errors (HTTP status code 5**), script 07-GET_daily_reports.R stores these as retry_urls
