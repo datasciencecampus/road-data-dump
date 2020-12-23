@@ -1,5 +1,6 @@
 ---
 title: "Road Data Pipeline"
+subtitle: "Version 1.0"
 author: "R Leyshon"
 date: "14/12/2020"
 output:
@@ -24,7 +25,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
  
 
-The <strong class="navy">Road Data Pipeline</strong> is an unofficial [Highways England WebTRIS api](https://webtris.highwaysengland.co.uk/api/swagger/ui/index) client. The work contained within the pipeline was built upon work by [phil8192's webtri.sh client](https://github.com/phil8192/webtri.sh). This pipeline is less flexible than the webtri.sh client acknowledged above, but includes additional data processing, outputting csv files for the user-specified date range.
+The <strong class="navy">Road Data Pipeline</strong> is an unofficial [Highways England WebTRIS api](https://webtris.highwaysengland.co.uk/api/swagger/ui/index) client. The work contained within the pipeline was informed by [phil8192's webtri.sh client](https://github.com/phil8192/webtri.sh). This pipeline is less flexible than the webtri.sh client acknowledged above, but includes additional data processing, outputting csv files for the user-specified date range.
 
  
 
