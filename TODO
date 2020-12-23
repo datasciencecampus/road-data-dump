@@ -1,5 +1,20 @@
 # To do
 
+## Version 1.1
+
+### Changelog
+
+### Backlog
+
+* Convert code to using joins with join interrogation
+* DF insight for combo: review print statements for logging.
+* Tidy up logs
+* handle_missing function requires unit testing.
+* Unit testing all scripts
+* Implement a retry for any internal server errors (HTTP status code 5**), script 07-GET_daily_reports.R stores these as retry_urls
+* Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off.
+* Remove all missing report.txt logic or move to logs.
+
 ## Version 1.0
 
 ### Implemented
@@ -44,14 +59,3 @@
 * Scale up to 1 month, previously took 2.25 hrs for Sep 2020.
 * Queried 31 days for all sites in Time difference of 52.702 mins
 * 2.6 times faster using parallel compute. Comes at a cost though - requires additional RAM, from 20GB up to 30GB.
-
-### Backlog
-
-* Convert code to using joins with join interrogation
-* DF insight for combo: review print statements for logging.
-* Tidy up logs
-* handle_missing function requires unit testing.
-* Unit testing all scripts
-* Implement a retry for any internal server errors (HTTP status code 5**), script 07-GET_daily_reports.R stores these as retry_urls
-* Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off.
-* Remove all missing report.txt logic or move to logs.

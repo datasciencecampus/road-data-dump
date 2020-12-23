@@ -1,8 +1,8 @@
 ---
 title: "Road Data Pipeline"
-subtitle: "Version 1.0"
+subtitle: "Version 1.1"
 author: "R Leyshon"
-date: "14/12/2020"
+date: "23/12/2020"
 output:
   html_document:
     toc: true
@@ -286,7 +286,7 @@ Some guidance before starting:
 
 If you have any of the output data files open, I advise closing them prior to running the pipeline. If R tries to overwrite a file with the same name, it will error and halt execution. If this happens, close the file, use R Studio to open `munge/15-write.R` and re-run this script (either click on the `source` button at the top of the script in R Studio, or press `Ctrl` + `shift` + `enter`).
 
-<strong class="navy">Your system may ask for permission to open additional R Studio sessions during pipeline execution. This will only happen at script number 7, so it is advisable to wait until this script has been initiated before leaving your workstation to proceed with the pipeline.</strong>
+<strong class="navy">Your system may ask for permission to open additional R Studio sessions during pipeline execution. This will only happen at script number 8 (appears in the console as 08-GET_daily_reports.R), so it is advisable to wait until this script has been initiated before leaving your workstation to proceed with the pipeline.</strong>
 
 It is also best to start from a blank slate every time you run the pipeline. To do this, select `Session` > `Clear Workspace` from the toolbar at the top of R Studio.
 

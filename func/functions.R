@@ -126,7 +126,7 @@ wrap_up <- function() {
   beepr::beep("coin")
 
   # Manually stop execution while working on api request
-  stop(TRUE)
+  stop(paste("wrap up at", this.path()))
 }
 
 
