@@ -5,7 +5,9 @@ wrap_up()
 
 info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 gc()
-combo <- cbind(combo, sites[mapping, -(1:3)])
+# join the site details to the sensor output on site ID, dropping 2 columns from the
+# site details df, row count and site name.
+combo <- left_join(combo, sites[, -(c(1,3))], by = c("site_id" = "sites.Id"))
 
 
 # clean up leaving readings only
