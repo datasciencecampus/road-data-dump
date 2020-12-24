@@ -66,7 +66,7 @@ The client allows querying of <strong class="navy">all available sites</strong> 
 +-------------------+----------------+--------------------------------------------+
 |site_id            |Integer         |Numerical site code                         |
 +-------------------+----------------+--------------------------------------------+
-|sites.Description  |Factor          |Repeat of Site Name                         |
+|sites.Description  |Factor          |Motorway location                           |
 +-------------------+----------------+--------------------------------------------+
 |sites.Longitude    |Floating Point  |Coordinate data                             |
 +-------------------+----------------+--------------------------------------------+
@@ -211,7 +211,72 @@ The <strong class="navy">log file.txt</strong> is important if you encounter an 
 ***
 ***
 
- 
+## Data Processing
+
+This pipeline joins 2 DataFrames ingested via the Highways England api, <strong class="navy">combo</strong> and <strong class="navy">sites</strong>.
+
+### DataFrames {.tabset .tabset-fade}
+
+#### combo
+
+This DataFrame holds the site readings from the date range that the user specifies:
+
+![RStudio view of the combo DataFrame](images/combo.png)
+
+A full list of `combo`'s column names:
+
+`Site Name` , `Report Date` , `Time Period Ending`, `Time Interval`,
+`0 - 520 cm`, `521 - 660 cm`, `661 - 1160 cm`     , `1160+ cm`    ,
+`0 - 10 mph`, `11 - 15 mph` , `16 - 20 mph`       , `21 - 25 mph` ,
+`26 - 30 mph`, `31 - 35 mph`,  `36 - 40 mph`      ,  `41 - 45 mph`, 
+`46 - 50 mph`, `51 - 55 mph`,  `56 - 60 mph`      ,  `61 - 70 mph`, 
+`71 - 80 mph`, `80+ mph`    ,  `Avg mph`          ,  `Total Volume`, 
+`site_id`. 
+
+All of the columns except the `site_id` are ingested via api. The api does not respond with row level site IDs. The values for `site_id` are extracted from the response url.
+
+#### sites
+
+This DataFrame holds the details and statuses of all the sites <strong class="navy">at the date of query</strong>. Some additional columns are added to the api response during the pipeline. The sources of the columns are specified below.
+
+![RStudio view of the sites DataFrame](images/sites.png)
+
++-------------------+----------------+--------------------------------------------+---------+
+|Column             |Values          |Description                                 |Source   |
++===================+================+============================================+=========+
+|row_count          |Integer         |api response count (different values per    |api      |
+|                   |                |site), dropped from output                  |         |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Id           |Integer         |Numerical site code                         |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Name         |Character       |Contextual site info, dropped from output   |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Description  |Factor          |Motorway location                           |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Longitude    |Floating Point  |Coordinate data                             |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Latitude     |Floating Point  |Coordinate data                             |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Status       |Character       |Active / inactive                           |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|type               |Character       |Site type: MIDAS, TAME or TMU               |pipeline |
++-------------------+----------------+--------------------------------------------+---------+
+|direction          |Character       |Compass direction of traffic                |pipeline |
++-------------------+----------------+--------------------------------------------+---------+
+|easting            |Integer         |Coordinate data                             |pipeline |
++-------------------+----------------+--------------------------------------------+---------+
+|northing           |Integer         |Coordinate data                             |pipeline |
++-------------------+----------------+--------------------------------------------+---------+
+
+### Join Integrity
+
+The `sites` DataFrame is <strong class="navy">left joined</strong> to the `combo` DataFrame. For more details, please see the [dplyr join documentation](https://dplyr.tidyverse.org/reference/join.html). The dplyr join functions are analagous to SQL joins.
+
+<strong class="navy"> Anti join</strong> is used if null matches in the site IDs are detected. This would mean that site IDs within the `combo` DataFrame had no matching site ID within the `sites` DataFrame. If there are any null matches detected, the rows from the `sites` DataFrame are cached for reporting in the `site_report`.
+
+***
+***
+
 
 ## Download the Pipeline
 
