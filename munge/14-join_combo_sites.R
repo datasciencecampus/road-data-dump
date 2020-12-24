@@ -1,8 +1,6 @@
 "Purpose of script:
 join readings and sites
 "
-wrap_up()
-
 info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 gc()
 # join the site details to the sensor output on site ID, dropping 2 columns from the
@@ -13,7 +11,6 @@ combo <- left_join(combo, sites[, -(c(1,3))], by = c("site_id" = "sites.Id"))
 # clean up leaving readings only
 rm(list = c(
   "sites",
-  "mapping",
   "direction",
   "easting_northing"
 ))

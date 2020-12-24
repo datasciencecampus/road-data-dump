@@ -15,6 +15,12 @@ report_start <- Sys.time()
 ncores <- detectCores()
 # make a cluster with the number of cores found
 cl <- makeCluster(ncores)
+
+# log cluster details
+
+
+
+
 # export dependencies to the clusters
 clusterExport(cl, c("all_urls", "user_details"))
 # load required libraries in the clusters
@@ -29,6 +35,8 @@ request_results <- parLapply(cl, all_urls, function(i) {
 # kill the cluster
 stopCluster(cl)
 # parallel ----------------------------------------------------------------
+
+
 
 # logging parallel output -------------------------------------------------
 n_urls <- length(all_urls)
@@ -59,13 +67,23 @@ info(my_logger,
 request_results <- handle_missing(request_results)
 
 
-
 # tidy up -----------------------------------------------------------------
 
 rm(list = c("all_urls", "n_urls", "n_results", "cl", "ncores"))
 
 
-
+# cluster report ----------------------------------------------------------
+# check environment for presence of cl, indicating shutdown was not successful
+if("cl" %in% ls()){
+  # log issue
+  warn(my_logger, "Cluster persisted following stopCluster() call")
+  # pause execution for 10s
+  Sys.sleep(10)
+  # retry the stop
+  stopCluster(cl)
+  # remove the cluster
+  rm(cl)
+}
 
 # memory report -----------------------------------------------------------
 

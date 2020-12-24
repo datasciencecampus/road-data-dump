@@ -4,9 +4,12 @@
 
 ### Changelog
 
+* Log cluster details as failed to stop on prior run
+
 ### Backlog
 
 * Convert code to using joins with join interrogation
+* Review extract_eastnor function
 * DF insight for combo: review print statements for logging.
 * Tidy up logs
 * handle_missing function requires unit testing.
