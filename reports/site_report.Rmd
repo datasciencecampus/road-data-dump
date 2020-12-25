@@ -23,7 +23,6 @@ source("../func/functions.R")
 
 # Load in all RDS files found in the cache folder
 assign_rds("../cache/")
-  
 ```
 
 
@@ -205,7 +204,7 @@ datatable(tmu_204s, rownames = FALSE)
 
 ```{r include=FALSE}
 # tidy up
-rm(list = c("tame", "tame_204s"))
+rm(list = c("tmu", "tmu_204s"))
 
 ```
 
@@ -215,6 +214,17 @@ rm(list = c("tame", "tame_204s"))
 
 For more detail on the join approach used within this pipeline, please consult the [pipeline documentation placeholder link](somelink#dataprocessing).
 
+If any output appears within this section, it indicates that there are readings within the `combo` DataFrame that have no matching site information in the `sites` DataFrame.
+
+```{r, echo=FALSE}
+# if nullmatch_combo is found, render it to datatable
+if("nullmatch_combo" %in% ls()){
+  datatable(nullmatch_combo, rownames = FALSE)
+} else {
+  print("No null matches were found in the combo dataframe this run.")
+}
+
+```
 
 
 
