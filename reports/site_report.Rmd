@@ -19,7 +19,7 @@ library(DT)
 source("../func/functions.R")
 ```
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 
 # Load in all RDS files found in the cache folder
 assign_rds("../cache/")
@@ -212,4 +212,10 @@ rm(list = c("tame", "tame_204s"))
 ***
 
 ## Join Integrity
+
+For more detail on the join approach used within this pipeline, please consult the [pipeline documentation placeholder link](somelink#dataprocessing).
+
+
+
+
 

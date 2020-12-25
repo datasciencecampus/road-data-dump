@@ -17,8 +17,17 @@ if(length(null_matches) > 0){
                         paste0(null_matches, collapse = ", ")))
   # anti-join combo and output for site_report
   nullmatch_combo <- anti_join(combo, sites, by = c("site_id" = "sites.Id"))
-  saveRDS(nullmatch_combo, "cache/nullmatches.RDS")
+  saveRDS(nullmatch_combo, "cache/nullmatch_combo.RDS")
 }
+
+"
+null matches in sites, NB not as important as null matches in combo, as
+many of these will be due to HTTP 204: empty response. Therefore, not 
+currently pursued. If needed, sites$sites.Id could be checked against
+matches in c(combo$site_id, cache/site_Id_204s.rds), this rds is created
+upstream wihtin this pipeline though.
+"
+
 
 
 # execute join ------------------------------------------------------------

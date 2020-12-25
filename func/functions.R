@@ -407,8 +407,14 @@ assign_objects <- function(filesincache) {
   obj_name <- sapply(str_split(filesincache, "\\."), `[[`, 1)
   # print path to file
   filepath <- paste0("../cache/", filesincache)
+  
+  # check the file exists, if so read in and assign
+  if(file.exists(filepath)){
   # assign object to global environment
   assign(obj_name, readRDS(filepath), envir = .GlobalEnv)
+  # print a confirmation statement to console
+  print(paste("Assigned object", obj_name))
+  }
 }
 
 
