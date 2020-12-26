@@ -4,7 +4,6 @@ Get daily reports for all discovered site Ids
 "
 info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 
-
 # GET daily reports -------------------------------------------------------
 info(my_logger, "Duration of all site ID daily report request")
 report_start <- Sys.time()

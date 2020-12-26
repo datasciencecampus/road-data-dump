@@ -380,18 +380,40 @@ direction <- function(x) {
 
 # 13-extract_eastnor.R ----------------------------------------------------
 
+# old eastnor function ----------------------------------------------------
+# # extract easting and northing matrix
+# easting_northing <- function(x) {
+#   # find the pattern locations
+#   m <- regexpr("GPS Ref: [0-9]+;[0-9]+", x, perl = TRUE)
+#   # find the matches, remove anything other than coord vals, split by ";", extract as a 2 col matrix
+#   matches <- matrix(unlist(strsplit(sub("^.*: ", "", regmatches(x, m)), ";")), ncol = 2, byrow = T)
+#   # line to handle negative indices, replacing with NAs
+#   matches <- matches[ifelse(m > 0, cumsum(ifelse(m > 0, 1, 0)), NA), ]
+#   # column names for the matrix
+#   colnames(matches) <- c("easting", "northing")
+#   matches
+# }
+
+# new eastnor function ----------------------------------------------------
+
 # extract easting and northing matrix
 easting_northing <- function(x) {
-  # find the pattern locations
-  m <- regexpr("GPS Ref: [0-9]+;[0-9]+", x, perl = TRUE)
-  # find the matches, remove anything other than coord vals, split by ";", extract as a 2 col matrix
-  matches <- matrix(unlist(strsplit(sub("^.*: ", "", regmatches(x, m)), ";")), ncol = 2, byrow = T)
-  # line to handle negative indices, replacing with NAs
-  matches <- matches[ifelse(m > 0, cumsum(ifelse(m > 0, 1, 0)), NA), ]
+  
+  # extract coord vals, split by ";", extract as a 2 col matrix
+  matches <- str_split(str_extract(string = x,
+                                   # look behind regex, don't include "GPS Ref: " in result
+                                   pattern = "(?<=GPS Ref: )[0-9]+;[0-9]+"),
+                       # split string on ";", simplify to a matrix
+                       pattern = ";", n = 2, simplify = TRUE)
+  
+  # Unmatched lines have left "", replace with NAs
+  matches <- na_if(matches, "")
   # column names for the matrix
   colnames(matches) <- c("easting", "northing")
-  matches
+  return(matches)
 }
+
+
 # End of 13-extract_eastnor.R ----------------------------------------------------
 
 

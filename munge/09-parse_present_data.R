@@ -7,7 +7,6 @@ assign site_id column form pattern matching siteID query parameter in response u
 info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
 
 
-
 # parallel ----------------------------------------------------------------
 # Error encountered: writing to object.
 # Commented out for future development.
