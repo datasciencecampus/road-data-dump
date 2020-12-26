@@ -161,6 +161,17 @@ memory_report <- function() {
 # End of memory_report -----------------------------------------------------------
 
 
+
+# current_file ------------------------------------------------------------
+
+current_file <- function(){
+  # get last element of this.path()
+  sapply(str_split(this.path(), pattern = "\\\\"), tail, 1)
+}
+
+# End of current_file ------------------------------------------------------------
+
+
 # 05-GET_sitetypes.R handle_query ------------------------------------------------------------
 
 
@@ -205,7 +216,7 @@ handle_df <- function(df_name) {
   info(my_logger, paste0("###### DF insight for ", substitute(df_name), "######"))
   info(my_logger, paste0("Number of rows: ", nrow(df_name)))
   info(my_logger, paste0("Number of columns: ", ncol(df_name)))
-  info(my_logger, paste0("Names of columns: ", names(df_name)))
+  info(my_logger, paste0("Names of columns: ", paste(names(df_name), collapse = ", ")))
   info(my_logger, paste0(
     "Count of NAs in all columns: ",
     capture.output(

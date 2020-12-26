@@ -2,7 +2,7 @@
 Purpose of script:
 Knit site report markdown and wrap up pipeline
 "
-info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
+info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # label test run site reports by filename
 if(test_run == TRUE){

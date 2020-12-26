@@ -2,7 +2,8 @@
 Purpose of script:
 Stack listed data into combo data table.
 "
-info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
+info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+
 
 combo <- list.stack(report_data, data.table = TRUE)
 

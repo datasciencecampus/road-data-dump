@@ -2,7 +2,7 @@
 Append all sites
 "
 
-info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
+info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # create a type column and assign 'midas' as the value
 site_midas$type <- "midas"

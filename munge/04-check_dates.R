@@ -4,7 +4,7 @@ Check input dates and break early if:
 * end date is earlier than start date
 * not a viable date.
 "
-info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
+info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # create daterange --------------------------------------------------------
 

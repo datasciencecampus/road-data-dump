@@ -6,7 +6,7 @@ Will need:
 * start date
 * end date
 "
-info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
+info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # Start Date --------------------------------------------------------------
 

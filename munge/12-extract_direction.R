@@ -1,7 +1,7 @@
 "Purpose of script:
 Extract direction and string cleansing
 "
-info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
+info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 # extracting direction ----------------------------------------------------
 
 sites$direction <- direction(sites$sites.Name)

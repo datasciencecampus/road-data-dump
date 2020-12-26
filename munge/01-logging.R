@@ -27,6 +27,7 @@ my_logger <- log4r::logger(
 # new log entry -----------------------------------------------------------
 
 info(my_logger, message = "###################New Run#########################")
+info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 system_deets <- Sys.info()
 

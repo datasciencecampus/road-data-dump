@@ -8,7 +8,7 @@ Returns the following for Midas, Tame and TMU:
 Output of this script is the equivalent of the site.tame, site.midas & 
 site.tmu csvs.
 '
-info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
+info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # site.midas --------------------------------------------------------------
 MIDAS_qstring <- paste0(ENDPOINT, RESOURCES[1], "/1/sites")

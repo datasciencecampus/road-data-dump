@@ -3,7 +3,7 @@ Purpose of script:
 Step 5.Get all the site IDs.
 This is achieved by concatenating siteIds from all 3 site dataframes
 "
-info(my_logger, paste0("#############", "Start of", this.path(), "#############"))
+info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # if test run, use only first 5 siteIds from midas
 if (test_run == TRUE) {
