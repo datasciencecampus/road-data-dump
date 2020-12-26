@@ -13,6 +13,7 @@ Also locally available in `./docs/index.html`.
 * Documentation updated to include data processing info
 * Update site_report with product of anti_join if exists
 * Review extract_eastnor function
+* Tidy up logs
 
 ### Version 1.0
 

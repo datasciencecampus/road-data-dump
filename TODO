@@ -5,7 +5,6 @@
 ### Backlog
 
 * DF insight for combo: review print statements for logging.
-* Tidy up logs
 * handle_missing function requires unit testing.
 * Unit testing all scripts
 * Implement a retry for any internal server errors (HTTP status code 5**), script 07-GET_daily_reports.R stores these as retry_urls

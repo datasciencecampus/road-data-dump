@@ -27,6 +27,12 @@ my_logger <- log4r::logger(
 # new log entry -----------------------------------------------------------
 
 info(my_logger, message = "###################New Run#########################")
+
+# source func/functions.R -------------------------------------------------
+
+# import custom functions
+source("func/functions.r")
+
 info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 system_deets <- Sys.info()
@@ -50,11 +56,6 @@ info(my_logger, paste("Effective Username:", system_deets[[8]]))
 # capture session info
 info(my_logger, capture.output(sessionInfo()))
 
-
-# source func/functions.R -------------------------------------------------
-
-# import custom functions
-source("func/functions.r")
 
 # tidy up -----------------------------------------------------------------
 
