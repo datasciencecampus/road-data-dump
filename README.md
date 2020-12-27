@@ -15,6 +15,7 @@ Also locally available in `./docs/index.html`.
 * Review extract_eastnor function
 * Tidy up logs
 * Additional testing for appended sites DF
+* Testing handle_missing() function.
 
 ### Version 1.0
 

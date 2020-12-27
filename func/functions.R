@@ -233,7 +233,7 @@ handle_df <- function(df_name) {
 
 
 # 08-Get_daily_reports.R  handle_missing ----------------------------------
-
+GET_results <- request_results
 
 handle_missing <- function(GET_results) {
 
@@ -253,17 +253,17 @@ handle_missing <- function(GET_results) {
   
   all_queried_siteIds <- sapply(
     all_urls,
+    # extract just the siteIds, simplify to a vector
+    # character match tested on https://regex101.com/ for varying digit sequences
+    # pulls id from string, lookbehind (?<=) and look ahead (?=) so that
+    # "sites=" and "&" is not included in the match
+    # [0-9]+ matches any sequence of numbers with different lengths
     function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")
   )
   # write to cache for reporting
   saveRDS(all_queried_siteIds, "cache/all_queried_siteIds.rds")
 
-
-  # extract just the siteIds, simplify to a vector
-  # character match tested on https://regex101.com/ for varying digit sequences
-  # pulls id from string, lookbehind (?<=) and look ahead (?=) so that
-  # "sites=" and "&" is not included in the match
-  # [0-9]+ matches any sequence of numbers with different lengths
+# extract the 204 responses site IDs
   site_Id_204s <- sapply(
     url_204s,
     function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")
@@ -278,13 +278,15 @@ handle_missing <- function(GET_results) {
     url_errors,
     function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")
   )
+  # count the number of errors
+  number_errors <- length(site_Id_errors)
+  
   # write to cache for reporting if errors are detected
-  if(length(site_Id_errors) >= 1) {
+  if(number_errors > 0) {
   saveRDS(site_Id_errors, "cache/site_Id_errors.rds")
   }
   
-  # count the number of errors
-  number_errors <- length(site_Id_errors)
+
 
   # find urls that are not responsible for 204 statuses or errors
   urls_not204 <- setdiff(all_urls, c(url_204s, url_errors))
@@ -292,6 +294,21 @@ handle_missing <- function(GET_results) {
   # filter the request results based on the above. Only these will be parsed.
   reqs_not_204 <- list.filter(GET_results, url %in% urls_not204)
 
+  
+
+# test number of IDs ------------------------------------------------------
+  if(number_urls != number_204s + number_errors + length(urls_not204)) {
+    warn(my_logger, paste("Problem found at", current_file()))
+    warn(my_logger, "Checking total url count against 200s, 204s and errors")
+    warn(my_logger, paste("Count of all urls is", number_urls))
+    warn(my_logger, paste("Count of 200s, 204s & errors is",
+                          number_204s + number_errors + length(urls_not204)))
+    warn(my_logger, "May indicate response codes not currently tested for. Check logs!")
+  }
+
+  
+  
+  
   # create filenames --------------------------------------------------------
 
 
