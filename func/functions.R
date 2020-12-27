@@ -109,31 +109,6 @@ adj_file_nos <- function(target, directory = "munge", action = "up") {
 
 # End of adj_file_nos ------------------------------------------------------------
 
-# wrap_up -----------------------------------------------------------------
-
-wrap_up <- function() {
-
-  # calculate elapsed time
-  elapsed <- Sys.time() - start_time
-  # # add to logfile
-  info(my_logger, "Script executed. Duration: ")
-  info(my_logger, capture.output(round(elapsed, digits = 3)))
-
-  # write all lines to logs/logfile
-  readLines(my_logfile)
-
-  # sound alert when script completes
-  beepr::beep("coin")
-
-  # Manually stop execution while working on api request
-  stop(paste("wrap up at", this.path()))
-}
-
-
-
-# End of wrap_up -----------------------------------------------------------------
-
-
 # memory_report -----------------------------------------------------------
 
 memory_report <- function() {
@@ -160,8 +135,6 @@ memory_report <- function() {
 
 # End of memory_report -----------------------------------------------------------
 
-
-
 # current_file ------------------------------------------------------------
 
 current_file <- function(){
@@ -170,6 +143,30 @@ current_file <- function(){
 }
 
 # End of current_file ------------------------------------------------------------
+
+# wrap_up -----------------------------------------------------------------
+
+wrap_up <- function() {
+  
+  # calculate elapsed time
+  elapsed <- Sys.time() - start_time
+  # # add to logfile
+  info(my_logger, "Script executed. Duration: ")
+  info(my_logger, capture.output(round(elapsed, digits = 3)))
+  
+  # write all lines to logs/logfile
+  readLines(my_logfile)
+  
+  # sound alert when script completes
+  beepr::beep("coin")
+  
+  # Manually stop execution while working on api request
+  stop(paste("wrap up at", current_file()))
+}
+
+# End of wrap_up -----------------------------------------------------------------
+
+
 
 
 # 05-GET_sitetypes.R handle_query ------------------------------------------------------------
