@@ -231,9 +231,37 @@ handle_df <- function(df_name) {
 # end of 05-GET_sitetypes.R handle_query ------------------------------------------------------------
 
 
+# 08-Get_daily_reports.R handle_errors ------------------------------------
+# log any errors detected, if any are status code 500 to 599, assign a vector of retry_urls to
+# global environment
+handle_errors <- function(error_responses){
+  warn(my_logger, "Errors detected in api responses")
+  warn(my_logger, "Errors urls follow:")
+  warn(my_logger, paste(unlist(list.select(error_responses, url)), collapse = "\n"))
+  
+  # filter bad requests
+  bad_requests <- list.filter(error_responses, status_code >= 400 && status_code <= 499)
+  if(length(bad_requests) > 0) {
+  warn(my_logger, "Bad requests found.")
+  warn(my_logger, "Bad request urls follow:")
+  warn(my_logger, paste(unlist(list.select(bad_requests, url)), collapse = "\n"))
+  }
+  
+  # filter internal api errors
+  internal_errors <- list.filter(error_responses, status_code >= 500 && status_code <= 599)
+  if(length(internal_errors) > 0) {
+    warn(my_logger, "Internal api errors found.")
+    warn(my_logger, "Urls to retry:")
+    retry_these <- unlist(list.select(internal_errors, url))
+    warn(my_logger, paste(retry_these, collapse = "\n"))
+    assign("retry_urls", retry_these, envir = .GlobalEnv)
+  }
+}
+
+# 08-Get_daily_reports.R handle_errors ------------------------------------
+
 
 # 08-Get_daily_reports.R  handle_missing ----------------------------------
-GET_results <- request_results
 
 handle_missing <- function(GET_results) {
 
@@ -243,9 +271,17 @@ handle_missing <- function(GET_results) {
   # select just the url from these null content responses
   url_204s <- unlist(list.select(response_204s, url))
   
-
   # catch all errors too
-  url_errors <- list.filter(GET_results, status_code >= 400 && status_code <= 599)
+  api_errors <- list.filter(GET_results, status_code >= 400 && status_code <= 599)
+  
+  # log any errors detected, if any are status code 500 to 599, assign a vector of retry_urls to
+  # global environment
+  if(length(api_errors >0)){
+  handle_errors(api_errors)
+  }
+  # urls for errors
+  url_errors <- unlist(list.select(api_errors, url))
+  
   
   # select all urls
   all_urls <- unlist(list.select(GET_results, url))

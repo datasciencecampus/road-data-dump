@@ -15,11 +15,6 @@ ncores <- detectCores()
 # make a cluster with the number of cores found
 cl <- makeCluster(ncores)
 
-# log cluster details
-
-
-
-
 # export dependencies to the clusters
 clusterExport(cl, c("all_urls", "user_details"))
 # load required libraries in the clusters
@@ -34,8 +29,6 @@ request_results <- parLapply(cl, all_urls, function(i) {
 # kill the cluster
 stopCluster(cl)
 # parallel ----------------------------------------------------------------
-
-
 
 # logging parallel output -------------------------------------------------
 n_urls <- length(all_urls)
