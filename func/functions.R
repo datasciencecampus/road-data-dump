@@ -402,7 +402,26 @@ handle_missing <- function(GET_results) {
 # End of 08-Get_daily_reports.R  handle_missing ----------------------------------
 
 
-# 09-parse_present_data.R --------------------------------------------------
+# 09-retry_internal_errors.R ----------------------------------------------
+slow_retry <- function(urls){
+  Sys.sleep(0.5)
+  GET(url = urls, user_agent(user_details))
+}
+
+slower_retry <- function(urls){
+  Sys.sleep(1)
+  GET(url = urls, user_agent(user_details))
+}
+
+slowest_retry <- function(urls){
+  Sys.sleep(3)
+  GET(url = urls, user_agent(user_details))
+}
+
+# End of 09-retry_internal_errors.R ----------------------------------------------
+
+
+# 10-parse_present_data.R --------------------------------------------------
 
 handle_report <- function(GET_result) {
 
@@ -425,9 +444,9 @@ handle_report <- function(GET_result) {
   return(listed_JSON$Rows)
 }
 
-# End of 09-parse_present_data.R --------------------------------------------------
+# End of 10-parse_present_data.R --------------------------------------------------
 
-# 12-extract_direction.R --------------------------------------------------
+# 13-extract_direction.R --------------------------------------------------
 
 direction <- function(x) {
   # ensure output is lowered
@@ -437,9 +456,9 @@ direction <- function(x) {
   )
 }
 
-# End of 12-extract_direction.R --------------------------------------------------
+# End of 13-extract_direction.R --------------------------------------------------
 
-# 13-extract_eastnor.R ----------------------------------------------------
+# 14-extract_eastnor.R ----------------------------------------------------
 
 # old eastnor function ----------------------------------------------------
 # # extract easting and northing matrix
@@ -475,10 +494,10 @@ easting_northing <- function(x) {
 }
 
 
-# End of 13-extract_eastnor.R ----------------------------------------------------
+# End of 14-extract_eastnor.R ----------------------------------------------------
 
 
-# 17-report.R -------------------------------------------------------------
+# 18-report.R -------------------------------------------------------------
 
 
 # detect all rds files in cache
@@ -509,4 +528,4 @@ assign_rds <- function(my_path){
   }
 }
 
-# End of 17-report.R -------------------------------------------------------------
+# End of 18-report.R -------------------------------------------------------------
