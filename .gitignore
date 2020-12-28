@@ -18,9 +18,9 @@ cache/*.csv
 cache/*.Rdata
 cache/*.hash
 output_data/*.csv
-dump.sh_data/
-old_data/
-old_output_data/
+output_data/*.txt
+
+
 
 
 ###shell scripts###

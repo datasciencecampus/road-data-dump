@@ -202,7 +202,7 @@ The <strong class="navy">log file.txt</strong> is important if you encounter an 
 
  
 
-1. Memory allocation - 20GB of memory is requested for use in the R session. The script will stop execution if this is not available. 1 month of data tends to require approximately 10 to 11 GB of memory allocation to process.
+1. Memory allocation - 30GB of memory is requested for use in the R session. The script will stop execution if this is not available. 1 month of data tends to require approximately 10 to 11 GB of memory allocation to process.
 
 2. Internet connection - 1 month of data takes approximately 1.25 hours on a connection averaging 60 mbps download, 20 mbps upload.
 
