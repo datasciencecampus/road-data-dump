@@ -4,7 +4,6 @@
 
 ### Backlog
 
-* Unit testing all scripts.
 * Tidy up environment from final sequential scripts forwards.
 * Implement UI for setting query parameters.
 * Remove all missing report.txt logic or move to logs.
