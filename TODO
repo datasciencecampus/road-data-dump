@@ -6,7 +6,6 @@
 
 * Unit testing all scripts.
 * Tidy up environment from final sequential scripts forwards.
-* Implement a retry for any internal server errors (HTTP status code 5**), script 07-GET_daily_reports.R stores these as retry_urls.
 * Implement UI for setting query parameters.
 * Remove all missing report.txt logic or move to logs.
 * Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off.

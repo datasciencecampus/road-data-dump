@@ -16,6 +16,7 @@ Also locally available in `./docs/index.html`.
 * Tidy up logs
 * Additional testing for appended sites DF
 * Testing handle_missing() function.
+* Implement a retry for any internal server errors (HTTP status code 500 to 599)
 
 ### Version 1.0
 
