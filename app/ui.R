@@ -6,25 +6,24 @@ Produce a UI to assist users in setting query parameters and running pipeline
 source("dependencies.R")
 
 ui <- fluidPage(
-    # Use theme to style with custom css
-    theme = "./style/style.css",
     # include the cicerone guide & dependencies
     use_cicerone(),
     # set content language for screen reader accessibility
     tags$head(HTML("<html lang='en'>"),
-              includeCSS("./style/style.css")),
+              includeCSS("www/style/style.css")),
+
+# title -------------------------------------------------------------------
     # set page title for accessibility
     titlePanel(title = tags$header(
         class = "banner", tags$h1(
             # app name 
             tags$strong("Road Data Pipeline"), id = "appname"),
-        # github link
-        tags$a(href = "https://datasciencecampus.github.io/road-data-pipeline-documentation/",
-               target='_blank',
-               style='float:right',
-               tags$strong("View Documentation"),
-               id = "sourcecode",
-               class = "source")),
+
+# DSC logo ----------------------------------------------------------------
+
+        tags$img(src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right"),
+        
+), # end of header
         
         windowTitle = "Set Pipeline Parameters"),
     
@@ -70,9 +69,7 @@ ui <- fluidPage(
 
 # execute the pipeline ----------------------------------------------------
 
-                     tags$br(),
-                     tags$hr(),
-                     tags$h3(id = "execute_title", "Step 4: Execute The Join!",
+                     tags$h3(id = "execute_title", "Run the pipeline.",
                              actionButton(
                                  inputId = "execute", label = "Go!", icon = icon("play-circle")))
                      
@@ -81,7 +78,15 @@ ui <- fluidPage(
         
         
         mainPanel(
-            width = 8
+            width = 8,
+            # github link
+            tags$a(href = "https://datasciencecampus.github.io/road-data-pipeline-documentation/",
+                   target='_blank',
+                   style='float:right',
+                   tags$strong("View Documentation"),
+                   id = "sourcecode",
+                   class = "source"),
+            tags$img(src = "Traffic_Jam_-_geograph.org.uk_-_391642.jpg")
                         
                         
         ) # end of mainPanel
