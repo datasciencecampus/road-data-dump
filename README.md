@@ -6,7 +6,9 @@ Also locally available in `./docs/index.html`.
 
 ## Changelog
 
-## Version 1.1
+### Version 1.2
+
+### Version 1.1
 
 * Log cluster details as failed to stop on prior run
 * Convert code to using joins with join interrogation
