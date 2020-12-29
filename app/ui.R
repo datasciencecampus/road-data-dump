@@ -18,6 +18,10 @@ ui <- fluidPage(
         class = "banner", tags$h1(
             # app name 
             tags$strong("Road Data Pipeline"), id = "appname"),
+        
+# tour button -------------------------------------------------------------
+        actionButton(inputId = "guide", label = "Take a tour"),
+        
 
 # DSC logo ----------------------------------------------------------------
 
@@ -35,48 +39,72 @@ ui <- fluidPage(
         # apply css styling to sidebar
         sidebarPanel(class = "sidebar",
                      width = 4,
-                     actionButton(inputId = "guide", label = "Take a tour"),
+                     
+# user Email --------------------------------------------------------------
+
+fluidRow(id = "Email",
+         tags$h3("Please provide your Email."),
+         helper(textInput(inputId = "userEmail",
+                          label = NULL,
+                          placeholder = "Enter your Email"),
+                type = "markdown", content = "email", colour = "#ce3487")
+         
+         ), # end of Email fluidrow
+
+fluidRow(id = "testing",
+         tags$h3("Test the pipeline?"),
+         helper(radioButtons(inputId = "testpipeline",
+                             label = NULL,
+                               choices = list("Testing" = TRUE,
+                                              "Not Testing" = FALSE), 
+                               selected = TRUE,inline = TRUE,width = "500px"),
+                type = "markdown", content = "test", colour = "#ce3487")
+         ),
+
+# start date --------------------------------------------------------------
+
                      fluidRow(id = "step1",
-                              tags$h3("Step 1. Select start date."),
-
-# select start date -------------------------------------------------------
-
+                              
+                              tags$h3("Select start date."),
+         
                               # shinyhelper start date
                               helper(
                                   dateInput(inputId = "start_date",
-                                            label = "Select a start date.",
-                                            format = "dd-mm-yyyy"),
+                                            label = NULL,
+                                            format = "dd-mm-yyyy",
+                                            value = "2020-09-01"),
                                   type = "markdown",
                                   content = "lhs",
                                   colour = "#ce3487"
-                              ),
+                              )),
 
-# select end date ---------------------------------------------------------
+# end date ----------------------------------------------------------------
 
-                              
-                              # shinyhelper end date
-                              helper(
-                                  dateInput(inputId = "end_date",
-                                            label = "Select an end date.",
-                                            format = "dd-mm-yyyy"),
-                                  type = "markdown",
-                                  content = "rhs",
-                                  colour = "#ce3487"
-                              )
-                     ),
-                     tags$hr(),
-                     
-
+                              fluidRow(id = "step2",
+                                       
+                                       tags$h3("Select end date."),
+                                       
+                                       # shinyhelper start date
+                                       helper(
+                                           dateInput(inputId = "end_date",
+                                                     label = NULL,
+                                                     format = "dd-mm-yyyy",
+                                                     value = "2020-09-01"),
+                                           type = "markdown",
+                                           content = "rhs",
+                                           colour = "#ce3487"
+                                       )),
 # execute the pipeline ----------------------------------------------------
 
-                     tags$h3(id = "execute_title", "Run the pipeline.",
-                             actionButton(
-                                 inputId = "execute", label = "Go!", icon = icon("play-circle")))
-                     
-                     
+fluidRow(
+    tags$h3("Run the pipeline.",
+            actionButton(inputId = "execute",
+                         label = "Go!",
+                         icon = icon("play-circle")))),
         ),# end of sidebarlayout
         
-        
+# main panel --------------------------------------------------------------
+
         mainPanel(
             width = 8,
             # github link
@@ -86,7 +114,8 @@ ui <- fluidPage(
                    tags$strong("View Documentation"),
                    id = "sourcecode",
                    class = "source"),
-            tags$img(src = "Traffic_Jam_-_geograph.org.uk_-_391642.jpg")
+            
+            textOutput("Email_check")
                         
                         
         ) # end of mainPanel

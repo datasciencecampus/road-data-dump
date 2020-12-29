@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
 
 p {
   padding-top: 5px;
@@ -46,14 +46,14 @@ h3 {
 #appname {
   display: inline-block;
   color: white;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Bungee Outline', cursive;
   padding-left: 20px;
   font-size: 40px;
 }
 
 #sourcecode {
   display: inline-block;
-  color: white;
+  color: #ce3487;
   padding-right: 5px;
   height: 10px;
   text-decoration: underline;
