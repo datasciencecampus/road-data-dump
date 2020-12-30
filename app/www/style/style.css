@@ -53,7 +53,7 @@ h3 {
 
 #sourcecode {
   display: inline-block;
-  color: #ce3487;
+  color: #003c58;
   padding-right: 5px;
   height: 10px;
   text-decoration: underline;
@@ -62,7 +62,7 @@ h3 {
 }
 
 #sourcecode:hover {
-  color: #003c58;
+  color: #ce3487;
 }
 
 #optional {

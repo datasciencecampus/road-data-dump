@@ -69,7 +69,7 @@ fluidRow(id = "testing",
          
                               # shinyhelper start date
                               helper(
-                                  dateInput(inputId = "start_date",
+                                  dateInput(inputId = "user_start",
                                             label = NULL,
                                             format = "dd-mm-yyyy",
                                             value = "2020-09-01"),
@@ -86,7 +86,7 @@ fluidRow(id = "testing",
                                        
                                        # shinyhelper start date
                                        helper(
-                                           dateInput(inputId = "end_date",
+                                           dateInput(inputId = "user_end",
                                                      label = NULL,
                                                      format = "dd-mm-yyyy",
                                                      value = "2020-09-01"),
@@ -115,7 +115,13 @@ fluidRow(
                    id = "sourcecode",
                    class = "source"),
             
-            textOutput("Email_check")
+            textOutput("Email_check"),
+            hr(),
+            textOutput("test_run"),
+            hr(),
+            textOutput("start_date"),
+            hr(),
+            textOutput("end_date")
                         
                         
         ) # end of mainPanel
