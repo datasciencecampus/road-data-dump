@@ -9,7 +9,7 @@ info(my_logger, paste0("############# ", "Start of ", current_file(), " ########
 
 # get only one report if testing
 if (test_run == TRUE) {
-  daterange <- "&start_date=01072019&end_date=02072019"
+  daterange <- "&start_date=01072019&end_date=01072019"
   all_urls <- paste0(
     ENDPOINT,
     RESOURCES[4],

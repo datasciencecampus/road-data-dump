@@ -35,11 +35,17 @@ shinyServer(function(input, output) {
     # output start date if input$testpipeline == FALSE
     # else output the static test parameter
     output$start_date <- renderText({
-        s_date_string <- if_else(condition = input$testpipeline == TRUE,
-                                 paste("Static test parameters used."),
-                                 paste(format(input$user_start, "%d%m%Y")))
+        if(input$testpipeline == TRUE){
+            s_date_string <- as.Date.character("01072019", "%d%m%Y")
+            ui_message_start <- paste("Static test parameters used:",
+                                    format(s_date_string, "%d-%b-%Y"))
+        } else{
+            s_date_string <- paste(format(input$user_start, "%d%m%Y"))
+            ui_message_start <- paste("Start date set as:", format(input$user_start, "%d-%b-%Y"))
+        }
+        
         saveRDS(s_date_string, "../cache/start_date.rds")
-        paste("Start date is set as:", s_date_string)
+        ui_message_start
     })
     
 
@@ -48,11 +54,17 @@ shinyServer(function(input, output) {
     # output end date if input$testpipeline == FALSE
     # else output the static test parameter
     output$end_date <- renderText({
-        e_date_string <- if_else(condition = input$testpipeline == TRUE,
-                                 paste("Static test parameters used."),
-                                 paste(format(input$user_end, "%d%m%Y")))
+        if(input$testpipeline == TRUE){
+            e_date_string <- as.Date.character("01072019", "%d%m%Y")
+            ui_message_end <- paste("Static test parameters used:",
+                                    format(e_date_string, "%d-%b-%Y"))
+        } else{
+            e_date_string <- paste(format(input$user_end, "%d%m%Y"))
+            ui_message_end <- paste("End date set as:", format(input$user_end, "%d-%b-%Y"))
+        }
+
         saveRDS(e_date_string, "../cache/end_date.rds")
-        paste("End date is set as:", e_date_string)
+        ui_message_end
     })
 
 })
