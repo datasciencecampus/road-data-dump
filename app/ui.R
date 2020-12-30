@@ -10,7 +10,10 @@ ui <- fluidPage(
     use_cicerone(),
     # set content language for screen reader accessibility
     tags$head(HTML("<html lang='en'>"),
-              includeCSS("www/style/style.css")),
+              # custom styling
+              includeCSS("www/style/style.css"),
+              # message handler
+              tags$script(src = "message-handler.js")),
 
 # title -------------------------------------------------------------------
     # set page title for accessibility
@@ -121,7 +124,9 @@ fluidRow(
             hr(),
             textOutput("start_date"),
             hr(),
-            textOutput("end_date")
+            textOutput("end_date"),
+            hr(),
+            htmlOutput("pipeline_status")
                         
                         
         ) # end of mainPanel

@@ -1,7 +1,7 @@
 source("dependencies.R")
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
 # Email_check -------------------------------------------------------------
 # produce Email text
@@ -66,5 +66,43 @@ shinyServer(function(input, output) {
         saveRDS(e_date_string, "../cache/end_date.rds")
         ui_message_end
     })
+    
+
+# run pipeline ------------------------------------------------------------
+    # default pipeline status
+    pipeline_status <- reactiveValues(outputText = "Pipeline inactive.")
+    
+    # run the pipeline on action button press
+    observeEvent(input$execute, {
+        # update pipeline status
+        pipeline_status$outputText <- "Pipeline initiated."
+        # need to find a way of delaying below to occur sequentially following action button press
+        source("../src/run-me.R")
+    })
+    
+    # continue to update pipeline status text
+    observe(output$pipeline_status <- renderText(HTML(pipeline_status$outputText)))
+    
+
+# browser message ---------------------------------------------------------
+    # send a browser message on press execute
+    observeEvent(input$execute, {
+        session$sendCustomMessage(type = 'testmessage',
+                                  message = 'Pipeline initiated.')
+    })
+    
+    
+# below not working as expected
+# eventReactive(output$pipeline_status == "Pipeline initiated.", {
+#     source("../src/run-me.R")
+#     })
+    
+
+    
+    
+    
+
+    
+    
 
 })

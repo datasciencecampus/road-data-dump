@@ -8,6 +8,12 @@ Also locally available in `./docs/index.html`.
 
 ### Version 1.2
 
+* Draft user interface added
+* user Email input
+* Test pipeline? checkbox
+* Date inputs
+* output all parameters to cache for pipeline
+
 ### Version 1.1
 
 * Log cluster details as failed to stop on prior run
