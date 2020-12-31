@@ -42,9 +42,9 @@ shinyServer(function(input, output, session) {
         } else{
             s_date_string <- paste(format(input$user_start, "%d%m%Y"))
             ui_message_start <- paste("Start date set as:", format(input$user_start, "%d-%b-%Y"))
+            saveRDS(s_date_string, "../cache/start_date.rds")
         }
         
-        saveRDS(s_date_string, "../cache/start_date.rds")
         ui_message_start
     })
     
@@ -61,9 +61,9 @@ shinyServer(function(input, output, session) {
         } else{
             e_date_string <- paste(format(input$user_end, "%d%m%Y"))
             ui_message_end <- paste("End date set as:", format(input$user_end, "%d-%b-%Y"))
+            saveRDS(e_date_string, "../cache/end_date.rds")
         }
 
-        saveRDS(e_date_string, "../cache/end_date.rds")
         ui_message_end
     })
     

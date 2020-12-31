@@ -48,7 +48,7 @@ ui <- fluidPage(
 # user Email --------------------------------------------------------------
 
 fluidRow(id = "Email",
-         tags$h3("Please provide your Email."),
+         tags$h4("Please provide your Email."),
          helper(textInput(inputId = "userEmail",
                           label = NULL,
                           placeholder = "Enter your Email"),
@@ -57,7 +57,7 @@ fluidRow(id = "Email",
          ), # end of Email fluidrow
 
 fluidRow(id = "testing",
-         tags$h3("Test the pipeline?"),
+         tags$h4("Test the pipeline?"),
          helper(radioButtons(inputId = "testpipeline",
                              label = NULL,
                                choices = list("Testing" = TRUE,
@@ -70,7 +70,7 @@ fluidRow(id = "testing",
 
                      fluidRow(id = "step1",
                               
-                              tags$h3("Select start date."),
+                              tags$h4("Select start date."),
          
                               # shinyhelper start date
                               helper(
@@ -87,7 +87,7 @@ fluidRow(id = "testing",
 
                               fluidRow(id = "step2",
                                        
-                                       tags$h3("Select end date."),
+                                       tags$h4("Select end date."),
                                        
                                        # shinyhelper start date
                                        helper(
@@ -102,10 +102,10 @@ fluidRow(id = "testing",
 # execute the pipeline ----------------------------------------------------
 
 fluidRow(
-    tags$h3("Run the pipeline.",
+    tags$h4("Run the pipeline.",
             actionButton(inputId = "execute",
                          label = "Go!",
-                         icon = icon("play-circle")))),
+                         icon = icon("play-circle"))))
         ),# end of sidebarlayout
         
 # main panel --------------------------------------------------------------

@@ -10,7 +10,8 @@ log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #
 
 # Start Date --------------------------------------------------------------
 
-start_date <- "01092020"
+# read ui output parameter
+start_date <- readRDS("cache/start_date.rds")
 
 # log query parameters set
 if (test_run == FALSE) {
@@ -19,7 +20,9 @@ if (test_run == FALSE) {
 
 # End Date ----------------------------------------------------------------
 
-end_date <- "30092020"
+# read ui output parameter
+end_date <- readRDS("cache/end_date.rds")
+
 # log query parameters set
 if (test_run == FALSE) {
   log4r::info(my_logger, paste("End date set: ", end_date))
@@ -27,7 +30,7 @@ if (test_run == FALSE) {
 
 # User agent -------------------------------------------------------------------
 
-user_email <- "richard.leyshon@ons.gov.uk"
+user_email <- readRDS("cache/user_Email.rds")
 
 agent_message <- "Parallel request of data for use in ONS, datasciencecampus, road-data-dump"
 
