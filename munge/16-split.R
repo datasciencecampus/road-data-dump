@@ -1,7 +1,7 @@
 "Purpose of script:
 Split files processed in prep.R by site
 "
-info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # split into midas,tame,tmu
 

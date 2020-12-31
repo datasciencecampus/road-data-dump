@@ -6,7 +6,7 @@ Will need:
 * start date
 * end date
 "
-info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # Start Date --------------------------------------------------------------
 
@@ -14,7 +14,7 @@ start_date <- "01092020"
 
 # log query parameters set
 if (test_run == FALSE) {
-  info(my_logger, paste("Start date set: ", start_date))
+  log4r::info(my_logger, paste("Start date set: ", start_date))
 }
 
 # End Date ----------------------------------------------------------------
@@ -22,7 +22,7 @@ if (test_run == FALSE) {
 end_date <- "30092020"
 # log query parameters set
 if (test_run == FALSE) {
-  info(my_logger, paste("End date set: ", end_date))
+  log4r::info(my_logger, paste("End date set: ", end_date))
 }
 
 # User agent -------------------------------------------------------------------
@@ -40,7 +40,7 @@ ENDPOINT <- "http://webtris.highwaysengland.co.uk/api/v1.0"
 
 RESOURCES <- c("/sitetypes", "/quality/daily", "/quality/overall", "/reports/daily")
 
-info(my_logger, paste0("api endpoint set as: ", ENDPOINT))
+log4r::info(my_logger, paste0("api endpoint set as: ", ENDPOINT))
 
 
 
@@ -49,7 +49,7 @@ info(my_logger, paste0("api endpoint set as: ", ENDPOINT))
 
 MAX_ROWS <- 40000
 
-info(my_logger, paste0("Maximum rows for each page in api request set to: ", MAX_ROWS))
+log4r::info(my_logger, paste0("Maximum rows for each page in api request set to: ", MAX_ROWS))
 
 
 

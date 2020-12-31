@@ -2,7 +2,7 @@
 Purpose of script: Configure environment
 
 "
-info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 # calculate start time for performance
 start_time <- Sys.time()
 
@@ -20,7 +20,7 @@ log4r::info(my_logger, if (memory.limit() >= newlimit) {
 })
 
 
-info(my_logger, print(paste0(
+log4r::info(my_logger, print(paste0(
   "Memory size prior to api request is ",
   memory.size()
 )))

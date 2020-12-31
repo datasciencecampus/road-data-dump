@@ -6,7 +6,7 @@ a named character vector `retry_urls` will be assigned to the
 .GlobalEnv, query these again more slowly and append back to
 `request_results` ready for parsing.
 "
-info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 
 # check for presence of retry_urls

@@ -1,7 +1,7 @@
 "Purpose of script:
 join readings and sites
 "
-info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 gc()
 
 

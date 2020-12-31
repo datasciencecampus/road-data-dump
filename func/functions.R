@@ -123,7 +123,7 @@ memory_report <- function() {
   thisfile <- tail(unlist(x, use.names = FALSE), n = 1)
 
   # log the used memory at this point
-  info(
+  log4r::info(
     my_logger,
     print(paste(
       "Memory size following",
@@ -151,8 +151,8 @@ wrap_up <- function() {
   # calculate elapsed time
   elapsed <- Sys.time() - start_time
   # # add to logfile
-  info(my_logger, "Script executed. Duration: ")
-  info(my_logger, capture.output(round(elapsed, digits = 3)))
+  log4r::info(my_logger, "Script executed. Duration: ")
+  log4r::info(my_logger, capture.output(round(elapsed, digits = 3)))
   
   # write all lines to logs/logfile
   readLines(my_logfile)
@@ -178,7 +178,7 @@ handle_query <- function(GET_result, resource, site) {
     log4r::info(my_logger, paste("Site", site, "queried url:", GET_result$url))
     log4r::info(my_logger, paste("Date of query:", GET_result$date))
     log4r::info(my_logger, paste("Query durations", capture.output(GET_result$times)))
-    info(my_logger, paste("Query status message:", http_status(GET_result)))
+    log4r::info(my_logger, paste("Query status message:", http_status(GET_result)))
     log4r::warn(my_logger, "The GET() request failed")
     log4r::warn(my_logger, paste("HTTP Status code:", GET_result$status_code))
   } else {
@@ -210,17 +210,17 @@ handle_query <- function(GET_result, resource, site) {
 
 
 handle_df <- function(df_name) {
-  info(my_logger, paste0("###### DF insight for ", substitute(df_name), "######"))
-  info(my_logger, paste0("Number of rows: ", nrow(df_name)))
-  info(my_logger, paste0("Number of columns: ", ncol(df_name)))
-  info(my_logger, paste0("Names of columns: ", paste(names(df_name), collapse = ", ")))
-  info(my_logger, paste0(
+  log4r::info(my_logger, paste0("###### DF insight for ", substitute(df_name), "######"))
+  log4r::info(my_logger, paste0("Number of rows: ", nrow(df_name)))
+  log4r::info(my_logger, paste0("Number of columns: ", ncol(df_name)))
+  log4r::info(my_logger, paste0("Names of columns: ", paste(names(df_name), collapse = ", ")))
+  log4r::info(my_logger, paste0(
     "Count of NAs in all columns: ",
     capture.output(
       sapply(df_name, function(x) sum(is.na(x)))
     )
   ))
-  info(my_logger, paste0(
+  log4r::info(my_logger, paste0(
     "Data types in all columns: ",
     capture.output(sapply(df_name, class))
   ))

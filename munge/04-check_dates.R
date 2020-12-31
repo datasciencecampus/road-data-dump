@@ -4,7 +4,7 @@ Check input dates and break early if:
 * end date is earlier than start date
 * not a viable date.
 "
-info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # create daterange --------------------------------------------------------
 
@@ -42,7 +42,7 @@ if (test_run == FALSE) {
   
   daterange <- paste0("&start_date=", start_date, "&end_date=", end_date)
   
-  info(my_logger, paste("daterange set as:", daterange))
+  log4r::info(my_logger, paste("daterange set as:", daterange))
   
   
   

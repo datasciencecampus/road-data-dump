@@ -2,9 +2,6 @@
 
 ### Backlog
 
-* User Interface for setting query parameters & executing pipeline.
-* need to find a way of delaying pipeline sourcing to occur sequentially following action button press
-* actionButton to execute run
 * bug test Email validation check - once successful status detected, is sticky.
 * adjust pipeline to read parameters from cache
 * Check all outputs have written with file.exists()

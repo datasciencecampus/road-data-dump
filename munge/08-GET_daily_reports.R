@@ -2,10 +2,10 @@
 function of script:
 Get daily reports for all discovered site Ids
 "
-info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # GET daily reports -------------------------------------------------------
-info(my_logger, "Duration of all site ID daily report request")
+log4r::info(my_logger, "Duration of all site ID daily report request")
 report_start <- Sys.time()
 
 
@@ -43,12 +43,12 @@ if(n_urls != n_results){
 
 # api req duration --------------------------------------------------------
 
-info(my_logger,
+log4r::info(my_logger,
      paste("Duration of report request: ", capture.output(Sys.time() - report_start)))
 
 
 # tally the status codes returned and log them
-info(my_logger,
+log4r::info(my_logger,
      capture.output(table(unlist(list.select(request_results, status_code)))))
 
 

@@ -77,11 +77,12 @@ shinyServer(function(input, output, session) {
         # update pipeline status
         pipeline_status$outputText <- "Pipeline initiated."
         # need to find a way of delaying below to occur sequentially following action button press
-        source("../src/run-me.R")
+        shinyjs::delay(ms = 500, expr =  source("../src/run-me.R"))
     })
     
     # continue to update pipeline status text
     observe(output$pipeline_status <- renderText(HTML(pipeline_status$outputText)))
+    
     
 
 # browser message ---------------------------------------------------------
@@ -90,19 +91,6 @@ shinyServer(function(input, output, session) {
         session$sendCustomMessage(type = 'testmessage',
                                   message = 'Pipeline initiated.')
     })
-    
-    
-# below not working as expected
-# eventReactive(output$pipeline_status == "Pipeline initiated.", {
-#     source("../src/run-me.R")
-#     })
-    
-
-    
-    
-    
-
-    
     
 
 })

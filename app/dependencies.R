@@ -7,6 +7,7 @@ House dependencies for application
 library(shiny)
 library(cicerone)
 library(shinyhelper)
+library(shinyjs)
 
 
 # check Email syntax ------------------------------------------------------

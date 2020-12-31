@@ -4,7 +4,7 @@ Parse JSON response and extract content for all responses that did not return an
 or did not return a 204: no content
 assign site_id column form pattern matching siteID query parameter in response url
 "
-info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 
 # parallel ----------------------------------------------------------------

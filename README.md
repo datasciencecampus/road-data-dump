@@ -8,11 +8,12 @@ Also locally available in `./docs/index.html`.
 
 ### Version 1.2
 
-* Draft user interface added
+* User Interface for setting query parameters & executing pipeline.
 * user Email input
-* Test pipeline? checkbox
-* Date inputs
-* output all parameters to cache for pipeline
+* Test pipeline toggle radio buttons.
+* Date inputs.
+* Output all parameters to cache for pipeline execution.
+* Action button to execute run.
 
 ### Version 1.1
 

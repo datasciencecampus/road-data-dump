@@ -8,6 +8,8 @@ source("dependencies.R")
 ui <- fluidPage(
     # include the cicerone guide & dependencies
     use_cicerone(),
+    # use shinyjs for delay of pipeline execution
+    useShinyjs(), 
     # set content language for screen reader accessibility
     tags$head(HTML("<html lang='en'>"),
               # custom styling
@@ -16,11 +18,11 @@ ui <- fluidPage(
               tags$script(src = "message-handler.js")),
 
 # title -------------------------------------------------------------------
-    # set page title for accessibility
+    # set page title as h1 header for accessibility
     titlePanel(title = tags$header(
         class = "banner", tags$h1(
             # app name 
-            tags$strong("Road Data Pipeline"), id = "appname"),
+            tags$strong("Road Data Pipeline v1.2"), id = "appname"),
         
 # tour button -------------------------------------------------------------
         actionButton(inputId = "guide", label = "Take a tour"),

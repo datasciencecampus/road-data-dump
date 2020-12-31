@@ -2,7 +2,7 @@
 Purpose of script:
 Knit site report markdown and wrap up pipeline
 "
-info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # label test run site reports by filename
 if(test_run == TRUE){
@@ -24,7 +24,7 @@ elapsed <- Sys.time() - start_time
 print(round(elapsed, digits = 3))
 
 
-info(my_logger, paste0("#############End of pipeline#############"))
+log4r::info(my_logger, paste0("#############End of pipeline#############"))
 
 
 # sound alert when script completes
