@@ -38,6 +38,31 @@ fwrite(tmu, tmu_filename, row.names = F, quote = F)
 # testing write status ----------------------------------------------------
 # test presence of output files and log
 
+# MIDAS write status
+if(file.exists(midas_filename)){
+  log4r::info(my_logger, "MIDAS file written.")
+  # output head of MIDAS for presentation in UI
+  saveRDS(head(midas, n = 10), file = "cache/midas_head.rds")
+  # log this write
+  if(file.exists("cache/midas_head.rds")){
+  log4r::info(my_logger, "MIDAS head written to cache.")
+  } else {
+    warn(my_logger, "MIDAS head not written to cache. Check logs.")
+  }
+} else{
+  warn(my_logger, "MIDAS file not found. Check logs.")
+}
 
+# TAME write status
+if(file.exists(tame_filename)){
+  log4r::info(my_logger, "TAME file written.")
+} else{
+  warn(my_logger, "TAME file not found. Check logs.")
+}
 
-
+# TMU write status
+if(file.exists(tmu_filename)){
+  log4r::info(my_logger, "TMU file written.")
+} else{
+  warn(my_logger, "TMU file not found. Check logs.")
+}
