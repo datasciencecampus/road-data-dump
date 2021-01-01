@@ -9,19 +9,35 @@ log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #
 dates_used <- paste(unlist(str_extract_all(daterange, "[0-9]+")), collapse = "to")
 suffix <- paste0(dates_used, ".csv")
 
-# write to file -----------------------------------------------------------
+
+# create filenames --------------------------------------------------------
+
 # if testing then prepend files with "test-run"
 
-if (test_run == TRUE) {
-  # write out csvs
-  fwrite(midas, paste0("output_data/test-midas", suffix), row.names = F, quote = F)
-  fwrite(tame, paste0("output_data/test-tame", suffix), row.names = F, quote = F)
-  fwrite(tmu, paste0("output_data/test-tmu", suffix), row.names = F, quote = F)
+if (test_run == TRUE){
+  # label files with 'test'
+  midas_filename <- paste0("output_data/test-midas", suffix)
+  tame_filename <- paste0("output_data/test-tame", suffix)
+  tmu_filename <- paste0("output_data/test-tmu", suffix)
 } else {
-  # if not testing, append filename with daterange
-  # write out csvs
-  fwrite(midas, paste0("output_data/midas", suffix), row.names = F, quote = F)
-  fwrite(tame, paste0("output_data/tame", suffix), row.names = F, quote = F)
-  fwrite(tmu, paste0("output_data/tmu", suffix), row.names = F, quote = F)
+  # if not testing, paste daterange to filename
+  midas_filename <- paste0("output_data/midas", suffix)
+  tame_filename <- paste0("output_data/tame", suffix)
+  tmu_filename <- paste0("output_data/tmu", suffix)
 }
+
+# write to file -----------------------------------------------------------
+
+# write out csvs
+fwrite(midas, midas_filename, row.names = F, quote = F)
+fwrite(tame, tame_filename, row.names = F, quote = F)
+fwrite(tmu, tmu_filename, row.names = F, quote = F)
+
+
+
+# testing write status ----------------------------------------------------
+# test presence of output files and log
+
+
+
 
