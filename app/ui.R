@@ -128,7 +128,10 @@ fluidRow(
             hr(),
             textOutput("end_date"),
             hr(),
-            htmlOutput("pipeline_status")
+            htmlOutput("pipeline_status"),
+            hr(),
+            tableOutput("midas_head"),
+            add_busy_spinner(spin = "fading-circle")
                         
                         
         ) # end of mainPanel

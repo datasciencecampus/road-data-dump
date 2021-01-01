@@ -8,6 +8,7 @@ library(shiny)
 library(cicerone)
 library(shinyhelper)
 library(shinyjs)
+library(shinybusy)
 
 
 # check Email syntax ------------------------------------------------------

@@ -2,13 +2,10 @@
 
 ### Backlog
 
-* Check all outputs have written with file.exists()
-* Cache rds df heads for presentation in UI
-* present df heads in UI on successful completion
-* loading bars
 * cicerone guide
 * shiny helper
 * Update documentation
+* Email auto complete
 * Date checks in script
 * Grey out elements when testing?
 * Daterange selection instead?
@@ -17,6 +14,7 @@
 * Implement UI for setting query parameters.
 * Remove all missing report.txt logic or move to logs.
 * Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off.
+* present df head in UI on successful completion
 
 
 

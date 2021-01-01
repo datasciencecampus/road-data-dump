@@ -590,6 +590,13 @@
       "Repository": "CRAN",
       "Hash": "b5510c50c7f31d453c385c7b460af2b9"
     },
+    "retry": {
+      "Package": "retry",
+      "Version": "0.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "2c0dc08f647e07b7b4ae55bd26dbfe03"
+    },
     "rlang": {
       "Package": "rlang",
       "Version": "0.4.9",
@@ -645,6 +652,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ee4ed72d7a5047d9e73cf922ad66e9c9"
+    },
+    "shinybusy": {
+      "Package": "shinybusy",
+      "Version": "0.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c38fc071d4def5e642c8dc34c3a082e4"
     },
     "shinyhelper": {
       "Package": "shinyhelper",

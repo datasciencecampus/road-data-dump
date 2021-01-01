@@ -16,6 +16,9 @@ Also locally available in `./docs/index.html`.
 * Action button to execute run.
 * Pipeline adjusted to read parameters from cache.
 * Only execute pipeline if user Email is validated.
+* Pipeline - check all outputs have written.
+* Cache MIDAS head if successfully written.
+* Spinner presents when server is busy.
 
 ### Version 1.1
 

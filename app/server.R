@@ -74,7 +74,6 @@ shinyServer(function(input, output, session) {
     # run the pipeline on action button press, if Email is validated.
     observeEvent(input$execute, {
         if(isValidEmail(input$userEmail) == TRUE){
-# browser message ---------------------------------------------------------
             # send a browser message on press execute
             observeEvent(input$execute, {
                 session$sendCustomMessage(type = 'testmessage',
@@ -82,6 +81,7 @@ shinyServer(function(input, output, session) {
                 })
         # update pipeline status
         pipeline_status$outputText <- "Pipeline initiated."
+
         # Use shinyjs::delay() to prevent source executing before confirmation messages
         delay(ms = 500, expr =  source("../src/run-me.R"))
         } else {
@@ -91,7 +91,6 @@ shinyServer(function(input, output, session) {
     
     # continue to update pipeline status text
     observe(output$pipeline_status <- renderText(HTML(pipeline_status$outputText)))
-    
     
 
 }) # end of server
