@@ -2,8 +2,6 @@
 
 ### Backlog
 
-* adjust pipeline to read parameters from cache
-* Only execute pipeline if user Email is validated
 * Check all outputs have written with file.exists()
 * Cache rds df heads for presentation in UI
 * present df heads in UI on successful completion

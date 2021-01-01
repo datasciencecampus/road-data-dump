@@ -14,6 +14,8 @@ Also locally available in `./docs/index.html`.
 * Date inputs.
 * Output all parameters to cache for pipeline execution.
 * Action button to execute run.
+* Pipeline adjusted to read parameters from cache.
+* Only execute pipeline if user Email is validated.
 
 ### Version 1.1
 

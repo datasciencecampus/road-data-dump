@@ -46,8 +46,7 @@ shinyServer(function(input, output, session) {
         }
         
         ui_message_start
-    })
-    
+    }) # end of output$start_date
 
 # end date ----------------------------------------------------------------
 
@@ -65,19 +64,29 @@ shinyServer(function(input, output, session) {
         }
 
         ui_message_end
-    })
+    }) # end of output$end_date
     
 
 # run pipeline ------------------------------------------------------------
     # default pipeline status
     pipeline_status <- reactiveValues(outputText = "Pipeline inactive.")
     
-    # run the pipeline on action button press
+    # run the pipeline on action button press, if Email is validated.
     observeEvent(input$execute, {
+        if(isValidEmail(input$userEmail) == TRUE){
+# browser message ---------------------------------------------------------
+            # send a browser message on press execute
+            observeEvent(input$execute, {
+                session$sendCustomMessage(type = 'testmessage',
+                                          message = 'Pipeline initiated.')
+                })
         # update pipeline status
         pipeline_status$outputText <- "Pipeline initiated."
-        # need to find a way of delaying below to occur sequentially following action button press
-        shinyjs::delay(ms = 500, expr =  source("../src/run-me.R"))
+        # Use shinyjs::delay() to prevent source executing before confirmation messages
+        delay(ms = 500, expr =  source("../src/run-me.R"))
+        } else {
+            pipeline_status$outputText <- "Pipeline not initiated. Please enter a valid Email address."
+        }
     })
     
     # continue to update pipeline status text
@@ -85,12 +94,4 @@ shinyServer(function(input, output, session) {
     
     
 
-# browser message ---------------------------------------------------------
-    # send a browser message on press execute
-    observeEvent(input$execute, {
-        session$sendCustomMessage(type = 'testmessage',
-                                  message = 'Pipeline initiated.')
-    })
-    
-
-})
+}) # end of server
