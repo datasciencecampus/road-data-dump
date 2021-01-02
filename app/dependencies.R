@@ -6,7 +6,6 @@ House dependencies for application
 # load packages -----------------------------------------------------------
 library(shiny)
 library(cicerone)
-library(shinyhelper)
 library(shinyjs)
 library(shinybusy)
 

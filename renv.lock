@@ -457,13 +457,6 @@
       "Repository": "CRAN",
       "Hash": "c38fc071d4def5e642c8dc34c3a082e4"
     },
-    "shinyhelper": {
-      "Package": "shinyhelper",
-      "Version": "0.3.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "baef117734d5bd59373a561a15168679"
-    },
     "shinyjs": {
       "Package": "shinyjs",
       "Version": "2.0.0",
@@ -484,13 +477,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "58a02ce0150652b96c044bc67a0df2e5"
-    },
-    "stackoverflow": {
-      "Package": "stackoverflow",
-      "Version": "0.7.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "83e6b28d1fe2bbb170e40139cada24e7"
     },
     "stringi": {
       "Package": "stringi",
