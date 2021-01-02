@@ -103,12 +103,15 @@ fluidRow(id = "runpipeline",
         mainPanel(id = "mainpanel",
             width = 8,
             # github link
-            tags$a(href = "https://datasciencecampus.github.io/road-data-pipeline-documentation/",
-                   target='_blank',
-                   style='float:right',
-                   tags$strong("View Documentation"),
-                   id = "sourcecode",
-                   class = "source"),
+            HTML('
+            <span id="codespan">
+            <a id="sourcecode" href="https://datasciencecampus.github.io/road-data-pipeline-documentation/">
+                    <strong>View Documentation</strong>
+                 </a>
+                 </span>
+                 '),
+            
+            
             tags$div(id = "emailcheck",
             textOutput("Email_check")
             ),

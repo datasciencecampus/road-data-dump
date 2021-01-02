@@ -88,7 +88,7 @@ h4 {
 }
 
 #mainpanel {
-  max-height: 475px;  
+  max-height: 475px;
 }
 
 #appname {
@@ -107,10 +107,15 @@ h4 {
   text-decoration: underline;
   font-family: Arial;
   font-size: 16px;
+  text-align: right;
 }
 
 #sourcecode:hover {
   color: #ce3487;
+}
+
+#codespan{
+  padding-left: 630px;
 }
 
 #optional {

@@ -2,10 +2,8 @@
 
 ### Backlog
 
-* cicerone guide
-* shiny helper
 * Update documentation
-* Date checks in script
+* Date checks in app
 * Grey out elements when testing?
 * Daterange selection instead?
 * bug test Email validation check - once successful status detected, is sticky.
