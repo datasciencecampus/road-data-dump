@@ -19,6 +19,7 @@ Also locally available in `./docs/index.html`.
 * Pipeline - check all outputs have written.
 * Cache MIDAS head if successfully written.
 * Spinner presents when server is busy.
+* Grey out date selection elements when testing.
 * Email field inputs can be recorded within a session.
 * Application guide added.
 

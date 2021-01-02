@@ -3,8 +3,7 @@
 ### Backlog
 
 * Update documentation
-* Date checks in app
-* Grey out elements when testing?
+* Date checks in app- daterange selection instead?
 * Daterange selection instead?
 * bug test Email validation check - once successful status detected, is sticky.
 * Tidy up environment from final sequential script forwards.
