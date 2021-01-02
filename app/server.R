@@ -11,7 +11,7 @@ shinyServer(function(input, output, session) {
             # use basic Email format check in dependencies.R
             need(expr = isValidEmail(input$userEmail),
                  # if invalid, output a warning to user
-                 message = paste(input$userEmail, "Email is invalid. Please Input a valid E-mail address"))
+                 message = paste(input$userEmail, "Email is invalid. Please Input a valid Email address"))
         ) #end of validate
         # if validated, save the text string for pipeline execution
         saveRDS(object = input$userEmail, file = "../cache/user_Email.rds")
@@ -47,6 +47,11 @@ shinyServer(function(input, output, session) {
         
         ui_message_start
     }) # end of output$start_date
+    
+    # enable/disable the input date parameter based on testing status
+    observe({
+        toggleState(id = "user_start", condition = input$testpipeline == FALSE)
+    })
 
 # end date ----------------------------------------------------------------
 
@@ -65,6 +70,11 @@ shinyServer(function(input, output, session) {
 
         ui_message_end
     }) # end of output$end_date
+    
+    # enable/disable the input date parameter based on testing status
+    observe({
+        toggleState(id = "user_end", condition = input$testpipeline == FALSE)
+    })
     
 
 # run pipeline ------------------------------------------------------------

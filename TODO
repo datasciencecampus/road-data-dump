@@ -2,10 +2,10 @@
 
 ### Backlog
 
+* Email auto complete - look into shinystore on github, prefer something on CRAN, HTML5 local store equiv, typeahead...
 * cicerone guide
 * shiny helper
 * Update documentation
-* Email auto complete
 * Date checks in script
 * Grey out elements when testing?
 * Daterange selection instead?
