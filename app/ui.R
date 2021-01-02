@@ -49,9 +49,12 @@ ui <- fluidPage(
 
 fluidRow(id = "Email",
          tags$h4("Please provide your Email."),
-         helper(textInput(inputId = "userEmail",
+         helper(selectizeInput(inputId = "userEmail",
                           label = NULL,
-                          placeholder = "Enter your Email"),
+                          #placeholder = "Enter your Email",
+                          options = list(create = TRUE,
+                                         placeholder = "Enter your Email"),
+                          choices = NULL),
                 type = "markdown", content = "email", colour = "#ce3487")
          
          ), # end of Email fluidrow
@@ -131,6 +134,7 @@ fluidRow(
             htmlOutput("pipeline_status"),
             hr(),
             tableOutput("midas_head"),
+
             add_busy_spinner(spin = "fading-circle")
                         
                         

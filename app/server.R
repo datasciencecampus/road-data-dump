@@ -84,6 +84,8 @@ shinyServer(function(input, output, session) {
     # run the pipeline on action button press, if Email is validated.
     observeEvent(input$execute, {
         if(isValidEmail(input$userEmail) == TRUE){
+            # save the email to responses directory
+            saveData(formData())
             # send a browser message on press execute
             observeEvent(input$execute, {
                 session$sendCustomMessage(type = 'testmessage',
@@ -101,6 +103,8 @@ shinyServer(function(input, output, session) {
     
     # continue to update pipeline status text
     observe(output$pipeline_status <- renderText(HTML(pipeline_status$outputText)))
-    
 
+
+    
+    
 }) # end of server

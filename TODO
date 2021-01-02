@@ -2,7 +2,6 @@
 
 ### Backlog
 
-* Email auto complete - look into shinystore on github, prefer something on CRAN, HTML5 local store equiv, typeahead...
 * cicerone guide
 * shiny helper
 * Update documentation
@@ -14,7 +13,8 @@
 * Implement UI for setting query parameters.
 * Remove all missing report.txt logic or move to logs.
 * Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off.
-* present df head in UI on successful completion
+* Persistent Email storage between sessions locally.
+* present df head in UI on successful completion.
 
 
 
