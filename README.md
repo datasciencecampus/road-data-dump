@@ -11,7 +11,7 @@ Also locally available in `./docs/index.html`.
 * User Interface for setting query parameters & executing pipeline.
 * user Email input
 * Test pipeline toggle radio buttons.
-* Date inputs.
+* Daterange input.
 * Output all parameters to cache for pipeline execution.
 * Action button to execute run.
 * Pipeline adjusted to read parameters from cache.

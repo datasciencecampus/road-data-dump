@@ -14,7 +14,7 @@ library(shinybusy)
 
 isValidEmail <- function(x) {
   grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>", as.character(x), 
-        ignore.case=TRUE)
+        ignore.case = TRUE)
 }
 
 # guide to application use using cicerone ---------------------------------
@@ -38,20 +38,13 @@ guide <- Cicerone$
     running, the pipeline is operational."
   )$
   step(
-    el = "s_date",
-    title = "Setting the start date.",
-    description = "Select the start date for your query.
-    This value should not be more recent than the end date, this will cause the pipeline to return
-    an error. Start date can be the same as the end date when querying just one day. Note:
-    Start date will not be selectable if testing."
-  )$
-  step(
-    el = "e_date",
-    title = "Setting the end date.",
-    description = "Select the end date for your query.
-    This value should not precede the start date, this will cause the pipeline to return
-    an error. End date can be the same as the start date when querying just one day. Note:
-    End date will not be selectable if testing."
+    el = "daterange",
+    title = "Set the start and end dates.",
+    description = "If testing, dates used are static and the selector widget will not
+    respond to any user input. Select the start date on the left and the end date
+    on the right. Dates are inclusive. Start date and end date can be the same,
+    but start date cannot be more recent than end date. A maximum of 31 days in
+    the specified date range is accepted by the pipeline."
   )$
   step(
     el = "runpipeline",

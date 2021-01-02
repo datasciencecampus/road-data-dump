@@ -36,7 +36,7 @@ ui <- fluidPage(id = "all_page",
         
 ), # end of header
         
-        windowTitle = "Set Pipeline Parameters"),
+        windowTitle = "Road Data Pipeline"),
     
     
     
@@ -60,6 +60,9 @@ fluidRow(id = "Email",
          )
          ), # end of Email fluidrow
 
+
+# testing -----------------------------------------------------------------
+
 fluidRow(id = "testing",
          tags$h4("Test the pipeline?"),
          radioButtons(inputId = "testpipeline",
@@ -70,25 +73,20 @@ fluidRow(id = "testing",
                       inline = TRUE)
          ),
 
-# start date --------------------------------------------------------------
+# daterange ---------------------------------------------------------------
 
-                     fluidRow(id = "s_date",
-                              tags$h4("Select start date."),
-                                  dateInput(inputId = "user_start",
-                                            label = NULL,
-                                            format = "dd-mm-yyyy",
-                                            value = "2019-07-01")
-                              ),
+fluidRow(id = "daterange",
+         tags$h4("Select dates."),
+         dateRangeInput(inputId = "daterange",
+                        label = NULL,
+                        format = "dd-mm-yyyy",
+                        start = "2019-07-01",
+                        end = "2019-07-01",
+                        startview = "month",
+                        weekstart = 1)
+         ),#end of daterange fluid row
 
-# end date ----------------------------------------------------------------
 
-                              fluidRow(id = "e_date",
-                                       tags$h4("Select end date."),
-                                           dateInput(inputId = "user_end",
-                                                     label = NULL,
-                                                     format = "dd-mm-yyyy",
-                                                     value = "2019-07-01")
-                                       ),
 # execute the pipeline ----------------------------------------------------
 
 fluidRow(id = "runpipeline",

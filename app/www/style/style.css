@@ -6,8 +6,7 @@ p {
   color: #003c58;
 }
 
-
-/*Nudge sidebar elements up 20px*/
+/*Nudge sidebar elements upwards*/
 
 #Email {
   position: relative;
@@ -15,40 +14,28 @@ p {
 }
 #EmailInput {
   position: relative;
-  bottom: 25px;
+  bottom: 30px;
 }
 
 #testpipeline {
   position: relative;
   bottom: 25px;
 }
-#user_start {
-  position: relative;
-  bottom: 25px;
-}
-#user_end {
-  position: relative;
-  bottom: 25px;
-}
+
 
 #testing {
   position: relative;
-  bottom: 35px;
+  bottom: 15px;
 }
 
-#s_date {
+#daterange{
   position: relative;
-  bottom: 35px;
-}
-
-#e_date {
-  position: relative;
-  bottom: 45px;
+  bottom: 25px;
 }
 
 #runpipeline{
   position: relative;
-  bottom: 35px;
+  bottom: 25px;
 }
 
 
@@ -121,7 +108,6 @@ h4 {
 #optional {
   display: block;
   position: relative;
-  /*right: 2.5%;*/
   width: 150%;
 }
 

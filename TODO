@@ -2,16 +2,14 @@
 
 ### Backlog
 
+* present df head in UI on successful completion.
 * Update documentation
-* Date checks in app- daterange selection instead?
-* Daterange selection instead?
 * bug test Email validation check - once successful status detected, is sticky.
 * Tidy up environment from final sequential script forwards.
-* Implement UI for setting query parameters.
+* Date checks in app- daterange selection instead?
 * Remove all missing report.txt logic or move to logs.
 * Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off.
 * Persistent Email storage between sessions locally.
-* present df head in UI on successful completion.
 
 
 
