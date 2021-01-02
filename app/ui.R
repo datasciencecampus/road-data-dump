@@ -5,11 +5,13 @@ Produce a UI to assist users in setting query parameters and running pipeline
 
 source("dependencies.R")
 
-ui <- fluidPage(
+ui <- fluidPage(id = "all_page",
     # include the cicerone guide & dependencies
     use_cicerone(),
     # use shinyjs for delay of pipeline execution
-    useShinyjs(), 
+    useShinyjs(),
+    # add a spinner when server is busy
+    add_busy_spinner(spin = "fading-circle"),
     # set content language for screen reader accessibility
     tags$head(HTML("<html lang='en'>"),
               # custom styling
@@ -49,62 +51,47 @@ ui <- fluidPage(
 
 fluidRow(id = "Email",
          tags$h4("Please provide your Email."),
-         helper(selectizeInput(inputId = "userEmail",
+         tags$span(id = "EmailInput",
+         selectizeInput(inputId = "userEmail",
                           label = NULL,
-                          #placeholder = "Enter your Email",
                           options = list(create = TRUE,
-                                         placeholder = "Enter your Email"),
-                          choices = NULL),
-                type = "markdown", content = "email", colour = "#ce3487")
-         
+                                         placeholder = "Type your Email and press Enter."),
+                          choices = NULL)
+         )
          ), # end of Email fluidrow
 
 fluidRow(id = "testing",
          tags$h4("Test the pipeline?"),
-         helper(radioButtons(inputId = "testpipeline",
-                             label = NULL,
-                               choices = list("Testing" = TRUE,
-                                              "Not Testing" = FALSE), 
-                               selected = TRUE,inline = TRUE,width = "500px"),
-                type = "markdown", content = "test", colour = "#ce3487")
+         radioButtons(inputId = "testpipeline",
+                      label = NULL,
+                      choices = list("Testing" = TRUE,
+                                     "Not Testing" = FALSE),
+                      selected = TRUE,
+                      inline = TRUE)
          ),
 
 # start date --------------------------------------------------------------
 
-                     fluidRow(id = "step1",
-                              
+                     fluidRow(id = "s_date",
                               tags$h4("Select start date."),
-         
-                              # shinyhelper start date
-                              helper(
                                   dateInput(inputId = "user_start",
                                             label = NULL,
                                             format = "dd-mm-yyyy",
-                                            value = "2019-07-01"),
-                                  type = "markdown",
-                                  content = "lhs",
-                                  colour = "#ce3487"
-                              )),
+                                            value = "2019-07-01")
+                              ),
 
 # end date ----------------------------------------------------------------
 
-                              fluidRow(id = "step2",
-                                       
+                              fluidRow(id = "e_date",
                                        tags$h4("Select end date."),
-                                       
-                                       # shinyhelper start date
-                                       helper(
                                            dateInput(inputId = "user_end",
                                                      label = NULL,
                                                      format = "dd-mm-yyyy",
-                                                     value = "2019-07-01"),
-                                           type = "markdown",
-                                           content = "rhs",
-                                           colour = "#ce3487"
-                                       )),
+                                                     value = "2019-07-01")
+                                       ),
 # execute the pipeline ----------------------------------------------------
 
-fluidRow(
+fluidRow(id = "runpipeline",
     tags$h4("Run the pipeline.",
             actionButton(inputId = "execute",
                          label = "Go!",
@@ -113,7 +100,7 @@ fluidRow(
         
 # main panel --------------------------------------------------------------
 
-        mainPanel(
+        mainPanel(id = "mainpanel",
             width = 8,
             # github link
             tags$a(href = "https://datasciencecampus.github.io/road-data-pipeline-documentation/",
@@ -122,22 +109,23 @@ fluidRow(
                    tags$strong("View Documentation"),
                    id = "sourcecode",
                    class = "source"),
-            
-            textOutput("Email_check"),
+            tags$div(id = "emailcheck",
+            textOutput("Email_check")
+            ),
             hr(),
             textOutput("test_run"),
             hr(),
+            tags$div(id = "dateoutputs",
             textOutput("start_date"),
             hr(),
             textOutput("end_date"),
+            hr()
+            ),
+            tags$div(id = "pipstatus",
+            htmlOutput("pipeline_status")
+            ),
             hr(),
-            htmlOutput("pipeline_status"),
-            hr(),
-            tableOutput("midas_head"),
-
-            add_busy_spinner(spin = "fading-circle")
-                        
-                        
+            tableOutput("midas_head")
         ) # end of mainPanel
-    ) # end of sidebarlayout
+) # end of sidebarlayout
 ) # end of fluid page

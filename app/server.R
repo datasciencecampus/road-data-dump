@@ -2,6 +2,16 @@ source("dependencies.R")
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
+    
+    # application guide -------------------------------------------------------
+    
+    guide$init()
+    
+    
+    observeEvent(input$guide, {
+        guide$start()
+    })
+    
 
 # Email_check -------------------------------------------------------------
 # produce Email text
@@ -37,7 +47,7 @@ shinyServer(function(input, output, session) {
     output$start_date <- renderText({
         if(input$testpipeline == TRUE){
             s_date_string <- as.Date.character("01072019", "%d%m%Y")
-            ui_message_start <- paste("Static test parameters used:",
+            ui_message_start <- paste("Static start date used:",
                                     format(s_date_string, "%d-%b-%Y"))
         } else{
             s_date_string <- paste(format(input$user_start, "%d%m%Y"))
@@ -60,7 +70,7 @@ shinyServer(function(input, output, session) {
     output$end_date <- renderText({
         if(input$testpipeline == TRUE){
             e_date_string <- as.Date.character("01072019", "%d%m%Y")
-            ui_message_end <- paste("Static test parameters used:",
+            ui_message_end <- paste("Static end date used:",
                                     format(e_date_string, "%d-%b-%Y"))
         } else{
             e_date_string <- paste(format(input$user_end, "%d%m%Y"))
@@ -84,18 +94,18 @@ shinyServer(function(input, output, session) {
     # run the pipeline on action button press, if Email is validated.
     observeEvent(input$execute, {
         if(isValidEmail(input$userEmail) == TRUE){
-            # save the email to responses directory
-            saveData(formData())
             # send a browser message on press execute
             observeEvent(input$execute, {
                 session$sendCustomMessage(type = 'testmessage',
                                           message = 'Pipeline initiated.')
                 })
         # update pipeline status
-        pipeline_status$outputText <- "Pipeline initiated."
+        pipeline_status$outputText <- "Pipeline running."
 
         # Use shinyjs::delay() to prevent source executing before confirmation messages
-        delay(ms = 500, expr =  source("../src/run-me.R"))
+        delay(ms = 1, expr =  source("../src/run-me.R"))
+        delay(ms = 2, expr =  pipeline_status$outputText <- "Pipeline Executed.")
+        
         } else {
             pipeline_status$outputText <- "Pipeline not initiated. Please enter a valid Email address."
         }

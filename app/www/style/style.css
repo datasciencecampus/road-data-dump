@@ -8,21 +8,47 @@ p {
 
 
 /*Nudge sidebar elements up 20px*/
-#userEmail {
+
+#Email {
   position: relative;
-  bottom: 20px;
+  bottom: 5px;
 }
+#EmailInput {
+  position: relative;
+  bottom: 25px;
+}
+
 #testpipeline {
   position: relative;
-  bottom: 20px;
+  bottom: 25px;
 }
 #user_start {
   position: relative;
-  bottom: 20px;
+  bottom: 25px;
 }
 #user_end {
   position: relative;
-  bottom: 20px;
+  bottom: 25px;
+}
+
+#testing {
+  position: relative;
+  bottom: 35px;
+}
+
+#s_date {
+  position: relative;
+  bottom: 35px;
+}
+
+#e_date {
+  position: relative;
+  bottom: 45px;
+}
+
+#runpipeline{
+  position: relative;
+  bottom: 35px;
 }
 
 
@@ -58,8 +84,12 @@ h4 {
   background-color: #a8bd3a;
   /*rgba used to specify transparency of background only*/
   background-color: rgba(168, 189, 58, 0.5);
+  max-height: 475px;
 }
 
+#mainpanel {
+  max-height: 475px;  
+}
 
 #appname {
   display: inline-block;
