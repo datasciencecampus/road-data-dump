@@ -106,7 +106,7 @@ datatable(midas_204s, rownames = FALSE)
 
 ```{r include=FALSE}
 # tidy up
-rm(list = c("midas", "midas_204s"))
+rm(midas_204s)
 
 ```
 

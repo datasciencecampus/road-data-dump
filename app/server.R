@@ -105,9 +105,10 @@ shinyServer(function(input, output, session) {
         pipeline_status$outputText <- "Pipeline running."
 
         # Use shinyjs::delay() to prevent source executing before confirmation messages
+        # run pipeline
         delay(ms = 1, expr =  source("../src/run-me.R"))
+        # update pipeline status with confirmation message
         delay(ms = 2, expr =  pipeline_status$outputText <- "Pipeline Executed.")
-        
         } else {
             pipeline_status$outputText <- "Pipeline not initiated. Please enter a valid Email address."
         }
@@ -116,7 +117,4 @@ shinyServer(function(input, output, session) {
     # continue to update pipeline status text
     observe(output$pipeline_status <- renderText(HTML(pipeline_status$outputText)))
 
-
-    
-    
 }) # end of server

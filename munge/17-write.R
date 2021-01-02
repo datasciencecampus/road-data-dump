@@ -41,14 +41,6 @@ fwrite(tmu, tmu_filename, row.names = F, quote = F)
 # MIDAS write status
 if(file.exists(midas_filename)){
   log4r::info(my_logger, "MIDAS file written.")
-  # # output head of MIDAS for presentation in UI
-  # saveRDS(head(midas, n = 10), file = "cache/midas_head.rds")
-  # log this write
-  if(file.exists("cache/midas_head.rds")){
-  log4r::info(my_logger, "MIDAS head written to cache.")
-  } else {
-    warn(my_logger, "MIDAS head not written to cache. Check logs.")
-  }
 } else{
   warn(my_logger, "MIDAS file not found. Check logs.")
 }

@@ -24,6 +24,17 @@ elapsed <- Sys.time() - start_time
 print(round(elapsed, digits = 3))
 
 
+# write out head of midas -------------------------------------------------
+# output head of MIDAS for presentation in UI
+saveRDS(head(midas, n = 10), file = "app/data/midas_head.rds")
+# log this write
+if(file.exists("app/data/midas_head.rds")){
+  log4r::info(my_logger, "MIDAS head written to app cache.")
+} else {
+  warn(my_logger, "MIDAS head not written to app cache. Check logs.")
+}
+
+
 log4r::info(my_logger, paste0("#############End of pipeline#############"))
 
 
