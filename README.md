@@ -22,6 +22,7 @@ Also locally available in `./docs/index.html`.
 * Grey out date selection elements when testing.
 * Email field inputs can be recorded within a session.
 * Application guide added.
+* Sticky Email validation result resolved.
 
 ### Version 1.1
 

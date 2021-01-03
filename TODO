@@ -4,7 +4,6 @@
 
 * present df head in UI on successful completion.
 * Update documentation
-* bug test Email validation check - once successful status detected, is sticky.
 * Tidy up environment from final sequential script forwards.
 * Date checks in app- daterange selection instead?
 * Remove all missing report.txt logic or move to logs.
