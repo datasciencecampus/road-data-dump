@@ -3,7 +3,6 @@ Purpose of script:
 House dependencies for application
 "
 
-
 # detach jsonlite on reruns -----------------------------------------------
 "jsonlite causing issue with validate Email message on app reruns within same
 session. To avoid this, force unload on app initiation. Note that jsonlite is

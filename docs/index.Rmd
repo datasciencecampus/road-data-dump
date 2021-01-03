@@ -575,35 +575,47 @@ The lockfile is a text file stored within the project directory.
 
  
 
-#### Test Pipeline
+#### <a id="testpipeline"></a>Test Pipeline
+
+ 
+1. Open the `road-data-dump.Rproj` project file.
 
  
 
-On the first run of the pipeline, we just want to do a quick test to see if we can get one site ID for one day.
+2. Using R Studio's <strong class="navy">Files pane</strong>, navigate to the `app` folder.
 
- 
 
-1. Using R Studio’s file browser, open `run-me.R`, which is found within the `src` folder. Click on the run-me.R script once it has appeared in RStudio
+<img src="images/app_folder.png" alt="Screenshot of R Studio's Files pane." class="center">
 
- 
 
-2. On the first run, ensure `test_run <- TRUE`.
+3. Open either the `server.R` or `ui.R` scripts. This script should now open within R Studio. Ensure you have clicked on the tab for the script you have just opened. You should now see a `Run App` button at the top of the script.
 
- 
+![`server.R` showing the Run App button visible in R Studio.](images/server.png)
 
-3. This will execute the pipeline, but for one siteID and on one day.
+4. Click on the drop down arrow next to the `Run App` button. Ensure the configuration is set up as the below diagram. This will ensure the app launches in your default internet browser. <strong class="navy">This app will look best in Chrome.</strong> Please ensure `Run External` is selected.
 
-If successful, you should hear a chime. Also, the console will print
+<img src="images/run_config.png" alt="Run App configuration." class="center" style="width:200px;height:250px;"/>
 
-```
+5. Click on `Run App` and the App should now launch within your default browser, as below.
 
-Time difference of 2.153 secs
+![](images/app_ui_1.2.png)
 
-INFO  [2020-12-14 12:52:49] #############End of pipeline#############
+6. On your first time run, it would be advisable to click on the `Take a tour` button. This will guide you through the different elements of the app and offers some advice on what the app expects you to do.
 
-```
+7. On the first run of the pipeline, we just want to do a quick test to see if we can get one site ID for one day. To do this, enter a valid Email address, ensure `Testing` is selected. Notice the messages on the right-hand-side of the app should appear as below.
 
-The time difference will vary depending on your system and connection. If this step was successful, you are now ready to move on to [Subsequent Runs](#subsequent_runs)
+
+![App status prior to running a test.](images/testing.png)
+
+8. If everything looks good, click on the `Go!` button. A dialogue box should now appear as below. Click `OK` to hide it.
+
+<img src="images/conf_dialog.png" alt="Dialog box appears on executing the pipeline." class="center"/>
+
+9. If the test was successful, you will hear a chime (please ensure your system volume is turned up) and the spinner that appears in the top right-hand corner will disappear. You will also notice that the pipeline status will change to `Pipeline Executed.`
+
+![](images/test_successful.png)
+
+The time difference will vary depending on your system and connection. If this step was successful, you are now ready to move on to [Subsequent Runs](#subsequent_runs). If the test was not successful, then please consult the [Troubleshooting](#troubleshooting) section.
 
  
 
@@ -615,35 +627,28 @@ The time difference will vary depending on your system and connection. If this s
 
 ### <a id="subsequent_runs"></a>Subsequent Runs
 
-1. In `run-me.R`, change the line `test_run <- TRUE` to `test_run <- FALSE`. `TRUE` and `FALSE` are case-sensitive. <strong class="navy">Save the file</strong>. You can do this by pressing `Ctrl` + `s`.
+If you have arrived here, you have successfully [configured](#firsttimerun) the pipeline environment and have [tested](#testpipeline) the pipeline successfully from the app interface. 
 
-2. In order to specify which dates to query, you will need to access the script `03-set_query_parameters.R` within the `munge` folder. The dates you will need to adjust appear as `start_date` and `end_date`, assign values as below:
+1. Run the app again, as you did when [testing the pipeline](#testpipeline).
 
-`start_date <- "01072019"`
-
-`end_date <- "31072019"`
-
-The format being <strong class="navy">"DDMMYYYY"</strong>. Incorrect dates will cause an error (trying to ask for the 31st of February for example). Also, be sure to wrap your dates in either quotation marks or apostrophes. So:
-
-"01072019" is good.
-
-'01072019' is good.
-
-"01072019' is bad.
-
-01072019 is bad.
+2. Ensure that you have entered a <strong class="navy">valid Email</strong> and this time select `Not Testing`.
+![](images/not_testing.png)
 
  
-3. It is good practice to let Highways England know who is querying their api. This is also important if we ever need to ask for help from them in troubleshooting the api. To do this, we can set the `user_email` and `agent_message` values in `03-set_query_parameters.R`. These appear below the date parameters you updated in <strong class="navy">step 2</strong> of this section.
+3. This will activate the date selection widgets. You should now be able to click on the start and end dates to specify your own values, as below. When selecting the dates, ensure that the start date precedes the end date and that <strong class="navy">no more than 31 days difference</strong> is selected. If either of these rules are detected by the pipeline, it will throw an intentional error. This is to limit sending bad requests to the api and to limit the need for additional memory allocation.
 
-4. Once you have entered your desired dates, press `Ctrl` + `s` to save the script. Return to the `run-me.R` script and run all or `source` the script using the button at the top of the RStudio interface.
+<img src="images/selecting_dates.png" class="center">
 
+
+4. Once you have completed the required fields, observe the messages on the right of the app. They should look similar to the screenshot below.
+
+![Screenshot of app prior to executing a full run of the pipeline.](images/not_testing.png)
+
+5. Clicking on `Go!` will now execute a full run of the pipeline. The api will be queried for all available site IDs for the date range that you have selected. You will see a spinner appear at the top right-hand side of the app while it is busy.
  
+6. Querying a full month takes just under an hour with a good internet connection. On completion, the spinner will disappear, the pipeline status will change to `Pipeline Executed.` and a chime will sound if your system volume is turned up.
 
-<div class="summary-box">Always remember to save any changes to the scripts prior to running the pipeline.</div>
-
- 
-
+7. The output .csvs will appear within the `output_data` folder. The site report will appear within the `reports` folder. If an error is encountered, please consult the [Troubleshooting](#troubleshooting) section.
  
 
 ***
@@ -651,12 +656,13 @@ The format being <strong class="navy">"DDMMYYYY"</strong>. Incorrect dates will 
 ***
 
  
+<a id="troubleshooting"></a>
 
-## Error Handling
+## Troubleshooting
 
  
 
-This section will be used to document any errors encountered as the pipeline is used. In this way, I would hope to produce an extensive guide to troubleshooting the pipeline. To submit an issue for inclusion, either submit an issue on the GitHub repository or email me by clicking the mail icon.
+This section will be used to document any errors encountered as the pipeline is used. In this way, I would hope to produce an extensive guide to troubleshooting the pipeline. To submit an issue for inclusion, either submit an issue on the GitHub repository or email me by clicking the mail icon. Likewise if this section does not resolve your particular issue, please Email me, ensuring you attach your `logfile.txt` found within the `logs` folder.
 
  
 
@@ -670,6 +676,8 @@ This section will be used to document any errors encountered as the pipeline is 
 
 ***
 
+#### Issue 001
+
 ```
 
 document error: Error in fwrite(tmu, "output_data/tmu.csv", row.names = F, quote = F) :
@@ -680,7 +688,10 @@ open?
 
 ```
 
-This means R can't write to csv as the file is open. Please close any Excel files and re-run the pipeline.
+<strong class ="navy">Reason: </strong>
+This means R can't write to csv as the file is open.  
+<strong class ="navy">Action: </strong>
+Please close any Excel files and re-run the pipeline.
 
  
 
