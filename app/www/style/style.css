@@ -6,6 +6,11 @@ p {
   color: #003c58;
 }
 
+#logo {
+  position: relative;
+  left: -5px;
+}
+
 /*Nudge sidebar elements upwards*/
 
 #Email {

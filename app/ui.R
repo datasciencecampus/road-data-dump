@@ -32,7 +32,7 @@ ui <- fluidPage(id = "all_page",
 
 # DSC logo ----------------------------------------------------------------
 
-        tags$img(src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right"),
+        tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right"),
         
 ), # end of header
         

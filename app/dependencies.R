@@ -75,7 +75,8 @@ guide <- Cicerone$
   )$
   step(
     el = "mainpanel",
-    title = "Confirmation messages appear here."
+    title = "Confirmation messages appear here.",
+    position = "left"
   )$
   step(
     el = "emailcheck",
