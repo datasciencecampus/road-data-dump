@@ -48,7 +48,8 @@ guide <- Cicerone$
   step(
     el = "Email",
     title = "Input your Email.",
-    description = "Emails are sent to Highways England api along with the queries."
+    description = "Emails are sent to Highways England api along with the queries. Remember
+    to press Enter once you've typed your Email address."
   )$
   step(
     el = "testing",
