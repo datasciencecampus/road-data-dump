@@ -51,6 +51,7 @@ shinyServer(function(input, output, session) {
             s_date_string <- as.Date.character("01072019", "%d%m%Y")
             ui_message_start <- paste("Static start date used:",
                                     format(s_date_string, "%d-%b-%Y"))
+            saveRDS(s_date_string, "../cache/start_date.rds")
         } else{
             s_date_string <- paste(format(input$daterange[1], "%d%m%Y"))
             ui_message_start <- paste("Start date set as:", format(input$daterange[1], "%d-%b-%Y"))
@@ -74,6 +75,8 @@ shinyServer(function(input, output, session) {
             e_date_string <- as.Date.character("01072019", "%d%m%Y")
             ui_message_end <- paste("Static end date used:",
                                     format(e_date_string, "%d-%b-%Y"))
+            saveRDS(e_date_string, "../cache/end_date.rds")
+            
         } else{
             e_date_string <- paste(format(input$daterange[2], "%d%m%Y"))
             ui_message_end <- paste("End date set as:", format(input$daterange[2], "%d-%b-%Y"))
