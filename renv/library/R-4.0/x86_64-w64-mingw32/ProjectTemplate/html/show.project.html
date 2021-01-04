@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Show information about the current project.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for show.project {ProjectTemplate}"><tr><td>show.project {ProjectTemplate}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Show information about the current project.</h2>
+
+<h3>Description</h3>
+
+<p>This function will show the user all of the information that
+ProjectTemplate has about the current project. This information is
+gathered when <code><a href="load.project.html">load.project</a></code> is called. At present,
+ProjectTemplate keeps a record of the project's configuration settings,
+all packages that were loaded automatically and all of the data sets that
+were loaded automatically. The information about autoloaded data sets
+is used by the <code><a href="cache.project.html">cache.project</a></code> function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+show.project()
+</pre>
+
+
+<h3>Value</h3>
+
+<p>No value is returned; this function is called for its side effects.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="create.project.html">create.project</a></code>, <code><a href="load.project.html">load.project</a></code>,
+<code><a href="get.project.html">get.project</a></code>, <code><a href="cache.project.html">cache.project</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library('ProjectTemplate')
+
+## Not run: load.project()
+
+show.project()
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ProjectTemplate</em> version 0.9.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

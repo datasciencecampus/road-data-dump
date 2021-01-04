@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Add project specific config to the global config</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for add.config {ProjectTemplate}"><tr><td>add.config {ProjectTemplate}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Add project specific config to the global config</h2>
+
+<h3>Description</h3>
+
+<p>Enables project specific configuration to be added to the global config object.  The
+allowable format is key value pairs which are appended to the end of the <code>config</code>
+object, which is accessible from the global environment.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+add.config(..., apply.override = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>A series of key-value pairs containing the configuration.  The key is the
+name that gets added to the config object. These can be overridden at load
+time through the <code>...</code> argument to <code><a href="load.project.html">load.project</a></code>.</p>
+</td></tr>
+<tr valign="top"><td><code>apply.override</code></td>
+<td>
+<p>A boolean indicating whether overrides should be applied. This
+can be used to add a setting disregarding arguments to <code>load.project</code></p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Once defined, the value can be accessed from any <code>ProjectTemplate</code> script by
+referencing <code>config$my_project_var</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library('ProjectTemplate')
+## Not run: 
+add.config(
+    keep_bigdata=TRUE,     # Whether to keep the big data file in memory
+    parse=7                # number of fields to parse
+)
+
+if (config$keep_bigdata) ...
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ProjectTemplate</em> version 0.9.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

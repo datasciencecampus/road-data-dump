@@ -1,0 +1,2 @@
+"0","# use the datesused (cleansed) to create a nice title"
+"0","dates <- unlist(strsplit(dates_used, ""to""))"

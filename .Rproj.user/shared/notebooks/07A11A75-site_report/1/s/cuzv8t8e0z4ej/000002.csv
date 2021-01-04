@@ -1,0 +1,7 @@
+"0","# filter sitetypes df to midas only"
+"0","midas <- filter(sitetypes, type == ""midas"")"
+"0","# get the 204s that were type midas"
+"0","midas_204s <- site_Id_204s[site_Id_204s %in% midas$sites.Id]"
+"0","# subset the midas df by these 204 site IDs"
+"0","midas_204s <- midas[midas$sites.Id %in% midas_204s, ]"
+"0",""

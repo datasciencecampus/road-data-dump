@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Cache a project's data sets in binary format.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for cache.project {ProjectTemplate}"><tr><td>cache.project {ProjectTemplate}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Cache a project's data sets in binary format.</h2>
+
+<h3>Description</h3>
+
+<p>This function will cache all of the data sets that were loaded by
+the <code><a href="load.project.html">load.project</a></code> function in a binary format that is
+easier to load quickly. This is particularly useful for data sets
+that you've modified during a slow munging process that does not
+need to be repeated.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+cache.project()
+</pre>
+
+
+<h3>Value</h3>
+
+<p>No value is returned; this function is called for its side effects.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="create.project.html">create.project</a></code>, <code><a href="load.project.html">load.project</a></code>,
+<code><a href="get.project.html">get.project</a></code>, <code><a href="show.project.html">show.project</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library('ProjectTemplate')
+## Not run: load.project()
+
+cache.project()
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ProjectTemplate</em> version 0.9.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

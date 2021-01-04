@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Build the list of data available for loading into memory</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for .list.data {ProjectTemplate}"><tr><td>.list.data {ProjectTemplate}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Build the list of data available for loading into memory</h2>
+
+<h3>Description</h3>
+
+<p>This function produces a data.frame of all data files in the project, with
+meta data on if and how the file will be loaded by <code>load.project</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+.list.data(config)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>config</code></td>
+<td>
+<p>List containing the configuration to use.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The returned data.frame contains the following variables, with one
+observation per file in <code>data/</code>:
+</p>
+
+<table summary="Rd table">
+<tr>
+ <td style="text-align: left;">
+   <code>filename</code> </td><td style="text-align: left;"> Character variable containing the filename relative
+   to <code>data/</code> directory. </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>varname</code> </td><td style="text-align: left;"> Character variable containing the name of the variable
+   into which the file will be imported. * </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>is_ignored</code> </td><td style="text-align: left;"> Logical variable that indicates whether the file.
+   is ignored through the <code>data_ignore</code> option in the configuration </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>is_directory</code> </td><td style="text-align: left;"> Logical variable that indicates whether the file
+   is a directory. </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>is_cached</code> </td><td style="text-align: left;"> Logical variable that indicates whether the file is
+   already available in the <code>cache/</code> directory. </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>cached_only</code> </td><td style="text-align: left;"> Logical variable that indicates whether the
+   variable is only available in the <code>cache/</code> directory. This occurs
+   when calling the cache function with a code fragment in a munge script.
+   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>reader</code> </td><td style="text-align: left;"> Character variable containing the name of the reader
+   function that will be used to load the data. Contains a
+   <code>character(0)</code> if no suitable reader was found.
+</td>
+</tr>
+
+</table>
+
+<p>* Note that some readers return more than one variable, usually with the
+listed variable name as prefix. This is true for for example the
+<code>xls.reader</code> and <code>xlsx.reader</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A data.frame listing the available data, with relevant meta data
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>ProjectTemplate</em> version 0.9.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

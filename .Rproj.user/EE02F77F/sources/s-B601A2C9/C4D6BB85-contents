@@ -1,0 +1,231 @@
+---
+title: "Road Data Site Report"
+author: "`r Sys.info()[['effective_user']]`"
+date: "`r format(Sys.Date(), '%A-%d-%b-%Y')`"
+output:
+  html_document:
+    css: "../docs/style/style.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+# load required libraries
+library(stringr)
+library(dplyr)
+library(DT)
+source("../func/functions.R")
+```
+
+```{r, include=FALSE}
+
+# Load in all RDS files found in the cache folder
+assign_rds("../cache/")
+```
+
+
+```{r echo=FALSE}
+# use the datesused (cleansed) to create a nice title
+dates <- unlist(strsplit(dates_used, "to"))
+```
+
+# Site Report for Dates `r paste0(dates[1], " to ", dates[2], ".")`
+
+
+
+## All Site Types: Empty API Responses
+
+```{r echo=FALSE,fig.align='center'}
+# plot of 204s
+counts <- c(length(all_queried_siteIds), length(site_Id_204s))
+names(counts) <- c("All Site IDs", "Empty Site IDs")
+
+barplot(height = counts,
+        main = "Count of Site IDs",
+        col = "#02075D")
+
+```
+
+
+There were <strong class="navy">`r format(length(all_queried_siteIds), big.mark = ",")`</strong> site IDs queried in total.
+
+Of these IDs, <strong class="navy">`r format(length(site_Id_204s), big.mark = ",")`</strong> of the queries returned <strong class="navy">no content</strong> (HTTP response [code 204](https://httpstatuses.com/204)).
+
+This means that <strong class="navy">`r round(length(site_Id_204s) / length(all_queried_siteIds) * 100, digits = 0)` % (rounded)</strong> of the IDs contained no content for this date range.
+
+***
+
+
+
+## Empty Responses by Site Type {.tabset .tabset-fade}
+
+
+
+### MIDAS 
+
+```{r echo=FALSE}
+# filter sitetypes df to midas only
+midas <- filter(sitetypes, type == "midas")
+# get the 204s that were type midas
+midas_204s <- site_Id_204s[site_Id_204s %in% midas$sites.Id]
+# subset the midas df by these 204 site IDs
+midas_204s <- midas[midas$sites.Id %in% midas_204s, ]
+
+```
+
+```{r echo=FALSE,fig.align='center'}
+# plot of 204s
+counts <- c(length(unique(midas$sites.Id)), length(unique(midas_204s$sites.Id)))
+names(counts) <- c("All MIDAS IDs", "Empty MIDAS IDs")
+
+barplot(height = counts,
+        main = "Count of MIDAS Site IDs",
+        col = "#02075D")
+
+```
+
+
+
+There were <strong class="navy">`r format(length(unique(midas$sites.Id)), big.mark = ",")`</strong> site IDs of the MIDAS type.
+
+Of these IDs, <strong class="navy">`r format(length(unique(midas_204s$sites.Id)), big.mark = ",")`</strong> of the queries returned <strong class="navy">no content</strong> (HTTP response [code 204](https://httpstatuses.com/204)).
+
+This means that <strong class="navy">`r round(length(unique(midas_204s$sites.Id)) / length(unique(midas$sites.Id)) * 100, digits = 0)` % (rounded)</strong> of the MIDAS IDs contained no content for this date range.
+
+MIDAS sites represent <strong class="navy">`r round(length(unique(midas$sites.Id)) / length(all_queried_siteIds), digits = 2)` % (to 2 d.p.)</strong> of all sites present.
+
+#### Empty Responses: MIDAS Site Details
+
+```{r, fig.align='center', echo=FALSE}
+datatable(midas_204s, rownames = FALSE)
+
+```
+
+
+```{r include=FALSE}
+# tidy up
+rm(midas_204s)
+
+```
+
+***
+
+### TAME 
+
+```{r echo=FALSE}
+# filter sitetypes df to tame only
+tame <- filter(sitetypes, type == "tame")
+# get the 204s that were type tame
+tame_204s <- site_Id_204s[site_Id_204s %in% tame$sites.Id]
+# subset the tame df by these 204 site IDs
+tame_204s <- tame[tame$sites.Id %in% tame_204s, ]
+
+```
+
+```{r echo=FALSE,fig.align='center'}
+# plot of 204s
+counts <- c(length(unique(tame$sites.Id)), length(unique(tame_204s$sites.Id)))
+names(counts) <- c("All TAME IDs", "Empty TAME IDs")
+
+barplot(height = counts,
+        main = "Count of TAME Site IDs",
+        col = "#02075D")
+
+```
+
+
+
+There were <strong class="navy">`r format(length(unique(tame$sites.Id)), big.mark = ",")`</strong> site IDs of the TAME type.
+
+Of these IDs, <strong class="navy">`r format(length(unique(tame_204s$sites.Id)), big.mark = ",")`</strong> of the queries returned <strong class="navy">no content</strong> (HTTP response [code 204](https://httpstatuses.com/204)).
+
+This means that <strong class="navy">`r round(length(unique(tame_204s$sites.Id)) / length(unique(tame$sites.Id)) * 100, digits = 0)` % (rounded)</strong> of the TAME IDs contained no content for this date range.
+
+TAME sites represent <strong class="navy">`r round(length(unique(tame$sites.Id)) / length(all_queried_siteIds), digits = 2)` % (to 2 d.p.)</strong> of all sites present.
+
+#### Empty Responses: TAME Site Details
+
+```{r, fig.align='center', echo=FALSE}
+datatable(tame_204s, rownames = FALSE)
+
+```
+
+
+```{r include=FALSE}
+# tidy up
+rm(list = c("tame_204s"))
+
+```
+
+***
+
+### TMU 
+
+```{r echo=FALSE}
+# filter sitetypes df to tmu only
+tmu <- filter(sitetypes, type == "tmu")
+# get the 204s that were type tmu
+tmu_204s <- site_Id_204s[site_Id_204s %in% tmu$sites.Id]
+# subset the tmu df by these 204 site IDs
+tmu_204s <- tmu[tmu$sites.Id %in% tmu_204s, ]
+
+```
+
+```{r echo=FALSE,fig.align='center'}
+# plot of 204s
+counts <- c(length(unique(tmu$sites.Id)), length(unique(tmu_204s$sites.Id)))
+names(counts) <- c("All TMU IDs", "Empty TMU IDs")
+
+barplot(height = counts,
+        main = "Count of TMU Site IDs",
+        col = "#02075D")
+
+```
+
+
+
+There were <strong class="navy">`r format(length(unique(tmu$sites.Id)), big.mark = ",")`</strong> site IDs of the TMU type.
+
+Of these IDs, <strong class="navy">`r format(length(unique(tmu_204s$sites.Id)), big.mark = ",")`</strong> of the queries returned <strong class="navy">no content</strong> (HTTP response [code 204](https://httpstatuses.com/204)).
+
+This means that <strong class="navy">`r round(length(unique(tmu_204s$sites.Id)) / length(unique(tmu$sites.Id)) * 100, digits = 0)` % (rounded)</strong> of the TMU IDs contained no content for this date range.
+
+TMU sites represent <strong class="navy">`r round(length(unique(tmu$sites.Id)) / length(all_queried_siteIds), digits = 2)` % (to 2 d.p.)</strong> of all sites present.
+
+#### Empty Responses: TMU Site Details
+
+```{r, fig.align='center', echo=FALSE}
+datatable(tmu_204s, rownames = FALSE)
+
+```
+
+
+```{r include=FALSE}
+# tidy up
+rm(list = c("tmu_204s"))
+
+```
+
+***
+
+## Join Integrity
+
+For more detail on the join approach used within this pipeline, please consult the [pipeline documentation placeholder link](somelink#dataprocessing).
+
+If any output appears within this section, it indicates that there are readings within the `combo` DataFrame that have no matching site information in the `sites` DataFrame.
+
+```{r, echo=FALSE}
+# if nullmatch_combo is found, render it to datatable
+if("nullmatch_combo" %in% ls()){
+  datatable(nullmatch_combo, rownames = FALSE)
+} else {
+  print("No null matches were found in the combo dataframe this run.")
+}
+
+```
+
+
+
+

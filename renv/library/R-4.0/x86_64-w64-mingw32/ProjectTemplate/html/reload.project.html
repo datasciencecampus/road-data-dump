@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Reload or reset a project</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for reload.project {ProjectTemplate}"><tr><td>reload.project {ProjectTemplate}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Reload or reset a project</h2>
+
+<h3>Description</h3>
+
+<p>This function will clear the global environment and reload a project.  This is
+useful when you've updated your data sets or changed your preprocessing scripts.
+Any <code>sticky_variables</code> configuration parameter in <code><a href="project.config.html">project.config</a></code>
+will remain both in memory and (if present) in the cache by default. If the <code>reset</code> 
+parameter is <code>TRUE</code>, then all variables are cleared from both the global
+environment and the cache.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+reload.project(..., reset = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Optional parameters passed to <code><a href="load.project.html">load.project</a></code></p>
+</td></tr>
+<tr valign="top"><td><code>reset</code></td>
+<td>
+<p>A boolean value, which if set <code>TRUE</code> clears the cache and everything
+in the global environment, including any <code>sticky_variables</code></p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>No value is returned; this function is called for its side effects.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library('ProjectTemplate')
+
+## Not run: load.project()
+
+reload.project()
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ProjectTemplate</em> version 0.9.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

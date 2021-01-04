@@ -1,0 +1,3 @@
+beep                    Play a short sound
+beep_on_error           Play a short sound if there is an error
+beepr                   Easily Play Notification Sounds on any Platform

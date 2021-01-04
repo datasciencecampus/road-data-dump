@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Clear objects from the global environment</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for clear {ProjectTemplate}"><tr><td>clear {ProjectTemplate}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Clear objects from the global environment</h2>
+
+<h3>Description</h3>
+
+<p>This function removes specific (or all by default) named objects from the global
+environment.  If used within a <code>ProjectTemplate</code> project, then any variables
+defined in the <code>config$sticky_variables</code> will remain.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+clear(..., keep = c(), force = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>A sequence of character strings  of the objects to
+be removed from the global environment.  If none given, then all items except
+those in <code>keep</code> will be deleted.  This includes items beginning with <code>.</code></p>
+</td></tr>
+<tr valign="top"><td><code>keep</code></td>
+<td>
+<p>A character vector of variables that should remain in the global
+environment</p>
+</td></tr>
+<tr valign="top"><td><code>force</code></td>
+<td>
+<p>If <code>TRUE</code>, then variables will be deleted even if
+specified in <code>keep</code> or <code>config$sticky_variables</code></p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>The variables kept and removed are reported
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library('ProjectTemplate')
+## Not run: 
+clear("x", "y", "z")
+clear(keep="a")
+clear()
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ProjectTemplate</em> version 0.9.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

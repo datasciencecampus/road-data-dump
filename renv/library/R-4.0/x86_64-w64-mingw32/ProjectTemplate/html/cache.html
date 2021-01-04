@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Cache a data set for faster loading.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for cache {ProjectTemplate}"><tr><td>cache {ProjectTemplate}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Cache a data set for faster loading.</h2>
+
+<h3>Description</h3>
+
+<p>This function will store a copy of the named data set in the <code>cache</code>
+directory. This cached copy of the data set will then be given precedence
+at load time when calling <code><a href="load.project.html">load.project</a></code>. Cached data sets are
+stored as <code>.RData</code> files.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+cache(variable = NULL, CODE = NULL, depends = NULL, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>variable</code></td>
+<td>
+<p>A character string containing the name of the variable to
+be saved.  If the CODE parameter is defined, it is evaluated and saved, otherwise
+the variable with that name in the global environment is used.</p>
+</td></tr>
+<tr valign="top"><td><code>CODE</code></td>
+<td>
+<p>A sequence of R statements enclosed in <code>{..}</code> which produce the object to be
+cached.</p>
+</td></tr>
+<tr valign="top"><td><code>depends</code></td>
+<td>
+<p>A character vector of other global environment objects that the CODE
+depends upon. Caching will be forced if those objects have changed since last caching</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>additional arguments passed to <code><a href="../../base/html/save.html">save</a></code></p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Usually you will want to cache datasets during munging.  This can be the raw
+data just loaded, or it can be the result of further processing during munge.  Either
+way, it can take a while to cache large variables, so cache will only cache when it
+needs to.
+The <code>clear.cache("variable")</code> command
+can be run to flush individual items from the cache.
+</p>
+<p>Calling <code>cache()</code> with no arguments returns the current status of the cache.
+</p>
+
+
+<h3>Value</h3>
+
+<p>No value is returned; this function is called for its side effects.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+library('ProjectTemplate')
+## Not run: create.project('tmp-project')
+
+setwd('tmp-project')
+
+dataset1 &lt;- 1:5
+cache('dataset1')
+
+setwd('..')
+unlink('tmp-project')
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>ProjectTemplate</em> version 0.9.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

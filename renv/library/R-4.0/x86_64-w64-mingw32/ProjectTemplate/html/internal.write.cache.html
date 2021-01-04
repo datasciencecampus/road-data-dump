@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Write a variable and its metadata to cache</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for .write.cache {ProjectTemplate}"><tr><td>.write.cache {ProjectTemplate}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Write a variable and its metadata to cache</h2>
+
+<h3>Description</h3>
+
+<p>Write a variable and its metadata to cache
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+.write.cache(cache.hash, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>cache.hash</code></td>
+<td>
+<p>a <code>data.frame</code> with metadata about the variable, see details for more information.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>extra parameters passed to <code><a href="../../base/html/save.html">save</a></code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>cache.hash is a data frame with two columns: <code>variable</code> and <code>hash</code>.<br />
+Row name <code>VAR</code> is the name of the variable to save.<br />
+Row name <code>CODE</code> is the hash value of the code to compute variable.<br />
+Row name <code>DEPENDS.*</code> are the dependent variables that <code>CODE</code> depends on.c<br />
+The helper function <code><a href="internal.create.cache.hash.html">.create.cache.hash</a></code> creates a suitable dataframe
+</p>
+
+
+<h3>Value</h3>
+
+<p>No value is returned, this function is called for its side effects.
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>ProjectTemplate</em> version 0.9.3 <a href="00Index.html">Index</a>]</div>
+</body></html>
