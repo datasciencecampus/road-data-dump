@@ -2,6 +2,8 @@
 
 ### Backlog
 
+* v1.3 causing crashes on full month runs. Seems to error out in script 8. Investigate, roll back to v1.2 in the meantime.
+* errors caused on multiple runs, image in docs/images/error-2.png
 * Update documentation
 * Tidy up environment from final sequential script forwards.
 * Date checks in app- daterange selection instead?
