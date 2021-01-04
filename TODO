@@ -2,7 +2,7 @@
 
 ### Backlog
 
-* present df head in UI on successful completion.
+* present tables in UI on successful completion.
 * Update documentation
 * Tidy up environment from final sequential script forwards.
 * Date checks in app- daterange selection instead?

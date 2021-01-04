@@ -117,4 +117,32 @@ shinyServer(function(input, output, session) {
     # continue to update pipeline status text
     observe(output$pipeline_status <- renderText(HTML(pipeline_status$outputText)))
 
+
+# view midas table --------------------------------------------------------
+
+    output$midas <- renderDT({
+        if(pipeline_status$outputText == "Pipeline Executed."){
+            return(midas)
+        } else {
+            return(data.frame("MIDAS" = "No data"))
+        }
+    })
+    
+    output$tame <- renderDT({
+        if(pipeline_status$outputText == "Pipeline Executed."){
+            return(tame)
+        } else {
+            return(data.frame("TAME" = "No data"))
+        }
+    })
+    
+    output$tmu <- renderDT({
+        if(pipeline_status$outputText == "Pipeline Executed."){
+            return(tmu)
+        } else {
+            return(data.frame("TMU" = "No data"))
+        }
+    })
+    
+    
 }) # end of server

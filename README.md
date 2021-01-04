@@ -6,6 +6,9 @@ Also locally available in `./docs/index.html`.
 
 ## Changelog
 
+### Version 1.3
+
+
 ### Version 1.2
 
 * User Interface for setting query parameters & executing pipeline.

@@ -25,6 +25,7 @@ library(cicerone)
 library(shinyjs)
 library(shinybusy)
 library(base)
+library(DT)
 
 
 # check Email syntax ------------------------------------------------------

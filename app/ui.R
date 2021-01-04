@@ -126,7 +126,11 @@ fluidRow(id = "runpipeline",
             htmlOutput("pipeline_status")
             ),
             hr(),
-            tableOutput("midas_head")
+            DT::DTOutput("midas"),
+            hr(),
+            DT::DTOutput("tame"),
+            hr(),
+            DT::DTOutput("tmu")
         ) # end of mainPanel
 ) # end of sidebarlayout
 ) # end of fluid page
