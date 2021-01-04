@@ -1,8 +1,0 @@
-"0","# plot of 204s"
-"0","counts <- c(length(all_queried_siteIds), length(site_Id_204s))"
-"0","names(counts) <- c(""All Site IDs"", ""Empty Site IDs"")"
-"0",""
-"0","barplot(height = counts,"
-"0","        main = ""Count of Site IDs"","
-"0","        col = ""#02075D"")"
-"0",""

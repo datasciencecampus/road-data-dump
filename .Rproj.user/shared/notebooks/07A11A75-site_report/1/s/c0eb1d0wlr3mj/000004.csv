@@ -1,8 +1,0 @@
-"0","# plot of 204s"
-"0","counts <- c(length(unique(tame$sites.Id)), length(unique(tame_204s$sites.Id)))"
-"0","names(counts) <- c(""All TAME IDs"", ""Empty TAME IDs"")"
-"0",""
-"0","barplot(height = counts,"
-"0","        main = ""Count of TAME Site IDs"","
-"0","        col = ""#02075D"")"
-"0",""

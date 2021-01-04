@@ -1,4 +1,0 @@
-"0","# tidy up"
-"0","rm(list = c(""tame"", ""tame_204s""))"
-"2","object 'tame' not found"
-"2","object 'tame_204s' not found"

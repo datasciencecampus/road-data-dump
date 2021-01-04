@@ -1,4 +1,0 @@
-this.path               Determine Executing Scripts Filename
-this.path-package       Get Executing Script's Path, from 'RStudio',
-                        'RGui', 'Rscript' (Command-Line / / Terminal),
-                        and when using 'source'
