@@ -1,0 +1,700 @@
+---
+title: "Road Data Pipeline"
+subtitle: "Version 1.2"
+author: "R Leyshon"
+date: "23/12/2020"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    smooth_scroll: true
+    toc_depth: 2
+    css: "style/style.css"
+---
+
+```{r, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+```
+
+
+# Introduction
+
+ 
+
+The <strong class="navy">Road Data Pipeline</strong> is an unofficial [Highways England WebTRIS api](https://webtris.highwaysengland.co.uk/api/swagger/ui/index) client. The work contained within the pipeline was informed by [phil8192's webtri.sh client](https://github.com/phil8192/webtri.sh). This pipeline is less flexible than the webtri.sh client acknowledged above, but includes additional data processing, outputting csv files for the user-specified date range.
+
+ 
+
+<img src="images/Traffic_Jam_-_geograph.org.uk_-_391642.jpg" class="center" alt="UK motorway congestion cc license">
+
+ 
+
+The client allows querying of <strong class="navy">all available sites</strong> for <strong class="navy">specified date ranges</strong>, intended for monthly analysis.
+
+ 
+
+## Output Summary
+
+ 
+
+### Main Outputs
+
+ 
+
++-------------------+----------------+--------------------------------------------+
+|Column             |Values          |Description                                 |
++===================+================+============================================+
+|Site Name          |Alphanumeric    |Long-form site code                         |
++-------------------+----------------+--------------------------------------------+
+|Report Date        |Datetime        |The date of data capture                    |
++-------------------+----------------+--------------------------------------------+
+|Time Period Ending |Timestamp       |The time of data capture                    |
++-------------------+----------------+--------------------------------------------+
+|Time Interval      |Integer         |Pending                                     |
++-------------------+----------------+--------------------------------------------+
+|x - y cm           |Integer         |Multiple columns containing vehicle lengths |
++-------------------+----------------+--------------------------------------------+
+|x - y mph          |Integer         |Multiple columns, Speed of vehicle          |
++-------------------+----------------+--------------------------------------------+
+|Avg mph            |Integer         |Average speed of vehicle                    |
++-------------------+----------------+--------------------------------------------+
+|Total Volume       |Integer         |Pending                                     |
++-------------------+----------------+--------------------------------------------+
+|site_id            |Integer         |Numerical site code                         |
++-------------------+----------------+--------------------------------------------+
+|sites.Description  |Factor          |Motorway location                           |
++-------------------+----------------+--------------------------------------------+
+|sites.Longitude    |Floating Point  |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+|sites.Latitude     |Floating Point  |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+|sites.Status       |Character       |Active / inactive                           |
++-------------------+----------------+--------------------------------------------+
+|type               |Character       |Site type: MIDAS, TAME or TMU               |
++-------------------+----------------+--------------------------------------------+
+|direction          |Character       |Compass direction of traffic                |
++-------------------+----------------+--------------------------------------------+
+|easting            |Integer         |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+|northing           |Integer         |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+
+The output files will appear in the <strong class="navy">output_data</strong> folder as <strong class="navy">site-type_query-date.csv</strong>. There are 3 site types available, <strong class="navy">MIDAS</strong>, <strong class="navy">TAME</strong>, and <strong class="navy">TMU</strong>. Please see explanations of the different site types, as provided by phil8192:
+
+ 
+
+<div class="quote">
+  <ol>
+    <li>Motorway Incident Detection and Automatic Signalling (MIDAS) Predominantly inductive loops (though there are a few sites where radar technology is being trialled)</li>
+    <li> TAME (Traffic Appraisal, Modelling and Economics) which are inductive loops</li>
+    <li> Traffic Monitoring Units (TMU) (loops)</li>
+    <li> Highways Agency’s Traffic Flow Database System (TRADS) Traffic Accident Database System (TRADS)? (legacy)</li>
+  </ol>
+</div>
+
+   
+
+Note that TRADS is available but not being queried by this pipeline.
+
+ 
+
+***
+
+ 
+
+### All Outputs
+
+
+The full output of the pipeline is as follows:
+
+ 
+
+`./output_data/midas_daterange.csv`
+
+`./output_data/tame_daterange.csv`
+
+`./output_data/tmu_daterange.csv`
+
+`./output_data/missing_site_IDs_daterange.txt`: This is to be replaced by the below, pending testing:
+
+`.reports/site_report_daterange.html`
+
+`./logs/logfile.txt`
+
+
+ 
+
+The <strong class="navy">output data csvs</strong> contain the api output.
+
+The **./output_data/missing_site_IDs_daterange.txt** returns a sequence of missing site IDs from the queried date range, a count of api responses that were empty, and what proportion of the overall number of IDs queried this represented (rounded to 2dp).
+
+ 
+
+Currently, executing the pipeline will overwrite any output_data files <strong class="navy">with the same name</strong>.
+
+
+The <strong class="navy">log file.txt</strong> is important if you encounter an error. This document can be passed back to the developer in order to investigate issues encountered. New run s do not overwrite the logs, they append pre-existing logs.
+
+
+***
+
+ 
+
+## Dependencies
+
+ 
+
+* R Studio
+
+* R (64-bit)
+
+* 30 GB of free disk space to allocate
+
+* Internet connection (preferably high speed fibre optic)
+
+* Access to CRAN packages listed below.
+
+* Git
+
+* GitHub account
+
+* Command line interface (Bash, Terminal, CMD prompt etc)
+
+ 
+
+### Packages and versions:
+
+ 
+
+* rlist 0.4.6.1
+
+* this.path 0.2.0
+
+* stackoverflow 0.7.0
+
+* dplyr 1.0.2          
+
+* jsonlite 1.7.1
+
+* httr 1.4.2
+
+* log4r 0.3.2
+
+* renv 0.12.3          
+
+* beepr 1.3
+
+* stringr 1.4.0
+
+* purrr 0.3.4
+
+* data.table 1.13.2    
+
+* ProjectTemplate 0.9.3
+
+ 
+
+### Notes
+
+ 
+
+1. Memory allocation - 30GB of memory is requested for use in the R session. The script will stop execution if this is not available. 1 month of data tends to require approximately 10 to 11 GB of memory allocation to process.
+
+2. Internet connection - 1 month of data takes approximately 1.25 hours on a connection averaging 60 mbps download, 20 mbps upload.
+
+3. Package management - this project uses `renv` to manage package versions. Using `renv` to ensure package versions are consistent can help to minimise the risk of breaking changes.
+
+***
+***
+
+## <a id="dataprocessing"></a>Data Processing
+
+
+This pipeline joins 2 DataFrames ingested via the Highways England api, <strong class="navy">combo</strong> and <strong class="navy">sites</strong>.
+
+### DataFrames {.tabset .tabset-fade}
+
+#### combo
+
+This DataFrame holds the site readings from the date range that the user specifies:
+
+![RStudio view of the combo DataFrame](images/combo.png)
+
+A full list of `combo`'s column names:
+
+`Site Name` , `Report Date` , `Time Period Ending`, `Time Interval`,
+`0 - 520 cm`, `521 - 660 cm`, `661 - 1160 cm`     , `1160+ cm`    ,
+`0 - 10 mph`, `11 - 15 mph` , `16 - 20 mph`       , `21 - 25 mph` ,
+`26 - 30 mph`, `31 - 35 mph`,  `36 - 40 mph`      ,  `41 - 45 mph`, 
+`46 - 50 mph`, `51 - 55 mph`,  `56 - 60 mph`      ,  `61 - 70 mph`, 
+`71 - 80 mph`, `80+ mph`    ,  `Avg mph`          ,  `Total Volume`, 
+`site_id`. 
+
+All of the columns except the `site_id` are ingested via api. The api does not respond with row level site IDs. The values for `site_id` are extracted from the response url.
+
+#### sites
+
+This DataFrame holds the details and statuses of all the sites <strong class="navy">at the date of query</strong>. Some additional columns are added to the api response during the pipeline. The sources of the columns are specified below.
+
+![RStudio view of the sites DataFrame](images/sites.png)
+
++-------------------+----------------+--------------------------------------------+---------+
+|Column             |Values          |Description                                 |Source   |
++===================+================+============================================+=========+
+|row_count          |Integer         |api response count (different values per    |api      |
+|                   |                |site), dropped from output                  |         |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Id           |Integer         |Numerical site code                         |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Name         |Character       |Contextual site info, dropped from output   |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Description  |Factor          |Motorway location                           |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Longitude    |Floating Point  |Coordinate data                             |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Latitude     |Floating Point  |Coordinate data                             |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|sites.Status       |Character       |Active / inactive                           |api      |
++-------------------+----------------+--------------------------------------------+---------+
+|type               |Character       |Site type: MIDAS, TAME or TMU               |pipeline |
++-------------------+----------------+--------------------------------------------+---------+
+|direction          |Character       |Compass direction of traffic                |pipeline |
++-------------------+----------------+--------------------------------------------+---------+
+|easting            |Integer         |Coordinate data                             |pipeline |
++-------------------+----------------+--------------------------------------------+---------+
+|northing           |Integer         |Coordinate data                             |pipeline |
++-------------------+----------------+--------------------------------------------+---------+
+
+### Join Integrity
+
+The `sites` DataFrame is <strong class="navy">left joined</strong> to the `combo` DataFrame. For more details, please see the [dplyr join documentation](https://dplyr.tidyverse.org/reference/join.html). The dplyr join functions are analagous to SQL joins.
+
+<strong class="navy"> Anti join</strong> is used if null matches in the site IDs are detected. This would mean that site IDs within the `combo` DataFrame had no matching site ID within the `sites` DataFrame. If there are any null matches detected, the rows from the `sites` DataFrame are cached for reporting in the `site_report`.
+
+***
+***
+
+
+## Download the Pipeline
+
+To get a copy of the pipeline, you will need to download the repository from [DSC road data](https://github.com/datasciencecampus/road-data-dump).
+
+Click on the `Code` button to see your download options.
+
+![GitHub repo snapshot](images/Screenshot 2020-12-14 at 10.46.11.png)
+
+***
+
+
+To access the pipeline, you will currently need to `clone` this repository using <strong class="navy">Git</strong>. This will allow access to the branch that stores the required files.
+
+
+It is recommended to specify <strong class="navy">HTTPS</strong> for cloning options, click on the clipboard icon to copy the required url. For assistance in configuring access to GitHub repositories from a command line interface, please consult the [GitHub PAT guidance.](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
+
+ 
+
+<img src="images/Screenshot 2020-12-14 at 10.48.33.png" class="center" alt="GitHub cloning options">
+
+
+***
+
+ 
+
+Using Bash, CMD prompt, terminal or whatever command line interface you prefer to use for Git interfacing, navigate to the directory you wish to run the pipeline from and run the line:
+
+ 
+
+`git clone https://github.com/datasciencecampus/road-data-dump.git`
+
+ 
+
+If the clone is executed correctly, navigate to the newly cloned repository by running:
+
+ 
+
+`cd road-data-dump`
+
+ 
+
+Once you have arrived at the roads-data-dump folder, you will need to check out to the <strong class="navy">r-pipeline</strong> branch. In order to do that, run the line:
+
+ 
+
+`git checkout r-pipeline`
+
+ 
+
+If you successfully checked the <strong class="navy">r-pipeline</strong> out, you should now have a directory that looks like this:
+
+ 
+
+<img src="images/055100.png" class="center" alt="screenshot of directory structure">
+
+
+If your directory looks like this, you are ready to begin first time configuration. Please proceed to [First Time Run](#firsttimerun).
+
+If you require additional support for running Git and the Git commands, then please refer to this [Towards Data Science Complete Beginner's Guide](https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6).
+
+***
+***
+
+## Using the Pipeline
+
+Some guidance before starting:
+
+
+<strong class="navy">It's advisable to shut all non essential processes down prior to running the pipeline on a full month. Parallel processing is now being used and this puts extra demand on system reources.</strong>
+
+
+If you have any of the output data files open, I advise closing them prior to running the pipeline. If R tries to overwrite a file with the same name, it will error and halt execution. If this happens, close the file, use R Studio to open `munge/15-write.R` and re-run this script (either click on the `source` button at the top of the script in R Studio, or press `Ctrl` + `shift` + `enter`).
+
+<strong class="navy">Your system may ask for permission to open additional R Studio sessions during pipeline execution. This will only happen at script number 8 (appears in the console as 08-GET_daily_reports.R), so it is advisable to wait until this script has been initiated before leaving your workstation to proceed with the pipeline.</strong>
+
+It is also best to start from a blank slate every time you run the pipeline. To do this, select `Session` > `Clear Workspace` from the toolbar at the top of R Studio.
+
+This pipeline is intended to produce monthly data for analysis. Specifying longer time periods than a month may result in memory limits being exceeded. Therefore <strong class="navy">execution of the scripts is halted if 31 days limit is exceeded.</strong>
+
+
+<div class="summary-box">
+
+Always ensure you are working from the R Project file. This help to ensure a consistent environment every time you run the pipeline.
+
+</div>
+
+<br>
+
+The project file is called `road-data-dump.Rproj`.
+
+***
+
+ 
+
+### <a id="firsttimerun"></a>First Time Run
+
+On your first run, you need to configure your R Studio set up and then test the pipeline.
+
+***
+
+#### Configuration
+
+##### renv
+
+The `renv` package helps to ensure the pipeline is using the same version of all packages every time it runs. This takes a little set up.
+
+ 
+
+1. Ensure `renv` is installed by running: `install.packages("renv")`.
+
+ 
+
+Successful installation should look something like this:
+
+```
+
+The downloaded binary packages are in
+
+/var/folders/d3/cjvn_l1n13z5z3t6nz554p8r0000gq/T//RtmpnEKjds/downloaded_packages
+
+```
+
+2. Once `renv` has been successfully installed, you will need to build a local package library for this pipeline. The packages will all have the required versions and this step will not affect your other R projects. to do this, execute the line: `renv::restore()`.
+
+ 
+
+You will be asked:
+
+ 
+
+`Do you want to proceed? [y/N]: y`
+
+ 
+
+Enter `y` and press enter.
+
+ 
+
+This will go to CRAN for all the required package version dependencies. This may take some time. Keep a close eye on R Studio's console for any error warnings and note the packages that fail. Retry installing any package that failed by running `install.packages("insert_package_name")`. You can also try: `install.packages("insert_package_name", type = "win.binary", dependencies = TRUE)`.
+
+ 
+
+3. Successful loading of required package versions will look something like this:
+
+ 
+
+```
+
+The following package(s) have been updated:
+
+ 
+
+glue       [installed version 1.4.2  != loaded version 1.4.1 ]
+
+data.table [installed version 1.13.2 != loaded version 1.12.8]
+
+rlang      [installed version 0.4.9  != loaded version 0.4.8 ]
+
+generics   [installed version 0.1.0  != loaded version 0.0.2 ]
+
+magrittr   [installed version 2.0.1  != loaded version 1.5   ]
+
+vctrs      [installed version 0.3.5  != loaded version 0.3.1 ]
+
+pillar     [installed version 1.4.7  != loaded version 1.4.4 ]
+
+tibble     [installed version 3.0.4  != loaded version 3.0.1 ]
+
+dplyr      [installed version 1.0.2  != loaded version 1.0.0 ]
+
+renv       [installed version 0.12.3 != loaded version 0.12.2]
+
+stringi    [installed version 1.5.3  != loaded version 1.4.6 ]
+
+ 
+
+Consider restarting the R session and loading the newly-installed packages.
+
+```
+
+Notice that the installed versions and loaded versions are different. This is what we want for the pipeline, we will be using the specified package versions instead of the most up to date version installed on our machine.
+
+ 
+
+Also note that I have been asked to restart R. If prompted, do this prior to running the pipeline. Select `Session` > `Restart R` from the menu at the top of R Studio.
+
+ 
+
+![Restarting R from the menu](images/Screenshot 2020-12-14 at 11.13.58.png)
+
+ 
+
+ 
+
+4. Before moving on to the next section, check to ensure all the required packages have been installed correctly. Run this command again to ensure correct package versions: `renv::restore()`. If everything is good, the console should print:
+
+ 
+
+```
+
+* The library is already synchronized with the lockfile.
+
+```
+
+ 
+
+5. If this is not the case, hopefully the `restore` function would have gone ahead and brought the packages up to the required versions. If not, you will require support with `renv`, please contact me by clicking the mail icon.
+
+ 
+
+<div>
+  <a href="mailto:richard.leyshon@ons.gov.uk">
+    <i class="fas fa-envelope fa-2x" id="emailme"></i>
+  </a>
+</div>
+<br>
+
+ 
+
+***
+
+ 
+
+##### ProjectTemplate
+
+ 
+
+The `ProjectTemplate` (note the<strong class="navy">camel case</strong>, `install.packages()` is case sensitive) is a robust framework for compartmentalising code in pipelines. It allows us to add logging, run sequential scripts and more. In order to run this pipeline, you will need to have `ProjectTemplate` installed.
+
+ 
+
+1. Run the line `install.packages("ProjectTemplate”)`.
+
+ 
+
+2. If at any point you see an error message that looks like this:
+
+ 
+
+```
+
+Error in .check.version(config) :
+
+  Your configuration is compatible with version 0.9.3 of the ProjectTemplate package.
+
+  Please upgrade ProjectTemplate to version 0.9.3 or later
+
+```
+
+You will need to re-run the line `install.packages("ProjectTemplate”)`. Version 0.93 is what the pipeline expects, you can check the version you are running by looking at the `Packages` pane in the R Studio interface.
+
+ 
+
+<img src="images/091544.png" class="center" alt="The packages pane in R Studio">
+
+ 
+
+You will notice that the image shows a column called `Version` which shows the version of the package available in your global R library. This is not the version we are using in the pipeline.
+
+ 
+
+3. There should be another column called `lockfile`, shown in the image above. This is the record of all the local package versions we will be using for the pipeline. If the `lockfile` column is not appearing within the Packages pane, then please run the line: `renv::snapshot()`. This should cause it to appear. If the problem persists, then please contact me by clicking the mail button.
+
+ 
+
+<div>
+  <a href="mailto:richard.leyshon@ons.gov.uk">
+    <i class="fas fa-envelope fa-2x" id="emailme"></i>
+  </a>
+</div>
+<br>
+
+ 
+
+***
+
+ 
+
+##### Important
+
+ 
+
+The lockfile is a text file stored within the project directory.
+
+ 
+
+<div class="summary-box">Never manually adjust the contents of the lockfile. This may cause the pipeline to break.</div>
+
+ 
+
+***
+
+***
+
+ 
+
+#### <a id="testpipeline"></a>Test Pipeline
+
+ 
+1. Open the `road-data-dump.Rproj` project file.
+
+ 
+
+2. Using R Studio's <strong class="navy">Files pane</strong>, navigate to the `app` folder.
+
+
+<img src="images/app_folder.png" alt="Screenshot of R Studio's Files pane." class="center">
+
+
+3. Open either the `server.R` or `ui.R` scripts. This script should now open within R Studio. Ensure you have clicked on the tab for the script you have just opened. You should now see a `Run App` button at the top of the script.
+
+![`server.R` showing the Run App button visible in R Studio.](images/server.png)
+
+4. Click on the drop down arrow next to the `Run App` button. Ensure the configuration is set up as the below diagram. This will ensure the app launches in your default internet browser. <strong class="navy">This app will look best in Chrome.</strong> Please ensure `Run External` is selected.
+
+<img src="images/run_config.png" alt="Run App configuration." class="center" style="width:200px;height:250px;"/>
+
+5. Click on `Run App` and the App should now launch within your default browser, as below.
+
+![](images/app_ui_1.2.png)
+
+6. On your first time run, it would be advisable to click on the `Take a tour` button. This will guide you through the different elements of the app and offers some advice on what the app expects you to do.
+
+7. On the first run of the pipeline, we just want to do a quick test to see if we can get one site ID for one day. To do this, enter a valid Email address, ensure `Testing` is selected. Notice the messages on the right-hand-side of the app should appear as below.
+
+
+![App status prior to running a test.](images/testing.png)
+
+8. If everything looks good, click on the `Go!` button. A dialogue box should now appear as below. Click `OK` to hide it.
+
+<img src="images/conf_dialog.png" alt="Dialog box appears on executing the pipeline." class="center"/>
+
+9. If the test was successful, you will hear a chime (please ensure your system volume is turned up) and the spinner that appears in the top right-hand corner will disappear. You will also notice that the pipeline status will change to `Pipeline Executed.`
+
+![](images/test_successful.png)
+
+The time difference will vary depending on your system and connection. If this step was successful, you are now ready to move on to [Subsequent Runs](#subsequent_runs). If the test was not successful, then please consult the [Troubleshooting](#troubleshooting) section.
+
+ 
+
+***
+
+***
+
+ 
+
+### <a id="subsequent_runs"></a>Subsequent Runs
+
+If you have arrived here, you have successfully [configured](#firsttimerun) the pipeline environment and have [tested](#testpipeline) the pipeline successfully from the app interface. 
+
+1. Run the app again, as you did when [testing the pipeline](#testpipeline).
+
+2. Ensure that you have entered a <strong class="navy">valid Email</strong> and this time select `Not Testing`.
+![](images/not_testing.png)
+
+ 
+3. This will activate the date selection widgets. You should now be able to click on the start and end dates to specify your own values, as below. When selecting the dates, ensure that the start date precedes the end date and that <strong class="navy">no more than 31 days difference</strong> is selected. If either of these rules are detected by the pipeline, it will throw an intentional error. This is to limit sending bad requests to the api and to limit the need for additional memory allocation.
+
+<img src="images/selecting_dates.png" class="center">
+
+
+4. Once you have completed the required fields, observe the messages on the right of the app. They should look similar to the screenshot below.
+
+![Screenshot of app prior to executing a full run of the pipeline.](images/not_testing.png)
+
+5. Clicking on `Go!` will now execute a full run of the pipeline. The api will be queried for all available site IDs for the date range that you have selected. You will see a spinner appear at the top right-hand side of the app while it is busy.
+ 
+6. Querying a full month takes just under an hour with a good internet connection. On completion, the spinner will disappear, the pipeline status will change to `Pipeline Executed.` and a chime will sound if your system volume is turned up.
+
+7. The output .csvs will appear within the `output_data` folder. The site report will appear within the `reports` folder. If an error is encountered, please consult the [Troubleshooting](#troubleshooting) section.
+ 
+
+***
+
+***
+
+ 
+<a id="troubleshooting"></a>
+
+## Troubleshooting
+
+ 
+
+This section will be used to document any errors encountered as the pipeline is used. In this way, I would hope to produce an extensive guide to troubleshooting the pipeline. To submit an issue for inclusion, either submit an issue on the GitHub repository or email me by clicking the mail icon. Likewise if this section does not resolve your particular issue, please Email me, ensuring you attach your `logfile.txt` found within the `logs` folder.
+
+ 
+
+<div>
+  <a href="mailto:richard.leyshon@ons.gov.uk">
+    <i class="fas fa-envelope fa-2x" id="emailme"></i>
+  </a>
+</div>
+<br>
+ 
+
+***
+
+#### Issue 001
+
+```
+
+document error: Error in fwrite(tmu, "output_data/tmu.csv", row.names = F, quote = F) :
+
+Permission denied: 'output_data/tmu.csv'. Failed to open existing file for writing. Do you have write permission to it? Is this Windows and does another process such as Excel have it
+
+open?
+
+```
+
+<strong class ="navy">Reason: </strong>
+This means R can't write to csv as the file is open.  
+<strong class ="navy">Action: </strong>
+Please close any Excel files and re-run the pipeline.
+
+ 
+
+***
+
+

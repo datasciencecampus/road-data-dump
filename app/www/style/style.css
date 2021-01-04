@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
+
+p {
+  padding-top: 5px;
+  font-family: Arial;
+  color: #003c58;
+}
+
+#logo {
+  position: relative;
+  left: -5px;
+}
+
+/*Nudge sidebar elements upwards*/
+
+#Email {
+  position: relative;
+  bottom: 5px;
+}
+#EmailInput {
+  position: relative;
+  bottom: 25px;
+}
+
+#testpipeline {
+  position: relative;
+  bottom: 25px;
+}
+
+
+#testing {
+  position: relative;
+  bottom: 15px;
+}
+
+#daterange{
+  position: relative;
+  bottom: 25px;
+}
+
+#runpipeline{
+  position: relative;
+  bottom: 25px;
+}
+
+
+h4 {
+  position: relative;
+  bottom: 20px;
+  background-color: #003c58;
+  color: white;
+  font-family: Arial;
+  padding-left: 3px;
+  padding-right: 1em;
+  border-radius: 4px;
+  max-height: 100%;
+  height: 2.5em;
+  max-width: 100%;
+  padding-top: 8px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+
+
+.banner {
+  background-image: linear-gradient(to right, #ce3487 , #d74328);
+  font-family: Arial black;
+  height: 70px;
+  padding-left: 3px;
+  border-radius: 4px;
+}
+
+.sidebar {
+  /* fall back colour*/
+  background-color: #a8bd3a;
+  /*rgba used to specify transparency of background only*/
+  background-color: rgba(168, 189, 58, 0.5);
+  max-height: 475px;
+}
+
+#mainpanel {
+  max-height: 475px;
+}
+
+#appname {
+  display: inline-block;
+  color: white;
+  font-family: 'Bungee Outline', cursive;
+  padding-left: 20px;
+  font-size: 40px;
+}
+
+#sourcecode {
+  display: inline-block;
+  color: #003c58;
+  padding-right: 5px;
+  height: 10px;
+  text-decoration: underline;
+  font-family: Arial;
+  font-size: 16px;
+  text-align: right;
+}
+
+#sourcecode:hover {
+  color: #ce3487;
+}
+
+#codespan{
+  padding-left: 630px;
+}
+
+#optional {
+  display: block;
+  position: relative;
+  width: 150%;
+}
+
+#execute {
+  float: right;
+  color: #ce3487;
+  padding-top: 1px;
+}
