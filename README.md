@@ -7,7 +7,9 @@ Also locally available in `./docs/index.html`.
 ## Changelog
 
 ### Version 1.3
-
+* present tables in UI on successful completion.
+* Menu at bottom of app allows user to switch between parameters and data tables.
+* Updated tour info to reflect above changes.
 
 ### Version 1.2
 

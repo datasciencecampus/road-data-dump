@@ -6,35 +6,43 @@ Produce a UI to assist users in setting query parameters and running pipeline
 source("dependencies.R")
 
 ui <- navbarPage("Menu",
+                 id = "menu_bar",
                  selected = "Set Parameters",
                  position = "fixed-bottom",
-                 id = "all_page",
                  
 # first tabpanel ----------------------------------------------------------
                  
                  tabPanel("Set Parameters",
-                          
-    # include the cicerone guide & dependencies
-    use_cicerone(),
-    # use shinyjs for delay of pipeline execution
-    useShinyjs(),
-    # add a spinner when server is busy
-    add_busy_spinner(spin = "fading-circle"),
-    
-             
-    # set content language for screen reader accessibility
-    tags$head(HTML("<html lang='en'>"),
+    tags$head(
+        # set content language for screen reader accessibility
+        HTML("<html lang='en'>"),
               # custom styling
               includeCSS("www/style/style.css"),
+        # cicerone fixed navbar bug fix
+        tags$style(
+            HTML(
+                "div#driver-highlighted-element-stage, div#driver-page-overlay {
+  background: transparent !important;
+  outline: 5000px solid rgba(0, 0, 0, .75)
+}"
+            )
+        ),
               # message handler
-              tags$script(src = "message-handler.js")),
+              tags$script(src = "message-handler.js"),
+              # include the cicerone guide & dependencies
+              use_cicerone(),
+              # use shinyjs for delay of pipeline execution
+              useShinyjs(),
+              # add a spinner when server is busy
+              add_busy_spinner(spin = "fading-circle")
+              ),
 
 # title -------------------------------------------------------------------
     # set page title as h1 header for accessibility
     titlePanel(title = tags$header(
         class = "banner", tags$h1(
             # app name 
-            tags$strong("Road Data Pipeline v1.2"), id = "appname"),
+            tags$strong("Road Data Pipeline v1.3"), id = "appname"),
         
 # tour button -------------------------------------------------------------
         actionButton(inputId = "guide", label = "Take a tour"),
@@ -54,7 +62,7 @@ ui <- navbarPage("Menu",
         # sidebar -----------------------------------------------------------------
         
         # apply css styling to sidebar
-        sidebarPanel(class = "sidebar",
+        sidebarPanel(class = "sidebar", id = "sidebar",
                      width = 4,
                      
 # user Email --------------------------------------------------------------
@@ -146,7 +154,7 @@ tabPanel("MIDAS",
          titlePanel(title = tags$header(
              class = "banner", tags$h1(
                  # app name 
-                 tags$strong("Road Data Pipeline v1.2"), id = "appname"),
+                 tags$strong("Road Data Pipeline v1.3"), id = "appname"),
              
              
              # DSC logo ----------------------------------------------------------------
@@ -164,7 +172,7 @@ tabPanel("TAME",
          titlePanel(title = tags$header(
              class = "banner", tags$h1(
                  # app name 
-                 tags$strong("Road Data Pipeline v1.2"), id = "appname"),
+                 tags$strong("Road Data Pipeline v1.3"), id = "appname"),
              
              
 # DSC logo ----------------------------------------------------------------
@@ -180,7 +188,7 @@ tabPanel("TMU",
          titlePanel(title = tags$header(
              class = "banner", tags$h1(
                  # app name 
-                 tags$strong("Road Data Pipeline v1.2"), id = "appname"),
+                 tags$strong("Road Data Pipeline v1.3"), id = "appname"),
              
 # DSC logo ----------------------------------------------------------------
              
