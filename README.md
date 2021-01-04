@@ -24,6 +24,7 @@ Also locally available in `./docs/index.html`.
 * Application guide added.
 * Sticky Email validation result resolved.
 
+
 ### Version 1.1
 
 * Log cluster details as failed to stop on prior run
