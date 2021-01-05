@@ -6,6 +6,11 @@ Also locally available in `./docs/index.html`.
 
 ## Changelog
 
+### Version 1.2.1
+
+* Error handling on re-running pipeline following successful execution.
+* Confirmation dialogue box bug handling.
+
 ### Version 1.2
 
 * User Interface for setting query parameters & executing pipeline.

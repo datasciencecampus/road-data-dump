@@ -9,14 +9,14 @@ session. To avoid this, force unload on app initiation. Note that jsonlite is
 still required in app by shinybusy, so implicit attachment on loading shinybusy
 anyway."
 
-pipelinePckgs <- dplyr::setdiff(names(sessionInfo()$otherPkgs),
-                                c("shiny", "cicerone", "shinyjs", "shinybusy"))
-
-if("jsonlite" %in% pipelinePckgs){
-detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
-  rm(pipelinePckgs)
-  
-}
+# pipelinePckgs <- dplyr::setdiff(names(sessionInfo()$otherPkgs),
+#                                 c("shiny", "cicerone", "shinyjs", "shinybusy"))
+# 
+# if("jsonlite" %in% pipelinePckgs){
+# detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
+#   rm(pipelinePckgs)
+#   
+# }
 
 
 # load packages -----------------------------------------------------------

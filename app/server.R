@@ -100,10 +100,8 @@ shinyServer(function(input, output, session) {
     observeEvent(input$execute, {
         if(isValidEmail(input$userEmail) == TRUE){
             # send a browser message on press execute
-            observeEvent(input$execute, {
                 session$sendCustomMessage(type = 'testmessage',
                                           message = 'Pipeline initiated.')
-                })
         # update pipeline status
         pipeline_status$outputText <- "Pipeline running."
 

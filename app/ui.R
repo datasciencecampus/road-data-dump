@@ -24,7 +24,7 @@ ui <- fluidPage(id = "all_page",
     titlePanel(title = tags$header(
         class = "banner", tags$h1(
             # app name 
-            tags$strong("Road Data Pipeline v1.2"), id = "appname"),
+            tags$strong("Road Data Pipeline v1.2.1"), id = "appname"),
         
 # tour button -------------------------------------------------------------
         actionButton(inputId = "guide", label = "Take a tour"),
