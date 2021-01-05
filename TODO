@@ -3,6 +3,8 @@
 ### Backlog
 
 * v1.3 causing crashes on full month runs. Seems to error out in script 8. Investigate, roll back to v1.2 in the meantime.
+* Have noticed memory issues on re-run. Investigate clearing out environmental objects on re-runs, eg if midas %in% ls(), rm(midas). Same for TAME & TMU.
+* Above issue appears to be resolved, though dates not being read from rds on certain re-run conditions. Need to investigate. Script 3 logging.
 * errors caused on multiple runs, image in docs/images/error-2.png
 * Update documentation
 * Tidy up environment from final sequential script forwards.

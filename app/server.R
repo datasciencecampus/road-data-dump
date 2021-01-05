@@ -18,17 +18,21 @@ shinyServer(function(input, output, session) {
 
     # produce Email text
     output$Email_check <- renderText({
+        if(input$userEmail == ""){
+            paste("Please enter a valid Email address.")
+        } else {
         # check format
         validate(
             # use basic Email format check in dependencies.R
             need(expr = isValidEmail(input$userEmail),
                  # if invalid, output a warning to user
-                 message = paste(input$userEmail, "Email is invalid. Please Input a valid Email address"))
+                 message = paste(input$userEmail, "is invalid. Please input a valid Email address."))
         ) #end of validate
         # if validated, save the text string for pipeline execution
         saveRDS(object = input$userEmail, file = "../cache/user_Email.rds")
         # return the validation message
-        paste(input$userEmail, "is valid")
+        paste(input$userEmail, "is valid.")
+        }
     }) # end of Email_check
     
 
@@ -101,10 +105,8 @@ shinyServer(function(input, output, session) {
     observeEvent(input$execute, {
         if(isValidEmail(input$userEmail) == TRUE){
             # send a browser message on press execute
-            observeEvent(input$execute, {
                 session$sendCustomMessage(type = 'testmessage',
                                           message = 'Pipeline initiated.')
-                })
         # update pipeline status
         pipeline_status$outputText <- "Pipeline running."
 
