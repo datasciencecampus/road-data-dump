@@ -1,0 +1,34 @@
+"
+Purpose of script:
+Reset environment configuration once pipeline has executed
+Prepare Shiny environment for re-runs
+
+"
+log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+
+# wrap up -----------------------------------------------------------------
+
+# calculate elapsed time
+elapsed <- Sys.time() - start_time
+log4r::info(my_logger, print(round(elapsed, digits = 3)))
+
+
+log4r::info(my_logger, paste0("#############End of pipeline#############"))
+
+
+# detach packages causing conflicts ---------------------------------------
+"jsonlite causing issue with validate Email message on app reruns within same
+session. To avoid this, force unload on app initiation. Note that jsonlite is
+still required in app by shinybusy, so implicit attachment on loading shinybusy
+anyway."
+
+detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
+
+
+# sound alert when script completes
+beepr::beep("coin")
+
+
+# return to app working directory -----------------------------------------
+
+setwd("app/")

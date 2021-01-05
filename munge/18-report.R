@@ -17,15 +17,3 @@ if(test_run == TRUE){
 rmarkdown::render("reports/site_report.Rmd",
                   output_file = report_name)
 
-# wrap up -----------------------------------------------------------------
-
-# calculate elapsed time
-elapsed <- Sys.time() - start_time
-log4r::info(my_logger, print(round(elapsed, digits = 3)))
-
-
-log4r::info(my_logger, paste0("#############End of pipeline#############"))
-
-
-# sound alert when script completes
-beepr::beep("coin")
