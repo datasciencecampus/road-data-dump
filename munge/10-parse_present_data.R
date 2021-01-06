@@ -41,7 +41,18 @@ report_data <- lapply(request_results, handle_report)
 
 # tidy up -----------------------------------------------------------------
 
-rm(request_results)
+rm(list = c(
+  "request_results",
+  "handle_report",
+  "agent_message",
+  "end_date",
+  "ENDPOINT",
+  "MAX_ROWS",
+  "RESOURCES",
+  "start_date",
+  "user_details"
+  
+            ))
 
 
 # memory report -----------------------------------------------------------

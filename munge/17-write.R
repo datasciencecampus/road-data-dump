@@ -28,10 +28,12 @@ if (test_run == TRUE){
 
 # write to file -----------------------------------------------------------
 
-# write out csvs
-fwrite(midas, midas_filename, row.names = F, quote = F)
-fwrite(tame, tame_filename, row.names = F, quote = F)
-fwrite(tmu, tmu_filename, row.names = F, quote = F)
+if(pipeline_message != "Queried dates are empty."){
+  # write out csvs
+  fwrite(midas, midas_filename, row.names = F, quote = F)
+  fwrite(tame, tame_filename, row.names = F, quote = F)
+  fwrite(tmu, tmu_filename, row.names = F, quote = F)
+}
 
 
 
@@ -58,3 +60,12 @@ if(file.exists(tmu_filename)){
 } else{
   warn(my_logger, "TMU file not found. Check logs.")
 }
+
+# tidy up environment -----------------------------------------------------
+rm(list = c(
+  "midas_filename",
+  "tame_filename",
+  "tmu_filename",
+  "daterange"
+))
+

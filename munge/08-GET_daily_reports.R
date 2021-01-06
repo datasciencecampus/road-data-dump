@@ -46,10 +46,21 @@ if(n_urls != n_results){
 log4r::info(my_logger,
      paste("Duration of report request: ", capture.output(Sys.time() - report_start)))
 
-
 # tally the status codes returned and log them
+log4r::info(my_logger, "HTTP status code counts as follows:")
 log4r::info(my_logger,
      capture.output(table(unlist(list.select(request_results, status_code)))))
+
+
+
+# warn if empty content ---------------------------------------------------
+if(all(unlist(list.select(request_results, status_code)) == 204)){
+  #stop("Queried date range is empty.")
+  error(my_logger, "Queried date range is empty.")
+  pipeline_message <- "Queried dates are empty."
+  # output a warning sound
+  beepr::beep(sound = 10)
+}
 
 
 # remove 204s and errors --------------------------------------------------
@@ -61,7 +72,14 @@ request_results <- handle_missing(request_results)
 
 # tidy up -----------------------------------------------------------------
 
-rm(list = c("all_urls", "n_urls", "n_results", "cl", "ncores"))
+rm(list = c(
+  "all_urls", 
+  "n_urls", 
+  "n_results", 
+  "cl", 
+  "ncores", 
+  "report_start"
+            ))
 
 
 # cluster report ----------------------------------------------------------

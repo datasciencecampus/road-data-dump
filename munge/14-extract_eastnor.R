@@ -12,5 +12,8 @@ but not lines like this:
 '
 sites <- cbind(sites, easting_northing(sites$sites.Name))
 
+# tidy up -----------------------------------------------------------------
+rm(easting_northing)
+
 # memory report -----------------------------------------------------------
 memory_report()

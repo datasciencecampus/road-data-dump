@@ -12,8 +12,22 @@ if(test_run == TRUE){
   report_name <- paste0("site_report_", dates_used, ".html")
 }
 
-
 # render the site report using the cached variables
 rmarkdown::render("reports/site_report.Rmd",
                   output_file = report_name)
+
+# tidy up environment -----------------------------------------------------
+rm(list = c(
+  "site_Id_204s",
+  "sitetypes",
+  "dates_used",
+  "my_rds",
+  "assign_rds",
+  "assign_objects",
+  "all_queried_siteIds"
+))
+
+# memory report -----------------------------------------------------------
+memory_report()
+
 

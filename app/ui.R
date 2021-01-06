@@ -5,7 +5,7 @@ Produce a UI to assist users in setting query parameters and running pipeline
 
 source("dependencies.R")
 
-ui <- navbarPage("Menu",
+ui <- navbarPage("Road Data Pipeline",
                  id = "menu_bar",
                  selected = "Set Parameters",
                  position = "fixed-bottom",
@@ -98,8 +98,6 @@ fluidRow(id = "daterange",
          dateRangeInput(inputId = "daterange",
                         label = NULL,
                         format = "dd-mm-yyyy",
-                        start = "2019-07-01",
-                        end = "2019-07-01",
                         startview = "month",
                         weekstart = 1)
          ),#end of daterange fluid row

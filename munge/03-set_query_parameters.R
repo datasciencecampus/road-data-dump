@@ -16,7 +16,7 @@ start_date <- readRDS("cache/start_date.rds")
 # log query parameters set
 if (test_run == FALSE) {
   log4r::info(my_logger, paste("Start date set: ", start_date))
-}
+  }
 
 # End Date ----------------------------------------------------------------
 

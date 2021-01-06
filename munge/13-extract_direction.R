@@ -12,3 +12,7 @@ sites$direction <- str_replace_all(
   pattern = "souhbound", replacement = "southbound"
 )
 # may wish to consider further string cleansing possibilities here
+
+# tidy up -----------------------------------------------------------------
+rm(direction)
+

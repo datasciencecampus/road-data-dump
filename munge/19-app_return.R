@@ -6,14 +6,7 @@ Prepare Shiny environment for re-runs
 "
 log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
-# wrap up -----------------------------------------------------------------
 
-# calculate elapsed time
-elapsed <- Sys.time() - start_time
-log4r::info(my_logger, print(round(elapsed, digits = 3)))
-
-
-log4r::info(my_logger, paste0("#############End of pipeline#############"))
 
 
 # detach packages causing conflicts ---------------------------------------
@@ -24,6 +17,29 @@ anyway."
 
 detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
 
+
+# wrap up -----------------------------------------------------------------
+
+# calculate elapsed time
+elapsed <- Sys.time() - start_time
+log4r::info(my_logger, capture.output(round(elapsed, digits = 3)))
+
+
+log4r::info(my_logger, paste0("#############End of pipeline#############"))
+
+
+# tidy up -----------------------------------------------------------------
+
+rm(list = c(
+  "elapsed",
+  "my_logger",
+  "logger",
+  "current_file",
+  "my_console_appender",
+  "my_file_appender",
+  "my_logfile",
+  "memory_report"
+))
 
 # sound alert when script completes
 beepr::beep("coin")

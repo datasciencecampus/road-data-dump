@@ -2,10 +2,17 @@
 
 ### Backlog
 
+* Investigate new api
+* error handling for days queried when all responses are 204s - pipeline to output pipeline_message for display in UI. Create conditional logic in pipeline that skips scripts if all content is 204.
+* Update selected date to current date.
+* defer to user - pattern cleansing,   pattern = "souhbound", replacement = "southbound", script 13.
+* defer to user - site status - active / inactive context.
+* defer to user - splitting of combo output csvs by sitetype or by number of rows.
 * v1.3 causing crashes on full month runs. Seems to error out in script 8. Investigate, roll back to v1.2 in the meantime.
 * Have noticed memory issues on re-run. Investigate clearing out environmental objects on re-runs, eg if midas %in% ls(), rm(midas). Same for TAME & TMU.
 * Above issue appears to be resolved, though dates not being read from rds on certain re-run conditions. Need to investigate. Script 3 logging.
 * errors caused on multiple runs, image in docs/images/error-2.png
+* Navbar menu styling
 * Update documentation
 * Tidy up environment from final sequential script forwards.
 * Date checks in app- daterange selection instead?
