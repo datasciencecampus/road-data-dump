@@ -5,15 +5,17 @@ Produce a UI to assist users in setting query parameters and running pipeline
 
 source("dependencies.R")
 
-ui <- fluidPage(id = "all_page",
-    # include the cicerone guide & dependencies
-    use_cicerone(),
-    # use shinyjs for delay of pipeline execution
-    useShinyjs(),
-    # add a spinner when server is busy
-    add_busy_spinner(spin = "fading-circle"),
-    # set content language for screen reader accessibility
-    tags$head(HTML("<html lang='en'>"),
+ui <- navbarPage("Road Data Pipeline",
+                 id = "menu_bar",
+                 selected = "Set Parameters",
+                 position = "fixed-bottom",
+                 
+# first tabpanel ----------------------------------------------------------
+                 
+                 tabPanel("Set Parameters",
+    tags$head(
+        # set content language for screen reader accessibility
+        HTML("<html lang='en'>"),
               # custom styling
               includeCSS("www/style/style.css"),
               # message handler
@@ -80,8 +82,6 @@ fluidRow(id = "daterange",
          dateRangeInput(inputId = "daterange",
                         label = NULL,
                         format = "dd-mm-yyyy",
-                        start = "2019-07-01",
-                        end = "2019-07-01",
                         startview = "month",
                         weekstart = 1)
          ),#end of daterange fluid row
@@ -130,3 +130,4 @@ fluidRow(id = "runpipeline",
         ) # end of mainPanel
 ) # end of sidebarlayout
 ) # end of fluid page
+)

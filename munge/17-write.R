@@ -28,10 +28,12 @@ if (test_run == TRUE){
 
 # write to file -----------------------------------------------------------
 
-# write out csvs
-fwrite(midas, midas_filename, row.names = F, quote = F)
-fwrite(tame, tame_filename, row.names = F, quote = F)
-fwrite(tmu, tmu_filename, row.names = F, quote = F)
+if(pipeline_message != "Queried dates are empty."){
+  # write out csvs
+  fwrite(midas, midas_filename, row.names = F, quote = F)
+  fwrite(tame, tame_filename, row.names = F, quote = F)
+  fwrite(tmu, tmu_filename, row.names = F, quote = F)
+}
 
 
 
@@ -40,21 +42,28 @@ fwrite(tmu, tmu_filename, row.names = F, quote = F)
 
 # MIDAS write status
 if(file.exists(midas_filename)){
-  log4r::info(my_logger, "MIDAS file written.")
+  log4r::info(my_logger, paste(midas_filename, "file written successfully."))
 } else{
   warn(my_logger, "MIDAS file not found. Check logs.")
 }
 
 # TAME write status
 if(file.exists(tame_filename)){
-  log4r::info(my_logger, "TAME file written.")
-} else{
+  log4r::info(my_logger, paste(tame_filename, "file written successfully."))} else{
   warn(my_logger, "TAME file not found. Check logs.")
 }
 
 # TMU write status
 if(file.exists(tmu_filename)){
-  log4r::info(my_logger, "TMU file written.")
-} else{
+  log4r::info(my_logger, paste(tmu_filename, "file written successfully."))} else{
   warn(my_logger, "TMU file not found. Check logs.")
 }
+
+# tidy up environment -----------------------------------------------------
+rm(list = c(
+  "midas_filename",
+  "tame_filename",
+  "tmu_filename",
+  "daterange"
+))
+

@@ -2,12 +2,20 @@
 
 ### Backlog
 
-* present df head in UI on successful completion.
+
+* Investigate new api
+* include number of records with head preview
+* defer to user - ability to specify single dates to test on?
+* defer to user - pattern cleansing,   pattern = "souhbound", replacement = "southbound", script 13.
+* Adjust table outputs, smaller max-size etc.
+* defer to user - site status - active / inactive context.
+* defer to user - splitting of combo output csvs by sitetype or by number of rows.
+* Navbar menu styling
 * Update documentation
-* Tidy up environment from final sequential script forwards.
 * Date checks in app- daterange selection instead?
 * Remove all missing report.txt logic or move to logs.
-* Implement partial data dump logic, when the cache file is partially populated due to an interrupted run, it would be more efficient to compare cached daily reports already ingested against those that are still outstanding. Pick up where we left off.
+* Remove busy spinner & replace with progress bar, updating pipeline with progress object.
+* sendCustomMessage modal is appearing several times on re-runs in session.
 * Persistent Email storage between sessions locally.
 
 

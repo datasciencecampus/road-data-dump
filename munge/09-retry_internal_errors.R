@@ -32,7 +32,8 @@ if("retry_urls" %in% ls()){
   warn(my_logger, paste("number of urls to retry slower:", length(retry_urls2)))
   rm(list = c(
     "retry_urls",
-    "retried_results"))
+    "retried_results"
+    ))
 }
 
 # slower retry ------------------------------------------------------------
@@ -92,16 +93,24 @@ if("retry_urls3" %in% ls()){
     url))
   warn(my_logger, paste("number of urls not caught at slowest retry",
                         length(retry_urls4)))
-  rm(list = c(
-    "retry_urls4",
-    "retried_results",
-    "caught_retries3"))
-}
-
 
 # append caught retries to request results --------------------------------
 if("caught_retries" %in% ls()){
 request_results <- c(request_results, caught_retries)
 }
+  
+  wrap_up()
+# tidy up -----------------------------------------------------------------
+  
+  rm(list = c(
+    "retry_urls4",
+    "retried_results",
+    "caught_retries3"
+    ))
+}
 
-
+rm(list = c(
+  "slow_retry",
+  "slower_retry",
+  "slowest_retry"
+))

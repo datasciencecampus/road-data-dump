@@ -6,10 +6,25 @@ Also locally available in `./docs/index.html`.
 
 ## Changelog
 
+### Version 1.3
+
+* present tables in UI on successful completion.
+* Menu at bottom of app allows user to switch between parameters and data tables.
+* Updated tour info to reflect above changes.
+* table outputs very slow on full month query, revert to table preview, first 100 lines.
+* error handling for daterange queried when all responses are empty - pipeline to output pipeline_message for display in UI. Create conditional logic in pipeline that skips scripts if all content is empty.
+* Update selected date on app launch to current date.
+* Tidy up environment from final sequential script forwards.
+
+### Known Issues
+
+* re-running whole month queries can cause system crashes. Updating documentation to ensure user advised on starting fresh R session once finished testing whilst troubleshooting.
+
 ### Version 1.2.1
 
 * Error handling on re-running pipeline following successful execution.
 * Confirmation dialogue box bug handling.
+=======
 
 ### Version 1.2
 
