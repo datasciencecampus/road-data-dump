@@ -1,6 +1,6 @@
 ---
 title: "Road Data Pipeline"
-subtitle: "Version 1.2"
+subtitle: "Version 1.3"
 author: "R Leyshon"
 date: "23/12/2020"
 output:
@@ -143,6 +143,7 @@ The <strong class="navy">log file.txt</strong> is important if you encounter an 
 ***
 
  
+<a id="dependencies"></a>
 
 ## Dependencies
 
@@ -596,9 +597,7 @@ The lockfile is a text file stored within the project directory.
 
 <img src="images/run_config.png" alt="Run App configuration." class="center" style="width:200px;height:250px;"/>
 
-5. Click on `Run App` and the App should now launch within your default browser, as below.
-
-![](images/app_ui_1.2.png)
+5. Click on `Run App` and the App should now launch within your default browser.
 
 6. On your first time run, it would be advisable to click on the `Take a tour` button. This will guide you through the different elements of the app and offers some advice on what the app expects you to do.
 
@@ -627,7 +626,13 @@ The time difference will vary depending on your system and connection. If this s
 
 ### <a id="subsequent_runs"></a>Subsequent Runs
 
-If you have arrived here, you have successfully [configured](#firsttimerun) the pipeline environment and have [tested](#testpipeline) the pipeline successfully from the app interface. 
+If you have arrived here, you have successfully [configured](#firsttimerun) the pipeline environment and have [tested](#testpipeline) the pipeline successfully from the app interface.
+
+<br>
+<div class="summary-box">
+Please note, once you have tested the pipeline to ensure its functionality and are ready to query larger volumes of data, I advise closing R Studio between subsequent queries. Particularly when querying whole months. This helps to ensure the environment is configured as expected and can help to avoid memory issues.
+</div>
+<br>
 
 1. Run the app again, as you did when [testing the pipeline](#testpipeline).
 
@@ -697,4 +702,16 @@ Please close any Excel files and re-run the pipeline.
 
 ***
 
+#### Issue 002
 
+Your computer crashes, freezes or the application times out (goes grey).
+
+<strong class ="navy">Reason: </strong>
+Likely to be memory issues.  
+<strong class ="navy">Action: </strong>
+1. Close and re open the project file. Re-run the pipeline.
+2. If the above did not resolve the issue, inspect the free disk space available on your machine. Please see the [dependencies](#dependencies) guidance.
+
+ 
+
+***
