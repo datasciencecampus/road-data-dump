@@ -56,6 +56,7 @@ shinyServer(function(input, output, session) {
             ui_message_start <- paste("Static start date used:",
                                     format(s_date_string, "%d-%b-%Y"))
             saveRDS(s_date_string, "../cache/start_date.rds")
+            
         } else{
             s_date_string <- paste(format(input$daterange[1], "%d%m%Y"))
             ui_message_start <- paste("Start date set as:", format(input$daterange[1], "%d-%b-%Y"))
@@ -129,4 +130,32 @@ shinyServer(function(input, output, session) {
         
         )
 
+
+# view midas table --------------------------------------------------------
+
+    output$midas <- renderDT({
+        if(pipeline_status$outputText == "Pipeline Executed."){
+            return(midas)
+        } else {
+            return(data.frame("MIDAS" = "No data"))
+        }
+    })
+    
+    output$tame <- renderDT({
+        if(pipeline_status$outputText == "Pipeline Executed."){
+            return(tame)
+        } else {
+            return(data.frame("TAME" = "No data"))
+        }
+    })
+    
+    output$tmu <- renderDT({
+        if(pipeline_status$outputText == "Pipeline Executed."){
+            return(tmu)
+        } else {
+            return(data.frame("TMU" = "No data"))
+        }
+    })
+    
+    
 }) # end of server

@@ -29,6 +29,7 @@ library(cicerone)
 library(shinyjs)
 library(shinybusy)
 library(base)
+library(DT)
 
 
 # check Email syntax ------------------------------------------------------
@@ -47,6 +48,17 @@ guide <- Cicerone$
   step(
     el = "sourcecode",
     title = "See the full pipeline documentation on GitHub."
+  )$
+  step(
+    el = "sidebar",
+    title = "App sidebar",
+    description = "Use this panel to set your query parameters.",
+    position = "right"
+  )$
+  step(
+    el = "mainpanel",
+    title = "Confirmation messages appear here.",
+    position = "left"
   )$
   step(
     el = "Email",
@@ -78,11 +90,6 @@ guide <- Cicerone$
     running. If the pipeline executes fully, you should hear a chime."
   )$
   step(
-    el = "mainpanel",
-    title = "Confirmation messages appear here.",
-    position = "left"
-  )$
-  step(
     el = "emailcheck",
     title = "Email Validation",
     description = "The app won't execute the pipeline unless the Email is valid."
@@ -98,4 +105,28 @@ guide <- Cicerone$
     el = "pipstatus",
     title = "Pipeline status.",
     description = "Indicates whether the pipeline is inactive or running."
+  )$
+  step(
+    el = "[data-value='Set Parameters']",
+    title = "Set Parameters",
+    description = "Use this page to set your query parameters and execute the pipeline.",
+    is_id = FALSE
+  )$
+  step(
+    el = "[data-value='MIDAS']",
+    title = "MIDAS data",
+    description = "This page allows you to view data with the site type MIDAS.",
+    is_id = FALSE
+  )$
+  step(
+    el = "[data-value='TAME']",
+    title = "TAME data",
+    description = "This page allows you to view data with the site type TAME",
+    is_id = FALSE
+  )$
+  step(
+    el = "[data-value='TMU']",
+    title = "TMU data",
+    description = "This page allows you to view data with the site type TMU",
+    is_id = FALSE
   )

@@ -8,10 +8,15 @@ log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #
 
 # return table heads ------------------------------------------------------
 "Provide a preview of data for the UI"
-
-midas <- head(midas, n = 100)
-tame <- head(tame, n = 100)
-tmu <- head(tmu, n = 100)
+if("midas" %in% ls()){
+  midas <- head(midas, n = 100)
+}
+if("tame" %in% ls()){
+  tame <- head(tame, n = 100)
+}
+if("tmu" %in% ls()){
+  tmu <- head(tmu, n = 100)
+}
 
 # detach packages causing conflicts ---------------------------------------
 "jsonlite causing issue with validate Email message on app reruns within same

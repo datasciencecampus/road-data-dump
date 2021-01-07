@@ -18,15 +18,31 @@ ui <- navbarPage("Road Data Pipeline",
         HTML("<html lang='en'>"),
               # custom styling
               includeCSS("www/style/style.css"),
+        # cicerone fixed navbar bug fix
+        tags$style(
+            HTML(
+                "div#driver-highlighted-element-stage, div#driver-page-overlay {
+  background: transparent !important;
+  outline: 5000px solid rgba(0, 0, 0, .75)
+}"
+            )
+        ),
               # message handler
-              tags$script(src = "message-handler.js")),
+              tags$script(src = "message-handler.js"),
+              # include the cicerone guide & dependencies
+              use_cicerone(),
+              # use shinyjs for delay of pipeline execution
+              useShinyjs(),
+              # add a spinner when server is busy
+              add_busy_spinner(spin = "fading-circle")
+              ),
 
 # title -------------------------------------------------------------------
     # set page title as h1 header for accessibility
     titlePanel(title = tags$header(
         class = "banner", tags$h1(
             # app name 
-            tags$strong("Road Data Pipeline v1.2.1"), id = "appname"),
+            tags$strong("Road Data Pipeline v1.3"), id = "appname"),
         
 # tour button -------------------------------------------------------------
         actionButton(inputId = "guide", label = "Take a tour"),
@@ -34,19 +50,19 @@ ui <- navbarPage("Road Data Pipeline",
 
 # DSC logo ----------------------------------------------------------------
 
-        tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right"),
+        tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
         
 ), # end of header
         
         windowTitle = "Road Data Pipeline"),
-    
-    
-    
+
+
+
     sidebarLayout(
         # sidebar -----------------------------------------------------------------
         
         # apply css styling to sidebar
-        sidebarPanel(class = "sidebar",
+        sidebarPanel(class = "sidebar", id = "sidebar",
                      width = 4,
                      
 # user Email --------------------------------------------------------------
@@ -97,7 +113,6 @@ fluidRow(id = "runpipeline",
         ),# end of sidebarlayout
         
 # main panel --------------------------------------------------------------
-
         mainPanel(id = "mainpanel",
             width = 8,
             # github link
@@ -125,9 +140,62 @@ fluidRow(id = "runpipeline",
             tags$div(id = "pipstatus",
             htmlOutput("pipeline_status")
             ),
-            hr(),
-            tableOutput("midas_head")
+            hr()
         ) # end of mainPanel
-) # end of sidebarlayout
-) # end of fluid page
-)
+    ) # end of sidebarlayout
+            
+        ), # end of first tabpanel
+
+tabPanel("MIDAS",
+         # title -------------------------------------------------------------------
+         # set page title as h1 header for accessibility
+         titlePanel(title = tags$header(
+             class = "banner", tags$h1(
+                 # app name 
+                 tags$strong("Road Data Pipeline v1.3"), id = "appname"),
+             
+             
+             # DSC logo ----------------------------------------------------------------
+             
+             tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
+             
+         )), # end of titlePanel
+
+            DT::DTOutput("midas")
+), # end of second tabpanel
+
+tabPanel("TAME",
+# title -------------------------------------------------------------------
+         # set page title as h1 header for accessibility
+         titlePanel(title = tags$header(
+             class = "banner", tags$h1(
+                 # app name 
+                 tags$strong("Road Data Pipeline v1.3"), id = "appname"),
+             
+             
+# DSC logo ----------------------------------------------------------------
+             
+             tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
+             
+         )), # end of titlePanel
+            DT::DTOutput("tame")
+), # end of third tabpanel
+tabPanel("TMU",
+# title -------------------------------------------------------------------
+         # set page title as h1 header for accessibility
+         titlePanel(title = tags$header(
+             class = "banner", tags$h1(
+                 # app name 
+                 tags$strong("Road Data Pipeline v1.3"), id = "appname"),
+             
+# DSC logo ----------------------------------------------------------------
+             
+             tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
+             
+         )), # end of titlePanel
+            DT::DTOutput("tmu")
+) # end of fourth tabpanel
+
+
+
+) # end of navbar page
