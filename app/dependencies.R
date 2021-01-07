@@ -15,6 +15,8 @@ pipeline executions.
 pipelinePckgs <- dplyr::setdiff(names(sessionInfo()$otherPkgs),
                                 c("shiny", "cicerone", "shinyjs", "shinybusy"))
 
+pipeline_message <- "Pipeline inactive."
+
 if("jsonlite" %in% pipelinePckgs){
   detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
   rm(pipelinePckgs)

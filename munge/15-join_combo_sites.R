@@ -7,19 +7,23 @@ gc()
 
 # join integrity ----------------------------------------------------------
 # find any site IDs in combo that have no corresponding ID in the sites df
-null_matches <- setdiff(combo$site_id, sites$sites.Id)
-
-# if null matches is not empty, log warnings and output data for site_report
-if(length(null_matches) > 0){
+if(pipeline_message != "Queried dates are empty."){
+  null_matches <- setdiff(combo$site_id, sites$sites.Id)
+  # if null matches is not empty, log warnings and output data for site_report
+  if(length(null_matches) > 0){
   # log
   warn(my_logger, "There are unmatched IDs in the combo DataFrame")
   warn(my_logger, paste("Unmatched IDs found:",
-                        paste0(null_matches, collapse = ", ")))
+  paste0(null_matches, collapse = ", ")))
   # anti-join combo and output for site_report
   nullmatch_combo <- anti_join(combo, sites, by = c("site_id" = "sites.Id"))
   saveRDS(nullmatch_combo, "cache/nullmatch_combo.RDS")
   # tidy up
-  rm(nullmatch_combo)
+  rm(list = c(
+    "nullmatch_combo",
+    "null_matches")
+    )
+  }
 }
 
 "
@@ -43,8 +47,7 @@ if(pipeline_message != "Queried dates are empty.") {
 
 # clean up leaving readings only
 rm(list = c(
-  "sites",
-  "null_matches"
+  "sites"
 ))
 
 # memory report -----------------------------------------------------------

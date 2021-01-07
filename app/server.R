@@ -121,7 +121,14 @@ shinyServer(function(input, output, session) {
     })
     
     # continue to update pipeline status text
-    observe(output$pipeline_status <- renderText(HTML(pipeline_status$outputText)))
+    observe(
+        if(pipeline_message == "Queried dates are empty."){
+            output$pipeline_status <- renderText(pipeline_message)
+        } else{
+        output$pipeline_status <- renderText(HTML(pipeline_status$outputText))
+        }
+        
+        )
 
 
 # view midas table --------------------------------------------------------

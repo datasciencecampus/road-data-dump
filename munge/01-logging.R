@@ -3,6 +3,11 @@ Purpose of script:
 1.Initiate logging dependencies.
 2. Source custom functions form func/ directory
 "
+
+# update pipeline message -------------------------------------------------
+
+pipeline_message <- "Pipeline running."
+
 # initiate logging --------------------------------------------------------
 
 my_logfile <- "logs/logfile.txt"
@@ -28,8 +33,12 @@ my_logger <- log4r::logger(
 
 log4r::info(my_logger, message = "###################New Run#########################")
 
-# source func/functions.R -------------------------------------------------
+# log pre-existing env objects in event of re-running pipeline
+log4r::info(my_logger, paste("Environment objects found on initiation:",
+                             paste(ls(), collapse = ", ")))
 
+
+# source func/functions.R -------------------------------------------------
 # import custom functions
 source("func/functions.r")
 

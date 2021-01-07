@@ -8,6 +8,14 @@ log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #
 
 
 
+# return table heads ------------------------------------------------------
+"Provide a preview of data for the UI"
+
+midas <- head(midas, n = 100)
+tame <- head(tame, n = 100)
+tmu <- head(tmu, n = 100)
+
+
 
 # detach packages causing conflicts ---------------------------------------
 "jsonlite causing issue with validate Email message on app reruns within same
@@ -17,6 +25,10 @@ anyway."
 
 detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
 
+
+
+# memory report -----------------------------------------------------------
+memory_report()
 
 # wrap up -----------------------------------------------------------------
 

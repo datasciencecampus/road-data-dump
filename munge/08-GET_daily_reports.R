@@ -55,7 +55,6 @@ log4r::info(my_logger,
 
 # warn if empty content ---------------------------------------------------
 if(all(unlist(list.select(request_results, status_code)) == 204)){
-  #stop("Queried date range is empty.")
   error(my_logger, "Queried date range is empty.")
   pipeline_message <- "Queried dates are empty."
   # output a warning sound
@@ -66,8 +65,9 @@ if(all(unlist(list.select(request_results, status_code)) == 204)){
 # remove 204s and errors --------------------------------------------------
 # filter out any requests that returned a 204 status with missing content
 # print out a text file with their IDs to output_data/missing_site_IDs.txt
-
-request_results <- handle_missing(request_results)
+if(pipeline_message != "Queried dates are empty."){
+  request_results <- handle_missing(request_results)
+}
 
 
 # tidy up -----------------------------------------------------------------
