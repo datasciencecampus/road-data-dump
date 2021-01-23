@@ -41,6 +41,8 @@ log4r::info(my_logger, paste("Environment objects found on initiation:",
 # source func/functions.R -------------------------------------------------
 # import helper functions
 source("func/helper.r")
+# import table functions
+source("func/tables.R")
 # import pipeline functions
 source("func/functions.r")
 

@@ -15,7 +15,7 @@ log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #
 # if detected enter slow retry
 if("retry_urls" %in% ls()){
   warn(my_logger, "Entering slow retry...")
-  retried_results <- lapply(retry_urls, slow_retry)
+  retried_results <- lapply(retry_urls, slow_retry, user_details)
   warn(my_logger, paste(length(retried_results), "results have been retried"))
   warn(my_logger, "Status codes returned following slow retry: ")
   warn(my_logger, paste(
@@ -42,7 +42,7 @@ if("retry_urls" %in% ls()){
 # append any caught responses from the previous slow retry
 if("retry_urls2" %in% ls()){
   warn(my_logger, "Entering slower retry...")
-  retried_results <- lapply(retry_urls2, slower_retry)
+  retried_results <- lapply(retry_urls2, slower_retry, user_details)
   warn(my_logger, paste(length(retried_results), "results have been retried"))
   warn(my_logger, "Status codes returned following slower retry: ")
   warn(my_logger, paste(
@@ -74,7 +74,7 @@ if("retry_urls2" %in% ls()){
 # append any caught responses from the previous slowest retry
 if("retry_urls3" %in% ls()){
   warn(my_logger, "Entering slowest retry...")
-  retried_results <- lapply(retry_urls3, slowest_retry)
+  retried_results <- lapply(retry_urls3, slowest_retry, user_details)
   warn(my_logger, paste(length(retried_results), "results have been retried"))
   warn(my_logger, "Status codes returned following slowest retry: ")
   warn(my_logger, paste(
@@ -94,12 +94,6 @@ if("retry_urls3" %in% ls()){
   warn(my_logger, paste("number of urls not caught at slowest retry",
                         length(retry_urls4)))
 
-# append caught retries to request results --------------------------------
-if("caught_retries" %in% ls()){
-request_results <- c(request_results, caught_retries)
-}
-  
-  wrap_up()
 # tidy up -----------------------------------------------------------------
   
   rm(list = c(
@@ -108,6 +102,13 @@ request_results <- c(request_results, caught_retries)
     "caught_retries3"
     ))
 }
+
+# append caught retries to request results --------------------------------
+if("caught_retries" %in% ls()){
+  request_results <- c(request_results, caught_retries)
+  rm(caught_retries)
+}
+
 
 rm(list = c(
   "slow_retry",

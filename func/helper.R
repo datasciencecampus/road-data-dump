@@ -128,7 +128,7 @@ memory_report <- function() {
 
 # wrap_up -----------------------------------------------------------------
 
-wrap_up <- function() {
+wrap_up <- function(pipeline_message) {
   # calculate elapsed time
   elapsed <- Sys.time() - start_time
   # # add to logfile
@@ -138,10 +138,14 @@ wrap_up <- function() {
   # write all lines to logs/logfile
   readLines(my_logfile)
   
+  # update pipeline message. '<<-' searches for `pipeline_message` in parent env
+  pipeline_message <<- "Pipeline halted."
+  
   # sound alert when script completes
   beepr::beep("coin")
   
   # Manually stop execution while working on api request
   stop(paste("wrap up at", current_file()))
+  
 }
 # End of wrap_up -----------------------------------------------------------------
