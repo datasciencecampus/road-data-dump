@@ -8,7 +8,6 @@ log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #
 log4r::info(my_logger, "Duration of all site ID daily report request")
 report_start <- Sys.time()
 
-
 # parallel ----------------------------------------------------------------
 # get the number of cores available
 ncores <- detectCores()
