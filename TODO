@@ -2,7 +2,7 @@
 
 ### Backlog
 
-
+* Date handling, limits exceeded causes UI timeout. Switch to shiny server handling instead.
 * Investigate new api
 * include number of records with head preview
 * defer to user - ability to specify single dates to test on?
@@ -11,11 +11,9 @@
 * defer to user - site status - active / inactive context.
 * defer to user - splitting of combo output csvs by sitetype or by number of rows.
 * Navbar menu styling
-* Update documentation
 * Date checks in app- daterange selection instead?
 * Remove all missing report.txt logic or move to logs.
 * Remove busy spinner & replace with progress bar, updating pipeline with progress object.
-* sendCustomMessage modal is appearing several times on re-runs in session.
 * Persistent Email storage between sessions locally.
 
 

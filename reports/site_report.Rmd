@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(stringr)
 library(dplyr)
 library(DT)
-source("../func/functions.R")
+source("../func/queries.R")
 ```
 
 ```{r, include=FALSE}

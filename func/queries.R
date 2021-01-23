@@ -61,7 +61,8 @@ handle_errors <- function(error_responses){
     warn(my_logger, "Urls to retry:")
     retry_these <- unlist(list.select(internal_errors, url))
     warn(my_logger, paste(retry_these, collapse = "\n"))
-    assign("retry_urls", retry_these, envir = .GlobalEnv)
+    # assign retry_urls to global env
+    retry_urls <<- retry_these
   }
 }
 # 08-Get_daily_reports.R handle_errors ------------------------------------
