@@ -97,13 +97,44 @@ shinyServer(function(input, output, session) {
     })
     
 
+# date handling -----------------------------------------------------------
+
+    #calculate selected date range
+    selectedDateRange <- reactive({input$daterange[2] - input$daterange[1]})
+    
+    
+#  and present as text
+    output$DateRangeOut <- renderText({
+        if(input$testpipeline == TRUE){
+            ui_message_drange <- "Testing. Date Range is 1 day."
+        } else {
+            ui_message_drange <- paste(
+                "Selected date range:",
+                selectedDateRange(),
+                "days.")
+        }
+        ui_message_drange
+    })
+    
+
 # run pipeline ------------------------------------------------------------
     # default pipeline status
     pipeline_status <- reactiveValues(outputText = "Pipeline inactive.")
     
     # run the pipeline on action button press, if Email is validated.
     observeEvent(input$execute, {
-        if(isValidEmail(input$userEmail) == TRUE){
+        if(isValidEmail(input$userEmail) == FALSE){
+            # send a browser message on press execute
+            session$sendCustomMessage(type = 'testmessage',
+                                      message = 'Valid Email required')
+        }
+        
+        
+        
+        if(isValidEmail(input$userEmail) == TRUE &
+           # check daterange is 1 month only
+           between(selectedDateRange,left = 0, right = 31)
+           ){
             # send a browser message on press execute
                 session$sendCustomMessage(type = 'testmessage',
                                           message = 'Pipeline initiated.')

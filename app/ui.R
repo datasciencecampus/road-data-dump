@@ -42,7 +42,7 @@ ui <- navbarPage("Road Data Pipeline",
     titlePanel(title = tags$header(
         class = "banner", tags$h1(
             # app name 
-            tags$strong("Road Data Pipeline v1.3"), id = "appname"),
+            tags$strong("Road Data Pipeline v1.4"), id = "appname"),
         
 # tour button -------------------------------------------------------------
         actionButton(inputId = "guide", label = "Take a tour"),
@@ -135,6 +135,8 @@ fluidRow(id = "runpipeline",
             textOutput("start_date"),
             hr(),
             textOutput("end_date"),
+            hr(),
+            textOutput("DateRangeOut"),
             hr()
             ),
             tags$div(id = "pipstatus",

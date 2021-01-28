@@ -6,6 +6,14 @@ Also locally available in `./docs/index.html`.
 
 ## Changelog
 
+### Version 1.4
+
+
+### Version 1.3.1
+
+* Refactored functions
+* Retry logic on api errors adjusted 
+
 ### Version 1.3
 
 * present tables in UI on successful completion.
@@ -16,15 +24,11 @@ Also locally available in `./docs/index.html`.
 * Update selected date on app launch to current date.
 * Tidy up environment from final sequential script forwards.
 
-### Known Issues
-
-* re-running whole month queries can cause system crashes. Updating documentation to ensure user advised on starting fresh R session once finished testing whilst troubleshooting.
-
 ### Version 1.2.1
 
 * Error handling on re-running pipeline following successful execution.
 * Confirmation dialogue box bug handling.
-=======
+
 
 ### Version 1.2
 
