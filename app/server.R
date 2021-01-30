@@ -123,17 +123,43 @@ shinyServer(function(input, output, session) {
     
     # run the pipeline on action button press, if Email is validated.
     observeEvent(input$execute, {
-        if(isValidEmail(input$userEmail) == FALSE){
+        # if testing, just check for Email, skip date handling logic
+        if(input$testpipeline == TRUE &&
+           isValidEmail(input$userEmail)
+        ){
+            # send a browser message on press execute
+            session$sendCustomMessage(type = 'testmessage',
+                                      message = 'Testing pipeline. Pipeline initiated.')
+            # update pipeline status
+            pipeline_status$outputText <- "Pipeline running."
+            
+            # Use shinyjs::delay() to prevent source executing before confirmation messages
+            # run pipeline
+            delay(ms = 1, expr =  source("../src/run-me.R"))
+            # update pipeline status with confirmation message
+            delay(ms = 2, expr =  pipeline_status$outputText <- "Pipeline Executed.")
+            
+        } else if(isValidEmail(input$userEmail) == FALSE){
             # send a browser message on press execute
             session$sendCustomMessage(type = 'testmessage',
                                       message = 'Valid Email required')
-        }
-        
-        
-        
-        if(isValidEmail(input$userEmail) == TRUE &
+        } else if (
+            # if daterange is not within 31 days
+            (between(
+                selectedDateRange(),0, 31)
+             ) == FALSE &&
+            input$testpipeline == FALSE
+            
+        ){
+            # send a browser message on press execute
+            session$sendCustomMessage(type = 'testmessage',
+                                      message = 'Dates selected must result in a positive date range of 31 days or less.')
+            
+        } else if(
+            # if both conditions above are met, successful run
+            isValidEmail(input$userEmail) == TRUE &&
            # check daterange is 1 month only
-           between(selectedDateRange,left = 0, right = 31)
+           between(selectedDateRange(),0, 31)
            ){
             # send a browser message on press execute
                 session$sendCustomMessage(type = 'testmessage',
