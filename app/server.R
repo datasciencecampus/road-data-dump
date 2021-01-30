@@ -178,19 +178,17 @@ shinyServer(function(input, output, session) {
         # run pipeline
         delay(ms = 1, expr =  source("../src/run-me.R"))
         # update pipeline status with confirmation message
-        delay(ms = 2, expr =  pipeline_status$outputText <- "Pipeline Executed.")
+        delay(ms = 2, expr = if(pipeline_message == "Queried dates are empty."){
+            pipeline_status$outputText <- pipeline_message} else
+            pipeline_status$outputText <- "Pipeline Executed.")
         }
     })
     
     # continue to update pipeline status text
-    observe(
-        if(pipeline_message == "Queried dates are empty."){
-            output$pipeline_status <- renderText(pipeline_message)
-        } else{
+    observe({
         output$pipeline_status <- renderText(HTML(pipeline_status$outputText))
-        }
         
-        )
+        })
 
 
 # view midas table --------------------------------------------------------

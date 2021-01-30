@@ -2,7 +2,7 @@
 
 ### Backlog
 
-* querying blank dates still resulting in timeout error. 16.split.R error. Only execute on pipeline message.
+* blank queries result in 3 x error on rendertables in UI navbar tabs
 * Noticed some issues once pipeline completed - tame and tmu being deleted from environment but not midas. midas tables present at pipeline completion only has 6 variables. Outputted csvs still as expected.
 * Investigate new api
 * include number of records with head preview
