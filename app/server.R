@@ -121,46 +121,53 @@ shinyServer(function(input, output, session) {
     # default pipeline status
     pipeline_status <- reactiveValues(outputText = "Pipeline inactive.")
     
+    
+    "Run logic:
+            1. Always check for Email validation and output message if not valid
+            2. If testing, skip date handling logic
+            3. If not testing, check dates between 0 and 31 days, output message if
+            FALSE
+            4. If Email is valid and dates are good, execute pipeline
+            5. Else, pipeline is idle
+            "
     # run the pipeline on action button press, if Email is validated.
     observeEvent(input$execute, {
-        # if testing, just check for Email, skip date handling logic
-        if(input$testpipeline == TRUE &&
-           isValidEmail(input$userEmail)
-        ){
+        # check Email
+        if(isValidEmail(input$userEmail) == FALSE){
+            # send a browser message on press execute
+            session$sendCustomMessage(type = 'testmessage',
+                                      message = 'Valid Email required')
+        } else if(
+            # if testing, skip date handling logic
+            input$testpipeline == TRUE
+            ){
             # send a browser message on press execute
             session$sendCustomMessage(type = 'testmessage',
                                       message = 'Testing pipeline. Pipeline initiated.')
             # update pipeline status
             pipeline_status$outputText <- "Pipeline running."
-            
             # Use shinyjs::delay() to prevent source executing before confirmation messages
             # run pipeline
             delay(ms = 1, expr =  source("../src/run-me.R"))
             # update pipeline status with confirmation message
             delay(ms = 2, expr =  pipeline_status$outputText <- "Pipeline Executed.")
-            
-        } else if(isValidEmail(input$userEmail) == FALSE){
-            # send a browser message on press execute
-            session$sendCustomMessage(type = 'testmessage',
-                                      message = 'Valid Email required')
         } else if (
             # if daterange is not within 31 days
             (between(
                 selectedDateRange(),0, 31)
              ) == FALSE &&
             input$testpipeline == FALSE
-            
         ){
             # send a browser message on press execute
             session$sendCustomMessage(type = 'testmessage',
-                                      message = 'Dates selected must result in a positive date range of 31 days or less.')
-            
-        } else if(
+                                      message = 'Dates selected must result in a positive date range of 31 days or less.'
+                                      )
+            } else if(
             # if both conditions above are met, successful run
             isValidEmail(input$userEmail) == TRUE &&
-           # check daterange is 1 month only
-           between(selectedDateRange(),0, 31)
-           ){
+                # check daterange is 1 month only
+                between(selectedDateRange(),0, 31)
+            ){
             # send a browser message on press execute
                 session$sendCustomMessage(type = 'testmessage',
                                           message = 'Pipeline initiated.')
@@ -172,8 +179,6 @@ shinyServer(function(input, output, session) {
         delay(ms = 1, expr =  source("../src/run-me.R"))
         # update pipeline status with confirmation message
         delay(ms = 2, expr =  pipeline_status$outputText <- "Pipeline Executed.")
-        } else {
-            pipeline_status$outputText <- "Pipeline not initiated. Please enter a valid Email address."
         }
     })
     
