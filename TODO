@@ -2,8 +2,8 @@
 
 ### Backlog
 
+* querying blank dates still resulting in timeout error. 16.split.R error. Only execute on pipeline message.
 * Noticed some issues once pipeline completed - tame and tmu being deleted from environment but not midas. midas tables present at pipeline completion only has 6 variables. Outputted csvs still as expected.
-* Date handling, limits exceeded causes UI timeout. Switch to shiny server handling instead.
 * Investigate new api
 * include number of records with head preview
 * defer to user - ability to specify single dates to test on?

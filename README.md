@@ -8,6 +8,7 @@ Also locally available in `./docs/index.html`.
 
 ### Version 1.4
 
+* Date handling logic switched to application server.
 
 ### Version 1.3.1
 

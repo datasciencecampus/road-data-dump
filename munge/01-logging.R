@@ -48,7 +48,7 @@ source("func/queries.R")
 
 log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
-if(test_run == TRUE){
+if(test_run == FALSE){
   log4r::info(my_logger, "Not testing pipeline.")
 } else if(test_run == TRUE) {
   log4r::info(my_logger, "Testing pipeline.")

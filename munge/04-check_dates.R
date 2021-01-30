@@ -18,25 +18,25 @@ if (test_run == FALSE) {
   
   # incorrect dates such as 32092020 result in NAs that propogate forwards
   # catch these here and break
-  if(is.na(s_date) | is.na(e_date)){
-    error(my_logger, "Execution halted, NAs found in start or end date. Please
-        adjust start_date and end_date in munge/03-set_query_parameters.R")
-    stop("Invalid date set.")
-  }
+  # if(is.na(s_date) | is.na(e_date)){
+  #   error(my_logger, "Execution halted, NAs found in start or end date. Please
+  #       adjust start_date and end_date in munge/03-set_query_parameters.R")
+  #   stop("Invalid date set.")
+  # }
   
   # find out the date period
   date_diff <- e_date - s_date
   
   # halt execution if not testing and date range requested is larger than one calendar month
-  if(date_diff > 31) {
-    error(my_logger, "Execution halted, date period requested exceeds 31 days. Please
-        adjust start_date and end_date in munge/03-set_query_parameters.R")
-    stop("Date limit exceeded 31 days")
-  } else if(date_diff < 0) {
-    error(my_logger, "Execution halted, end date is before start date. Please
-        adjust start_date and end_date in munge/03-set_query_parameters.R")
-    stop("End date is before start date.")
-  }
+  # if(date_diff > 31) {
+  #   error(my_logger, "Execution halted, date period requested exceeds 31 days. Please
+  #       adjust start_date and end_date in munge/03-set_query_parameters.R")
+  #   stop("Date limit exceeded 31 days")
+  # } else if(date_diff < 0) {
+  #   error(my_logger, "Execution halted, end date is before start date. Please
+  #       adjust start_date and end_date in munge/03-set_query_parameters.R")
+  #   stop("End date is before start date.")
+  # }
   
   # date_range --------------------------------------------------------------
   
