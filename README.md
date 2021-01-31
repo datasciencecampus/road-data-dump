@@ -8,6 +8,7 @@ Also locally available in `./docs/index.html`.
 
 ### Version 1.4
 
+* **Column names and order adjusted to suit DAP pipeline.**
 * Date handling logic switched to application server.
 * Pipeline outputs message to user if query dates are empty.
 
