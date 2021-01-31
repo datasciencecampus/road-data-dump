@@ -3,7 +3,6 @@
 ### Backlog
 
 * blank queries result in 3 x error on rendertables in UI navbar tabs
-* Noticed some issues once pipeline completed - tame and tmu being deleted from environment but not midas. midas tables present at pipeline completion only has 6 variables. Outputted csvs still as expected.
 * Change pipeline_message status to named chracter vector. Updating pipeline status can then be achieved by subsetting.
 * Investigate new api
 * include number of records with head preview

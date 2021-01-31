@@ -11,6 +11,7 @@ Also locally available in `./docs/index.html`.
 * **Column names and order adjusted to suit DAP pipeline.**
 * Date handling logic switched to application server.
 * Pipeline outputs message to user if query dates are empty.
+* Resolved markdown report amending table structure post writing of csvs.
 
 ### Version 1.3.1
 
