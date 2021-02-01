@@ -1,6 +1,6 @@
 ---
 title: "Road Data Pipeline"
-subtitle: "Version 1.3"
+subtitle: "Version 1.4"
 author: "R Leyshon"
 date: "23/12/2020"
 output:
@@ -36,43 +36,39 @@ The <strong class="navy">Road Data Pipeline</strong> is an unofficial [Highways 
 The client allows querying of <strong class="navy">all available sites</strong> for <strong class="navy">specified date ranges</strong>, intended for monthly analysis.
 
  
+<a id="output_summary"></a>
 
 ## Output Summary
 
- 
 
 ### Main Outputs
-
- 
 
 +-------------------+----------------+--------------------------------------------+
 |Column             |Values          |Description                                 |
 +===================+================+============================================+
-|Site Name          |Alphanumeric    |Long-form site code                         |
-+-------------------+----------------+--------------------------------------------+
-|Report Date        |Datetime        |The date of data capture                    |
-+-------------------+----------------+--------------------------------------------+
-|Time Period Ending |Timestamp       |The time of data capture                    |
-+-------------------+----------------+--------------------------------------------+
-|Time Interval      |Integer         |Pending                                     |
-+-------------------+----------------+--------------------------------------------+
-|x - y cm           |Integer         |Multiple columns containing vehicle lengths |
-+-------------------+----------------+--------------------------------------------+
-|x - y mph          |Integer         |Multiple columns, Speed of vehicle          |
-+-------------------+----------------+--------------------------------------------+
-|Avg mph            |Integer         |Average speed of vehicle                    |
-+-------------------+----------------+--------------------------------------------+
-|Total Volume       |Integer         |Pending                                     |
-+-------------------+----------------+--------------------------------------------+
 |site_id            |Integer         |Numerical site code                         |
 +-------------------+----------------+--------------------------------------------+
-|sites.Description  |Factor          |Motorway location                           |
+|site_name          |Alphanumeric    |Long-form site code                         |
 +-------------------+----------------+--------------------------------------------+
-|sites.Longitude    |Floating Point  |Coordinate data                             |
+|report_date        |Datetime        |The date of data capture                    |
 +-------------------+----------------+--------------------------------------------+
-|sites.Latitude     |Floating Point  |Coordinate data                             |
+|time_period_end    |Timestamp       |The time of data capture                    |
 +-------------------+----------------+--------------------------------------------+
-|sites.Status       |Character       |Active / inactive                           |
+|interval           |Integer         |Pending                                     |
++-------------------+----------------+--------------------------------------------+
+|len_x_y_cm         |Integer         |Multiple columns containing vehicle lengths |
++-------------------+----------------+--------------------------------------------+
+|speed_x_y_mph      |Integer         |Multiple columns, Speed of vehicle          |
++-------------------+----------------+--------------------------------------------+
+|speed_avg_mph      |Integer         |Average speed of vehicle                    |
++-------------------+----------------+--------------------------------------------+
+|total_vol          |Integer         |Pending                                     |
++-------------------+----------------+--------------------------------------------+
+|longitude          |Floating Point  |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+|latitude           |Floating Point  |Coordinate data                             |
++-------------------+----------------+--------------------------------------------+
+|status             |Character       |Active / inactive                           |
 +-------------------+----------------+--------------------------------------------+
 |type               |Character       |Site type: MIDAS, TAME or TMU               |
 +-------------------+----------------+--------------------------------------------+
@@ -269,6 +265,11 @@ This DataFrame holds the details and statuses of all the sites <strong class="na
 +-------------------+----------------+--------------------------------------------+---------+
 |northing           |Integer         |Coordinate data                             |pipeline |
 +-------------------+----------------+--------------------------------------------+---------+
+
+### Column Names
+
+The column names and order have been adjusted to that in [Output Summary](#output_summary)
+
 
 ### Join Integrity
 

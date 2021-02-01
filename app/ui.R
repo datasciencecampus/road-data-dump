@@ -154,7 +154,7 @@ tabPanel("MIDAS",
          titlePanel(title = tags$header(
              class = "banner", tags$h1(
                  # app name 
-                 tags$strong("Road Data Pipeline v1.3"), id = "appname"),
+                 tags$strong("Road Data Pipeline v1.4"), id = "appname"),
              
              
              # DSC logo ----------------------------------------------------------------
@@ -172,7 +172,7 @@ tabPanel("TAME",
          titlePanel(title = tags$header(
              class = "banner", tags$h1(
                  # app name 
-                 tags$strong("Road Data Pipeline v1.3"), id = "appname"),
+                 tags$strong("Road Data Pipeline v1.4"), id = "appname"),
              
              
 # DSC logo ----------------------------------------------------------------
@@ -188,7 +188,7 @@ tabPanel("TMU",
          titlePanel(title = tags$header(
              class = "banner", tags$h1(
                  # app name 
-                 tags$strong("Road Data Pipeline v1.3"), id = "appname"),
+                 tags$strong("Road Data Pipeline v1.4"), id = "appname"),
              
 # DSC logo ----------------------------------------------------------------
              
