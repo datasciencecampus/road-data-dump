@@ -67,17 +67,17 @@ This means that <strong class="navy">`r round(length(site_Id_204s) / length(all_
 
 ```{r echo=FALSE}
 # filter sitetypes df to midas only
-midas <- filter(sitetypes, type == "midas")
+midas_sitetypes <- filter(sitetypes, type == "midas")
 # get the 204s that were type midas
-midas_204s <- site_Id_204s[site_Id_204s %in% midas$sites.Id]
+midas_204s <- site_Id_204s[site_Id_204s %in% midas_sitetypes$sites.Id]
 # subset the midas df by these 204 site IDs
-midas_204s <- midas[midas$sites.Id %in% midas_204s, ]
+midas_204s <- midas_sitetypes[midas_sitetypes$sites.Id %in% midas_204s, ]
 
 ```
 
 ```{r echo=FALSE,fig.align='center'}
 # plot of 204s
-counts <- c(length(unique(midas$sites.Id)), length(unique(midas_204s$sites.Id)))
+counts <- c(length(unique(midas_sitetypes$sites.Id)), length(unique(midas_204s$sites.Id)))
 names(counts) <- c("All MIDAS IDs", "Empty MIDAS IDs")
 
 barplot(height = counts,
@@ -88,13 +88,13 @@ barplot(height = counts,
 
 
 
-There were <strong class="navy">`r format(length(unique(midas$sites.Id)), big.mark = ",")`</strong> site IDs of the MIDAS type.
+There were <strong class="navy">`r format(length(unique(midas_sitetypes$sites.Id)), big.mark = ",")`</strong> site IDs of the MIDAS type.
 
 Of these IDs, <strong class="navy">`r format(length(unique(midas_204s$sites.Id)), big.mark = ",")`</strong> of the queries returned <strong class="navy">no content</strong> (HTTP response [code 204](https://httpstatuses.com/204)).
 
-This means that <strong class="navy">`r round(length(unique(midas_204s$sites.Id)) / length(unique(midas$sites.Id)) * 100, digits = 0)` % (rounded)</strong> of the MIDAS IDs contained no content for this date range.
+This means that <strong class="navy">`r round(length(unique(midas_204s$sites.Id)) / length(unique(midas_sitetypes$sites.Id)) * 100, digits = 0)` % (rounded)</strong> of the MIDAS IDs contained no content for this date range.
 
-MIDAS sites represent <strong class="navy">`r round(length(unique(midas$sites.Id)) / length(all_queried_siteIds), digits = 2)` % (to 2 d.p.)</strong> of all sites present.
+MIDAS sites represent <strong class="navy">`r round(length(unique(midas_sitetypes$sites.Id)) / length(all_queried_siteIds), digits = 2)` % (to 2 d.p.)</strong> of all sites present.
 
 #### Empty Responses: MIDAS Site Details
 
@@ -106,7 +106,7 @@ datatable(midas_204s, rownames = FALSE)
 
 ```{r include=FALSE}
 # tidy up
-rm(midas_204s)
+rm(list = c("midas_204s", "midas_sitetypes"))
 
 ```
 
@@ -116,17 +116,17 @@ rm(midas_204s)
 
 ```{r echo=FALSE}
 # filter sitetypes df to tame only
-tame <- filter(sitetypes, type == "tame")
+tame_sitetypes <- filter(sitetypes, type == "tame")
 # get the 204s that were type tame
-tame_204s <- site_Id_204s[site_Id_204s %in% tame$sites.Id]
+tame_204s <- site_Id_204s[site_Id_204s %in% tame_sitetypes$sites.Id]
 # subset the tame df by these 204 site IDs
-tame_204s <- tame[tame$sites.Id %in% tame_204s, ]
+tame_204s <- tame_sitetypes[tame_sitetypes$sites.Id %in% tame_204s, ]
 
 ```
 
 ```{r echo=FALSE,fig.align='center'}
 # plot of 204s
-counts <- c(length(unique(tame$sites.Id)), length(unique(tame_204s$sites.Id)))
+counts <- c(length(unique(tame_sitetypes$sites.Id)), length(unique(tame_204s$sites.Id)))
 names(counts) <- c("All TAME IDs", "Empty TAME IDs")
 
 barplot(height = counts,
@@ -137,13 +137,13 @@ barplot(height = counts,
 
 
 
-There were <strong class="navy">`r format(length(unique(tame$sites.Id)), big.mark = ",")`</strong> site IDs of the TAME type.
+There were <strong class="navy">`r format(length(unique(tame_sitetypes$sites.Id)), big.mark = ",")`</strong> site IDs of the TAME type.
 
 Of these IDs, <strong class="navy">`r format(length(unique(tame_204s$sites.Id)), big.mark = ",")`</strong> of the queries returned <strong class="navy">no content</strong> (HTTP response [code 204](https://httpstatuses.com/204)).
 
-This means that <strong class="navy">`r round(length(unique(tame_204s$sites.Id)) / length(unique(tame$sites.Id)) * 100, digits = 0)` % (rounded)</strong> of the TAME IDs contained no content for this date range.
+This means that <strong class="navy">`r round(length(unique(tame_204s$sites.Id)) / length(unique(tame_sitetypes$sites.Id)) * 100, digits = 0)` % (rounded)</strong> of the TAME IDs contained no content for this date range.
 
-TAME sites represent <strong class="navy">`r round(length(unique(tame$sites.Id)) / length(all_queried_siteIds), digits = 2)` % (to 2 d.p.)</strong> of all sites present.
+TAME sites represent <strong class="navy">`r round(length(unique(tame_sitetypes$sites.Id)) / length(all_queried_siteIds), digits = 2)` % (to 2 d.p.)</strong> of all sites present.
 
 #### Empty Responses: TAME Site Details
 
@@ -155,7 +155,7 @@ datatable(tame_204s, rownames = FALSE)
 
 ```{r include=FALSE}
 # tidy up
-rm(list = c("tame", "tame_204s"))
+rm(list = c("tame_sitetypes", "tame_204s"))
 
 ```
 
@@ -165,17 +165,17 @@ rm(list = c("tame", "tame_204s"))
 
 ```{r echo=FALSE}
 # filter sitetypes df to tmu only
-tmu <- filter(sitetypes, type == "tmu")
+tmu_sitetypes <- filter(sitetypes, type == "tmu")
 # get the 204s that were type tmu
-tmu_204s <- site_Id_204s[site_Id_204s %in% tmu$sites.Id]
+tmu_204s <- site_Id_204s[site_Id_204s %in% tmu_sitetypes$sites.Id]
 # subset the tmu df by these 204 site IDs
-tmu_204s <- tmu[tmu$sites.Id %in% tmu_204s, ]
+tmu_204s <- tmu_sitetypes[tmu_sitetypes$sites.Id %in% tmu_204s, ]
 
 ```
 
 ```{r echo=FALSE,fig.align='center'}
 # plot of 204s
-counts <- c(length(unique(tmu$sites.Id)), length(unique(tmu_204s$sites.Id)))
+counts <- c(length(unique(tmu_sitetypes$sites.Id)), length(unique(tmu_204s$sites.Id)))
 names(counts) <- c("All TMU IDs", "Empty TMU IDs")
 
 barplot(height = counts,
@@ -186,13 +186,13 @@ barplot(height = counts,
 
 
 
-There were <strong class="navy">`r format(length(unique(tmu$sites.Id)), big.mark = ",")`</strong> site IDs of the TMU type.
+There were <strong class="navy">`r format(length(unique(tmu_sitetypes$sites.Id)), big.mark = ",")`</strong> site IDs of the TMU type.
 
 Of these IDs, <strong class="navy">`r format(length(unique(tmu_204s$sites.Id)), big.mark = ",")`</strong> of the queries returned <strong class="navy">no content</strong> (HTTP response [code 204](https://httpstatuses.com/204)).
 
-This means that <strong class="navy">`r round(length(unique(tmu_204s$sites.Id)) / length(unique(tmu$sites.Id)) * 100, digits = 0)` % (rounded)</strong> of the TMU IDs contained no content for this date range.
+This means that <strong class="navy">`r round(length(unique(tmu_204s$sites.Id)) / length(unique(tmu_sitetypes$sites.Id)) * 100, digits = 0)` % (rounded)</strong> of the TMU IDs contained no content for this date range.
 
-TMU sites represent <strong class="navy">`r round(length(unique(tmu$sites.Id)) / length(all_queried_siteIds), digits = 2)` % (to 2 d.p.)</strong> of all sites present.
+TMU sites represent <strong class="navy">`r round(length(unique(tmu_sitetypes$sites.Id)) / length(all_queried_siteIds), digits = 2)` % (to 2 d.p.)</strong> of all sites present.
 
 #### Empty Responses: TMU Site Details
 
@@ -204,7 +204,7 @@ datatable(tmu_204s, rownames = FALSE)
 
 ```{r include=FALSE}
 # tidy up
-rm(list = c("tmu", "tmu_204s"))
+rm(list = c("tmu_sitetypes", "tmu_204s"))
 
 ```
 
@@ -225,24 +225,3 @@ if("nullmatch_combo" %in% ls()){
 }
 
 ```
-
-
-```{r echo=FALSE}
-rm(list = c(
-  "slow_retry",
-  "slower_retry",
-  "slowest_retry",
-  "direction",
-  "easting_northing",
-  "handle_df",
-  "handle_errors",
-  "handle_missing",
-  "handle_query",
-  "handle_report",
-  "wrap_up",
-  "adj_file_nos"
-))
-```
-
-
-

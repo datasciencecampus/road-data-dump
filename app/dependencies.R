@@ -30,6 +30,7 @@ library(shinyjs)
 library(shinybusy)
 library(base)
 library(DT)
+library(dplyr)
 
 
 # check Email syntax ------------------------------------------------------
