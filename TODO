@@ -2,10 +2,9 @@
 
 ### Backlog
 
-* blank queries result in 3 x error on rendertables in UI navbar tabs
 * Change pipeline_message status to named chracter vector. Updating pipeline status can then be achieved by subsetting.
-* Investigate new api
 * include number of records with head preview
+* Investigate new api
 * defer to user - ability to specify single dates to test on?
 * defer to user - pattern cleansing,   pattern = "souhbound", replacement = "southbound", script 13.
 * Adjust table outputs, smaller max-size etc.

@@ -91,9 +91,20 @@ if("retry_urls3" %in% ls()){
   retry_urls4 <- unlist(list.select(list.filter(
     retried_results, status_code >= 500 && status_code <= 599),
     url))
-  warn(my_logger, paste("number of urls not caught at slowest retry",
-                        length(retry_urls4)))
 
+# uncaught retries --------------------------------------------------------
+if("retry_urls4" %in% ls()){
+  # update pipeline message
+  pipeline_message <- unname(stat_codes[2])
+  # log number of persistent errors
+  log4r::error(my_logger, paste("number of urls not caught at slowest retry",
+                        length(retry_urls4)))
+  # log urls of persistent errors
+  log4r::error(my_logger, paste("Error URLs are:",
+                                paste0(retry_urls4, collapse = ", ")))
+  
+}
+  
 # tidy up -----------------------------------------------------------------
   
   rm(list = c(

@@ -33,8 +33,8 @@ log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #
 
 # assign site Ids
 # list all data from response content
-
-if(pipeline_message != "Queried dates are empty."){
+# only execute if queried dates are not empty
+if(pipeline_message != stat_codes[3]){
 report_data <- lapply(request_results, handle_report)
 }
 

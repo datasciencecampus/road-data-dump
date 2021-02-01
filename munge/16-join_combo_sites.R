@@ -7,7 +7,7 @@ gc()
 
 # join integrity ----------------------------------------------------------
 # find any site IDs in combo that have no corresponding ID in the sites df
-if(pipeline_message != "Queried dates are empty."){
+if(pipeline_message != stat_codes[3]){
   null_matches <- setdiff(combo$site_id, sites$sites.Id)
   # if null matches is not empty, log warnings and output data for site_report
   if(length(null_matches) > 0){
@@ -24,6 +24,11 @@ if(pipeline_message != "Queried dates are empty."){
     "null_matches")
     )
   }
+  # execute join ------------------------------------------------------------
+  # join the site details to the sensor output on site ID, dropping 2 columns from the
+  # site details df, row count and site name.
+  combo <- left_join(combo, sites[, -(c(1,3))], by = c("site_id" = "sites.Id"))
+  
 }
 
 "
@@ -31,20 +36,8 @@ null matches in sites, NB not as important as null matches in combo, as
 many of these will be due to HTTP 204: empty response. Therefore, not 
 currently pursued. If needed, sites$sites.Id could be checked against
 matches in c(combo$site_id, cache/site_Id_204s.rds), this rds is created
-upstream wihtin this pipeline though.
+upstream within this pipeline though.
 "
-
-
-
-# execute join ------------------------------------------------------------
-# join the site details to the sensor output on site ID, dropping 2 columns from the
-# site details df, row count and site name.
-
-if(pipeline_message != "Queried dates are empty.") {
-  combo <- left_join(combo, sites[, -(c(1,3))], by = c("site_id" = "sites.Id"))
-}
-
-
 # clean up leaving readings only
 rm(list = c(
   "sites"

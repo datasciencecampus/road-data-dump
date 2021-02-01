@@ -31,6 +31,14 @@ detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
 # memory report -----------------------------------------------------------
 memory_report()
 
+
+# pipeline_message --------------------------------------------------------
+# if pipeline_message has not been created, assign it as executed successfully
+if (!"pipeline_message" %in% ls()){
+  pipeline_message <- unname(stat_codes[1])
+}
+
+
 # wrap up -----------------------------------------------------------------
 
 # calculate elapsed time
@@ -51,7 +59,8 @@ rm(list = c(
   "my_console_appender",
   "my_file_appender",
   "my_logfile",
-  "memory_report"
+  "memory_report",
+  "stat_codes"
 ))
 
 # sound alert when script completes

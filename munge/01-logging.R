@@ -3,6 +3,8 @@ Purpose of script:
 1.Initiate logging dependencies.
 2. Source custom functions form func/ directory
 "
+# calculate start time for performance
+start_time <- Sys.time()
 
 # update pipeline message -------------------------------------------------
 

@@ -4,7 +4,7 @@ Split files processed in prep.R by site
 log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
 # split into midas,tame,tmu
-if(pipeline_message != "Queried dates are empty.") {
+if(pipeline_message != stat_codes[3]) {
   # DAP pipeline expects column names in specific format. rename to expected syntax.
   combo <- rename(combo,
                   site_name = "Site Name",
