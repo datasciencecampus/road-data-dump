@@ -150,7 +150,7 @@ shinyServer(function(input, output, session) {
             # run pipeline
             delay(ms = 1, expr =  source("../src/run-me.R"))
             # update pipeline status with confirmation message
-            delay(ms = 2, expr =  pipeline_status$outputText <- "Pipeline Executed.")
+            delay(ms = 2, expr =  pipeline_status$outputText <- pipeline_message)
         } else if (
             # if daterange is not within 31 days
             (between(
@@ -178,9 +178,7 @@ shinyServer(function(input, output, session) {
         # run pipeline
         delay(ms = 1, expr =  source("../src/run-me.R"))
         # update pipeline status with confirmation message
-        delay(ms = 2, expr = if(pipeline_message == "Queried dates are empty."){
-            pipeline_status$outputText <- pipeline_message} else
-            pipeline_status$outputText <- "Pipeline Executed.")
+        delay(ms = 2, expr = pipeline_status$outputText <- pipeline_message)
         }
     })
     
@@ -194,7 +192,7 @@ shinyServer(function(input, output, session) {
 # view midas table --------------------------------------------------------
 
     output$midas <- renderDT({
-        if(pipeline_status$outputText == "Pipeline Executed."){
+        if(pipeline_status$outputText == "Pipeline executed."){
             return(midas)
         } else {
             return(data.frame("MIDAS" = "No data"))
@@ -202,7 +200,7 @@ shinyServer(function(input, output, session) {
     })
     
     output$tame <- renderDT({
-        if(pipeline_status$outputText == "Pipeline Executed."){
+        if(pipeline_status$outputText == "Pipeline executed."){
             return(tame)
         } else {
             return(data.frame("TAME" = "No data"))
@@ -210,7 +208,7 @@ shinyServer(function(input, output, session) {
     })
     
     output$tmu <- renderDT({
-        if(pipeline_status$outputText == "Pipeline Executed."){
+        if(pipeline_status$outputText == "Pipeline executed."){
             return(tmu)
         } else {
             return(data.frame("TMU" = "No data"))

@@ -106,7 +106,7 @@ datatable(midas_204s, rownames = FALSE)
 
 ```{r include=FALSE}
 # tidy up
-rm(midas_204s)
+rm(list = c("midas_204s", "midas_sitetypes"))
 
 ```
 
@@ -225,24 +225,3 @@ if("nullmatch_combo" %in% ls()){
 }
 
 ```
-
-
-```{r echo=FALSE}
-rm(list = c(
-  "slow_retry",
-  "slower_retry",
-  "slowest_retry",
-  "direction",
-  "easting_northing",
-  "handle_df",
-  "handle_errors",
-  "handle_missing",
-  "handle_query",
-  "handle_report",
-  "wrap_up",
-  "adj_file_nos"
-))
-```
-
-
-

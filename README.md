@@ -12,6 +12,11 @@ Also locally available in `./docs/index.html`.
 * Date handling logic switched to application server.
 * Pipeline outputs message to user if query dates are empty.
 * Resolved markdown report amending table structure post writing of csvs.
+* Pipeline status updated by pipeline execution with 3 possible outcomes:
+
+- Pipeline executed.  
+- Pipeline executed. Unresolved api errors detected. Check logs.  
+- Queried dates are empty.  
 
 ### Version 1.3.1
 

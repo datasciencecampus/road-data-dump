@@ -4,6 +4,7 @@ Knit site report markdown and wrap up pipeline
 "
 log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
+
 # label test run site reports by filename
 if(test_run == TRUE){
   report_name <- "test_site_report.html"

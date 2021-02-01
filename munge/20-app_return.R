@@ -33,8 +33,10 @@ memory_report()
 
 
 # pipeline_message --------------------------------------------------------
-# if pipeline_message has not been created, assign it as executed successfully
-if (!"pipeline_message" %in% ls()){
+# if pipeline_message is not equal to status code 2 and 3, then update as successfully
+# completed. Note that the pipeline inhereits the pipeline_message "Pipeline running"
+# from the UI.
+if (pipeline_message != stat_codes[2] && pipeline_message != stat_codes[3]){
   pipeline_message <- unname(stat_codes[1])
 }
 
