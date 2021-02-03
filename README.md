@@ -6,6 +6,10 @@ Also locally available in `./docs/index.html`.
 
 ## Changelog
 
+### Version 1.5
+
+* Table errors caused by querying empty date range resolved.
+
 ### Version 1.4
 
 * **Column names and order adjusted to suit DAP pipeline.**

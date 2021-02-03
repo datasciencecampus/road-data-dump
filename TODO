@@ -2,7 +2,6 @@
 
 ### Backlog
 
-* stat_codes[3] resulting in tabset table errors
 * include number of records with head preview
 * defer to user - ability to specify single dates to test on?
 * defer to user - pattern cleansing,   pattern = "souhbound", replacement = "southbound", script 13.

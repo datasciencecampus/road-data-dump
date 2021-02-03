@@ -28,14 +28,9 @@ if (test_run == TRUE){
 
 # write to file -----------------------------------------------------------
 
-if(pipeline_message != stat_codes[3]){
-  # write out csvs
-  fwrite(midas, midas_filename, row.names = F, quote = F)
-  fwrite(tame, tame_filename, row.names = F, quote = F)
-  fwrite(tmu, tmu_filename, row.names = F, quote = F)
-}
-
-
+fwrite(midas, midas_filename, row.names = F, quote = F)
+fwrite(tame, tame_filename, row.names = F, quote = F)
+fwrite(tmu, tmu_filename, row.names = F, quote = F)
 
 # testing write status ----------------------------------------------------
 # test presence of output files and log

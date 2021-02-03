@@ -85,6 +85,15 @@ if(pipeline_message != stat_codes[3]) {
 }
 
 
+# return empty DFs if queried dates are all empty -------------------------
+
+if (pipeline_message == stat_codes[3]){
+  midas <- data.frame()
+  tame <- data.frame()
+  tmu <- data.frame()
+}
+
+
 # memory_report -----------------------------------------------------------
 
 memory_report()
