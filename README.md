@@ -9,6 +9,7 @@ Also locally available in `./docs/index.html`.
 ### Version 1.5
 
 * Table errors caused by querying empty date range resolved.
+* Fixed incorrect daterange being displayed on testing.
 
 ### Version 1.4
 

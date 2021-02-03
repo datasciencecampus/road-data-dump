@@ -100,21 +100,18 @@ shinyServer(function(input, output, session) {
 # date handling -----------------------------------------------------------
 
     #calculate selected date range
-    selectedDateRange <- reactive({input$daterange[2] - input$daterange[1]})
+    # as date range is inclusive of start and end date, plus one
+    selectedDateRange <- reactive({(input$daterange[2] - input$daterange[1] + 1)})
     
     
 #  and present as text
     output$DateRangeOut <- renderText({
-        if(input$testpipeline == TRUE){
-            ui_message_drange <- "Testing. Date Range is 1 day."
-        } else {
-            ui_message_drange <- paste(
-                "Selected date range:",
-                selectedDateRange(),
-                "days.")
-        }
+        ui_message_drange <- paste(
+            "Selected date range:",
+            selectedDateRange(),
+            "day(s).")
         ui_message_drange
-    })
+        })
     
 
 # run pipeline ------------------------------------------------------------

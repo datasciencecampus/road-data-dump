@@ -64,8 +64,11 @@ guide <- Cicerone$
   step(
     el = "Email",
     title = "Input your Email.",
-    description = "Emails are sent to Highways England api along with the queries. Remember
-    to press Enter once you've typed your Email address."
+    description = tags$p("Emails are sent to Highways England api along with the queries.
+    Remember to press ",
+                         tags$strong("Enter "),
+                         "once you've typed your Email address."
+    )
   )$
   step(
     el = "testing",
@@ -77,18 +80,21 @@ guide <- Cicerone$
   step(
     el = "daterange",
     title = "Set the start and end dates.",
-    description = "If testing, dates used are static and the selector widget will not
+    description = tags$p("If testing, dates used are static and the selector widget will not
     respond to any user input. Select the start date on the left and the end date
-    on the right. Dates are inclusive. Start date and end date can be the same,
+    on the right.",
+                         tags$strong("The daterange is inclusive."),
+                         "Start date and end date can be the same,
     but start date cannot be more recent than end date. A maximum of 31 days in
     the specified date range is accepted by the pipeline."
+    )
   )$
   step(
     el = "runpipeline",
     title = "Click to execute the pipeline scripts.",
     description = "To interrupt this, you should close the app and ensure it has stopped running
     in R Studio. A spinner should appear at the top-right corner of the screen while the app is
-    running. If the pipeline executes fully, you should hear a chime."
+    running. If the pipeline executes fully, you will hear a chime."
   )$
   step(
     el = "emailcheck",
@@ -105,7 +111,14 @@ guide <- Cicerone$
   step(
     el = "pipstatus",
     title = "Pipeline status.",
-    description = "Indicates whether the pipeline is inactive or running."
+    description = tags$p("Indicates whether the pipeline is inactive or running.
+    Following pipeline execution, three possible messages are displayed:",
+    tags$ol(
+    tags$li("Pipeline executed."),
+    tags$li("Pipeline executed. Unresolved api errors detected. Check logs."),
+    tags$li("Queried dates are empty.")
+    )
+    )
   )$
   step(
     el = "[data-value='Set Parameters']",
