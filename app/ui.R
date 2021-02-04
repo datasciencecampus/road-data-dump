@@ -162,8 +162,15 @@ tabPanel("MIDAS",
              tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
              
          )), # end of titlePanel
-
-            DT::DTOutput("midas")
+         
+         fluidRow(
+           column(width = 1),
+           column(
+            DT::DTOutput("midas"), width = 10, align = "center"
+           ),
+           column(width = 1)
+            
+         )
 ), # end of second tabpanel
 
 tabPanel("TAME",
@@ -180,7 +187,14 @@ tabPanel("TAME",
              tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
              
          )), # end of titlePanel
-            DT::DTOutput("tame")
+fluidRow(
+  column(width = 1),
+  column(
+    DT::DTOutput("tame"), width = 10, align = "center"
+  ),
+  column(width = 1)
+  
+)
 ), # end of third tabpanel
 tabPanel("TMU",
 # title -------------------------------------------------------------------
@@ -195,7 +209,14 @@ tabPanel("TMU",
              tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
              
          )), # end of titlePanel
-            DT::DTOutput("tmu")
+fluidRow(
+  column(width = 1),
+  column(
+    DT::DTOutput("tmu"), width = 10, align = "center"
+  ),
+  column(width = 1)
+  
+)
 ) # end of fourth tabpanel
 
 

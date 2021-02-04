@@ -3,6 +3,8 @@
 ### Backlog
 
 * include number of records with head preview
+* possible to use conditional logic in selected value of dateRangeInput? eg, if testing,
+diplay test date else display today's date.
 * defer to user - ability to specify single dates to test on?
 * defer to user - pattern cleansing,   pattern = "souhbound", replacement = "southbound", script 13.
 * Adjust table outputs, smaller max-size etc.
