@@ -162,6 +162,20 @@ tabPanel("MIDAS",
              tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
              
          )), # end of titlePanel
+         tags$br(),
+         fluidRow(
+           column(width = 1),
+           column(
+             tags$h4("Number of MIDAS records in full table"), width = 10),
+           column(width = 1)
+         ),
+         tags$br(),
+         tags$hr(),
+         fluidRow(
+           column(width = 1),
+           column(tags$h4("MIDAS table preview"), width = 10),
+           column(width = 1)
+         ),
          
          fluidRow(
            column(width = 1),
@@ -187,6 +201,20 @@ tabPanel("TAME",
              tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
              
          )), # end of titlePanel
+tags$br(),
+fluidRow(
+  column(width = 1),
+  column(
+    tags$h4("Number of TAME records in full table"), width = 10),
+  column(width = 1)
+),
+tags$br(),
+tags$hr(),
+fluidRow(
+  column(width = 1),
+  column(tags$h4("TAME table preview"), width = 10),
+  column(width = 1)
+),
 fluidRow(
   column(width = 1),
   column(
@@ -209,10 +237,24 @@ tabPanel("TMU",
              tags$img(id = "logo", src = "DSC_LOGO_RGB_WHITE_300_DPI.png", width = 200, align = "right")
              
          )), # end of titlePanel
+tags$br(),
 fluidRow(
   column(width = 1),
   column(
-    DT::DTOutput("tmu"), width = 10, align = "center"
+    tags$h4("Number of TMU records in full table"), width = 10),
+  column(width = 1)
+),
+tags$br(),
+tags$hr(),
+fluidRow(
+  column(width = 1),
+  column(tags$h4("TMU table preview"), width = 10),
+  column(width = 1)
+),
+fluidRow(
+  column(width = 1),
+  column(
+    DT::DTOutput("tmu"), width = 10, align = "center",
   ),
   column(width = 1)
   
