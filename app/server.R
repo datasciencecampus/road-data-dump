@@ -211,6 +211,67 @@ shinyServer(function(input, output, session) {
             return(data.frame("TMU" = "No data"))
         }
     })
+
+# table record counts -----------------------------------------------------
+
+# reactive table counts ---------------------------------------------------
+
+    # create reactive values object to update counts
+    table_counts <- reactiveValues(
+        midas = "0",
+        tame = "0",
+        tmu = "0"
+        )
+    
+# midas counts ------------------------------------------------------------
+
+# once pipeline executed, update table_count$midas
+    observeEvent(input$execute, {
+        delay(ms = 2, expr = table_counts$midas <- midas_nrow)
+    })
+    
+    # continue to update MIDAS record count
+    observe({
+        output$midas_count <- renderText({
+            paste(table_counts$midas,
+                  "records.")
+        })
+        
+    })
+
+# tame counts -------------------------------------------------------------
+
+    
+    # once pipeline executed, update table_count$midas
+    observeEvent(input$execute, {
+        delay(ms = 2, expr = table_counts$tame <- tame_nrow)
+    })
+    
+    # continue to update MIDAS record count
+    observe({
+        output$tame_count <- renderText({
+            paste(table_counts$tame,
+                  "records.")
+        })
+        
+    })
+
+# tmu counts --------------------------------------------------------------
+
+    
+    # once pipeline executed, update table_count$midas
+    observeEvent(input$execute, {
+        delay(ms = 2, expr = table_counts$tmu <- tmu_nrow)
+    })
+    
+    # continue to update MIDAS record count
+    observe({
+        output$tmu_count <- renderText({
+            paste(table_counts$tmu,
+                  "records.")
+        })
+        
+    })
     
     
 }) # end of server

@@ -12,6 +12,8 @@ pipeline executions.
 
 "
 
+# rerun package management ------------------------------------------------
+
 pipelinePckgs <- dplyr::setdiff(names(sessionInfo()$otherPkgs),
                                 c("shiny", "cicerone", "shinyjs", "shinybusy"))
 
@@ -41,7 +43,6 @@ isValidEmail <- function(x) {
 }
 
 
-  
 # guide to application use using cicerone ---------------------------------
 
 guide <- Cicerone$

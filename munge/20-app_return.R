@@ -9,12 +9,21 @@ log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #
 # return table heads ------------------------------------------------------
 "Provide a preview of data for the UI"
 if("midas" %in% ls()){
+  # record the number of records
+  midas_nrow <- nrow(midas)
+  # store the head for presentation in UI
   midas <- head(midas, n = 100)
 }
 if("tame" %in% ls()){
+  # record the number of records
+  tame_nrow <- nrow(tame)
+  # store the head for presentation in UI
   tame <- head(tame, n = 100)
 }
 if("tmu" %in% ls()){
+  # record the number of records
+  tmu_nrow <- nrow(tmu)
+  # store the head for presentation in UI
   tmu <- head(tmu, n = 100)
 }
 

@@ -169,6 +169,10 @@ tabPanel("MIDAS",
              tags$h4("Number of MIDAS records in full table"), width = 10),
            column(width = 1)
          ),
+         fluidRow(
+           column(width = 1),
+           column(
+           textOutput("midas_count"), width = 11)),
          tags$br(),
          tags$hr(),
          fluidRow(
@@ -208,6 +212,10 @@ fluidRow(
     tags$h4("Number of TAME records in full table"), width = 10),
   column(width = 1)
 ),
+fluidRow(
+  column(width = 1),
+  column(
+    textOutput("tame_count"), width = 11)),
 tags$br(),
 tags$hr(),
 fluidRow(
@@ -244,6 +252,10 @@ fluidRow(
     tags$h4("Number of TMU records in full table"), width = 10),
   column(width = 1)
 ),
+fluidRow(
+  column(width = 1),
+  column(
+    textOutput("tmu_count"), width = 11)),
 tags$br(),
 tags$hr(),
 fluidRow(
