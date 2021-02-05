@@ -1,6 +1,6 @@
 ---
 title: "Road Data Pipeline"
-subtitle: "Version 1.4"
+subtitle: "Version 1.5"
 author: "R Leyshon"
 date: "23/12/2020"
 output:
@@ -611,7 +611,7 @@ The lockfile is a text file stored within the project directory.
 
 <img src="images/conf_dialog.png" alt="Dialog box appears on executing the pipeline." class="center"/>
 
-9. If the test was successful, you will hear a chime (please ensure your system volume is turned up) and the spinner that appears in the top right-hand corner will disappear. You will also notice that the pipeline status will change to `Pipeline Executed.`
+9. If the test was successful, you will hear a chime (please ensure your system volume is turned up) and the spinner that appears in the top right-hand corner will disappear. You will also notice that the pipeline status will change to `Pipeline executed.`
 
 ![](images/test_successful.png)
 
@@ -652,7 +652,7 @@ Please note, once you have tested the pipeline to ensure its functionality and a
 
 5. Clicking on `Go!` will now execute a full run of the pipeline. The api will be queried for all available site IDs for the date range that you have selected. You will see a spinner appear at the top right-hand side of the app while it is busy.
  
-6. Querying a full month takes just under an hour with a good internet connection. On completion, the spinner will disappear, the pipeline status will change to `Pipeline Executed.` and a chime will sound if your system volume is turned up.
+6. Querying a full month takes just under an hour with a good internet connection. On completion, the spinner will disappear, the pipeline status will change to `Pipeline executed.` and a chime will sound if your system volume is turned up.
 
 7. The output .csvs will appear within the `output_data` folder. The site report will appear within the `reports` folder. If an error is encountered, please consult the [Troubleshooting](#troubleshooting) section.
  

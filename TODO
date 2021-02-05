@@ -2,8 +2,7 @@
 
 ### Backlog
 
-* possible to use conditional logic in selected value of dateRangeInput? eg, if testing,
-diplay test date else display today's date.
+* Conditional formatting of UI messages, eg invalid Email in red.
 * defer to user - ability to specify single dates to test on?
 * defer to user - pattern cleansing,   pattern = "souhbound", replacement = "southbound", script 13.
 * defer to user - site status - active / inactive context.
@@ -12,6 +11,8 @@ diplay test date else display today's date.
 * Remove busy spinner & replace with progress bar, updating pipeline with progress object.
 * Persistent Email storage between sessions locally.
 * Max-width on table previews required. Table columns spilling into adjacent UI column. Tried css: width: 83% !important; not working, tried with '.middleTable' & '.middleTable table' selectors.
+* possible to use conditional logic in selected value of dateRangeInput? eg, if testing,
+diplay test date else display today's date.
 
 
 
