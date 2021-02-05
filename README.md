@@ -10,6 +10,9 @@ Also locally available in `./docs/index.html`.
 
 * Table errors caused by querying empty date range resolved.
 * Fixed incorrect daterange being displayed on testing.
+* Adjusted table preview tabs layout.
+* Total number of records presented on pipeline execution.
+* Applied theme to menu tabs.
 
 ### Version 1.4
 

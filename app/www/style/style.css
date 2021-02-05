@@ -1,5 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
 
+/* Styling navbar */
+/* target specified navbar position*/
+.navbar-fixed-bottom {
+    background-image: linear-gradient(to right, #ce3487 , #d74328);
+}
+/* target nav menu title */
+.navbar-default .navbar-brand{
+  color: white;
+  font-weight: bold;
+}
+.navbar-default .navbar-brand:hover{
+  color: white;
+  font-weight: bold;
+}
+/* target nav link color */
+.navbar-default .navbar-nav a{
+    color: white !important;
+}
+.navbar-default .navbar-nav a:hover{
+    color: #003c58 !important;
+}
+/* target nav link text and highlight color when active */
+.navbar-fixed-bottom .navbar-nav .active a{
+    color: white !important;
+    background-color: #003c58!important;
+}
+
 p {
   padding-top: 5px;
   font-family: Arial;

@@ -2,19 +2,16 @@
 
 ### Backlog
 
-* include number of records with head preview
 * possible to use conditional logic in selected value of dateRangeInput? eg, if testing,
 diplay test date else display today's date.
 * defer to user - ability to specify single dates to test on?
 * defer to user - pattern cleansing,   pattern = "souhbound", replacement = "southbound", script 13.
-* Adjust table outputs, smaller max-size etc.
 * defer to user - site status - active / inactive context.
 * defer to user - splitting of combo output csvs by sitetype or by number of rows.
-* Navbar menu styling
-* Date checks in app- daterange selection instead?
 * Remove all missing report.txt logic or move to logs.
 * Remove busy spinner & replace with progress bar, updating pipeline with progress object.
 * Persistent Email storage between sessions locally.
+* Max-width on table previews required. Table columns spilling into adjacent UI column. Tried css: width: 83% !important; not working, tried with '.middleTable' & '.middleTable table' selectors.
 
 
 

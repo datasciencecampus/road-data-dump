@@ -5,7 +5,7 @@ Produce a UI to assist users in setting query parameters and running pipeline
 
 source("dependencies.R")
 
-ui <- navbarPage("Road Data Pipeline",
+ui <- navbarPage("Menu",
                  id = "menu_bar",
                  selected = "Set Parameters",
                  position = "fixed-bottom",
