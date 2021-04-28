@@ -4,7 +4,7 @@ Purpose of script: Configure environment
 "
 log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
 
-newlimit <- 30000
+newlimit <- 40000
 
 # bump up memory limit
 memory.limit(newlimit)

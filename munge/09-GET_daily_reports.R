@@ -20,6 +20,7 @@ clusterExport(cl, c("all_urls", "user_details"))
 clusterEvalQ(cl, {
   library(httr)
 })
+
 # Get the responses in parallel
 request_results <- parLapply(cl, all_urls, function(i) {
   GET(url = i, user_agent(user_details))
