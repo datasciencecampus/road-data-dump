@@ -147,9 +147,9 @@ The <strong class="navy">log file.txt</strong> is important if you encounter an 
 
 * R Studio
 
-* R (64-bit)
+* 64-bit R (Note 32-bit will **not** be able to allocate the memory requirements)
 
-* 30 GB of free disk space to allocate
+* 40 GB of free disk space to allocate
 
 * Internet connection (preferably high speed fibre optic)
 
