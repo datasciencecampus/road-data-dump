@@ -24,13 +24,9 @@ clusterEvalQ(cl, {
 # Get the responses in parallel
 info(my_logger, "Pinchpoint: Cluster queries all urls")
 
-info(my_logger, {
-  
-  (request_results <- parLapply(cl, all_urls, function(i) {
-    GET(url = i, user_agent(user_details))})
-   )
-  
-})
+request_results <- parLapply(cl, all_urls, function(i) {
+    GET(url = i, user_agent(user_details))
+  })
 
 info(my_logger, "Pinchpoint over: Cluster queries all urls")
 
