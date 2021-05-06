@@ -149,7 +149,7 @@ The <strong class="navy">log file.txt</strong> is important if you encounter an 
 
 * 64-bit R (Note 32-bit will **not** be able to allocate the memory requirements)
 
-* 40 GB of free disk space to allocate
+* 100 GB of free disk space to allocate
 
 * Internet connection (preferably high speed fibre optic)
 
@@ -199,7 +199,7 @@ The <strong class="navy">log file.txt</strong> is important if you encounter an 
 
  
 
-1. Memory allocation - 30GB of memory is requested for use in the R session. The script will stop execution if this is not available. 1 month of data tends to require approximately 10 to 11 GB of memory allocation to process.
+1. Memory allocation - 100 GB of memory is requested for use in the R session. The script will stop execution if this is not available.
 
 2. Internet connection - 1 month of data takes approximately 1.25 hours on a connection averaging 60 mbps download, 20 mbps upload.
 

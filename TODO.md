@@ -2,6 +2,9 @@
 
 ### Backlog
 
+* May need to chunk queries as struggling to assign object to vetcor of size 1.3MB
+* cache % missing for queried dates and decide on threshold to throw warning
+* format no records nicely with commas
 * Conditional formatting of UI messages, eg invalid Email in red.
 * defer to user - ability to specify single dates to test on?
 * defer to user - pattern cleansing,   pattern = "souhbound", replacement = "southbound", script 13.
