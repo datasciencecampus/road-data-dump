@@ -1,7 +1,7 @@
 "Purpose of script:
 Create daterange query parameter from shiny UI output parameters
 "
-log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 # create daterange --------------------------------------------------------
 

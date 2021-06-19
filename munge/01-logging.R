@@ -14,21 +14,7 @@ pipeline_message <- "Pipeline running."
 
 my_logfile <- "logs/logfile.txt"
 
-my_console_appender <- console_appender(layout = default_log_layout())
-
-my_file_appender <- file_appender(my_logfile,
-  append = TRUE,
-  layout = default_log_layout()
-)
-
-my_logger <- log4r::logger(
-  threshold = "INFO",
-  appenders = list(
-    my_console_appender,
-    my_file_appender
-  )
-)
-
+ptspotter::log_enable(logfile_loc = my_logfile)
 
 
 # new log entry -----------------------------------------------------------
@@ -41,14 +27,12 @@ log4r::info(my_logger, paste("Environment objects found on initiation:",
 
 
 # source func/functions.R -------------------------------------------------
-# import helper functions
-source("func/helper.R")
 # import table functions
 source("func/tables.R")
 # import pipeline functions
 source("func/queries.R")
 
-log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 if(test_run == FALSE){
   log4r::info(my_logger, "Not testing pipeline.")

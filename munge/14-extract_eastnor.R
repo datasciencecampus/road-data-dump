@@ -1,7 +1,7 @@
 "Purpose of script:
 Extract eastings and northings
 "
-log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 # extract eastings northings ----------------------------------------------
 'find the pattern locations

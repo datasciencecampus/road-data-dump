@@ -4,7 +4,7 @@ Reset environment configuration once pipeline has executed
 Prepare Shiny environment for re-runs
 
 "
-log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 # return table heads ------------------------------------------------------
 "Provide a preview of data for the UI"
@@ -66,11 +66,8 @@ rm(list = c(
   "elapsed",
   "my_logger",
   "logger",
-  "current_file",
-  "my_console_appender",
-  "my_file_appender",
+  "file_app",
   "my_logfile",
-  "memory_report",
   "stat_codes"
 ))
 

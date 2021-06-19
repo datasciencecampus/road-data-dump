@@ -6,7 +6,7 @@ Will need:
 * start date
 * end date
 "
-log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 # Start Date --------------------------------------------------------------
 

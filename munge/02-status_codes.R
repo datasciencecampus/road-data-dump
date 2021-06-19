@@ -3,7 +3,7 @@ Purpose of script:
 Create status code named character vector
 which pipeline message can be updated with
 "
-log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 
 stat_codes <- c("1" = "Pipeline executed.",

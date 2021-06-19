@@ -2,7 +2,7 @@
 function of script:
 Get daily reports for all discovered site Ids
 "
-log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 # GET daily reports -------------------------------------------------------
 log4r::info(my_logger, "Duration of all site ID daily report request")

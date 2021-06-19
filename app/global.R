@@ -33,6 +33,7 @@ library(shinybusy)
 library(base)
 library(DT)
 library(dplyr)
+library(ptspotter)
 
 
 # check Email syntax ------------------------------------------------------

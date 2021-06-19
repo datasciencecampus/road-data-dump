@@ -1,7 +1,7 @@
 "Purpose of script:
 Write out product of analysis to csv to /output_data/ folder
 "
-log4r::info(my_logger, paste0("############# ", "Start of ", current_file(), " #############"))
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 # create filenames --------------------------------------------------------
 
