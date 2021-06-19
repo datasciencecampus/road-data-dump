@@ -1,9 +1,6 @@
 "Purpose of script:
 Produce a UI to assist users in setting query parameters and running pipeline
 "
-# source dependencies -----------------------------------------------------
-
-source("dependencies.R")
 
 ui <- navbarPage("Menu",
                  id = "menu_bar",
