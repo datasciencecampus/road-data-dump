@@ -784,12 +784,26 @@
       "Repository": "CRAN",
       "Hash": "a8730dcbdd19f9047774909f0ec214a4"
     },
+    "pryr": {
+      "Package": "pryr",
+      "Version": "0.1.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "bdc2df7c4155553e5a97a56a6c9f0a0d"
+    },
     "ps": {
       "Package": "ps",
       "Version": "1.4.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "f5d7d94cc097aa9dade988e3e6715067"
+    },
+    "ptspotter": {
+      "Package": "ptspotter",
+      "Version": "1.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "8ab33fed714da4a3407094834cfa0c42"
     },
     "purrr": {
       "Package": "purrr",
