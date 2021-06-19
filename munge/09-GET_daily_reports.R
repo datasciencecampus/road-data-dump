@@ -25,7 +25,7 @@ clusterEvalQ(cl, {
 info(my_logger, "Pinchpoint: Cluster queries all urls")
 
 request_results <- parLapply(cl, all_urls, function(i) {
-    GET(url = i, user_agent(user_details))
+    RETRY(verb = "GET", url = i, user_agent(user_details))
   })
 
 info(my_logger, "Pinchpoint over: Cluster queries all urls")
