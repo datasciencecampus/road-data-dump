@@ -1,10 +1,15 @@
-# Roads Data Dump: r-pipeline branch
+# Roads Data Dump: r-pipeline branch 1.5.1
 
 Documentation available on [GitHub pages](https://datasciencecampus.github.io/road-data-pipeline-documentation/)
 
 Also locally available in `./docs/index.html`.
 
 ## Changelog
+
+### Version 1.5.1
+
+* Removed retry errors in favour of 'httr::RETRY()'
+* Removed func/helpers.R, using 'ptspotter' instead.
 
 ### Version 1.5
 
