@@ -1,10 +1,13 @@
 "
 Purpose of script:
 1.Initiate logging dependencies.
-2. Source custom functions form func/ directory
+2. Source custom functions from func/ directory
 "
+
 # calculate start time for performance
 start_time <- Sys.time()
+
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 # update pipeline message -------------------------------------------------
 
@@ -32,7 +35,6 @@ source("func/tables.R")
 # import pipeline functions
 source("func/queries.R")
 
-log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 if(test_run == FALSE){
   log4r::info(my_logger, "Not testing pipeline.")
