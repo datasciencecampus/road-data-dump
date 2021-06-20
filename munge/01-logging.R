@@ -7,22 +7,28 @@ Purpose of script:
 # calculate start time for performance
 start_time <- Sys.time()
 
-log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
-
 # update pipeline message -------------------------------------------------
 
 pipeline_message <- "Pipeline running."
 
 # initiate logging --------------------------------------------------------
+# try creating the logfile if deleted
+
+try(
+  log_file_ops(dir_path = "logs")
+  )
 
 my_logfile <- "logs/logfile.txt"
 
-log_enable(logfile_loc = my_logfile)
+
+
+log_enable(logfile_loc = my_logfile, logger_nm = my_logger)
 
 
 # new log entry -----------------------------------------------------------
 
 log4r::info(my_logger, message = "###################New Run#########################")
+log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 # log pre-existing env objects in event of re-running pipeline
 log4r::info(my_logger, paste("Environment objects found on initiation:",
