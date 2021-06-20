@@ -35,9 +35,15 @@ if (test_run == TRUE) {
 }
 
 
+# logging prior to pinchpoint ---------------------------------------------
+
+log4r::info(my_logger, "#####Pre-pinchpoint logging#####")
+log4r::info(my_logger, paste("Number of queries:",
+                             format(length(all_urls), scientific = FALSE, big.mark = ",")
+                             ))
+
 # tidy up -----------------------------------------------------------------
 rm(all_sites)
-
 
 # memory report -----------------------------------------------------------
 memory_report()
