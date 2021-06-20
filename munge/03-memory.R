@@ -13,7 +13,7 @@ memory.limit(newlimit)
 log4r::info(my_logger, if (memory.limit() >= newlimit) {
   print(paste0("Memory limit is ", memory.limit(), ". Succesfully increased to required threshold."))
 } else {
-  print(warning(paste0("Memory limit is ", memory.limit(), ". Succesfully increased to required threshold.")))
+  stop(paste0("Increase to meory limit unsuccessful. Memory limit is ", memory.limit()))
 })
 
 
