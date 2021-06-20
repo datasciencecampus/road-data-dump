@@ -17,7 +17,7 @@ pipeline_message <- "Pipeline running."
 
 my_logfile <- "logs/logfile.txt"
 
-ptspotter::log_enable(logfile_loc = my_logfile)
+log_enable(logfile_loc = my_logfile)
 
 
 # new log entry -----------------------------------------------------------
@@ -53,7 +53,7 @@ log4r::info(my_logger, paste("OS version:", os_version))
 
 # if not running on 64bit R, output a warning to console.
 if (os_version != "x86-64"){
-  warn(my_logger, "Check that R is 64 bit not 32, possible memory limitations")
+  log4r::error(my_logger, stop("Check that R is 64 bit not 32, possible memory limitations"))
 }
 
 log4r::info(my_logger, paste("Effective Username:", system_deets[[8]]))
