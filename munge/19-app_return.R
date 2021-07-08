@@ -11,22 +11,34 @@ log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path(
 
 if("midas" %in% ls()){
   
-  midas_nrow <- midas %>% collect() %>% format(big.mark = ",")
-  midas <- midas %>% collect() %>% head(n = 100)
+  midas_nrow <- midas %>% cmap(., function(chunk) {
+    gc()
+    nrow(chunk)
+  }, lazy = FALSE) %>% as.data.frame() %>% sum() %>% format(big.mark = ",")
+  
+  midas <- midas %>% get_chunk(1) %>% head(n = 100)
   
 }
 
 if("tame" %in% ls()){
   
-  tame_nrow <- tame %>% collect() %>% nrow() %>% format(big.mark = ",")
-  tame <- tame %>% collect() %>% head(n = 100)
+  tame_nrow <- tame %>% cmap(., function(chunk) {
+    gc()
+    nrow(chunk)
+  }, lazy = FALSE) %>% as.data.frame() %>% sum() %>% format(big.mark = ",")
+  
+  tame <- tame %>% get_chunk(1) %>% head(n = 100)
   
 }
 
 if("tmu" %in% ls()){
   
-  tmu_nrow <- tmu %>% collect() %>% nrow() %>% format(big.mark = ",")
-  tmu <- tmu %>% collect() %>% head(n = 100) 
+  tmu_nrow <- tmu %>% cmap(., function(chunk) {
+    gc()
+    nrow(chunk)
+  }, lazy = FALSE) %>% as.data.frame() %>% sum() %>% format(big.mark = ",")
+  
+  tmu <- tmu %>% get_chunk(1) %>% head(n = 100) 
   
 }
 

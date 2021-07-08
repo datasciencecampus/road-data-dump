@@ -40,9 +40,41 @@ if (pipeline_message == stat_codes[3]){
   
 } else{
   
-  midas %>% write.csv(midas_filename, row.names = FALSE)
-  tame %>% write.csv(tame_filename, row.names = FALSE)
-  tmu %>% write.csv(tmu_filename, row.names = FALSE)
+  if(file.exists(midas_filename)){
+    file.remove(midas_filename)
+  }
+  
+  if(file.exists(tame_filename)){
+    file.remove(tame_filename)
+  }
+  
+  if(file.exists(tmu_filename)){
+    file.remove(tmu_filename)
+  }
+  
+  midas %>% cmap(., function(chunk) {
+    data.table::fwrite(chunk, file.path(midas_filename), append = TRUE)
+    gc()
+    NULL
+  }, lazy = FALSE)
+  
+  gc()
+  
+  tame %>% cmap(., function(chunk) {
+    data.table::fwrite(chunk, file.path(tame_filename), append = TRUE)
+    gc()
+    NULL
+  }, lazy = FALSE)
+  
+  gc()
+  
+  tmu %>% cmap(., function(chunk) {
+    data.table::fwrite(chunk, file.path(tmu_filename), append = TRUE)
+    gc()
+    NULL
+  }, lazy = FALSE)
+ 
+  gc() 
 
 }
 
