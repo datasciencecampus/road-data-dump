@@ -155,22 +155,25 @@ shinyServer(function(input, output, session) {
             delay(ms = 1, expr =  source("../src/run-me.R"))
             # update pipeline status with confirmation message
             delay(ms = 2, expr =  pipeline_status$outputText <- pipeline_message)
-        } else if (
-            # if daterange is not within 31 days
-            (between(
-                selectedDateRange(),0, 31)
-             ) == FALSE &&
-            input$testpipeline == FALSE
-        ){
-            # send a browser message on press execute
-            session$sendCustomMessage(type = 'testmessage',
-                                      message = 'Dates selected must result in a positive date range of 31 days or less.'
-                                      )
-            } else if(
+        } 
+        # else if (
+        #     # if daterange is not within 31 days
+        #     (between(
+        #         selectedDateRange(),0, 31)
+        #      ) == FALSE &&
+        #     input$testpipeline == FALSE
+        # ){
+        #     # send a browser message on press execute
+        #     session$sendCustomMessage(type = 'testmessage',
+        #                               message = 'Dates selected must result in a positive date range of 31 days or less.'
+        #                               )
+        #     } 
+        else if(
             # if both conditions above are met, successful run
-            isValidEmail(input$userEmail) == TRUE &&
+            isValidEmail(input$userEmail) == TRUE 
+                #&&
                 # check daterange is 1 month only
-                between(selectedDateRange(),0, 31)
+                #between(selectedDateRange(),0, 31)
             ){
             # send a browser message on press execute
                 session$sendCustomMessage(type = 'testmessage',
