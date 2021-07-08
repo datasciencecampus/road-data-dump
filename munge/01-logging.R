@@ -58,10 +58,10 @@ os_version <- system_deets[[5]]
 log4r::info(my_logger, paste("OS version:", os_version))
 
 # if not running on 64bit R, output a warning to console.
-if (os_version != "x86-64"){
-  log4r::error(my_logger, "Check that R is 64 bit not 32 due to memory limitations")
-  stop("64 bit R required to run pipeline.")
-}
+# if (os_version != "x86-64"){
+#   log4r::error(my_logger, "Check that R is 64 bit not 32 due to memory limitations")
+#   stop("64 bit R required to run pipeline.")
+# }
 
 log4r::info(my_logger, paste("Effective Username:", system_deets[[8]]))
 

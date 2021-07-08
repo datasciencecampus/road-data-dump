@@ -7,54 +7,28 @@ assign site_id column form pattern matching siteID query parameter in response u
 log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
 
 
-# parallel ----------------------------------------------------------------
-# Error encountered: writing to object.
-# Commented out for future development.
-
-# # make a cluster with the number of cores found
-# cl <- makeCluster(ncores)
-# # export dependencies to the clusters
-# clusterExport(cl, c("request_results", "MAX_ROWS"))
-# # load required libraries in the clusters
-# clusterEvalQ(cl, {
-#   library(jsonlite)
-#   library(stringr)
-# })
-# 
-# # assign site Ids
-# # list all data from response content
-# report_data <- parLapply(cl, request_results, handle_report)
-# 
-# # kill the cluster
-# stopCluster(cl)
-# parallel ----------------------------------------------------------------
-
-
-
 # assign site Ids
 # list all data from response content
 # only execute if queried dates are not empty
-if(pipeline_message != stat_codes[3]){
-report_data <- lapply(request_results, handle_report)
-}
+# if(pipeline_message != stat_codes[3]){
+# report_data <- lapply(request_results, handle_report)
+# }
 
 
 # tidy up -----------------------------------------------------------------
 
 rm(list = c(
-  "request_results",
-  "handle_report",
-  "agent_message",
-  "end_date",
+  # "request_results",
+  # "handle_report",
+  # "agent_message",
+  # "end_date",
   "ENDPOINT",
   "MAX_ROWS",
   "RESOURCES",
-  "start_date",
-  "user_details"
-  
-            ))
+  # "start_date",
+  "user_details"))
 
 
 # memory report -----------------------------------------------------------
 
-memory_report()
+# memory_report()

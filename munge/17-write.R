@@ -6,9 +6,13 @@ log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path(
 # create filenames --------------------------------------------------------
 
 # get the numbers from the daterange whether a test run or not
-dates_used <- paste(unlist(str_extract_all(daterange, "[0-9]+")), collapse = "to")
-suffix <- paste0(dates_used, ".csv")
+dates_used <- paste(unlist(str_extract_all(daterange, "[0-9]+") 
+                           %>% as_vector() 
+                           %>% as.Date(format="%d%m%Y") 
+                           %>% format("%d-%m-%Y")), 
+                    collapse = "_to_")
 
+suffix <- paste0(dates_used, ".csv")
 
 # create filenames --------------------------------------------------------
 
@@ -21,16 +25,26 @@ if (test_run == TRUE){
   tmu_filename <- paste0("output_data/test-tmu", suffix)
 } else {
   # if not testing, paste daterange to filename
-  midas_filename <- paste0("output_data/midas", suffix)
-  tame_filename <- paste0("output_data/tame", suffix)
-  tmu_filename <- paste0("output_data/tmu", suffix)
+  midas_filename <- paste0("./output_data/midas_", suffix)
+  tame_filename <- paste0("./output_data/tame_", suffix)
+  tmu_filename <- paste0("./output_data/tmu_", suffix)
 }
 
 # write to file -----------------------------------------------------------
 
-fwrite(midas, midas_filename, row.names = F, quote = F)
-fwrite(tame, tame_filename, row.names = F, quote = F)
-fwrite(tmu, tmu_filename, row.names = F, quote = F)
+if (pipeline_message == stat_codes[3]){
+  
+  disk.frame::write_disk.frame(midas, out = midas_filename)
+  disk.frame::write_disk.frame(tame, out = tame_filename)
+  disk.frame::write_disk.frame(tmu, out = tmu_filename)
+  
+} else{
+  
+  midas %>% write.csv(midas_filename, row.names = FALSE)
+  tame %>% write.csv(tame_filename, row.names = FALSE)
+  tmu %>% write.csv(tmu_filename, row.names = FALSE)
+
+}
 
 # testing write status ----------------------------------------------------
 # test presence of output files and log

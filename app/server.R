@@ -33,6 +33,15 @@ shinyServer(function(input, output, session) {
         }
     }) # end of Email_check
     
+# Chunk Size ----------------------------------------------------------------
+    
+    output$chunk <- renderText({
+        # save status to cache
+        saveRDS(input$chunk_size, "../cache/chunk_size.rds")
+        # output message to console
+        paste("Chunk Size:", input$chunk_size)
+        })
+    
 
 # test run ----------------------------------------------------------------
 
@@ -193,7 +202,7 @@ shinyServer(function(input, output, session) {
             return(data.frame("MIDAS" = "No data"))
         }
     })
-    
+
     output$tame <- renderDT({
         if(pipeline_status$outputText == "Pipeline executed."){
             return(tame)
@@ -201,7 +210,7 @@ shinyServer(function(input, output, session) {
             return(data.frame("TAME" = "No data"))
         }
     })
-    
+
     output$tmu <- renderDT({
         if(pipeline_status$outputText == "Pipeline executed."){
             return(tmu)
@@ -227,14 +236,14 @@ shinyServer(function(input, output, session) {
     observeEvent(input$execute, {
         delay(ms = 2, expr = table_counts$midas <- midas_nrow)
     })
-    
+
     # continue to update MIDAS record count
     observe({
         output$midas_count <- renderText({
             paste(table_counts$midas,
                   "records.")
         })
-        
+
     })
 
 # tame counts -------------------------------------------------------------
@@ -244,14 +253,14 @@ shinyServer(function(input, output, session) {
     observeEvent(input$execute, {
         delay(ms = 2, expr = table_counts$tame <- tame_nrow)
     })
-    
+
     # continue to update MIDAS record count
     observe({
         output$tame_count <- renderText({
             paste(table_counts$tame,
                   "records.")
         })
-        
+
     })
 
 # tmu counts --------------------------------------------------------------
@@ -261,14 +270,14 @@ shinyServer(function(input, output, session) {
     observeEvent(input$execute, {
         delay(ms = 2, expr = table_counts$tmu <- tmu_nrow)
     })
-    
+
     # continue to update MIDAS record count
     observe({
         output$tmu_count <- renderText({
             paste(table_counts$tmu,
                   "records.")
         })
-        
+
     })
     
     

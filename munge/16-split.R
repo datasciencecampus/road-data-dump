@@ -73,15 +73,14 @@ if(pipeline_message != stat_codes[3]) {
                   northing  
                   )
   
- 
-  midas <- combo[combo$type == "midas", ]
-  tame <- combo[combo$type == "tame", ]
-  tmu <- combo[combo$type == "tmu", ]
-  
+  midas <- combo %>% filter(type == "midas")
+  tame  <- combo %>% filter(type == "tame")
+  tmu   <- combo %>% filter(type == "tmu")
   
   # tidy up -----------------------------------------------------------------
   
   rm(combo)
+
 }
 
 

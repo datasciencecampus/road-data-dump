@@ -11,6 +11,8 @@ but not lines like this:
 "TMU 7069/1 on A1(M) northbound between J42 and J43 on road A1(M) Northbound at location 53.792111151099000,-1.322338625921000"
 '
 sites <- cbind(sites, easting_northing(sites$sites.Name))
+sites <- sites %>% rename(site_id = sites.Id) %>% select(-c("row_count", "sites.Name"))
+sites <- sites %>% as.disk.frame()
 
 # tidy up -----------------------------------------------------------------
 rm(easting_northing)

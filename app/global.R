@@ -34,7 +34,10 @@ library(base)
 library(DT)
 library(dplyr)
 library(ptspotter)
-
+library(disk.frame)
+library(magrittr)
+library(future)
+library(furrr)
 
 # check Email syntax ------------------------------------------------------
 

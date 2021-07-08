@@ -99,6 +99,12 @@ fluidRow(id = "daterange",
                         weekstart = 1)
          ),#end of daterange fluid row
 
+fluidRow(id = "chunk_size",
+         tags$h4("Select Chunk Size"),
+         numericInput(
+           inputId = "chunk_size",
+           label = "Chunk Size:", value = 10, min = 5, max = 100)
+         ),
 
 # execute the pipeline ----------------------------------------------------
 
@@ -136,10 +142,14 @@ fluidRow(id = "runpipeline",
             textOutput("DateRangeOut"),
             hr()
             ),
+            tags$div(id = "chunk",
+            htmlOutput("chunk")
+            ),
+            hr(),
             tags$div(id = "pipstatus",
             htmlOutput("pipeline_status")
             ),
-            hr()
+            hr(),
         ) # end of mainPanel
     ) # end of sidebarlayout
             

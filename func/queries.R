@@ -149,7 +149,12 @@ handle_missing <- function(GET_results) {
 
 
   # get the numbers from the daterange whether a test run or not
-  dates_used <- paste(unlist(str_extract_all(daterange, "[0-9]+")), collapse = "to")
+  dates_used <- paste(unlist(str_extract_all(daterange, "[0-9]+") 
+                             %>% as_vector() 
+                             %>% as.Date(format="%d%m%Y") 
+                             %>% format("%d-%m-%Y")), 
+                      collapse = "_to_")
+  
   # write to cache for reporting
   saveRDS(dates_used, "cache/dates_used.rds")
   
@@ -174,6 +179,7 @@ handle_missing <- function(GET_results) {
     )
   } else {
     write.table(print(paste(
+      "-----------------",
       "Missing data report ",
       "Number of missing IDs (204s) for this run: ",
       number_204s,
@@ -187,7 +193,8 @@ handle_missing <- function(GET_results) {
       daterange,
       sep = "\n"
     )),
-    file = paste0("output_data/missing_site_IDs", suffix)
+    file = paste0("output_data/missing_site_IDs_", suffix),
+    append = TRUE, row.names = FALSE, col.names = FALSE
     )
   }
 

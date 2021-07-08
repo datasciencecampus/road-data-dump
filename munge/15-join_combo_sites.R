@@ -8,7 +8,12 @@ gc()
 # join integrity ----------------------------------------------------------
 # find any site IDs in combo that have no corresponding ID in the sites df
 if(pipeline_message != stat_codes[3]){
-  null_matches <- setdiff(combo$site_id, sites$sites.Id)
+  
+  combo_site_id <- combo %>% select(site_id) %>% as.data.frame()
+  sites_site_id <- sites %>% select(site_id) %>% as.data.frame()
+  
+  null_matches <- setdiff(combo_site_id, sites_site_id)
+  
   # if null matches is not empty, log warnings and output data for site_report
   if(length(null_matches) > 0){
   # log
@@ -16,7 +21,7 @@ if(pipeline_message != stat_codes[3]){
   warn(my_logger, paste("Unmatched IDs found:",
   paste0(null_matches, collapse = ", ")))
   # anti-join combo and output for site_report
-  nullmatch_combo <- anti_join(combo, sites, by = c("site_id" = "sites.Id"))
+  nullmatch_combo <- anti_join(combo, sites, by = c("site_id"))
   saveRDS(nullmatch_combo, "cache/nullmatch_combo.RDS")
   # tidy up
   rm(list = c(
@@ -27,7 +32,7 @@ if(pipeline_message != stat_codes[3]){
   # execute join ------------------------------------------------------------
   # join the site details to the sensor output on site ID, dropping 2 columns from the
   # site details df, row count and site name.
-  combo <- left_join(combo, sites[, -(c(1,3))], by = c("site_id" = "sites.Id"))
+  combo <- left_join(combo, sites, by = c("site_id"))
   
 }
 
@@ -40,7 +45,8 @@ upstream within this pipeline though.
 "
 # clean up leaving readings only
 rm(list = c(
-  "sites"
+  "sites",
+  "combo_site_id"
 ))
 
 # memory report -----------------------------------------------------------

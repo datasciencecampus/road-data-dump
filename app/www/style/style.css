@@ -54,6 +54,11 @@ p {
   bottom: 25px;
 }
 
+#chunk_size{
+  position: relative;
+  bottom: 25px;
+}
+
 
 #testing {
   position: relative;

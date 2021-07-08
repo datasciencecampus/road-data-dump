@@ -34,6 +34,10 @@ if (test_run == TRUE) {
   )
 }
 
+chunk_size <- readRDS("cache/chunk_size.rds")
+
+split_list_n_chunks <- function(x,n) split(x, cut(seq_along(x), n, labels = FALSE))
+all_urls_nested_list <- split_list_n_chunks(all_urls, chunk_size)
 
 # logging prior to pinchpoint ---------------------------------------------
 
@@ -43,7 +47,7 @@ log4r::info(my_logger, paste("Number of queries:",
                              ))
 
 # tidy up -----------------------------------------------------------------
-rm(all_sites)
+rm(list = c("all_sites", "all_urls"))
 
 # memory report -----------------------------------------------------------
 memory_report()
