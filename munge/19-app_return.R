@@ -9,6 +9,21 @@ log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path(
 # return table heads ------------------------------------------------------
 "Provide a preview of data for the UI"
 
+if (pipeline_message == stat_codes[3]){
+  
+  error(my_logger, "Queried date range is empty.")
+  beepr::beep(sound = 10)
+  
+  midas_nrow <- 0
+  midas <- data.frame()
+  
+  tame_nrow <- 0
+  tame <- data.frame()
+  
+  tmu_nrow <- 0
+  tmu <- data.frame()
+  
+} else{
 if("midas" %in% ls()){
   
   midas_nrow <- midas %>% cmap(., function(chunk) {
@@ -41,7 +56,7 @@ if("tmu" %in% ls()){
   tmu <- tmu %>% get_chunk(1) %>% head(n = 100) 
   
 }
-
+}
 
 # detach packages causing conflicts ---------------------------------------
 "jsonlite causing issue with validate Email message on app reruns within same

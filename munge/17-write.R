@@ -34,9 +34,8 @@ if (test_run == TRUE){
 
 if (pipeline_message == stat_codes[3]){
   
-  disk.frame::write_disk.frame(midas, out = midas_filename)
-  disk.frame::write_disk.frame(tame, out = tame_filename)
-  disk.frame::write_disk.frame(tmu, out = tmu_filename)
+  error(my_logger, "Queried date range is empty.")
+  beepr::beep(sound = 10)
   
 } else{
   
