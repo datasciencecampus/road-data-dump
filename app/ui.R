@@ -103,7 +103,7 @@ fluidRow(id = "chunk_size",
          tags$h4("Select Chunk Size"),
          numericInput(
            inputId = "chunk_size",
-           label = "Chunk Size:", value = 10, min = 5, max = 100)
+           label = "Chunk Size:", value = 30, min = 5, max = 100)
          ),
 
 # execute the pipeline ----------------------------------------------------
