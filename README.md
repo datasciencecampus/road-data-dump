@@ -1,4 +1,4 @@
-# Roads Data Dump: r-pipeline branch 1.5.2
+# Roads Data Dump: r-pipeline branch 2.0
 
 Documentation available on [GitHub pages](https://datasciencecampus.github.io/road-data-pipeline-documentation/)
 
@@ -6,8 +6,8 @@ Also locally available in `./docs/index.html`.
 
 ## Changelog
 
-### Version 1.5.2
-* Fixed RAM Issue: disk.frame implementation.
+### Version 2.0
+* Fixed RAM Issue: disk.frame implementation and split request into chunks (list) specified by user.
 
 ### Version 1.5.1
 

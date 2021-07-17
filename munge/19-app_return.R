@@ -2,61 +2,8 @@
 Purpose of script:
 Reset environment configuration once pipeline has executed
 Prepare Shiny environment for re-runs
-
 "
 log4r::info(my_logger, paste0("############# ", "Start of ", basename(this.path()), " #############"))
-
-# return table heads ------------------------------------------------------
-"Provide a preview of data for the UI"
-
-if (pipeline_message == stat_codes[3]){
-  
-  error(my_logger, "Queried date range is empty.")
-  beepr::beep(sound = 10)
-  
-  midas_nrow <- 0
-  midas <- data.frame()
-  
-  tame_nrow <- 0
-  tame <- data.frame()
-  
-  tmu_nrow <- 0
-  tmu <- data.frame()
-  
-} else{
-if("midas" %in% ls()){
-  
-  midas_nrow <- midas %>% cmap(., function(chunk) {
-    gc()
-    nrow(chunk)
-  }, lazy = FALSE) %>% as.data.frame() %>% sum() %>% format(big.mark = ",")
-  
-  midas <- midas %>% get_chunk(1) %>% head(n = 100)
-  
-}
-
-if("tame" %in% ls()){
-  
-  tame_nrow <- tame %>% cmap(., function(chunk) {
-    gc()
-    nrow(chunk)
-  }, lazy = FALSE) %>% as.data.frame() %>% sum() %>% format(big.mark = ",")
-  
-  tame <- tame %>% get_chunk(1) %>% head(n = 100)
-  
-}
-
-if("tmu" %in% ls()){
-  
-  tmu_nrow <- tmu %>% cmap(., function(chunk) {
-    gc()
-    nrow(chunk)
-  }, lazy = FALSE) %>% as.data.frame() %>% sum() %>% format(big.mark = ",")
-  
-  tmu <- tmu %>% get_chunk(1) %>% head(n = 100) 
-  
-}
-}
 
 # detach packages causing conflicts ---------------------------------------
 "jsonlite causing issue with validate Email message on app reruns within same
@@ -66,10 +13,8 @@ anyway."
 
 detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
 
-
 # memory report -----------------------------------------------------------
 memory_report()
-
 
 # pipeline_message --------------------------------------------------------
 # if pipeline_message is not equal to status code 2 and 3, then update as successfully
@@ -79,14 +24,11 @@ if (pipeline_message != stat_codes[2] && pipeline_message != stat_codes[3]){
   pipeline_message <- unname(stat_codes[1])
 }
 
-
 # wrap up -----------------------------------------------------------------
 
 # calculate elapsed time
 elapsed <- Sys.time() - start_time
 log4r::info(my_logger, capture.output(round(elapsed, digits = 3)))
-
-
 log4r::info(my_logger, paste0("#############End of pipeline#############"))
 
 
@@ -103,7 +45,6 @@ rm(list = c(
 
 # sound alert when script completes
 beepr::beep("coin")
-
 
 # return to app working directory -----------------------------------------
 
