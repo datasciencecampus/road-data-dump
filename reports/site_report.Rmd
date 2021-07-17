@@ -20,9 +20,10 @@ source("../func/queries.R")
 ```
 
 ```{r, include=FALSE}
-
 # Load in all RDS files found in the cache folder
 assign_rds("../cache/")
+site_Id_204s <- site_Id_204s %>% unlist() %>% as.vector()
+all_queried_siteIds <- all_queried_siteIds %>% unlist() %>% as.vector()
 ```
 
 

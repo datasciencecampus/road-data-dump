@@ -21,7 +21,7 @@ if(pipeline_message != stat_codes[3]){
   warn(my_logger, paste("Unmatched IDs found:",
   paste0(null_matches, collapse = ", ")))
   # anti-join combo and output for site_report
-  nullmatch_combo <- anti_join(combo, sites, by = c("site_id"))
+  nullmatch_combo <- anti_join(combo, sites, by = c("site_id")) %>% as.data.frame()
   saveRDS(nullmatch_combo, "cache/nullmatch_combo.RDS")
   # tidy up
   rm(list = c(

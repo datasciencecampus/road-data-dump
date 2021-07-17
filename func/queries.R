@@ -104,7 +104,12 @@ handle_missing <- function(GET_results) {
     function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")
   )
   # write to cache for reporting
-  saveRDS(all_queried_siteIds, "cache/all_queried_siteIds.rds")
+  write.table(print(paste(
+    all_queried_siteIds
+  )),
+  file = "cache/all_queried_siteIds.csv",
+  append = TRUE, row.names = FALSE, col.names = FALSE
+  )
 
 # extract the 204 responses site IDs
   site_Id_204s <- sapply(
@@ -112,7 +117,12 @@ handle_missing <- function(GET_results) {
     function(x) str_extract(x, pattern = "(?<=sites=)([0-9]+)(?=&)")
   )
   # write to cache for reporting
-  saveRDS(site_Id_204s, "cache/site_Id_204s.rds")
+  write.table(print(paste(
+    site_Id_204s
+  )),
+  file = "cache/site_Id_204s.csv",
+  append = TRUE, row.names = FALSE, col.names = FALSE
+  )
   
   # count the number of 204s
   number_204s <- length(site_Id_204s)
@@ -126,7 +136,12 @@ handle_missing <- function(GET_results) {
   
   # write to cache for reporting if errors are detected
   if(number_errors > 0) {
-  saveRDS(site_Id_errors, "cache/site_Id_errors.rds")
+    write.table(print(paste(
+      site_Id_errors
+    )),
+    file = "cache/site_Id_errors.csv",
+    append = TRUE, row.names = FALSE, col.names = FALSE
+    )
   }
   
   # find urls that are not responsible for 204 statuses or errors
