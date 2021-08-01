@@ -11,7 +11,7 @@ session. To avoid this, force unload on app initiation. Note that jsonlite is
 still required in app by shinybusy, so implicit attachment on loading shinybusy
 anyway."
 
-detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
+#detach("package:jsonlite", force = TRUE, unload = TRUE, character.only = TRUE)
 
 # memory report -----------------------------------------------------------
 memory_report()
